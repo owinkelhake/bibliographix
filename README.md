@@ -1,1 +1,1 @@
-## bibliographix
+# Bibliographix is written in Lazarus
