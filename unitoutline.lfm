@@ -1,0 +1,31 @@
+object Outline: TOutline
+  Left = 1278
+  Height = 509
+  Top = 216
+  Width = 478
+  Caption = 'Outline'
+  ClientHeight = 509
+  ClientWidth = 478
+  LCLVersion = '2.2.0.4'
+  object Anzeige: TRichMemo
+    Left = 24
+    Height = 129
+    Top = 48
+    Width = 277
+    HideSelection = False
+    Lines.Strings = (
+      'Anzeige'
+    )
+    TabOrder = 0
+    WantTabs = True
+    WordWrap = False
+    ZoomFactor = 1
+  end
+  object TreeView1: TTreeView
+    Left = 32
+    Height = 253
+    Top = 200
+    Width = 352
+    TabOrder = 1
+  end
+end

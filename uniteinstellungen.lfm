@@ -1,0 +1,642 @@
+object FormEinstellungen: TFormEinstellungen
+  Left = 964
+  Height = 338
+  Top = 417
+  Width = 627
+  BorderStyle = bsDialog
+  Caption = 'FormEinstellungen'
+  ClientHeight = 338
+  ClientWidth = 627
+  OnClose = FormClose
+  LCLVersion = '2.2.0.4'
+  object RegisterOptionen: TPageControl
+    Left = 16
+    Height = 288
+    Top = 16
+    Width = 584
+    ActivePage = SeiteOptionenDrucken
+    Font.Color = clBlack
+    Font.Height = -16
+    MultiLine = True
+    ParentFont = False
+    TabIndex = 1
+    TabOrder = 0
+    Options = [nboMultiLine]
+    object SeiteOptionenEinstellungen: TTabSheet
+      Caption = 'Anzeige'
+      ClientHeight = 255
+      ClientWidth = 574
+      object Label85: TLabel
+        Left = 10
+        Height = 19
+        Top = 8
+        Width = 109
+        BorderSpacing.Left = 10
+        Caption = 'Anmerkungen'
+        Font.Color = clBlack
+        Font.Height = -16
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label27: TLabel
+        Left = 16
+        Height = 15
+        Top = 34
+        Width = 57
+        Caption = 'Schriftart:'
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        ParentFont = False
+      end
+      object FontListe: TComboBox
+        Left = 80
+        Height = 27
+        Top = 28
+        Width = 128
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        ItemHeight = 0
+        OnChange = FontListeChange
+        ParentFont = False
+        TabOrder = 0
+        Text = 'FontListe'
+      end
+      object Label72: TLabel
+        Left = 328
+        Height = 19
+        Top = 16
+        Width = 80
+        BorderSpacing.Left = 10
+        Caption = 'Trefferliste'
+        Font.Color = clBlack
+        Font.Height = -16
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object OptionAlphaSortIdee: TCheckBox
+        Left = 344
+        Height = 23
+        Top = 40
+        Width = 153
+        Caption = 'alphabetisch sortieren'
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        ParentFont = False
+        TabOrder = 1
+      end
+      object OptionNurMarkierteZeigen: TCheckBox
+        Left = 344
+        Height = 23
+        Top = 64
+        Width = 144
+        Caption = 'nur markierte zeigen'
+        Font.CharSet = ANSI_CHARSET
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        Font.Pitch = fpVariable
+        Font.Quality = fqDraft
+        ParentFont = False
+        TabOrder = 2
+      end
+      object Panel11: TPanel
+        Left = 296
+        Height = 120
+        Top = 112
+        Width = 240
+        BevelOuter = bvNone
+        ClientHeight = 120
+        ClientWidth = 240
+        Color = clWhite
+        ParentColor = False
+        TabOrder = 3
+        object Label86: TLabel
+          Left = 32
+          Height = 19
+          Top = 16
+          Width = 131
+          BorderSpacing.Left = 10
+          Caption = 'Literaturanhänge'
+          Font.Color = clBlack
+          Font.Height = -16
+          Font.Name = 'Arial'
+          Font.Style = [fsBold]
+          ParentFont = False
+        end
+        object OptionBibTeX: TRadioButton
+          Left = 54
+          Height = 23
+          Top = 40
+          Width = 95
+          Caption = 'LaTeX / Lyx'
+          Checked = True
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          ParentFont = False
+          TabOrder = 0
+          TabStop = True
+        end
+        object OptionRTF: TRadioButton
+          Left = 54
+          Height = 23
+          Top = 64
+          Width = 93
+          Caption = 'RTF / Word'
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          ParentFont = False
+          TabOrder = 1
+        end
+        object OptionKeinAnhang: TRadioButton
+          Left = 54
+          Height = 23
+          Top = 88
+          Width = 61
+          Caption = 'keiner'
+          Font.Color = clBlack
+          Font.Height = -13
+          Font.Name = 'Arial'
+          ParentFont = False
+          TabOrder = 2
+        end
+      end
+      object FontBeispiel: TLabel
+        Left = 80
+        Height = 19
+        Top = 64
+        Width = 88
+        Caption = 'FontBeispiel'
+      end
+      object OptionKompakt: TCheckBox
+        Left = 344
+        Height = 23
+        Top = 88
+        Width = 169
+        Caption = 'kompaktere Darstellung'
+        Font.Color = clBlack
+        Font.Height = -13
+        ParentFont = False
+        TabOrder = 4
+      end
+      object FontSizes: TComboBox
+        Left = 216
+        Height = 28
+        Top = 28
+        Width = 68
+        Font.Color = clBlack
+        Font.Height = -13
+        ItemHeight = 0
+        Items.Strings = (
+          '8'
+          '9'
+          '10'
+          '11'
+          '12'
+          '13'
+          '14'
+          '15'
+          '16'
+        )
+        OnChange = FontSizesChange
+        ParentFont = False
+        TabOrder = 5
+        Text = 'FontSizes'
+      end
+    end
+    object SeiteOptionenDrucken: TTabSheet
+      Caption = 'Drucken'
+      ClientHeight = 255
+      ClientWidth = 574
+      object OptionEineSeiteDrucken: TRadioButton
+        Left = 16
+        Height = 23
+        Top = 16
+        Width = 235
+        Caption = 'die angezeigte Notiz drucken'
+        Checked = True
+        TabOrder = 0
+        TabStop = True
+      end
+      object OptionAlleSeiten: TRadioButton
+        Left = 16
+        Height = 23
+        Top = 40
+        Width = 350
+        Caption = 'die ganze Liste aus der Volltextsuche drucken'
+        TabOrder = 1
+      end
+      object OptionAnmerkungenDrucken: TCheckBox
+        Left = 40
+        Height = 24
+        Top = 192
+        Width = 160
+        AutoSize = False
+        Caption = 'mit Anmerkungen'
+        Checked = True
+        State = cbChecked
+        TabOrder = 2
+      end
+      object Button4: TButton
+        Left = 248
+        Height = 70
+        Top = 112
+        Width = 128
+        Caption = 'Start'
+        TabOrder = 3
+      end
+      object OptionNotizenDrucken: TCheckBox
+        Left = 40
+        Height = 23
+        Top = 112
+        Width = 147
+        Caption = 'einfache Notizen'
+        Checked = True
+        State = cbChecked
+        TabOrder = 4
+      end
+      object OptionLiteraturDrucken: TCheckBox
+        Left = 40
+        Height = 23
+        Top = 136
+        Width = 187
+        Caption = 'Notizen mit Titeldaten'
+        Checked = True
+        State = cbChecked
+        TabOrder = 5
+      end
+      object OptionGliederungDrucken: TRadioButton
+        Left = 16
+        Height = 23
+        Top = 64
+        Width = 192
+        Caption = 'die Gliederung drucken'
+        TabOrder = 6
+      end
+      object OptionAnmerkungenDrucken1: TCheckBox
+        Left = 40
+        Height = 24
+        Top = 168
+        Width = 160
+        AutoSize = False
+        Caption = 'Titel'
+        Checked = True
+        Enabled = False
+        State = cbChecked
+        TabOrder = 7
+      end
+    end
+    object SeiteOptionenDatenaustausch: TTabSheet
+      Caption = 'Datenaustausch'
+      ClientHeight = 255
+      ClientWidth = 574
+      object Label66: TLabel
+        Left = 8
+        Height = 19
+        Top = 8
+        Width = 49
+        BorderSpacing.Left = 10
+        Caption = 'Import'
+        Font.Color = clBlack
+        Font.Height = -16
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Label75: TLabel
+        Left = 8
+        Height = 19
+        Top = 88
+        Width = 51
+        BorderSpacing.Left = 10
+        Caption = 'Export'
+        Font.Color = clBlack
+        Font.Height = -16
+        Font.Name = 'Arial'
+        Font.Style = [fsBold]
+        ParentFont = False
+      end
+      object Button5: TButton
+        Left = 32
+        Height = 32
+        Top = 32
+        Width = 96
+        Caption = 'eine Quelle'
+        Font.Color = clBlack
+        Font.Height = -13
+        ParentFont = False
+        TabOrder = 0
+      end
+      object Button6: TButton
+        Left = 144
+        Height = 32
+        Top = 32
+        Width = 77
+        Caption = 'Datei'
+        Font.Color = clBlack
+        Font.Height = -13
+        ParentFont = False
+        TabOrder = 1
+      end
+      object Button7: TButton
+        Left = 32
+        Height = 33
+        Top = 112
+        Width = 136
+        Caption = 'alle Literaturquellen'
+        Font.Color = clBlack
+        Font.Height = -13
+        ParentFont = False
+        TabOrder = 2
+      end
+      object OptionRISExport: TRadioButton
+        Left = 32
+        Height = 23
+        Top = 144
+        Width = 102
+        Caption = 'RIS (RefMan)'
+        Checked = True
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        ParentFont = False
+        TabOrder = 3
+        TabStop = True
+      end
+      object OptionReferExport: TRadioButton
+        Left = 32
+        Height = 23
+        Top = 168
+        Width = 121
+        Caption = 'Refer (Endnote)'
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        ParentFont = False
+        TabOrder = 4
+      end
+      object OptionBibtexExport: TRadioButton
+        Left = 32
+        Height = 23
+        Top = 192
+        Width = 68
+        Caption = 'BibTeX'
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        ParentFont = False
+        TabOrder = 5
+      end
+      object OptionWordExport: TRadioButton
+        Left = 32
+        Height = 23
+        Top = 216
+        Width = 59
+        Caption = 'Word'
+        Font.Color = clBlack
+        Font.Height = -13
+        ParentFont = False
+        TabOrder = 6
+      end
+      object ExportObsidian: TButton
+        Left = 304
+        Height = 33
+        Top = 112
+        Width = 216
+        Caption = 'als Obsidian Vault exportieren'
+        Font.Color = clBlack
+        Font.Height = -13
+        ParentFont = False
+        TabOrder = 7
+      end
+      object Button8: TButton
+        Left = 240
+        Height = 32
+        Top = 32
+        Width = 176
+        Caption = 'aus Obsidian importieren'
+        Font.Color = clBlack
+        Font.Height = -13
+        ParentFont = False
+        TabOrder = 8
+      end
+    end
+    object SeiteErsetze: TTabSheet
+      Caption = 'Suche/Ersetze'
+      ClientHeight = 255
+      ClientWidth = 574
+      object Label54: TLabel
+        Left = 8
+        Height = 15
+        Top = 14
+        Width = 39
+        Caption = 'suche:'
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        ParentFont = False
+      end
+      object FeldSuchText: TEdit
+        Left = 48
+        Height = 27
+        Top = 10
+        Width = 92
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        ParentFont = False
+        TabOrder = 0
+      end
+      object OptionSucheNotizen: TCheckBox
+        Left = 8
+        Height = 23
+        Top = 42
+        Width = 120
+        Caption = 'in allen Notizen'
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        ParentFont = False
+        TabOrder = 1
+      end
+      object OptionSucheLiteratur: TCheckBox
+        Left = 144
+        Height = 23
+        Top = 42
+        Width = 217
+        Caption = 'in allen Literaturquellen in Feld '
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        ParentFont = False
+        TabOrder = 2
+      end
+      object Label55: TLabel
+        Left = 152
+        Height = 15
+        Top = 14
+        Width = 69
+        Caption = 'ersetze mit:'
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        ParentFont = False
+      end
+      object ErsatzText: TEdit
+        Left = 224
+        Height = 27
+        Top = 10
+        Width = 96
+        Font.Color = clBlack
+        Font.Height = -13
+        Font.Name = 'Arial'
+        ParentFont = False
+        TabOrder = 3
+      end
+      object Button1: TButton
+        Left = 360
+        Height = 28
+        Top = 8
+        Width = 62
+        Caption = 'Start'
+        TabOrder = 4
+      end
+      object AuswahlFeld: TComboBox
+        Left = 346
+        Height = 26
+        Top = 40
+        Width = 76
+        DropDownCount = 5
+        Font.Color = clBlack
+        Font.Height = -13
+        ItemHeight = 0
+        ItemIndex = 0
+        Items.Strings = (
+          'alle'
+          'Verlag'
+          'Ort'
+          'Zeitschrift'
+        )
+        ParentFont = False
+        Style = csDropDownList
+        TabOrder = 5
+        Text = 'alle'
+      end
+    end
+    object SeiteUpdate: TTabSheet
+      Caption = 'Update'
+      ClientHeight = 255
+      ClientWidth = 574
+      object Button3: TButton
+        Left = 16
+        Height = 58
+        Top = 24
+        Width = 184
+        Caption = 'nach Updates suchen...'
+        TabOrder = 0
+      end
+    end
+    object PayPalSeite: TTabSheet
+      Caption = 'Support'
+      ClientHeight = 255
+      ClientWidth = 574
+      object Label22: TLabel
+        Left = 16
+        Height = 56
+        Top = 24
+        Width = 415
+        AutoSize = False
+        Caption = 'Unterstützen Sie Bibliographix mit einer Spende per Paypal. Klicken Sie auf das PayPal - Icon'
+        WordWrap = True
+      end
+      object CheckBox2: TCheckBox
+        Left = 16
+        Height = 23
+        Top = 200
+        Width = 324
+        Caption = 'Den Hinweis in der Kopfleiste nicht mehr anzeigen'
+        TabOrder = 0
+      end
+      object Image4: TImage
+        Cursor = crHandPoint
+        Left = 16
+        Height = 38
+        Top = 80
+        Width = 110
+        Picture.Data = {
+          0A544A706567496D616765E2060000FFD8FFE000104A46494600010101006000
+          600000FFFE003B43524541544F523A2067642D6A7065672076312E3020287573
+          696E6720494A47204A50454720763830292C207175616C697479203D2037300A
+          FFDB0043000A07070807060A0808080B0A0A0B0E18100E0D0D0E1D1516111823
+          1F2524221F2221262B372F26293429212230413134393B3E3E3E252E4449433C
+          48373D3E3BFFDB0043010A0B0B0E0D0E1C10101C3B2822283B3B3B3B3B3B3B3B
+          3B3B3B3B3B3B3B3B3B3B3B3B3B3B3B3B3B3B3B3B3B3B3B3B3B3B3B3B3B3B3B3B
+          3B3B3B3B3B3B3B3B3B3BFFC00011080027006403012200021101031101FFC400
+          1F0000010501010101010100000000000000000102030405060708090A0BFFC4
+          00B5100002010303020403050504040000017D01020300041105122131410613
+          516107227114328191A1082342B1C11552D1F02433627282090A161718191A25
+          262728292A3435363738393A434445464748494A535455565758595A63646566
+          6768696A737475767778797A838485868788898A92939495969798999AA2A3A4
+          A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9
+          DAE1E2E3E4E5E6E7E8E9EAF1F2F3F4F5F6F7F8F9FAFFC4001F01000301010101
+          01010101010000000000000102030405060708090A0BFFC400B5110002010204
+          0403040705040400010277000102031104052131061241510761711322328108
+          144291A1B1C109233352F0156272D10A162434E125F11718191A262728292A35
+          363738393A434445464748494A535455565758595A636465666768696A737475
+          767778797A82838485868788898A92939495969798999AA2A3A4A5A6A7A8A9AA
+          B2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE2E3E4E5E6
+          E7E8E9EAF2F3F4F5F6F7F8F9FAFFDA000C03010002110311003F00F66A2BCFBE
+          2978AB54F0E8D3A2D2AEFECF24FE6348422B640DB8FBC0FA9AE57C25F13B5E9B
+          C476769A9DEA5CDADC4A2370F1226CCF1B81503A7BD75430B3953E756319568C
+          65CACF6BA2B9CF15F8B97C306C631612DF4F7D2148A289B0C48C74E0E79614CF
+          0B78D21F125DDDD8BD85C585E5A0CC90CDD719C7E7EC477AC7D94F939EDA1A73
+          C6FCBD4E9A8A4A2B3285A2B99BDF18FD96F6EEDE2D327B84B43892446E17DCF1
+          C56E69B7F16A7A7C37B0860928C80DD473823F315ACE8CE115292D0C29E22954
+          938C5EA8B54566EAFABAE942DB30995AE66112A86C633DEAEDCDCC5696B2DCDC
+          38486142F231FE150324FE551CAD24FB9A29C5B714F544B4563A78AB447D0DB5
+          A5BF4FB02B6D331561CE718C633D7DAB42CAF6DF51B28AF2D64F3209943C6F82
+          3703DF079A1C64B7452699628A4A2A4678D7C592751F19D9E9EAFB425A804E33
+          825989FD00AA5E19F00DDCB7B0CC91CB2A31E2668F6A28E84E7B9EB5E9FAEF82
+          74BD6AEDB50D9E56A0C00FB41666C00318DBB80E95B3A5D88D374D82CC3EFF00
+          2536EEC633EF8AF4E38B8D3A29417BC8F36AE1AA55ACD49DA16E9D7CBBEC701E
+          398AFF0052F885A0E9BA5CF1C377042D3C724A32A8724E48C1FF009E7591AF68
+          B7FE1A9ADDF53D6984DAEDDEDBFBD846C11C608F941F7DC4F6FBA3B673EB26C2
+          CDAF45F1B584DD2AEC1398C6F0BE9BBAE292F6C2CF5183C8BEB586E62CE764C8
+          1C67D706B9E189E5E556D11D8E95EECF2ED0B4FB4BFF001ADFE95A3EB17773A7
+          47A6C812469CB0476017E523AE0B67EB51786AE358F161D3FC3733CF0DB692EC
+          FA84C1C86930C76A67AFB7E67B57A7FF0063DA5B4539D32DADAC2E658BCB59E2
+          B75CAF185C818C81C71ED557C2FE1A83C33A635AC72B5C4D2C8649EE1C61A563
+          DCF5AA7888B4DF5D2DFE6254DDCE634AD3753D69B5596CEF23B7B6BAB8649772
+          E4B0C93C71E8DEB4D586CE2BFBBB0D43529ED60D3A30B6C8AFB4B1EA5BDC93CF
+          E3ED5DEDBDADBDA218EDE08E1427256350A33EBC547369D6371379F35A4124B8
+          C6F78C138FAD57D6EF2775A7E3FD74387FB3ED1567AF5BDEDD7F5D4E0F48F36E
+          A6D0639647919EE659C9639385C63FF40357FC6BE26B1BBF026ACFA6DC79C448
+          2C988461F392370E473F2E7A575D1D859C2F1BC76B0A3440AA158C0280F503D3
+          A9A8BFB174AFB3FD9FFB36D3C9F33CDF2FC85DBBFF00BD8C633EF513C4427352
+          B6DFE773A30F86952838B77BFF0092478CEBFE1CD6345D0EE34FB9DC9A745748
+          6D173FEBE67001FC0056FC4D6B6B135E36BF3E80D751C169A5D9C50C11CBA81B
+          452760FDE671F3907B57AB5D58DA5E88C5DDAC3702370E82540DB5874233D0FB
+          D417BA2695A94AB2DF69B6B75220C2B4D0AB903D324552C5DEDCCBFAD0DBD8DB
+          6654F08A5E278574F17F722EA7F2B2660C58382495393D7E5C73456C222468B1
+          C6A1114615546001E828AE293BB6CD92B2B0B451452185145140051451400514
+          51400514514005145140051451401FFFD9
+        }
+      end
+      object Label30: TLabel
+        Left = 16
+        Height = 56
+        Top = 136
+        Width = 543
+        AutoSize = False
+        Caption = 'Wenn SIE Unterstützung von MIR haben möchten, schicken Sie eine eMail an winkelhake@bibliographix.com'
+        WordWrap = True
+      end
+    end
+  end
+end

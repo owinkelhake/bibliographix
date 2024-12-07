@@ -1,0 +1,144 @@
+object FormNeu: TFormNeu
+  Left = 1411
+  Height = 188
+  Top = 164
+  Width = 398
+  BorderIcons = []
+  BorderStyle = bsDialog
+  Caption = 'neue Notiz anlegen'
+  ClientHeight = 188
+  ClientWidth = 398
+  Color = clWhite
+  FormStyle = fsStayOnTop
+  KeyPreview = True
+  OnCreate = FormCreate
+  OnKeyUp = FormKeyUp
+  LCLVersion = '2.2.0.4'
+  object Image9: TImage
+    Cursor = crIBeam
+    Left = 55
+    Height = 18
+    Top = 77
+    Width = 304
+    Anchors = [akTop, akLeft, akRight]
+    Picture.Data = {
+      1754506F727461626C654E6574776F726B47726170686963A701000089504E47
+      0D0A1A0A0000000D49484452000003F60000000C0802000000479BB1E1000000
+      0674524E5300FF00FF00FF37581B7D0000015C49444154789CEDDD216FC24018
+      C6F17559AAAA6A56C48258100B62E1FB7F8806D1201A4483E861AA4E9DE9C4B3
+      2C339B205C7679F6FF19FE9234F0DE4B13A05AD7F501000000808BC7BF7E0200
+      000000EE89151F000000B0C28A0F0000005861C507000000ACB0E203407629A5
+      949277C718638C7EBD2CCBB22CDE1DE639CCB3775FA6E9324D7E7D1EC7F3387A
+      F769184EC3E0D7C7BE3FF67DBEFE5CF11973EA12C610A3EDB62E610C31E66EEB
+      DC63AE842EE13AE7EE12DE2339BA84F996BBAF215C43F0EE12768C1C5DC2C7E0
+      DC5DC22D8C1C9DDB931E34CBDE0F875F5AB3A06D5BE3D62CE8361BB3D62C78D9
+      6E8DFB6B1618F7F7B9E0D4FF415DD7F6DD348D65EB74F0EEE7AEB36F9D147EFD
+      BADBD9F7DB7E6FD9DAAEF375A5DFC5D72AAF0BFA536B15D60BCBB575DB5B6BB1
+      536B15D640776DADC23A985D5B6BB1962AA7060000F755F1D7570000008013BE
+      6E0B0000005861C507000000AC7C005AA274C5CD9476240000000049454E44AE
+      426082
+    }
+    Stretch = True
+    StretchOutEnabled = False
+    StretchInEnabled = False
+  end
+  object PanelF2: TPanel
+    Left = 16
+    Height = 33
+    Top = 8
+    Width = 175
+    BevelOuter = bvNone
+    Caption = 'einfache Notiz (F2)'
+    ClientHeight = 33
+    ClientWidth = 175
+    Font.Height = -16
+    Font.Style = [fsBold]
+    ParentFont = False
+    TabOrder = 0
+    object PanelUnterstrich: TPanel
+      Left = 0
+      Height = 5
+      Top = 28
+      Width = 175
+      Align = alBottom
+      BevelOuter = bvNone
+      Color = clBlack
+      ParentColor = False
+      TabOrder = 0
+    end
+  end
+  object PanelF3: TPanel
+    Cursor = crHandPoint
+    Left = 192
+    Height = 33
+    Top = 8
+    Width = 184
+    BevelOuter = bvNone
+    Caption = 'Notiz mit Titeldaten (F3)'
+    Font.Height = -16
+    ParentFont = False
+    TabOrder = 1
+    OnClick = PanelF3Click
+  end
+  object Label4: TLabel
+    Left = 16
+    Height = 16
+    Top = 66
+    Width = 30
+    Caption = 'Titel:'
+    Color = clWhite
+    ParentColor = True
+    Transparent = False
+  end
+  object EingabeTitelNeueNotiz: TEdit
+    Left = 56
+    Height = 20
+    Top = 64
+    Width = 328
+    BorderStyle = bsNone
+    OnKeyDown = EingabeTitelNeueNotizKeyDown
+    ParentColor = True
+    TabOrder = 2
+  end
+  object OptionMitVerweis: TCheckBox
+    Left = 56
+    Height = 23
+    Top = 104
+    Width = 23
+    TabOrder = 3
+  end
+  object Panel1: TPanel
+    Left = 331
+    Height = 31
+    Top = 150
+    Width = 53
+    BevelOuter = bvNone
+    BorderStyle = bsSingle
+    Caption = 'OK'
+    TabOrder = 4
+    OnClick = ButtonDialogNeueNotizClick
+  end
+  object Label1: TLabel
+    Cursor = crHandPoint
+    Left = 82
+    Height = 16
+    Top = 107
+    Width = 264
+    Caption = 'Querverweis mit der aktuellen Seite anlegen'
+    Color = clWhite
+    ParentColor = True
+    Transparent = False
+    OnClick = Label1Click
+  end
+  object Panel2: TPanel
+    Left = 232
+    Height = 31
+    Top = 150
+    Width = 85
+    BevelOuter = bvNone
+    BorderStyle = bsSingle
+    Caption = 'Abbruch'
+    TabOrder = 5
+    OnClick = Panel2Click
+  end
+end

@@ -1,0 +1,59 @@
+object FormKeyword: TFormKeyword
+  Left = 1321
+  Height = 434
+  Top = 155
+  Width = 497
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
+  Caption = 'Schlagwörter (F6)'
+  ClientHeight = 434
+  ClientWidth = 497
+  Color = clWhite
+  FormStyle = fsStayOnTop
+  KeyPreview = True
+  OnKeyDown = FormKeyDown
+  OnResize = FormResize
+  LCLVersion = '2.2.0.4'
+  object Register: TPageControl
+    Left = 8
+    Height = 376
+    Top = 48
+    Width = 209
+    ActivePage = SeiteSuchen
+    Anchors = [akTop, akLeft, akBottom]
+    BorderSpacing.Left = 10
+    BorderSpacing.Top = 10
+    BorderSpacing.Right = 10
+    BorderSpacing.Bottom = 10
+    TabIndex = 0
+    TabOrder = 0
+    OnChange = RegisterChange
+    object SeiteSuchen: TTabSheet
+      Caption = 'suchen'
+      ClientHeight = 346
+      ClientWidth = 199
+      object Panel1: TPanel
+        Left = 0
+        Height = 32
+        Top = 0
+        Width = 199
+        Align = alTop
+        BevelOuter = bvNone
+        Color = clWhite
+        ParentBackground = False
+        ParentColor = False
+        TabOrder = 0
+      end
+      object Button2: TButton
+        Left = 136
+        Height = 30
+        Top = 310
+        Width = 61
+        Anchors = [akRight, akBottom]
+        Caption = 'OK'
+        OnClick = Button2Click
+        TabOrder = 1
+      end
+    end
+  end
+end
