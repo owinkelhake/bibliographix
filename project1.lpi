@@ -14,7 +14,7 @@
       <ResourceType Value="res"/>
       <UseXPManifest Value="True"/>
       <XPManifest>
-        <DpiAware Value="True/PM"/>
+        <DpiAware Value="True"/>
       </XPManifest>
       <Icon Value="0"/>
     </General>
@@ -33,27 +33,36 @@
         <Mode0 Name="default"/>
       </Modes>
     </RunParams>
-    <RequiredPackages Count="6">
+    <RequiredPackages Count="9">
       <Item1>
-        <PackageName Value="LazControls"/>
+        <PackageName Value="SynEditDsgn"/>
       </Item1>
       <Item2>
-        <PackageName Value="richmemo_design"/>
+        <PackageName Value="SynEdit"/>
       </Item2>
       <Item3>
-        <PackageName Value="uniqueinstance_package"/>
+        <PackageName Value="LazControlDsgn"/>
       </Item3>
       <Item4>
-        <PackageName Value="richmemopackage"/>
+        <PackageName Value="LazControls"/>
       </Item4>
       <Item5>
-        <PackageName Value="RunTimeTypeInfoControls"/>
+        <PackageName Value="richmemo_design"/>
       </Item5>
       <Item6>
-        <PackageName Value="LCL"/>
+        <PackageName Value="uniqueinstance_package"/>
       </Item6>
+      <Item7>
+        <PackageName Value="richmemopackage"/>
+      </Item7>
+      <Item8>
+        <PackageName Value="RunTimeTypeInfoControls"/>
+      </Item8>
+      <Item9>
+        <PackageName Value="LCL"/>
+      </Item9>
     </RequiredPackages>
-    <Units Count="7">
+    <Units Count="6">
       <Unit0>
         <Filename Value="project1.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -78,26 +87,19 @@
         <IsPartOfProject Value="True"/>
       </Unit3>
       <Unit4>
-        <Filename Value="unitquerverweis.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="QVerweis"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
-      </Unit4>
-      <Unit5>
         <Filename Value="unitneu.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormNeu"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-      </Unit5>
-      <Unit6>
+      </Unit4>
+      <Unit5>
         <Filename Value="unittitel.pas"/>
         <IsPartOfProject Value="True"/>
         <ComponentName Value="FormTiteldaten"/>
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
-      </Unit6>
+      </Unit5>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
@@ -110,9 +112,15 @@
       <IncludeFiles Value="$(ProjOutDir)"/>
       <UnitOutputDirectory Value="lib\$(TargetCPU)-$(TargetOS)"/>
     </SearchPaths>
+    <CodeGeneration>
+      <Optimizations>
+        <OptimizationLevel Value="2"/>
+      </Optimizations>
+    </CodeGeneration>
     <Linking>
       <Debugging>
         <GenerateDebugInfo Value="False"/>
+        <RunWithoutDebug Value="True"/>
         <DebugInfoType Value="dsDwarf3"/>
         <UseLineInfoUnit Value="False"/>
         <StripSymbols Value="True"/>

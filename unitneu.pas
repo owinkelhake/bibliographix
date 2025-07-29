@@ -16,16 +16,16 @@ type
 
   TFormNeu = class(TForm)
     EingabeTitelNeueNotiz: TEdit;
-    Image9: TImage;
+    ImageNeueNotiz: TImage;
     Label1: TLabel;
     Label4: TLabel;
     OptionMitVerweis: TCheckBox;
-    Panel1: TPanel;
     PanelF2: TPanel;
     PanelUnterstrich: TPanel;
     PanelF3: TPanel;
+    PanelUnterstrichSuche: TPanel;
     procedure Button2Click(Sender: TObject);
-    procedure ButtonDialogNeueNotizClick(Sender: TObject);
+    procedure ImageNeueNotizClick(Sender: TObject);
     procedure EingabeTitelNeueNotizKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure FormCreate(Sender: TObject);
@@ -51,6 +51,13 @@ uses unit1;
 
 procedure TFormNeu.FormCreate(Sender: TObject);
 begin
+    //Farbschema des Hauptfensters übernehmen
+    FormNeu.color:=Fenster.ListeGliederungen.color;
+    FormNeu.Font.Color:=fenster.Feldinhalt.font.color;
+    FormNeu.EingabeTitelNeueNotiz.Font.color:= FormNeu.Font.Color;
+    FormNeu.PanelF2.font.color:= FormNeu.Font.Color;
+    FormNeu.PanelF3.font.color:= FormNeu.Font.Color;
+    FormNeu.PanelUnterstrich.color:= FormNeu.Font.Color;
 
 end;
 
@@ -82,7 +89,7 @@ begin
 
 end;
 
-procedure TFormNeu.ButtonDialogNeueNotizClick(Sender: TObject);
+procedure TFormNeu.ImageNeueNotizClick(Sender: TObject);
 var
    alteZeile:        integer;
    AlterTyp:         string;
@@ -134,8 +141,6 @@ begin
 
      if anlegen  then
      begin
-          //Fenster.IconAllesSpeichernClick(self);
-          Aenderungen:=Aenderungen+100;
           //RahmenDaten der neuen Notiz---
           //------------------------------
           IncreaseMaxID('Daten'); // ID der bisher hgöchsten Karte eins hochzählen.
@@ -193,7 +198,7 @@ begin
           with fenster do
           begin
               FeldInhalt.ReadOnly:=False;
-              AlleAnzeigenClick(self);
+              if AnzeigeModus='volltextsuche' then AlleAnzeigenClick(self);
               for i:=0 to  Liste.Rowcount-1    do
               begin
                     if TrefferArray[i,TrefferArraySpalteTitel]=NeuerTitel then
@@ -211,7 +216,9 @@ begin
           end;
           fenster.timer.enabled:=false;
           fenster.timer.enabled:=true;
-          fenster.FeldInhalt.SetFocus;
+
+          if fenster.feldinhalt.visible then fenster.FeldInhalt.SetFocus;
+          if fenster.AnmerkungenMemo.visible then fenster.AnmerkungenMemo.SetFocus;
      end;
 
   close;
@@ -220,7 +227,7 @@ end;
 procedure TFormNeu.EingabeTitelNeueNotizKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
-  if key = vk_return then ButtonDialogNeueNotizClick(self);
+  if key = vk_return then ImageNeueNotizClick(self);
   if key = vk_escape then close;
 end;
 

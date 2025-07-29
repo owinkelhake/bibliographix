@@ -11,7 +11,7 @@ uses
   LCLType, // für vk_return
   lclintf, // für openurl
   Dialogs, StdCtrls,
-  ExtCtrls, Buttons, Types;
+  ExtCtrls, Buttons, Grids, Types;
 
 type
 
@@ -19,47 +19,12 @@ type
 
   TFormTiteldaten = class(TForm)
     Bevel1: TBevel;
-    Bevel11: TBevel;
-    Bevel2: TBevel;
-    Bevel3: TBevel;
-    Bevel4: TBevel;
-    Bevel5: TBevel;
-    Bevel6: TBevel;
-    Bevel7: TBevel;
-    Bevel8: TBevel;
-    Bevel9: TBevel;
+    ButtonKopieren: TPanel;
     CaptionAutoComplete: TPanel;
-    LabelAutor: TEdit;
-    EingabeAuflage: TEdit;
-    EingabeAutor: TEdit;
-    EingabeBand: TEdit;
-    EingabeDatum: TEdit;
-    EingabeHerausgeber: TEdit;
-    EingabeISBN: TEdit;
-    EingabeJahr: TEdit;
-    EingabeNummer: TEdit;
-    EingabeOrt: TEdit;
-    EingabeSammelband: TEdit;
-    EingabeSeiten: TEdit;
-    EingabeTitel: TEdit;
-    EingabeUntertitel: TEdit;
-    EingabeVerlag: TEdit;
-    EingabeZeitschrift: TEdit;
+    ButtonSpeichern: TImage;
+    Label2: TLabel;
+    Label5: TLabel;
     Label1: TLabel;
-    LabelAutor1: TEdit;
-    LabelAutor10: TEdit;
-    LabelAutor11: TEdit;
-    LabelAutor12: TEdit;
-    LabelAutor13: TEdit;
-    LabelAutor14: TEdit;
-    LabelAutor2: TEdit;
-    LabelAutor3: TEdit;
-    LabelAutor4: TEdit;
-    LabelAutor5: TEdit;
-    LabelAutor6: TEdit;
-    LabelAutor7: TEdit;
-    LabelAutor8: TEdit;
-    LabelAutor9: TEdit;
     Label3: TLabel;
     Labelsyntax: TLabel;
     Label4: TLabel;
@@ -67,76 +32,46 @@ type
     Label8: TLabel;
     ListeVorschlagNamen: TListBox;
     Panel1: TPanel;
-    Panel10: TPanel;
-    Panel11: TPanel;
-    Panel12: TPanel;
-    Jahreszahl: TPanel;
-    Panel14: TPanel;
     ButtonScholar: TPanel;
-    Panel2: TPanel;
     Panel22: TPanel;
-    Panel3: TPanel;
-    Panel4: TPanel;
-    Panel5: TPanel;
-    Panel6: TPanel;
-    Panel7: TPanel;
-    Panel8: TPanel;
-    Panel9: TPanel;
     PanelAutoComplete: TPanel;
     RadioArtikel: TRadioButton;
     RadioKapitel: TRadioButton;
     RadioBuch: TRadioButton;
     RadioSammelband: TRadioButton;
+    TitelDatenmatrix: TStringGrid;
     procedure BitBtn1Click(Sender: TObject);
-    procedure ButtonScholarClick(Sender: TObject);
     procedure Button2Click(Sender: TObject);
-    procedure Button3Click(Sender: TObject);
-    procedure ButtonJahrEintragenClick(Sender: TObject);
+    procedure ButtonKopierenClick(Sender: TObject);
+    procedure ButtonScholarClick(Sender: TObject);
+    procedure ButtonScholarMouseEnter(Sender: TObject);
+    procedure ButtonScholarMouseLeave(Sender: TObject);
     procedure ButtonSpeichernClick(Sender: TObject);
-    procedure LabelAutorChange(Sender: TObject);
+    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
+    procedure FormCreate(Sender: TObject);
     procedure EingabeAutorEnter(Sender: TObject);
-    procedure EingabeAutorExit(Sender: TObject);
-    procedure EingabeAutorKeyPress(Sender: TObject; var Key: char);
-    procedure EingabeAutorKeyUp(Sender: TObject; var Key: Word;
-      Shift: TShiftState);
     procedure EingabeDatumKeyPress(Sender: TObject; var Key: char);
     procedure EingabeHerausgeberKeyPress(Sender: TObject; var Key: char);
-    procedure EingabeHerausgeberKeyUp(Sender: TObject; var Key: Word;
-      Shift: TShiftState);
-    procedure EingabeJahrClick(Sender: TObject);
     procedure EingabeOrtEnter(Sender: TObject);
     procedure EingabeOrtKeyPress(Sender: TObject; var Key: char);
     procedure EingabeOrtKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState
       );
     procedure EingabeSeitenKeyPress(Sender: TObject; var Key: char);
     procedure EingabeTitelEnter(Sender: TObject);
-    procedure EingabeTypChange(Sender: TObject);
-    procedure EingabeVerlagChange(Sender: TObject);
     procedure EingabeVerlagKeyPress(Sender: TObject; var Key: char);
     procedure EingabeVerlagKeyUp(Sender: TObject; var Key: Word;
       Shift: TShiftState);
     procedure EingabeZeitschriftKeyPress(Sender: TObject; var Key: char);
-    procedure EingabeZeitschriftKeyUp(Sender: TObject; var Key: Word;
-      Shift: TShiftState);
-    procedure FormClose(Sender: TObject; var CloseAction: TCloseAction);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormShow(Sender: TObject);
-    procedure JahreszahlClick(Sender: TObject);
-    procedure Label11Click(Sender: TObject);
     procedure Label3Click(Sender: TObject);
     procedure Label4Click(Sender: TObject);
     procedure Label7Click(Sender: TObject);
     procedure Label8Click(Sender: TObject);
     procedure ListeVorschlagNamenClick(Sender: TObject);
-    procedure ListeVorschlagNamenContextPopup(Sender: TObject;
-      MousePos: TPoint; var Handled: Boolean);
-    procedure ListeVorschlagNamenKeyUp(Sender: TObject; var Key: Word;
-      Shift: TShiftState);
-    procedure ListeVorschlagNamenMouseWheel(Sender: TObject;
-      Shift: TShiftState; WheelDelta: Integer; MousePos: TPoint;
-      var Handled: Boolean);
     procedure Panel22Click(Sender: TObject);
-    procedure xxxClick(Sender: TObject);
+    procedure TitelDatenmatrixKeyUp(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
   private
 
   public
@@ -159,7 +94,7 @@ begin
           begin
                if (pos(verlag,Literatur[i,Spalte_Verlag])=1)  then
                begin
-                    FormTiteldaten.EingabeOrt.Text:= Literatur[i,Spalte_Ort] ;
+                    FormTiteldaten.Titeldatenmatrix.cells[1,12]:= Literatur[i,Spalte_Ort] ;
                     break;
                end;
           end;
@@ -184,8 +119,6 @@ begin
         begin
             with formtiteldaten do
             begin
-                  panelAutoComplete.left:=EingabeAutor.left +25;
-                  PanelAutocomplete.top:=100;
                   PanelAutocomplete.height:=250;
                   for i:=GetTopEmptyRow('Literatur')  downto 1 do
                   begin
@@ -211,12 +144,9 @@ begin
         begin
             with formtiteldaten do
             begin
-                  panelAutoComplete.left:=EingabeZeitschrift.left +180;
-                  PanelAutocomplete.top:=300;
                   PanelAutocomplete.height:=200;
                   for i:=GetTopEmptyRow('Literatur')  downto 1 do
                   begin
-                       //3=Autor; 12=Herausgeber 8=Zeitschrift
                        if (pos(ansilowercase(t),ansilowercase(Literatur[i,Spalte_Zeitschrift]))=1)  then    //07 21: nicht mehr Fragment, sondern Anfang
                        begin
                           a:=trim(Literatur[i,Spalte_Zeitschrift]);
@@ -237,9 +167,6 @@ begin
         begin
             with formtiteldaten do
             begin
-                  panelAutoComplete.left:=EingabeOrt.left -20;
-                  PanelAutocomplete.top:=200;
-                  PanelAutocomplete.height:=150;
                   for i:=GetTopEmptyRow('Literatur')  downto 1 do
                   begin
 
@@ -263,8 +190,8 @@ begin
         begin
             with formtiteldaten do
             begin
-                  panelAutoComplete.left:=EingabeVerlag.left;
-                  PanelAutocomplete.top:=EingabeSammelband.top -50;
+                  panelAutoComplete.left:=150;
+                  PanelAutocomplete.top:=150;
                   PanelAutocomplete.height:=150;
                   for i:=GetTopEmptyRow('Literatur')  downto 1 do
                   begin
@@ -308,50 +235,48 @@ begin
 
      If CaptionAutoComplete.Caption='Autoren' then
      begin
-          f:= eingabeAutor.text;
+          f:= Titeldatenmatrix.cells[1,0];
 
           if pos(';',f) = 0 then
           begin //erster Autor
                 f:=ListeVorschlagNamen.Items[ListeVorschlagNamen.ItemIndex];
           end else begin  // Koautor
-              f:=deletelastword(eingabeautor.text);
+              f:=deletelastword(Titeldatenmatrix.cells[1,0]);
               f:=trim(f);
               f:=f + ' ' + ListeVorschlagNamen.Items[ListeVorschlagNamen.ItemIndex];
           end;
-          EingabeAutor.text:=f;
+          Titeldatenmatrix.cells[1,0]:=f;
           PanelAutoComplete.visible:=False;
-          EingabeAutor.Setfocus;
-          EingabeAutor.selstart:=1000 ;
+
      end;
 
      If CaptionAutoComplete.Caption='Herausgeber' then
      begin
-          f:= eingabeHerausgeber.text;
+          f:= Titeldatenmatrix.cells[1,9];
           if pos(';',f) = 0 then
           begin //erster Autor
                 f:=ListeVorschlagNamen.Items[ListeVorschlagNamen.ItemIndex];
           end else begin  // Koautor
-              f:=deletelastword(eingabeHErausgeber.text);
+              f:=deletelastword(Titeldatenmatrix.cells[1,9]);
               f:=trim(f);
               f:=f + ' ' + ListeVorschlagNamen.Items[ListeVorschlagNamen.ItemIndex];
           end;
-          EingabeHerausgeber.text:=f;
+          Titeldatenmatrix.cells[1,9]:=f;
           PanelAutoComplete.visible:=False;
-          EingabeHerausgeber.Setfocus;
-          EingabeHerausgeber.selstart:=1000 ;
+
      end;
      If CaptionAutoComplete.Caption='Zeitschriften' then
      begin
           f:=ListeVorschlagNamen.Items[ListeVorschlagNamen.ItemIndex];
-          EingabeZeitschrift.text:=f;
+          Titeldatenmatrix.cells[1,8]:=f;
           PanelAutoComplete.visible:=False;
-          EingabeZeitschrift.Setfocus;
-          EingabeZeitschrift.selstart:=1000 ;
+          TitelDatenMatrix.SetFocus;
+          TitelDatenMatrix.Row:=9; // Ein Feld weiterspringen
      end;
      If CaptionAutoComplete.Caption='Verlage' then
      begin
           f:=ListeVorschlagNamen.Items[ListeVorschlagNamen.ItemIndex];
-          EingabeVerlag.text:=f;
+          Titeldatenmatrix.cells[1,11]:=f;
           PanelAutoComplete.visible:=False;
           findeVerlagsOrt(f);
 
@@ -359,29 +284,10 @@ begin
      If CaptionAutoComplete.Caption='Ort' then
      begin
           f:=ListeVorschlagNamen.Items[ListeVorschlagNamen.ItemIndex];
-          EingabeOrt.text:=f;
+          Titeldatenmatrix.cells[1,12]:=f;
           PanelAutoComplete.visible:=False;
      end;
 
-end;
-
-procedure TFormTiteldaten.ListeVorschlagNamenContextPopup(Sender: TObject;
-  MousePos: TPoint; var Handled: Boolean);
-begin
-
-end;
-
-procedure TFormTiteldaten.ListeVorschlagNamenKeyUp(Sender: TObject;
-  var Key: Word; Shift: TShiftState);
-
-begin
-
-end;
-
-procedure TFormTiteldaten.ListeVorschlagNamenMouseWheel(Sender: TObject;
-  Shift: TShiftState; WheelDelta: Integer; MousePos: TPoint;
-  var Handled: Boolean);
-begin
 end;
 
 procedure TFormTiteldaten.Panel22Click(Sender: TObject);
@@ -389,9 +295,112 @@ begin
      PanelAutoComplete.visible:=false;
 end;
 
-procedure TFormTiteldaten.ButtonJahrEintragenClick(Sender: TObject);
+procedure TFormTiteldaten.TitelDatenmatrixKeyUp(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+var
+       f:string;
 begin
+     //------ Autoren -----
+     //--------------------
+     if Titeldatenmatrix.Row = 0 then
+     begin
+          if key=vk_return then
+          begin
+               if panelautocomplete.visible then
+               begin
+                   f:= Titeldatenmatrix.cells[1,0] ;
+                   if pos(';',f) = 0 then
+                   begin //erster Autor
+                         f:=ListeVorschlagNamen.Items[ListeVorschlagNamen.ItemIndex];
+                   end else begin  // Koautor
+                       f:=deletelastword(Titeldatenmatrix.cells[1,0]);
+                       f:=trim(f);
+                       f:=f + ' '
+                            + ListeVorschlagNamen.Items[ListeVorschlagNamen.ItemIndex];
+                   end;
+                   Titeldatenmatrix.cells[1,0]:=f;
+                   PanelAutoComplete.visible:=False;
+               end;
+          end else begin
+               f:=  getlastword(Titeldatenmatrix.cells[1,0]);
+               if (length(f) > 1) and (pos(';',f)=0) then AutoComplete('Autoren',f)
+                                                     else PanelAutoComplete.visible:=false;
+          end;
+     end;
 
+     //------- Zeitschrifen----
+     //------------------------
+     if Titeldatenmatrix.Row = 8 then
+     begin
+         f:=Titeldatenmatrix.cells[1,8];
+         if length(f) > 0 then
+         begin
+           if length(Titeldatenmatrix.cells[1,9]) < 1
+              then RadioArtikel.checked:=true
+              else RadioSammelband.checked:=true;
+         end;
+
+         if (key<>vk_return) then
+         begin
+             f:=trim(f);
+             if (length(f) > 0) and (key<>vk_up) and (key<>vk_down) then
+             begin
+                  AutoComplete('Zeitschriften',f);
+             end;
+         end else begin
+               if PanelAutoComplete.visible then
+               begin
+                   f:=ListeVorschlagNamen.Items[0];
+                   Titeldatenmatrix.cells[1,8]:=f;
+                   Titeldatenmatrix.row:=titeldatenmatrix.row+1;
+               end;
+         end;
+
+     end;
+
+     //----------- Verlag ------
+     //-------------------------
+     if Titeldatenmatrix.Row = 11 then
+     begin
+         f:=Titeldatenmatrix.cells[1,11];
+
+         if (key<>vk_return) then
+         begin
+             f:=trim(f);
+             if (length(f) > 0) and (key<>vk_up) and (key<>vk_down) then
+             begin
+                  AutoComplete('Verlage',f);
+             end;
+         end else begin
+               if PanelAutoComplete.visible then
+               begin
+                   f:=ListeVorschlagNamen.Items[0];
+                   Titeldatenmatrix.cells[1,11]:=f;
+                   findeVerlagsOrt(f);
+                   Titeldatenmatrix.row:=titeldatenmatrix.row+1;
+               end;
+         end;
+
+     end;
+
+
+
+
+
+     //Navigationstasten, die feldunabhängig sind
+     if (key=vk_up) or (key=vk_down) or (key=vk_return) or (key=vk_tab) then
+        PanelAutoComplete.visible:=false;
+
+end;
+
+procedure TFormTiteldaten.ButtonScholarMouseEnter(Sender: TObject);
+begin
+          if sender is tpanel then Tpanel(sender).font.style:=[fsbold];
+end;
+
+procedure TFormTiteldaten.ButtonScholarMouseLeave(Sender: TObject);
+begin
+          if sender is tpanel then Tpanel(sender).font.style:=[];
 end;
 
 procedure TFormTiteldaten.BitBtn1Click(Sender: TObject);
@@ -410,45 +419,53 @@ procedure TFormTiteldaten.ButtonScholarClick(Sender: TObject);
          if os='win' then
             fenster.MemoZwischenablage.PasteFromClipboard
          else
-             fenster.MemoZwischenablage.PasteFromClipboard;
-             //fenster.MemoZwischenablage.Lines.Text:=clipboard.AsText;
-             // pastefromclipboard funktioniert nicht beim Mac. Evtl. hat der mehrere Clipboards
+             fenster.MemoZwischenablage.Lines.text:=clipboard.astext;
+
+
+
+
          fenster.MemoZwischenablage.Lines.SaveToFile(datname);
-         showmessage('d');
+
          MachPause();
 
          form:=IdentifiziereImportFormat(datname);
-
-         if form='ris'then ImportRISDB(datname);
-         if form='refer'then ImportreferDB(datname);
-         if form='pubmed'then ImportpubmedDB(datname);
-         if form='bibtex'then ImportBibTeXDB(datname);
-         if form='z3950'then Importz3950DB(datname);
-         if form='bx' then LiteraturLaden('Literatur2',datname);
-         MachPause();
-
-         if formTiteldaten.Visible=false then formtiteldaten.show;
-         with formtiteldaten do
+         if form <> '' then
          begin
+               if form='ris'then ImportRISDB(datname);
+               if form='refer'then ImportreferDB(datname);
+               if form='pubmed'then ImportpubmedDB(datname);
+               if form='bibtex'then ImportBibTeXDB(datname);
+               if form='z3950'then Importz3950DB(datname);
+               if form='bx' then LiteraturLaden('Literatur2',datname);
+               MachPause();
+               if formTiteldaten.Visible=false then formtiteldaten.show;
+               with formtiteldaten do
+               begin
+                     for nr:=1 to arraysize do
+                        if Literatur2[nr,Spalte_Autor]<> '' then break;
 
-               for nr:=1 to ArraySize do
-                  if Literatur2[nr,Spalte_Autor]<> '' then break;
-               //nr:=2; //das ist die Zeile bei einem einzelnen Datensatz
-               //10/2021: nr kann auch irgendwas anderes sein. Daher: erste besetzte Zeile
-               EingabeAutor.Text:=       trim(Literatur2[nr,Spalte_Autor]);
-               EingabeTitel.Text:=       Literatur2[nr,Spalte_Titel];
-               EingabeUnterTitel.Text:=  Literatur2[nr,Spalte_Untertitel];
-               EingabeJahr.Text:=        Literatur2[nr,Spalte_Jahr];
-               EingabeDatum.Text:=       Literatur2[nr,Spalte_Publikationsdatum];
-               EingabeSeiten.Text:=      Literatur2[nr,Spalte_Seiten];
-               EingabeZeitschrift.Text:= Literatur2[nr,Spalte_Zeitschrift];
-               EingabeBand.Text:=        Literatur2[nr,Spalte_Band];
-               EingabeNummer.Text:=      Literatur2[nr,Spalte_Nummer];
-               EingabeVerlag.Text:=      Literatur2[nr,Spalte_Verlag];
-               EingabeOrt.Text:=         Literatur2[nr,Spalte_Ort];
+
+                     //showmessage('i gefunden' + inttostr(nr));
+                     //nr:=2; //das ist die Zeile bei einem einzelnen Datensatz
+                     //10/2021: nr kann auch irgendwas anderes sein. Daher: erste besetzte Zeile
+
+
+                     Titeldatenmatrix.cells[1,0]:=             trim(Literatur2[nr,Spalte_Autor]);
+                     Titeldatenmatrix.cells[1,1]:=             Literatur2[nr,Spalte_Titel];
+                     Titeldatenmatrix.cells[1,2]:=             Literatur2[nr,Spalte_Untertitel];
+                     Titeldatenmatrix.cells[1,3]:=             Literatur2[nr,Spalte_Jahr];
+                     Titeldatenmatrix.cells[1,4]:=             Literatur2[nr,Spalte_Publikationsdatum];
+                     Titeldatenmatrix.cells[1,7]:=             Literatur2[nr,Spalte_Seiten];
+                     Titeldatenmatrix.cells[1,8]:=             Literatur2[nr,Spalte_Zeitschrift];
+                     Titeldatenmatrix.cells[1,9]:=             Literatur2[nr,Spalte_Band];
+                     Titeldatenmatrix.cells[1,10]:=            Literatur2[nr,Spalte_Nummer];
+                     Titeldatenmatrix.cells[1,11]:=            Literatur2[nr,Spalte_Verlag];
+                     Titeldatenmatrix.cells[1,12]:=            Literatur2[nr,Spalte_Ort];
+               end;
+               SetLength(Literatur2, 1,1);  //Die Datenbank verkleinern
+         end else begin
+               showmessage('Das Format konnte nicht erkannt werden...');
          end;
-         SetLength(Literatur2, 1,1);  //Die Datenbank verkleinern
-
 end;
 
 procedure TFormTiteldaten.Button2Click(Sender: TObject);
@@ -456,7 +473,7 @@ begin
   close;
 end;
 
-procedure TFormTiteldaten.Button3Click(Sender: TObject);
+procedure TFormTiteldaten.ButtonKopierenClick(Sender: TObject);
 var
    ds:      array[1..30] of string;
    i:       integer;
@@ -466,21 +483,21 @@ begin
     TmpHinweis:='';   //keine ID vergeben
     Kurzzitat:='';
     GV_TmpZitat:='';
-    EingabeAutor.text:=          ds[Spalte_Autor];
-    EingabeTitel.text:=          ds[Spalte_Titel] + ' (Kopie)';
-     EingabeUnterTitel.text:=    ds[Spalte_Untertitel];
-     EingabeJahr.Text:=          ds[Spalte_Jahr];
-     EingabeDatum.Text:=         ds[Spalte_PublikationsDatum];
-     EingabeZeitschrift.Text:=   ds[Spalte_Zeitschrift];
-     EingabeBand.Text:=          ds[Spalte_Band];
-     EingabeNummer.Text:=        ds[Spalte_Nummer];
-     EingabeSeiten.Text:=         '';
-     EingabeHerausgeber.Text:=   ds[Spalte_Herausgeber];
-     EingabeSammelband.Text:=    ds[Spalte_Sammelband];
-     EingabeVerlag.Text:=        ds[Spalte_Verlag];
-     EingabeOrt.Text:=           ds[Spalte_Ort];
-     EingabeAuflage.Text:=       ds[Spalte_Auflage];
-     EingabeISBN.Text:=           '';
+    Titeldatenmatrix.cells[1,0]:=          ds[Spalte_Autor];
+     Titeldatenmatrix.cells[1,1]:=         ds[Spalte_Titel] + ' (Kopie)';
+     Titeldatenmatrix.cells[1,2]:=         ds[Spalte_Untertitel];
+     Titeldatenmatrix.cells[1,3]:=         ds[Spalte_Jahr];
+     Titeldatenmatrix.cells[1,4]:=         ds[Spalte_PublikationsDatum];
+     Titeldatenmatrix.cells[1,5]:=         ds[Spalte_Band];
+     Titeldatenmatrix.cells[1,6]:=         ds[Spalte_Nummer];
+     Titeldatenmatrix.cells[1,7]:=         '';
+     Titeldatenmatrix.cells[1,8]:=         ds[Spalte_Zeitschrift];
+     Titeldatenmatrix.cells[1,9]:=         ds[Spalte_Herausgeber];
+     Titeldatenmatrix.cells[1,10]:=        ds[Spalte_Sammelband];
+     Titeldatenmatrix.cells[1,11]:=        ds[Spalte_Verlag];
+     Titeldatenmatrix.cells[1,12]:=        ds[Spalte_Ort];
+     Titeldatenmatrix.cells[1,13]:=        ds[Spalte_Auflage];
+     Titeldatenmatrix.cells[1,14]:=           '';
 
 end;
 
@@ -499,32 +516,33 @@ begin
                       getTopEmptyRow('Literatur');  //Dahin wird geschrieben werden  // ID erzeugen und schreiben
                Literatur[AktuelleLiteraturArrayZeile,1]:= IntToStr(GetMaxID('Literatur'));
                Fenster.Feldinhalt.lines.clear;
+               IsTextChanged:=false;
            end;
 
            //falschen Publikatonstyp korrigieren
            //===================================
            If (RadioSammelband.checked) and
-              (EingabeAutor.text='') and
-              (EingabeHerausgeber.Text <> '') then
+              (Titeldatenmatrix.cells[1,0]='') and
+              (Titeldatenmatrix.cells[1,9] <> '') then
            begin
-                 EingabeAutor.text:=EingabeHerausgeber.Text;
-                 EingabeHerausgeber.Text:='' ;
+                 Titeldatenmatrix.cells[1,0]:=Titeldatenmatrix.cells[1,9];
+                 Titeldatenmatrix.cells[1,9]:='' ;
                  showmsg('ganze Sammelbände werden wie Bücher eingegeben');
            end;
            If (RadioSammelband.checked) and
-              (EingabeTitel.text='') and
-              (EingabeSammelband.Text <> '') then
+              (Titeldatenmatrix.cells[1,1]='') and
+              (Titeldatenmatrix.cells[1,10] <> '') then
            begin
-                 EingabeTitel.text:=EingabeSammelband.Text;
-                 EingabeSammelband.Text:='' ;
+                 Titeldatenmatrix.cells[1,1]:=Titeldatenmatrix.cells[1,10];
+                 Titeldatenmatrix.cells[1,10]:='' ;
            end;
             If (RadioSammelband.checked)  and
-               (EingabeZeitschrift.text<>'')
+               (Titeldatenmatrix.cells[1,5]<>'')
             then RadioArtikel.checked:=true;
 
            //fehlende Angaben
-           if EingabeJahr.text='' then EingabeJahr.text:='o.J.';
-           if EingabeAutor.text='' then EingabeAutor.text:='o.A.';
+           if Titeldatenmatrix.cells[1,3]='' then Titeldatenmatrix.cells[1,3]:='o.J.';
+           if Titeldatenmatrix.cells[1,0]='' then Titeldatenmatrix.cells[1,0]:='o.A.';
 
            //geänderte Daten an die alte Stelle zurückspeichern.
            typ:='Buch';
@@ -536,21 +554,27 @@ begin
 
 
 
-           Literatur[AktuelleLiteraturArrayZeile,Spalte_Autor]  :=EingabeAutor.text ;
-           Literatur[AktuelleLiteraturArrayZeile,Spalte_Titel]  :=EingabeTitel.text ;
-           Literatur[AktuelleLiteraturArrayZeile,Spalte_Untertitel]  :=EingabeUnterTitel.text ;
-           Literatur[AktuelleLiteraturArrayZeile,Spalte_Jahr]  :=Trim(EingabeJahr.Text)  ;
-           Literatur[AktuelleLiteraturArrayZeile,Spalte_Publikationsdatum]:=    Trim(EingabeDatum.Text) ;
-           Literatur[AktuelleLiteraturArrayZeile,Spalte_Zeitschrift]:=          Trim(EingabeZeitschrift.Text)  ;
-           Literatur[AktuelleLiteraturArrayZeile,Spalte_Band]  :=                         Trim(EingabeBand.Text)  ;
-           Literatur[AktuelleLiteraturArrayZeile,Spalte_Nummer] :=              Trim(EingabeNummer.Text)  ;
-           Literatur[AktuelleLiteraturArrayZeile,Spalte_Seiten] :=              EingabeSeiten.Text;
-           Literatur[AktuelleLiteraturArrayZeile,Spalte_Herausgeber] :=         EingabeHerausgeber.Text    ;
-           Literatur[AktuelleLiteraturArrayZeile,Spalte_Sammelband] :=                         Trim(EingabeSammelband.Text);
-           Literatur[AktuelleLiteraturArrayZeile,Spalte_Verlag]  :=EingabeVerlag.Text ;
-           Literatur[AktuelleLiteraturArrayZeile,Spalte_Ort] :=Trim(EingabeOrt.Text) ;
-           Literatur[AktuelleLiteraturArrayZeile,Spalte_Auflage]:=EingabeAuflage.Text  ;
-           Literatur[AktuelleLiteraturArrayZeile,Spalte_ISBN]:=EingabeISBN.Text  ;
+
+           Literatur[AktuelleLiteraturArrayZeile,Spalte_Autor]  :=            TitelDatenmatrix.Cells[1,0] ;
+           Literatur[AktuelleLiteraturArrayZeile,Spalte_Titel]  :=            TitelDatenmatrix.Cells[1,1] ;
+           Literatur[AktuelleLiteraturArrayZeile,Spalte_Untertitel]  :=       TitelDatenmatrix.Cells[1,2] ;
+           Literatur[AktuelleLiteraturArrayZeile,Spalte_Jahr]  :=             TitelDatenmatrix.Cells[1,3] ;
+           Literatur[AktuelleLiteraturArrayZeile,Spalte_Publikationsdatum] := TitelDatenmatrix.Cells[1,4] ;
+           Literatur[AktuelleLiteraturArrayZeile,Spalte_Band]  :=             TitelDatenmatrix.Cells[1,5] ;
+           Literatur[AktuelleLiteraturArrayZeile,Spalte_Nummer] :=            TitelDatenmatrix.Cells[1,6] ;
+           Literatur[AktuelleLiteraturArrayZeile,Spalte_Seiten] :=            TitelDatenmatrix.Cells[1,7] ;
+           Literatur[AktuelleLiteraturArrayZeile,Spalte_Zeitschrift]:=        TitelDatenmatrix.Cells[1,8] ;    ;
+           Literatur[AktuelleLiteraturArrayZeile,Spalte_Herausgeber]:=        TitelDatenmatrix.Cells[1,9] ;
+           Literatur[AktuelleLiteraturArrayZeile,Spalte_Sammelband] :=        TitelDatenmatrix.Cells[1,10] ;
+           Literatur[AktuelleLiteraturArrayZeile,Spalte_Verlag]  :=           TitelDatenmatrix.Cells[1,11] ;
+           Literatur[AktuelleLiteraturArrayZeile,Spalte_Ort] :=               TitelDatenmatrix.Cells[1,12] ;
+           Literatur[AktuelleLiteraturArrayZeile,Spalte_Auflage] :=           TitelDatenmatrix.Cells[1,13] ;
+           Literatur[AktuelleLiteraturArrayZeile,Spalte_ISBN]:=               TitelDatenmatrix.Cells[1,14] ;
+
+
+
+
+
            Literatur[AktuelleLiteraturArrayZeile,Spalte_Erstautor]:=HolErstautor(AktuelleLiteraturArrayZeile);
 
            Literatur[AktuelleLiteraturArrayZeile, Spalte_Bearbeitungsdatum] :=   formatdatetime('yyyymmddhhnn', now);
@@ -561,22 +585,24 @@ begin
            LiteraturVolltext(AktuelleLiteraturArrayZeile); // Volltext muß neu angelegt werden.
            MachPause();
            UpdateBearbeitungszahl();
-           IsTextChanged:=true;
            Speicherbedarf('l');
+           lchanged:=true;
+           UngespeicherteZeichen:=UngespeicherteZeichen+250;
       end;
 
-      FormTiteldaten.close; { 08/2024: bisher .close, was Probleme
-                                       bereitet hat. }
+
+      Fenster.enabled:=true;
+      FormTiteldaten.close;
 
       machpause();
-      //Fenster.IconAllesSpeichernClick(self);
-      Aenderungen:=Aenderungen + 200;
-
       //Die Sortierung hat sich evtl. geändert. Vielleicht ein neuer Datensatz
       with fenster do
       begin
             fenster.AlleAnzeigenClick(self);
+            timer.enabled:=true;
+            TimerTimer(self);
             machpause();
+            liste.setfocus;
             For i:=0 to Fenster.Liste.Rowcount-1 do
             begin
                  if  (Trefferarray[i,TrefferArraySpalteArrayZeile]=inttostr(AktuelleLiteraturArrayZeile))
@@ -591,70 +617,31 @@ begin
         end;
 end;
 
-procedure TFormTiteldaten.LabelAutorChange(Sender: TObject);
+procedure TFormTiteldaten.FormClose(Sender: TObject;
+  var CloseAction: TCloseAction);
 begin
+   fenster.Enabled:=true;
+end;
 
+procedure TFormTiteldaten.FormCreate(Sender: TObject);
+begin
+     //Farbschema des Hauptfensters übernehmen
+   {
+     FormTitelDaten.Color:=Fenster.ListeGliederungen.color;
+     FormTitelDaten.font.color:=Fenster.Feldinhalt.font.color;
+     FormTitelDaten.Labelsyntax.Font.color:=FormTitelDaten.font.color;
+     FormTiteldaten.PanelAutoComplete.Color:=Fenster.Liste.SelectedColor;
+     FormTiteldaten.CaptionAutoComplete.color:=FormTiteldaten.PanelAutoComplete.Color;
+     ButtonSpeichern.picture:=fenster.imagequerverweisweg.picture;
+     ButtonScholar.Color:=Fenster.ButtonAnlegen.color;
+     ButtonKopieren.color:=ButtonScholar.color;
+     FormTitelDaten.Font.Name:=fenster.feldinhalt.font.name;
+   }
 end;
 
 procedure TFormTiteldaten.EingabeAutorEnter(Sender: TObject);
 begin
      PanelAutoComplete.visible:=False;
-end;
-
-procedure TFormTiteldaten.EingabeAutorExit(Sender: TObject);
-begin
-
-end;
-
-procedure TFormTiteldaten.EingabeAutorKeyPress(Sender: TObject; var Key: char);
-var
-  f:string  ;
-begin
-     if key=#13 then
-     begin
-          if panelautocomplete.visible then
-          begin
-              f:= eingabeAutor.text;
-              if pos(';',f) = 0 then
-              begin //erster Autor
-                    f:=ListeVorschlagNamen.Items[ListeVorschlagNamen.ItemIndex];
-              end else begin  // Koautor
-                  f:=deletelastword(eingabeautor.text);
-                  f:=trim(f);
-                  f:=f + ' ' + ListeVorschlagNamen.Items[ListeVorschlagNamen.ItemIndex];
-              end;
-              key:=#0;
-              EingabeAutor.text:=f;
-              PanelAutoComplete.visible:=False;
-              EingabeAutor.Setfocus;
-              EingabeAutor.selstart:=1000  ;
-          end else begin
-              EingabeTitel.SetFocus;
-          end;
-     end;
-
-end;
-
-procedure TFormTiteldaten.EingabeAutorKeyUp(Sender: TObject; var Key: Word;
-  Shift: TShiftState);
-    var
-    t: string;   //Namensanfang
-
-
-begin
-
-       if key<>vk_return then
-       begin // die Auswahl an das Ende des Feldes
-           t:=EingabeAutor.text;
-           //Falls es andere Autoren gibt, ausfiltern:
-           While pos(';',t)> 0 do t:=copy(t,pos(';',t)+1, 1000);
-           t:=trim(t);  //Anfang des Autorennamens
-           if (length(t) > 0) and (key<>vk_up) and (key<>vk_down) then
-           begin
-                AutoComplete('Autoren',t);
-           end;
-
-       end
 end;
 
 procedure TFormTiteldaten.EingabeDatumKeyPress(Sender: TObject; var Key: char);
@@ -673,59 +660,21 @@ begin
       begin
            if PanelAutoComplete.visible then
            begin
-                f:= eingabeHerausgeber.text;
+                f:= Titeldatenmatrix.cells[1,9];
                 if pos(';',f) = 0 then
                 begin //erster Autor
                       f:=ListeVorschlagNamen.Items[ListeVOrschlagNamen.ItemIndex];
                 end else begin  // Koautor
-                    f:=deletelastword(eingabeHerausgeber.text);
+                    f:=deletelastword(Titeldatenmatrix.cells[1,9]);
                     f:=trim(f);
                     f:=f + ' ' + ListeVorschlagNamen.Items[ListeVOrschlagNamen.ItemIndex];
                 end;
                 key:=#0;
-                EingabeHerausgeber.text:=f;
+                Titeldatenmatrix.cells[1,0]:=f;
                 PanelAutoComplete.visible:=False;
-                EingabeHerausgeber.Setfocus;
-                EingabeHerausgeber.selstart:=1000 ;
-                EingabeHerausgeber.sellength:=0;
-           end else begin
-                EingabeSammelband.Setfocus;
+
            end;
       end;
-
-end;
-
-procedure TFormTiteldaten.EingabeHerausgeberKeyUp(Sender: TObject;
-  var Key: Word; Shift: TShiftState);
-    var
-      t: string;   //Namensanfang
-
-
-    begin
-      t:=EingabeHerausgeber.text;
-      if (length(t) > 2) then
-      begin
-        if (length(EingabeSeiten.Text) > 1)
-            then RadioKapitel.checked:=true
-            else  RadioSammelband.checked:=true
-      end;
-
-      if key<>vk_return then
-      begin // die Auswahl an das Ende des Feldes
-          //Falls es andere Autoren gibt, ausfiltern:
-          While pos(';',t)> 0 do t:=copy(t,pos(';',t)+1, 1000);
-          t:=trim(t);  //Anfang des Autorennamens
-          if (length(t) > 2) and (key<>vk_up) and (key<>vk_down) then
-          begin
-               AutoComplete('Herausgeber',t);
-          end;
-      end;
-
-
-end;
-
-procedure TFormTiteldaten.EingabeJahrClick(Sender: TObject);
-begin
 
 end;
 
@@ -734,13 +683,13 @@ procedure TFormTiteldaten.EingabeOrtEnter(Sender: TObject);
        i:integer;
     begin
        //Das Verlagsfeld ist besetzt
-       if (length(EingabeVerlag.text)>1) and (length(EingabeOrt.text)=0) then
+       if (length(Titeldatenmatrix.cells[1,11])>1) and (length(Titeldatenmatrix.cells[1,12])=0) then
        begin
            for i:=1 to LiteraturDatensatzzahl do
            begin
-                if (literatur[i,Spalte_Verlag]=EingabeVerlag.Text) and (literatur[i,Spalte_Ort]<>'') then
+                if (literatur[i,Spalte_Verlag]=Titeldatenmatrix.cells[1,11]) and (literatur[i,Spalte_Ort]<>'') then
                 begin
-                  EingabeOrt.Text:=Literatur[i,Spalte_Ort];
+                  Titeldatenmatrix.cells[1,12]:=Literatur[i,Spalte_Ort];
                   break;
                 end;
            end;
@@ -757,7 +706,7 @@ procedure TFormTiteldaten.EingabeOrtKeyPress(Sender: TObject; var Key: char);
       begin
            f:=ListeVorschlagNamen.Items[ListeVOrschlagNamen.ItemIndex];
            key:=#0;
-           EingabeOrt.text:=f;
+           Titeldatenmatrix.cells[1,12]:=f;
            PanelAutoComplete.visible:=False;
 
       end;
@@ -769,7 +718,7 @@ procedure TFormTiteldaten.EingabeOrtKeyUp(Sender: TObject; var Key: Word;
     var
       t: string;   //Ortanfang
     begin
-      t:=EingabeOrt.text;
+      t:=Titeldatenmatrix.cells[1,12];
 
         if key<>vk_return then
         begin // die Auswahl an das Ende des Feldes
@@ -777,7 +726,7 @@ procedure TFormTiteldaten.EingabeOrtKeyUp(Sender: TObject; var Key: Word;
             t:=trim(t);
             if (length(t) > 0) and (key<>vk_up) and (key<>vk_down) then
             begin
-                 AutoComplete('Ort',t);
+             //    AutoComplete('Ort',t);
             end;
         end;
 
@@ -794,16 +743,6 @@ begin
   PanelAutoComplete.visible:=False;
 end;
 
-procedure TFormTiteldaten.EingabeTypChange(Sender: TObject);
-begin
-
-end;
-
-procedure TFormTiteldaten.EingabeVerlagChange(Sender: TObject);
-begin
-
-end;
-
 procedure TFormTiteldaten.EingabeVerlagKeyPress(Sender: TObject; var Key: char);
     var
        f:string;
@@ -813,7 +752,7 @@ procedure TFormTiteldaten.EingabeVerlagKeyPress(Sender: TObject; var Key: char);
       begin
            f:=ListeVorschlagNamen.Items[ListeVOrschlagNamen.ItemIndex];
            key:=#0;
-           EingabeVerlag.text:=f;
+           Titeldatenmatrix.cells[1,11]:=f;
            PanelAutoComplete.visible:=False;
            FindeVerlagsort(f);
       end;
@@ -827,20 +766,20 @@ var
 
 
 begin
-  t:=EingabeVerlag.text;
+  t:=Titeldatenmatrix.cells[1,11];
   if key<>vk_return then
   begin // die Auswahl an das Ende des Feldes
       t:=trim(t);  //Anfang des Autorennamens
       if (length(t) > 0) and (key<>vk_up) and (key<>vk_down) then
       begin
-           AutoComplete('Verlage',t);
+       //    AutoComplete('Verlage',t);
       end;
 
   end;
   //Identifkation des Publikatonstyps
-  if length(EingabeHerausgeber.text) > 1  then
+  if length(Titeldatenmatrix.cells[1,9]) > 1  then
   begin
-       if length(EingabeSeiten.Text) > 1
+       if length(Titeldatenmatrix.cells[1,7]) > 1
        then  RadioKapitel.checked:=true
        else  RadioSammelband.checked:=true;;
   end;
@@ -857,43 +796,11 @@ begin
      begin
               f:=ListeVorschlagNamen.Items[ListeVOrschlagNamen.ItemIndex];
               key:=#0;
-              eingabeZeitschrift.text:=f;
+              Titeldatenmatrix.cells[1,8]:=f;
               PanelAutoComplete.visible:=False;
 
-          EingabeHerausgeber.SetFocus;
+
      end;
-
-end;
-
-procedure TFormTiteldaten.EingabeZeitschriftKeyUp(Sender: TObject;
-  var Key: Word; Shift: TShiftState);
-var
-  t: string;   //Zeitschriftenanfag
-begin
-  t:=EingabeZeitschrift.text;
-  if length(t) > 2 then
-  begin
-    if length(EingabeHerausgeber.text) < 1
-       then RadioArtikel.checked:=true
-       else RadioSammelband.checked:=true;
-  end;
-
-  if key<>vk_return then
-  begin // die Auswahl an das Ende des Feldes
-
-      t:=trim(t);
-      if (length(t) > 0) and (key<>vk_up) and (key<>vk_down) then
-      begin
-           AutoComplete('Zeitschriften',t);
-      end;
-  end;
-
-
-end;
-
-procedure TFormTiteldaten.FormClose(Sender: TObject;
-  var CloseAction: TCloseAction);
-begin
 
 end;
 
@@ -901,51 +808,29 @@ procedure TFormTiteldaten.FormKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
     if key=vk_escape then close;
-    if key=vk_up then ListeVorschlagnamen.setfocus;
-    if key=vk_down then ListeVorschlagnamen.setfocus;
+    if panelAutocomplete.Visible then
+    begin;
+          if key=vk_up then ListeVorschlagnamen.setfocus;
+          if key=vk_down then ListeVorschlagnamen.setfocus;
+    end;
 end;
 
 procedure TFormTiteldaten.FormShow(Sender: TObject);
-
-
+var
+   fs:integer;
 begin
      Fenster.FormChangeBounds(self);
+      { dark mode prüfen. Hier, weil es sonst zu Abstürzen kommen kann, wenn
+        das Fenster noch nicht erzeugt worden ist.}
 
-      if length(EingabeJahr.text) = 0  then
-      begin
-          Jahreszahl.caption:=formatdatetime('yyyy', now) + ' ->';
-          Jahreszahl.width:=70;
-          Jahreszahl.borderstyle:=bssingle;
+      fs:=fenster.feldinhalt.font.size;
+      if fs > 13 then fs:=13;
+      FormTiteldaten.Font.Size:=fs;
+      TitelDatenMatrix.row:=0;
+      Titeldatenmatrix.Col:=1;
 
-      end else begin
-          Jahreszahl.width:=1;
-          Jahreszahl.borderstyle:=bsnone;
-          Jahreszahl.caption:='';
-      end;
-      EingabeAutor.Setfocus;  //sein lassen. Führt zur Fehlermeldung
-
-     if os='linux' then
-     begin
-        ButtonScholar.visible:=false;
-
-     end else begin
-
-     end;
-
-
-end;
-
-procedure TFormTiteldaten.JahreszahlClick(Sender: TObject);
-begin
-  EingabeJahr.text:=formatdatetime('yyyy', now) ;
-  Jahreszahl.width:=1;
-  Jahreszahl.borderstyle:=bsnone;
-  Jahreszahl.caption:='';
-end;
-
-procedure TFormTiteldaten.Label11Click(Sender: TObject);
-begin
-
+      Titeldatenmatrix.EditorMode:=true;
+      TitelDatenMatrix.setfocus;
 end;
 
 procedure TFormTiteldaten.Label3Click(Sender: TObject);
@@ -967,13 +852,6 @@ end;
 procedure TFormTiteldaten.Label8Click(Sender: TObject);
 begin
   RadioSammelband.Checked:=not RadioSammelband.Checked
-end;
-
-procedure TFormTiteldaten.xxxClick(Sender: TObject);
-
-begin
-
-
 end;
 
 end.

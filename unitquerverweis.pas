@@ -17,23 +17,22 @@ type
   { TQVerweis }
 
   TQVerweis = class(TForm)
+    Alles: TImage;
     Bevel1: TBevel;
-    Label5: TLabel;
     Label1: TLabel;
-    AnzeigeTitel: TLabel;
-    LabelTrefferzahl: TLabel;
+    Label5: TLabel;
     OptionSortAlphabet: TCheckBox;
     Panel1: TPanel;
     Panel19: TPanel;
     Panel2: TPanel;
     ButtonGliedern: TPanel;
-    ButtonAnlegen: TPanel;
+    Panel3: TPanel;
     QListe: TListBox;
     QSuche: TEdit;
-    QuerverweisAllesZeigen: TImage;
     procedure ButtonGliedernClick(Sender: TObject);
     procedure Button1Click(Sender: TObject);
     procedure ButtonAnlegenClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormShow(Sender: TObject);
     procedure Label5Click(Sender: TObject);
@@ -42,7 +41,8 @@ type
     procedure QListeClick(Sender: TObject);
     procedure QListeDblClick(Sender: TObject);
     procedure QSucheKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
-    procedure QuerverweisAllesZeigenClick(Sender: TObject);
+    procedure AllesClick(Sender: TObject);
+    procedure VorschlagFensterWeg4Click(Sender: TObject);
   private
 
   public
@@ -53,7 +53,7 @@ var
   QVerweis: TQVerweis;
 
 
-  qarray:    array[0..1001,1..4] of string;
+
 
 implementation
 uses unit1;
@@ -177,11 +177,12 @@ begin
          end;
 
          //Liste mit bubblesort sortieren und ausgeben
-         labelTrefferzahl.caption:=inttostr(treffer) + ' Treffer';
+
          qliste.ItemHeight:=16;
          if optionsortalphabet.checked then  sortqlist(treffer+1,'az')
                                        else  sortqlist(treffer+1,'zeit');
                                        {02/2024}
+
    end;
 
 end;
@@ -221,12 +222,21 @@ begin
      end;
 end;
 
+procedure TQVerweis.FormCreate(Sender: TObject);
+begin
+     //Farbschema des Hauptfensters übernehmen
+     Qverweis.Alles.Picture:=Fenster.alles.picture ;
+     Qverweis.Color:=Fenster.ListeGliederungen.color;;
+     Qverweis.font.color:=Fenster.Feldinhalt.font.color;
+     QVerweis.Qliste.font.color:=Qverweis.font.color;
+end;
+
 procedure TQVerweis.FormKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState
   );
 begin
   if key=vk_escape then
   begin
-
+       //showmessage('QV escape');
        close;
        exit;  { damit im Hauptfenster nicht auch ein ESC ausgelöst wird }
   end;
@@ -235,6 +245,7 @@ end;
 procedure TQVerweis.FormShow(Sender: TObject);
 begin
   Fenster.FormChangeBounds(self);
+  AllesClick(self);
 end;
 
 procedure TQVerweis.Label5Click(Sender: TObject);
@@ -255,12 +266,12 @@ end;
 
 procedure TQVerweis.QListeClick(Sender: TObject);
 begin
-   AnzeigeTitel.caption:= Qarray[qliste.itemindex +1,1];
+
 end;
 
 procedure TQVerweis.QListeDblClick(Sender: TObject);
 begin
-  if ButtonAnlegen.Visible then ButtonAnlegenClick(self);
+
 end;
 
 procedure TQVerweis.Button1Click(Sender: TObject);
@@ -319,7 +330,7 @@ begin
      end;
 end;
 
-procedure TQVerweis.QuerverweisAllesZeigenClick(Sender: TObject);
+procedure TQVerweis.AllesClick(Sender: TObject);
 var
    i:          integer;
    treffer:    integer ;
@@ -368,6 +379,11 @@ begin
      sortqlist(treffer,'zeit');
      machpause();
      Qverweis.qsuche.Setfocus;
+end;
+
+procedure TQVerweis.VorschlagFensterWeg4Click(Sender: TObject);
+begin
+  Qverweis.Close;
 end;
 
 end.

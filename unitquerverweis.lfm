@@ -1,22 +1,23 @@
 object QVerweis: TQVerweis
-  Left = 1186
+  Left = 1195
   Height = 448
-  Top = 148
+  Top = 186
   Width = 344
-  BorderIcons = [biSystemMenu]
-  Caption = 'Notizen suchen'
+  BorderIcons = []
+  Caption = 'Notiz gliedern'
   ClientHeight = 448
   ClientWidth = 344
   Color = clWhite
   FormStyle = fsStayOnTop
   KeyPreview = True
+  OnCreate = FormCreate
   OnKeyUp = FormKeyUp
   OnShow = FormShow
-  LCLVersion = '2.2.0.4'
+  LCLVersion = '3.8.0.0'
   object QListe: TListBox
     Left = 10
-    Height = 285
-    Top = 103
+    Height = 325
+    Top = 63
     Width = 324
     Align = alClient
     BorderSpacing.Top = 5
@@ -24,96 +25,94 @@ object QVerweis: TQVerweis
     BorderSpacing.Around = 10
     BorderSpacing.InnerBorder = 10
     BorderStyle = bsNone
+    Font.Height = -16
     ItemHeight = 0
-    OnClick = QListeClick
-    OnDblClick = QListeDblClick
     ParentColor = True
     ParentShowHint = False
+    ParentFont = False
     TabOrder = 0
-    TopIndex = -1
+    OnClick = QListeClick
+    OnDblClick = QListeDblClick
   end
   object Panel2: TPanel
     Left = 0
-    Height = 88
+    Height = 48
     Top = 0
     Width = 344
     Align = alTop
     BevelOuter = bvNone
-    ClientHeight = 88
+    ClientHeight = 48
     ClientWidth = 344
     ParentBackground = False
     TabOrder = 1
-    object Label1: TLabel
-      Left = 14
-      Height = 16
-      Top = 15
-      Width = 38
-      Caption = 'suche:'
-    end
-    object QSuche: TEdit
-      Left = 56
-      Height = 22
-      Top = 14
-      Width = 232
-      AutoSize = False
-      BorderStyle = bsNone
-      OnKeyUp = QSucheKeyUp
-      ParentColor = True
-      TabOrder = 0
-    end
-    object LabelTrefferzahl: TLabel
-      Left = 56
-      Height = 16
-      Top = 44
-      Width = 9
-      Caption = '...'
-      Color = clWhite
-      ParentColor = True
-      Transparent = False
-    end
-    object QuerverweisAllesZeigen: TImage
-      Cursor = crHandPoint
-      Left = 288
-      Height = 25
-      Hint = 'Suche löschen (alle anzeigen)'
-      Top = 8
-      Width = 32
-      Anchors = [akTop, akRight]
-      Center = True
-      OnClick = QuerverweisAllesZeigenClick
-      ParentShowHint = False
-      Picture.Data = {
-        1754506F727461626C654E6574776F726B477261706869634101000089504E47
-        0D0A1A0A0000000D4948445200000018000000180806000000E0773DF8000000
-        097048597300000B1300000B1301009A9C18000000F349444154789CED943B0B
-        C2500C853F1FE8AFD4C9A1E2E8E0A08382836D85AE6EBAB9B909EAACABB8F918
-        9CFD0D42550A2996DADEDEA245040F04DA9BE4E424B70DFCF10BA8023BE00ADC
-        1576030E401DC8E910E7819124AF010B1824D842E2BD224A14808904F7751509
-        96C05E155004A642DE213D7A801BE72C0133996733E43B0266448E37BA53E0BD
-        2BE25E5006E642DE88F0DB92E804CE1C39B3750A58D25A2DAE3D9E844EE8199D
-        021760AC20F7E11347917FB78099F588CA09973C7CF792933ED37388C8872D3E
-        AD0299FF689F5815ABA45511B5EC36A2ACA5B0B6907BF1460A415480ADC6BA76
-        45B991B2E33FC8160F9B6E6F8FE1E701890000000049454E44AE426082
-      }
-      ShowHint = True
-    end
-    object AnzeigeTitel: TLabel
+    object Panel3: TPanel
       Left = 16
-      Height = 16
-      Top = 72
-      Width = 9
-      Caption = '...'
-      Color = clWhite
-      ParentColor = True
-      Transparent = False
-    end
-    object Bevel1: TBevel
-      Left = 56
-      Height = 8
-      Top = 37
-      Width = 232
-      Anchors = [akTop, akLeft, akRight]
-      Shape = bsTopLine
+      Height = 40
+      Top = 8
+      Width = 272
+      BevelOuter = bvNone
+      ClientHeight = 40
+      ClientWidth = 272
+      ParentBackground = False
+      TabOrder = 0
+      object Label1: TLabel
+        Left = 0
+        Height = 25
+        Top = 0
+        Width = 34
+        Align = alLeft
+        BorderSpacing.Right = 5
+        Caption = 'suche:'
+        Layout = tlCenter
+      end
+      object QSuche: TEdit
+        Left = 39
+        Height = 25
+        Top = 0
+        Width = 164
+        Align = alLeft
+        AutoSize = False
+        BorderStyle = bsNone
+        ParentColor = True
+        TabOrder = 0
+        OnKeyUp = QSucheKeyUp
+      end
+      object Bevel1: TBevel
+        Left = 40
+        Height = 15
+        Top = 25
+        Width = 162
+        Align = alBottom
+        BorderSpacing.Left = 40
+        BorderSpacing.Right = 70
+        Shape = bsTopLine
+      end
+      object Alles: TImage
+        Cursor = crHandPoint
+        Left = 203
+        Height = 25
+        Hint = 'Suche löschen (alle anzeigen)'
+        Top = 0
+        Width = 32
+        Align = alLeft
+        Center = True
+        OnClick = AllesClick
+        ParentShowHint = False
+        Picture.Data = {
+          1754506F727461626C654E6574776F726B477261706869634101000089504E47
+          0D0A1A0A0000000D4948445200000018000000180806000000E0773DF8000000
+          097048597300000B1300000B1301009A9C18000000F349444154789CED943B0B
+          C2500C853F1FE8AFD4C9A1E2E8E0A08382836D85AE6EBAB9B909EAACABB8F918
+          9CFD0D42550A2996DADEDEA245040F04DA9BE4E424B70DFCF10BA8023BE00ADC
+          1576030E401DC8E910E7819124AF010B1824D842E2BD224A14808904F7751509
+          96C05E155004A642DE213D7A801BE72C0133996733E43B0266448E37BA53E0BD
+          2BE25E5006E642DE88F0DB92E804CE1C39B3750A58D25A2DAE3D9E844EE8199D
+          021760AC20F7E11347917FB78099F588CA09973C7CF792933ED37388C8872D3E
+          AD0299FF689F5815ABA45511B5EC36A2ACA5B0B6907BF1460A415480ADC6BA76
+          45B991B2E33FC8160F9B6E6F8FE1E701890000000049454E44AE426082
+        }
+        ShowHint = True
+      end
     end
   end
   object Panel1: TPanel
@@ -126,6 +125,7 @@ object QVerweis: TQVerweis
     BevelOuter = bvNone
     BorderStyle = bsSingle
     Caption = 'schließen'
+    ParentBackground = False
     TabOrder = 2
     OnClick = Button1Click
   end
@@ -138,13 +138,14 @@ object QVerweis: TQVerweis
     BevelOuter = bvNone
     ClientHeight = 32
     ClientWidth = 72
+    ParentBackground = False
     TabOrder = 3
     object Label5: TLabel
       Cursor = crHandPoint
-      Left = 23
+      Left = 18
       Height = 32
       Top = 0
-      Width = 21
+      Width = 20
       Align = alLeft
       Caption = 'A-Z'
       Layout = tlCenter
@@ -154,38 +155,26 @@ object QVerweis: TQVerweis
       Left = 0
       Height = 32
       Top = 0
-      Width = 23
+      Width = 18
       Align = alLeft
       Anchors = [akLeft, akBottom]
+      TabOrder = 0
       OnChange = OptionSortAlphabetChange
       OnClick = OptionSortAlphabetClick
-      TabOrder = 0
     end
   end
   object ButtonGliedern: TPanel
     Cursor = crHandPoint
-    Left = 72
+    Left = 16
     Height = 29
-    Top = 407
+    Top = 408
     Width = 102
-    Anchors = [akRight, akBottom]
+    Anchors = [akLeft, akBottom]
     BevelOuter = bvNone
     BorderStyle = bsSingle
     Caption = 'Notiz gliedern'
+    ParentBackground = False
     TabOrder = 4
     OnClick = ButtonGliedernClick
-  end
-  object ButtonAnlegen: TPanel
-    Cursor = crHandPoint
-    Left = 16
-    Height = 29
-    Top = 407
-    Width = 150
-    Anchors = [akRight, akBottom]
-    BevelOuter = bvNone
-    BorderStyle = bsSingle
-    Caption = 'Querverweis anlegen'
-    TabOrder = 5
-    OnClick = ButtonAnlegenClick
   end
 end

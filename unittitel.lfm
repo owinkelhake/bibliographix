@@ -1,36 +1,37 @@
 object FormTiteldaten: TFormTiteldaten
-  Left = 883
-  Height = 528
-  Top = 307
-  Width = 876
+  Left = 903
+  Height = 532
+  Top = 434
+  Width = 771
   BorderStyle = bsDialog
   Caption = 'Titeldaten'
-  ClientHeight = 528
-  ClientWidth = 876
-  Color = 16251129
+  ClientHeight = 532
+  ClientWidth = 771
+  Color = 15527395
   FormStyle = fsStayOnTop
   KeyPreview = True
-  LCLVersion = '3.99.0.0'
   OnClose = FormClose
+  OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   OnShow = FormShow
+  LCLVersion = '3.2.0.0'
   object Panel1: TPanel
     Left = 0
     Height = 32
     Top = 15
-    Width = 876
+    Width = 771
     Align = alTop
     BorderSpacing.Top = 15
     BevelOuter = bvNone
     ClientHeight = 32
-    ClientWidth = 876
+    ClientWidth = 771
     ParentBackground = False
     TabOrder = 0
     object Label1: TLabel
       Left = 0
       Height = 32
       Top = 0
-      Width = 104
+      Width = 140
       Align = alLeft
       Alignment = taRightJustify
       AutoSize = False
@@ -39,22 +40,22 @@ object FormTiteldaten: TFormTiteldaten
       ParentColor = False
     end
     object RadioBuch: TRadioButton
-      Left = 114
+      Left = 160
       Height = 32
       Top = 0
-      Width = 18
+      Width = 23
       Align = alLeft
-      BorderSpacing.Left = 10
+      BorderSpacing.Left = 20
       Checked = True
       TabOrder = 0
       TabStop = True
     end
     object Label3: TLabel
       Cursor = crHandPoint
-      Left = 132
+      Left = 183
       Height = 32
       Top = 0
-      Width = 27
+      Width = 31
       Align = alLeft
       Caption = 'Buch'
       Layout = tlCenter
@@ -62,20 +63,20 @@ object FormTiteldaten: TFormTiteldaten
       OnClick = Label3Click
     end
     object RadioArtikel: TRadioButton
-      Left = 169
+      Left = 234
       Height = 32
       Top = 0
-      Width = 18
+      Width = 23
       Align = alLeft
-      BorderSpacing.Left = 10
+      BorderSpacing.Left = 20
       TabOrder = 3
     end
     object Label4: TLabel
       Cursor = crHandPoint
-      Left = 187
+      Left = 257
       Height = 32
       Top = 0
-      Width = 34
+      Width = 40
       Align = alLeft
       Caption = 'Artikel'
       Layout = tlCenter
@@ -83,20 +84,20 @@ object FormTiteldaten: TFormTiteldaten
       OnClick = Label4Click
     end
     object RadioKapitel: TRadioButton
-      Left = 231
+      Left = 317
       Height = 32
       Top = 0
-      Width = 18
+      Width = 23
       Align = alLeft
-      BorderSpacing.Left = 10
+      BorderSpacing.Left = 20
       TabOrder = 1
     end
     object Label7: TLabel
       Cursor = crHandPoint
-      Left = 249
+      Left = 340
       Height = 32
       Top = 0
-      Width = 36
+      Width = 42
       Align = alLeft
       Caption = 'Kapitel'
       Layout = tlCenter
@@ -104,20 +105,20 @@ object FormTiteldaten: TFormTiteldaten
       OnClick = Label7Click
     end
     object RadioSammelband: TRadioButton
-      Left = 295
+      Left = 402
       Height = 32
       Top = 0
-      Width = 18
+      Width = 23
       Align = alLeft
-      BorderSpacing.Left = 10
+      BorderSpacing.Left = 20
       TabOrder = 2
     end
     object Label8: TLabel
       Cursor = crHandPoint
-      Left = 313
+      Left = 425
       Height = 32
       Top = 0
-      Width = 70
+      Width = 78
       Align = alLeft
       Caption = 'Sammelband'
       Layout = tlCenter
@@ -125,753 +126,276 @@ object FormTiteldaten: TFormTiteldaten
       OnClick = Label8Click
     end
   end
-  object Panel2: TPanel
-    Cursor = crHandPoint
-    Left = 773
-    Height = 40
-    Top = 480
-    Width = 90
-    Anchors = [akTop, akRight]
-    BevelOuter = bvNone
-    BorderStyle = bsSingle
-    Caption = 'Speichern'
-    ParentBackground = False
-    TabOrder = 1
-    OnClick = ButtonSpeichernClick
-  end
-  object Panel3: TPanel
-    Left = 0
-    Height = 26
-    Top = 62
-    Width = 876
-    Align = alTop
-    BorderSpacing.Top = 15
-    BevelOuter = bvNone
-    ClientHeight = 26
-    ClientWidth = 876
-    ParentBackground = False
-    TabOrder = 2
-    object EingabeAutor: TEdit
-      Cursor = crIBeam
-      Left = 114
-      Height = 26
-      Top = 0
-      Width = 706
-      Align = alLeft
-      Anchors = [akTop, akLeft, akRight, akBottom]
-      AutoSize = False
-      AutoSelect = False
-      BorderSpacing.Left = 10
-      BorderStyle = bsNone
-      ParentColor = True
-      TabOrder = 0
-      Text = 'adsfadfsdf'
-      OnEnter = EingabeAutorEnter
-      OnExit = EingabeAutorExit
-      OnKeyPress = EingabeAutorKeyPress
-      OnKeyUp = EingabeAutorKeyUp
-    end
-    object LabelAutor: TEdit
-      Left = 0
-      Height = 26
-      Top = 0
-      Width = 104
-      Align = alLeft
-      Alignment = taRightJustify
-      AutoSize = False
-      AutoSelect = False
-      BorderStyle = bsNone
-      ParentColor = True
-      ReadOnly = True
-      TabStop = False
-      TabOrder = 1
-      Text = 'Autor:'
-      OnChange = LabelAutorChange
-    end
-  end
-  object Panel5: TPanel
-    Left = 0
-    Height = 26
-    Top = 104
-    Width = 876
-    Align = alTop
-    BevelOuter = bvNone
-    ClientHeight = 26
-    ClientWidth = 876
-    ParentBackground = False
-    TabOrder = 3
-    object EingabeTitel: TEdit
-      Cursor = crIBeam
-      Left = 114
-      Height = 26
-      Top = 0
-      Width = 714
-      Align = alLeft
-      Anchors = [akTop, akLeft, akRight]
-      BorderSpacing.Left = 10
-      BorderStyle = bsNone
-      ParentColor = True
-      TabOrder = 0
-      OnEnter = EingabeTitelEnter
-    end
-    object LabelAutor1: TEdit
-      Left = 0
-      Height = 26
-      Top = 0
-      Width = 104
-      Align = alLeft
-      Alignment = taRightJustify
-      AutoSize = False
-      AutoSelect = False
-      BorderStyle = bsNone
-      ParentColor = True
-      ReadOnly = True
-      TabStop = False
-      TabOrder = 1
-      Text = 'Titel'
-      OnChange = LabelAutorChange
-    end
-  end
-  object Panel6: TPanel
-    Left = 0
-    Height = 26
-    Top = 146
-    Width = 876
-    Align = alTop
-    BevelOuter = bvNone
-    ClientHeight = 26
-    ClientWidth = 876
-    ParentBackground = False
-    TabOrder = 4
-    object EingabeUntertitel: TEdit
-      Cursor = crIBeam
-      Left = 114
-      Height = 26
-      Top = 0
-      Width = 706
-      Align = alLeft
-      Anchors = [akTop, akLeft, akRight]
-      BorderSpacing.Left = 10
-      BorderStyle = bsNone
-      ParentColor = True
-      TabOrder = 0
-      OnEnter = EingabeTitelEnter
-    end
-    object LabelAutor2: TEdit
-      Left = 0
-      Height = 26
-      Top = 0
-      Width = 104
-      Align = alLeft
-      Alignment = taRightJustify
-      AutoSize = False
-      AutoSelect = False
-      BorderStyle = bsNone
-      ParentColor = True
-      ReadOnly = True
-      TabStop = False
-      TabOrder = 1
-      Text = 'Untertitel:'
-      OnChange = LabelAutorChange
-    end
-  end
-  object Panel7: TPanel
-    Left = 0
-    Height = 26
-    Top = 230
-    Width = 876
-    Align = alTop
-    BevelOuter = bvNone
-    ClientHeight = 26
-    ClientWidth = 876
-    ParentBackground = False
-    TabOrder = 6
-    object EingabeZeitschrift: TEdit
-      Cursor = crIBeam
-      Left = 114
-      Height = 26
-      Top = 0
-      Width = 707
-      Align = alLeft
-      Anchors = [akTop, akLeft, akRight]
-      AutoSize = False
-      AutoSelect = False
-      BorderSpacing.Left = 10
-      BorderStyle = bsNone
-      ParentColor = True
-      TabOrder = 0
-      OnEnter = EingabeTitelEnter
-      OnKeyPress = EingabeZeitschriftKeyPress
-      OnKeyUp = EingabeZeitschriftKeyUp
-    end
-    object LabelAutor4: TEdit
-      Left = 0
-      Height = 26
-      Top = 0
-      Width = 104
-      Align = alLeft
-      Alignment = taRightJustify
-      AutoSize = False
-      AutoSelect = False
-      BorderStyle = bsNone
-      ParentColor = True
-      ReadOnly = True
-      TabStop = False
-      TabOrder = 1
-      Text = 'Zeitschrift:'
-      OnChange = LabelAutorChange
-    end
-  end
-  object Panel8: TPanel
-    Left = 0
-    Height = 26
-    Top = 188
-    Width = 876
-    Align = alTop
-    BevelOuter = bvNone
-    ClientHeight = 26
-    ClientWidth = 876
-    ParentBackground = False
-    TabOrder = 5
-    object EingabeJahr: TEdit
-      Cursor = crIBeam
-      Left = 194
-      Height = 26
-      Top = 0
-      Width = 68
-      Align = alLeft
-      BorderSpacing.Left = 10
-      BorderStyle = bsNone
-      ParentColor = True
-      TabOrder = 0
-      OnClick = EingabeJahrClick
-      OnEnter = EingabeTitelEnter
-    end
-    object EingabeDatum: TEdit
-      Cursor = crIBeam
-      Left = 306
-      Height = 26
-      Top = 0
-      Width = 89
-      Align = alLeft
-      BorderSpacing.Left = 6
-      BorderStyle = bsNone
-      ParentColor = True
-      TabOrder = 2
-      OnEnter = EingabeTitelEnter
-      OnKeyPress = EingabeDatumKeyPress
-    end
-    object EingabeBand: TEdit
-      Cursor = crIBeam
-      Left = 454
-      Height = 26
-      Top = 0
-      Width = 56
-      Align = alLeft
-      BorderSpacing.Left = 6
-      BorderStyle = bsNone
-      ParentColor = True
-      TabOrder = 7
-    end
-    object EingabeNummer: TEdit
-      Cursor = crIBeam
-      Left = 585
-      Height = 26
-      Top = 0
-      Width = 63
-      Align = alLeft
-      BorderSpacing.Left = 6
-      BorderStyle = bsNone
-      ParentColor = True
-      TabOrder = 8
-    end
-    object EingabeSeiten: TEdit
-      Left = 716
-      Height = 26
-      Top = 0
-      Width = 98
-      Align = alLeft
-      BorderSpacing.Left = 6
-      BorderStyle = bsNone
-      ParentColor = True
-      TabOrder = 9
-      OnKeyPress = EingabeSeitenKeyPress
-    end
-    object Jahreszahl: TPanel
-      Left = 114
-      Height = 26
-      Top = 0
-      Width = 70
-      Align = alLeft
-      BorderSpacing.Left = 10
-      BevelOuter = bvNone
-      BorderStyle = bsSingle
-      Caption = '2024 ->'
-      ParentBackground = False
-      TabOrder = 10
-      OnClick = JahreszahlClick
-    end
-    object LabelAutor3: TEdit
-      Left = 0
-      Height = 26
-      Top = 0
-      Width = 104
-      Align = alLeft
-      Alignment = taRightJustify
-      AutoSize = False
-      AutoSelect = False
-      BorderStyle = bsNone
-      ParentColor = True
-      ReadOnly = True
-      TabStop = False
-      TabOrder = 1
-      Text = 'Jahr:'
-      OnChange = LabelAutorChange
-    end
-    object LabelAutor10: TEdit
-      Left = 262
-      Height = 26
-      Top = 0
-      Width = 38
-      Align = alLeft
-      Alignment = taRightJustify
-      AutoSize = False
-      AutoSelect = False
-      BorderStyle = bsNone
-      ParentColor = True
-      ReadOnly = True
-      TabStop = False
-      TabOrder = 6
-      Text = 'Datum:'
-      OnChange = LabelAutorChange
-    end
-    object LabelAutor11: TEdit
-      Left = 395
-      Height = 26
-      Top = 0
-      Width = 53
-      Align = alLeft
-      Alignment = taRightJustify
-      AutoSize = False
-      AutoSelect = False
-      BorderStyle = bsNone
-      ParentColor = True
-      ReadOnly = True
-      TabStop = False
-      TabOrder = 5
-      Text = 'Band:'
-      OnChange = LabelAutorChange
-    end
-    object LabelAutor12: TEdit
-      Left = 510
-      Height = 26
-      Top = 0
-      Width = 69
-      Align = alLeft
-      Alignment = taRightJustify
-      AutoSize = False
-      AutoSelect = False
-      BorderStyle = bsNone
-      ParentColor = True
-      ReadOnly = True
-      TabStop = False
-      TabOrder = 4
-      Text = 'Nummer:'
-      OnChange = LabelAutorChange
-    end
-    object LabelAutor13: TEdit
-      Left = 648
-      Height = 26
-      Top = 0
-      Width = 62
-      Align = alLeft
-      Alignment = taRightJustify
-      AutoSize = False
-      AutoSelect = False
-      BorderStyle = bsNone
-      ParentColor = True
-      ReadOnly = True
-      TabStop = False
-      TabOrder = 3
-      Text = 'Seite(n):'
-      OnChange = LabelAutorChange
-    end
-  end
-  object Bevel2: TBevel
-    Left = 114
-    Height = 16
-    Top = 88
-    Width = 722
-    Align = alTop
-    BorderSpacing.Left = 114
-    BorderSpacing.Right = 40
-    Shape = bsTopLine
-  end
-  object Bevel3: TBevel
-    Left = 114
-    Height = 16
-    Top = 130
-    Width = 722
-    Align = alTop
-    BorderSpacing.Left = 114
-    BorderSpacing.Right = 40
-    Shape = bsTopLine
-  end
-  object Bevel4: TBevel
-    Left = 114
-    Height = 16
-    Top = 172
-    Width = 722
-    Align = alTop
-    BorderSpacing.Left = 114
-    BorderSpacing.Right = 40
-    Shape = bsTopLine
-  end
-  object Bevel5: TBevel
-    Left = 114
-    Height = 16
-    Top = 214
-    Width = 722
-    Align = alTop
-    BorderSpacing.Left = 114
-    BorderSpacing.Right = 40
-    Shape = bsTopLine
-  end
-  object Bevel6: TBevel
-    Left = 114
-    Height = 16
-    Top = 256
-    Width = 722
-    Align = alTop
-    BorderSpacing.Left = 114
-    BorderSpacing.Right = 40
-    Shape = bsTopLine
-  end
-  object Panel9: TPanel
-    Left = 0
-    Height = 26
-    Top = 272
-    Width = 876
-    Align = alTop
-    BevelOuter = bvNone
-    ClientHeight = 26
-    ClientWidth = 876
-    ParentBackground = False
-    TabOrder = 7
-    object EingabeHerausgeber: TEdit
-      Cursor = crIBeam
-      Left = 114
-      Height = 26
-      Top = 0
-      Width = 707
-      Align = alLeft
-      Anchors = [akTop, akLeft, akRight]
-      AutoSize = False
-      AutoSelect = False
-      BorderSpacing.Left = 10
-      BorderStyle = bsNone
-      ParentColor = True
-      TabOrder = 0
-      OnEnter = EingabeTitelEnter
-      OnKeyPress = EingabeHerausgeberKeyPress
-      OnKeyUp = EingabeHerausgeberKeyUp
-    end
-    object LabelAutor5: TEdit
-      Left = 0
-      Height = 26
-      Top = 0
-      Width = 104
-      Align = alLeft
-      Alignment = taRightJustify
-      AutoSize = False
-      AutoSelect = False
-      BorderStyle = bsNone
-      ParentColor = True
-      ReadOnly = True
-      TabStop = False
-      TabOrder = 1
-      Text = 'Herausgeber:'
-      OnChange = LabelAutorChange
-    end
-  end
-  object Bevel7: TBevel
-    Left = 114
-    Height = 16
-    Top = 298
-    Width = 722
-    Align = alTop
-    BorderSpacing.Left = 114
-    BorderSpacing.Right = 40
-    Shape = bsTopLine
-  end
-  object Panel10: TPanel
-    Left = 0
-    Height = 26
-    Top = 314
-    Width = 876
-    Align = alTop
-    BevelOuter = bvNone
-    ClientHeight = 26
-    ClientWidth = 876
-    ParentBackground = False
-    TabOrder = 8
-    object EingabeSammelband: TEdit
-      Cursor = crIBeam
-      Left = 114
-      Height = 26
-      Top = 0
-      Width = 714
-      Align = alLeft
-      Anchors = [akTop, akLeft, akRight]
-      BorderSpacing.Left = 10
-      BorderStyle = bsNone
-      ParentColor = True
-      TabOrder = 0
-      OnEnter = EingabeTitelEnter
-    end
-    object LabelAutor6: TEdit
-      Left = 0
-      Height = 26
-      Top = 0
-      Width = 104
-      Align = alLeft
-      Alignment = taRightJustify
-      AutoSize = False
-      AutoSelect = False
-      BorderStyle = bsNone
-      ParentColor = True
-      ReadOnly = True
-      TabStop = False
-      TabOrder = 1
-      Text = 'Sammelband:'
-      OnChange = LabelAutorChange
-    end
-  end
-  object Bevel8: TBevel
-    Left = 114
-    Height = 16
-    Top = 340
-    Width = 722
-    Align = alTop
-    BorderSpacing.Left = 114
-    BorderSpacing.Right = 40
-    Shape = bsTopLine
-  end
-  object Panel11: TPanel
-    Left = 0
-    Height = 26
-    Top = 356
-    Width = 876
-    Align = alTop
-    BevelOuter = bvNone
-    ClientHeight = 26
-    ClientWidth = 876
-    ParentBackground = False
-    TabOrder = 9
-    object EingabeVerlag: TEdit
-      Cursor = crIBeam
-      Left = 114
-      Height = 26
-      Top = 0
-      Width = 228
-      Align = alLeft
-      AutoSize = False
-      AutoSelect = False
-      BorderSpacing.Left = 10
-      BorderStyle = bsNone
-      ParentColor = True
-      TabOrder = 0
-      OnChange = EingabeVerlagChange
-      OnEnter = EingabeTitelEnter
-      OnKeyPress = EingabeVerlagKeyPress
-      OnKeyUp = EingabeVerlagKeyUp
-    end
-    object EingabeOrt: TEdit
-      Cursor = crIBeam
-      Left = 388
-      Height = 26
-      Top = 0
-      Width = 180
-      Align = alLeft
-      Anchors = [akTop, akLeft, akRight]
-      BorderSpacing.Left = 6
-      BorderStyle = bsNone
-      ParentColor = True
-      TabOrder = 3
-      OnEnter = EingabeOrtEnter
-      OnKeyPress = EingabeOrtKeyPress
-      OnKeyUp = EingabeOrtKeyUp
-    end
-    object LabelAutor7: TEdit
-      Left = 0
-      Height = 26
-      Top = 0
-      Width = 104
-      Align = alLeft
-      Alignment = taRightJustify
-      AutoSize = False
-      AutoSelect = False
-      BorderStyle = bsNone
-      ParentColor = True
-      ReadOnly = True
-      TabStop = False
-      TabOrder = 1
-      Text = 'Verlag:'
-      OnChange = LabelAutorChange
-    end
-    object LabelAutor14: TEdit
-      Left = 342
-      Height = 26
-      Top = 0
-      Width = 40
-      Align = alLeft
-      Alignment = taRightJustify
-      AutoSize = False
-      AutoSelect = False
-      BorderStyle = bsNone
-      ParentColor = True
-      ReadOnly = True
-      TabStop = False
-      TabOrder = 2
-      Text = 'Ort:'
-      OnChange = LabelAutorChange
-    end
-  end
-  object Bevel9: TBevel
-    Left = 114
-    Height = 16
-    Top = 382
-    Width = 722
-    Align = alTop
-    BorderSpacing.Left = 114
-    BorderSpacing.Right = 40
-    Shape = bsTopLine
-  end
-  object Panel12: TPanel
-    Left = 0
-    Height = 26
-    Top = 398
-    Width = 876
-    Align = alTop
-    BevelOuter = bvNone
-    ClientHeight = 26
-    ClientWidth = 876
-    ParentBackground = False
-    TabOrder = 10
-    object EingabeAuflage: TEdit
-      Cursor = crIBeam
-      Left = 114
-      Height = 26
-      Top = 0
-      Width = 56
-      Align = alLeft
-      BorderSpacing.Left = 10
-      BorderStyle = bsNone
-      ParentColor = True
-      TabOrder = 0
-    end
-    object EingabeISBN: TEdit
-      Cursor = crIBeam
-      Left = 214
-      Height = 26
-      Top = 0
-      Width = 129
-      Align = alLeft
-      BorderSpacing.Left = 6
-      BorderStyle = bsNone
-      ParentColor = True
-      TabOrder = 3
-    end
-    object LabelAutor8: TEdit
-      Left = 0
-      Height = 26
-      Top = 0
-      Width = 104
-      Align = alLeft
-      Alignment = taRightJustify
-      AutoSize = False
-      AutoSelect = False
-      BorderStyle = bsNone
-      ParentColor = True
-      ReadOnly = True
-      TabStop = False
-      TabOrder = 1
-      Text = 'Auflage:'
-      OnChange = LabelAutorChange
-    end
-    object LabelAutor9: TEdit
-      Left = 170
-      Height = 26
-      Top = 0
-      Width = 38
-      Align = alLeft
-      Alignment = taRightJustify
-      AutoSize = False
-      AutoSelect = False
-      BorderStyle = bsNone
-      ParentColor = True
-      ReadOnly = True
-      TabStop = False
-      TabOrder = 2
-      Text = 'ISBN:'
-      OnChange = LabelAutorChange
-    end
-  end
-  object Bevel11: TBevel
-    Left = 114
-    Height = 16
-    Top = 424
-    Width = 722
-    Align = alTop
-    BorderSpacing.Left = 114
-    BorderSpacing.Right = 40
-    Shape = bsTopLine
-  end
   object Labelsyntax: TLabel
-    Left = 114
+    Left = 150
     Height = 24
-    Top = 440
-    Width = 762
+    Top = 434
+    Width = 601
     Align = alTop
+    Alignment = taRightJustify
     AutoSize = False
-    BorderSpacing.Left = 114
+    BorderSpacing.Left = 150
+    BorderSpacing.Right = 20
     Caption = 'Syntax der Autorennamen: Akerlof, George A; Yellen, Janet'
-    Font.Color = clTeal
-    Font.Height = -13
-    Font.Name = 'Arial'
-    Font.Style = [fsItalic]
     ParentColor = False
-    ParentFont = False
     WordWrap = True
   end
+  object ButtonScholar: TPanel
+    Cursor = crHandPoint
+    Left = 40
+    Height = 36
+    Top = 480
+    Width = 205
+    AutoSize = True
+    BorderSpacing.InnerBorder = 5
+    BevelOuter = bvNone
+    ClientHeight = 36
+    ClientWidth = 205
+    Color = 15397625
+    ParentBackground = False
+    ParentColor = False
+    TabOrder = 2
+    object Label2: TLabel
+      Cursor = crHandPoint
+      Left = 9
+      Height = 26
+      Top = 5
+      Width = 187
+      Align = alClient
+      BorderSpacing.Left = 4
+      BorderSpacing.Right = 4
+      BorderSpacing.Around = 5
+      Caption = 'aus Zwischenablage einfügen'
+      Layout = tlCenter
+      OnClick = ButtonScholarClick
+    end
+  end
+  object ButtonSpeichern: TImage
+    Cursor = crHandPoint
+    Left = 693
+    Height = 36
+    Top = 483
+    Width = 63
+    Anchors = [akTop, akRight]
+    Center = True
+    OnClick = ButtonSpeichernClick
+    Picture.Data = {
+      1754506F727461626C654E6574776F726B477261706869630E07000089504E47
+      0D0A1A0A0000000D494844520000003F0000002408060000003E4EE287000006
+      D5494441546881DD9A6F4C53591AC69FB657480BFD43334A69854B05DA4E7467
+      8819312905B138514A158D3B1F9A8C3B41129BC038A3C92C6236D18DCA9860DC
+      35D99008BABB92349A59370A161D6255D435088551092954C636B6A5030B2DB4
+      91B62CB4653F6049417118E716467FDFEE7DCF79CFF3DC7FE79C7B0E6D7A7A1A
+      8B65626222B1BFBFBFC06C362BED76FBFAA1A1A10F5FBC78B16AD10928842088
+      FF31994C8F402030676464B449A5D256A954DACA6030828BCD415B8C7997CB25
+      BE79F3E6371D1D1D5F9024992093C9409224F87C3E984C260882F85546DE8660
+      3088402080E1E161D86C36F4F5F56164646478E3C68DBAAD5BB7D670389CFFFE
+      5C8E379A9F9C9C64E9F5FA3F3F78F0E08042A1582197CBC166B3293541256EB7
+      1B6D6D6D301A8DFE828282BFA8D5EA630C06636AA1F20B9A77381CD9F5F5F5FF
+      4A4F4FCF52A954BF69D3F3F17ABDD0EBF5F0783C1DA5A5A57F484E4EEE7F5DB9
+      D79A7FF2E449494343C3A55DBB7631D7AF5F1F73B1B1A2B3B313D7AF5FF75454
+      546C138BC51DF3E3AF98EFE9E9519D3F7FBEA9ACAC8C58B366CD92098D1566B3
+      193A9D2E505E5EBE4D2291DC8F8ED1A30F9C4EE7BA0B172E7CF7BE180700994C
+      863D7BF630EBEAEA1A474747D3A263B3E627272759757575FF2E2929497C5F8C
+      47904AA5D8B46953526D6D6D5328149AED9A66CD5FBD7AF55B9224A5EFF23BFE
+      26944A25381C4E766B6BEB9791737460A61F6F6F6F2F57A954CBA76E09D8B163
+      079A9B9B8FFB7C3E3EF0D27C4B4BCB218542B1E25DEACEDE86952B57223B3B3B
+      F1FEFDFB5A00A08742A1158F1F3FFE4C2E972FB7B62521373717B76FDFFE3A1C
+      0ED3E966B359291289F8EFFB5D8F90929202369B9DEC743A7F4737994C5B6532
+      594C1AB25AADD8B76F1FB2B2B290949484F4F47468341A3C7AF4684E39B55A0D
+      369B0D9D4E377BAEA6A6066C361B393939F0F97C94EACAC8C880C964DA46B75A
+      AD729224294D0ECC0C2EF2F3F371E9D22578BD5EC8643204834134373763CB96
+      2DB87BF7EE82750D06034E9C38010E87838B172F22212181526D2449626868E8
+      43BACBE54A4F4A4AA2343900545555C1EBF562C3860D78FAF4291E3E7C088BC5
+      829D3B77626A6A0A070E1CC0EB86D656AB157BF7EEC5F4F434EAEBEB91999949
+      B936A1500887C3F1313D1008F0582C16A5C97D3E1F5A5B5B0100478E1C41E4E2
+      C6C7C7A3BABA1A0060B15860369BE7D49B98988046A381C7E3416565258A8B8B
+      29D51581C562C1EBF5A6D083C1603CD5F3F181810184C36100C0DAB56BE7C4D2
+      D2D29098980800B0D96C7362A74F9F466F6F2F783C1E0E1D3A44A9A668121212
+      303E3EBE92FEF34563078D469B733C3030002693098FC783B367CFC6ACDD7038
+      0C068331450766FE8A50496A6A2A180C0600A0B7B7774ECC6EB7637C7C1CC0CC
+      87279AAAAA2A3434340000AAABAB5F7932A822100880C9647AE85C2EF727BFDF
+      4F6972168B85C2C24200C0B163C7303A3A0A60E69D3E7CF83000202B2B0B52A9
+      744E3D922451545484929212F8FD7E1C3C7890525D11FC7E3FB85CEE105D2412
+      F58C8C8C50DEC0C99327C1E3F160341A21954A91939303B1588C6BD7AE212E2E
+      0E67CE9C79E5B18F70EAD429B0D96C180C065CBE7C99726D76BB1DA9A9A94FE8
+      AB57AFEE8EC5E325914870EFDE3D68341A70B95CF4F7F7232E2E0E6AB51AB76E
+      DD427E7EFE827553525270F4E8510040656525C6C6C628D566B3D920168B3B68
+      2693E953BD5E7FB3A2A282D2067ECBD4D4D440ABD57E44974824F79C4EE70BB7
+      DBBDDC9A96048BC5827038FC4C2412F5D0098298CCCDCDFD475B5BDB72EB5A12
+      BABABAA05028FE0EBC9CCF1715157DDBDEDE1EF07ABDCBAB2CC60C0E0EC26C36
+      0F6FDEBCF96FC04BF31C0E6758A9549E6E6A6A5A5E7531241C0EA3B1B1112A95
+      EA787C7CBC0F88FA87575C5C7CDCE572F57476762E9FC2186230184010C4AD82
+      8282DAC8B959F304414C6AB5DADD376EDC189B3FE178D7E9EEEE86D168749696
+      967E41A3D166A79273C6F6C9C9C93F969595FD5EA7D305DE970BD0DDDD8D2B57
+      AE8CEDDFBF5FC5E3F17E8A8EBD76B9EAF9F3E79FD4D6D67E9F9797F78152A95C
+      32A154120E8761301860341A9DE5E5E5252449FE30BFCC820B956EB79B3C77EE
+      DC774C2673E3F6EDDBB16AD5B22CC3BF15838383686C6C0480FF68B5DACF165A
+      AE7EE312752814220C06C3372D2D2D7FCACECE4E94CBE5100A853192FCEBB158
+      2CE8EAEA82C9641ADDBD7BF71FE572F93FA3DFF1F92C6A7382CFE7E3DFB973E7
+      AB8E8E8ECF0982C8C8CCCC044992100A8560B1584BBE4121B231C1EFF7C36EB7
+      C366B3E1D9B367088542F6C2C2C2BFE6E5E59D8B74676F6251E6A371381C1FF7
+      F5F57D6AB3D93E191818F8C8E7F3F10381002F180CC6BFB59B5F48644B0A9FCF
+      77A4A5A5FD2010089EAE5BB7EE7B8140F08BBED2FF070B12BAD0BB7FAA430000
+      000049454E44AE426082
+    }
+    Stretch = True
+  end
+  object ButtonKopieren: TPanel
+    Cursor = crHandPoint
+    Left = 312
+    Height = 36
+    Top = 480
+    Width = 81
+    AutoSize = True
+    BorderSpacing.Around = 5
+    BorderSpacing.InnerBorder = 5
+    BevelOuter = bvNone
+    ClientHeight = 36
+    ClientWidth = 81
+    Color = 15397625
+    ParentBackground = False
+    ParentColor = False
+    TabOrder = 3
+    object Label5: TLabel
+      Cursor = crHandPoint
+      Left = 9
+      Height = 26
+      Top = 5
+      Width = 63
+      Align = alClient
+      BorderSpacing.Left = 4
+      BorderSpacing.Right = 4
+      BorderSpacing.Around = 5
+      Caption = 'kopieren'
+      Layout = tlCenter
+      OnClick = ButtonKopierenClick
+    end
+  end
+  object TitelDatenmatrix: TStringGrid
+    Left = 5
+    Height = 377
+    Top = 57
+    Width = 766
+    Align = alTop
+    BorderSpacing.Left = 5
+    BorderSpacing.Top = 10
+    BorderStyle = bsNone
+    Color = 15527395
+    ColCount = 2
+    Columns = <    
+      item
+        Title.Caption = 'Title'
+        Width = 625
+      end>
+    FixedColor = clSilver
+    FixedRows = 0
+    Flat = True
+    Font.Height = -16
+    Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goEditing, goTabs, goAlwaysShowEditor, goSmoothScroll]
+    ParentFont = False
+    RowCount = 15
+    ScrollBars = ssNone
+    TabOrder = 4
+    OnKeyUp = TitelDatenmatrixKeyUp
+    ColWidths = (
+      125
+      625
+    )
+    RowHeights = (
+      23
+      23
+      23
+      23
+      23
+      23
+      23
+      23
+      23
+      23
+      23
+      23
+      23
+      23
+      23
+    )
+    Cells = (
+      15
+      0
+      0
+      'Autor'
+      0
+      1
+      'Titel'
+      0
+      2
+      'Untertitel'
+      0
+      3
+      'Jahr'
+      0
+      4
+      'Datum'
+      0
+      5
+      'Band'
+      0
+      6
+      'Nummer'
+      0
+      7
+      'Seite(n)'
+      0
+      8
+      'Zeitschrift'
+      0
+      9
+      'Herausgeber'
+      0
+      10
+      'Sammelband'
+      0
+      11
+      'Verlag'
+      0
+      12
+      'Ort'
+      0
+      13
+      'Auflage'
+      0
+      14
+      'ISBN'
+    )
+  end
   object PanelAutoComplete: TPanel
-    Left = 448
-    Height = 152
-    Top = 280
-    Width = 304
+    Left = 342
+    Height = 184
+    Top = 136
+    Width = 424
     BevelColor = clGray
-    BevelInner = bvSpace
     BevelOuter = bvNone
     BevelWidth = 3
     BorderWidth = 5
-    BorderStyle = bsSingle
-    ClientHeight = 148
-    ClientWidth = 300
+    ClientHeight = 184
+    ClientWidth = 424
+    Color = 10790052
     ParentBackground = False
-    TabOrder = 11
+    ParentColor = False
+    TabOrder = 1
     Visible = False
     object CaptionAutoComplete: TPanel
-      Left = 8
+      Left = 5
       Height = 25
-      Top = 8
-      Width = 284
+      Top = 5
+      Width = 414
       Align = alTop
       BorderSpacing.InnerBorder = 2
       BevelColor = clGray
       BevelOuter = bvNone
       Caption = 'Namen'
       ClientHeight = 25
-      ClientWidth = 284
+      ClientWidth = 414
       Color = clGray
       Font.Color = clBlack
       Font.Height = -13
@@ -881,7 +405,7 @@ object FormTiteldaten: TFormTiteldaten
       ParentFont = False
       TabOrder = 0
       object Panel22: TPanel
-        Left = 266
+        Left = 396
         Height = 22
         Top = 0
         Width = 18
@@ -901,16 +425,16 @@ object FormTiteldaten: TFormTiteldaten
         Left = 0
         Height = 3
         Top = 22
-        Width = 284
+        Width = 414
         Align = alBottom
         Shape = bsBottomLine
       end
     end
     object ListeVorschlagNamen: TListBox
-      Left = 13
-      Height = 102
-      Top = 38
-      Width = 274
+      Left = 10
+      Height = 144
+      Top = 35
+      Width = 404
       Align = alClient
       BorderSpacing.Left = 5
       BorderSpacing.Top = 5
@@ -922,51 +446,8 @@ object FormTiteldaten: TFormTiteldaten
       ParentColor = True
       ScrollWidth = 250
       TabOrder = 1
+      TopIndex = -1
       OnClick = ListeVorschlagNamenClick
-      OnKeyUp = ListeVorschlagNamenKeyUp
-      OnMouseWheel = ListeVorschlagNamenMouseWheel
     end
-  end
-  object Panel4: TPanel
-    Cursor = crHandPoint
-    Left = 669
-    Height = 40
-    Top = 480
-    Width = 90
-    Anchors = [akTop, akRight]
-    BevelOuter = bvNone
-    BorderStyle = bsSingle
-    Caption = 'Abbruch'
-    ParentBackground = False
-    TabOrder = 12
-    OnClick = Button2Click
-  end
-  object Panel14: TPanel
-    Cursor = crHandPoint
-    Left = 483
-    Height = 40
-    Top = 480
-    Width = 90
-    Anchors = [akTop, akRight]
-    BevelOuter = bvNone
-    BorderStyle = bsSingle
-    Caption = 'kopieren'
-    ParentBackground = False
-    TabOrder = 13
-    OnClick = Button3Click
-  end
-  object ButtonScholar: TPanel
-    Cursor = crHandPoint
-    Left = 117
-    Height = 40
-    Top = 480
-    Width = 178
-    Anchors = [akTop, akRight]
-    BevelOuter = bvNone
-    BorderStyle = bsSingle
-    Caption = 'aus Zwischenablage einfügen'
-    ParentBackground = False
-    TabOrder = 14
-    OnClick = ButtonScholarClick
   end
 end
