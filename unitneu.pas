@@ -16,7 +16,6 @@ type
 
   TFormNeu = class(TForm)
     EingabeTitelNeueNotiz: TEdit;
-    ImageNeueNotiz: TImage;
     Label1: TLabel;
     Label4: TLabel;
     OptionMitVerweis: TCheckBox;
@@ -24,6 +23,10 @@ type
     PanelUnterstrich: TPanel;
     PanelF3: TPanel;
     PanelUnterstrichSuche: TPanel;
+    runderbutton: TPanel;
+    runderButtonLinks9: TImage;
+    runderButtonRechts9: TImage;
+    runderButtonSchaltflaeche8: TPanel;
     procedure Button2Click(Sender: TObject);
     procedure ImageNeueNotizClick(Sender: TObject);
     procedure EingabeTitelNeueNotizKeyDown(Sender: TObject; var Key: Word;
@@ -52,7 +55,7 @@ uses unit1;
 procedure TFormNeu.FormCreate(Sender: TObject);
 begin
     //Farbschema des Hauptfensters übernehmen
-    FormNeu.color:=Fenster.ListeGliederungen.color;
+    FormNeu.color:=Fenster.MemoGliederungen.color;
     FormNeu.Font.Color:=fenster.Feldinhalt.font.color;
     FormNeu.EingabeTitelNeueNotiz.Font.color:= FormNeu.Font.Color;
     FormNeu.PanelF2.font.color:= FormNeu.Font.Color;
@@ -129,7 +132,7 @@ begin
      if anlegen then
      begin
           neuertitel2 := ansilowercase(neuerTitel);
-          for i := 1 to ArraySize do
+          for i := 1 to ArraySize_Daten do
           begin
                if ansilowercase(Daten[i, Spalte_Titel]) = neuertitel2 then
                begin
@@ -194,7 +197,7 @@ begin
 
           ichanged:=true;
 
-          sortdb('notizen',sortierenab_daten);  //damit die neue Notiz ganz nach vorn kommt
+          sortdb('notizen');  //damit die neue Notiz ganz nach vorn kommt
           with fenster do
           begin
               FeldInhalt.ReadOnly:=False;
@@ -218,7 +221,7 @@ begin
           fenster.timer.enabled:=true;
 
           if fenster.feldinhalt.visible then fenster.FeldInhalt.SetFocus;
-          if fenster.AnmerkungenMemo.visible then fenster.AnmerkungenMemo.SetFocus;
+
      end;
 
   close;

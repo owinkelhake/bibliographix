@@ -22,6 +22,8 @@ type
     ButtonKopieren: TPanel;
     CaptionAutoComplete: TPanel;
     ButtonSpeichern: TImage;
+    ImageLinkAnlegen: TImage;
+    ImageLinkAnlegen1: TImage;
     Label2: TLabel;
     Label5: TLabel;
     Label1: TLabel;

@@ -17,46 +17,29 @@ uses
   Clipbrd,
   ComCtrls,
   Dialogs,
-
   FileUtil,
   FileCtrl,
   Forms,
   fphttpclient,
   Graphics,
   Grids,
-
   LCLIntf,
   lcltype,
-
   Menus,
   RichMemo,
   StdCtrls,
   SysUtils,
   Types,
-  uniqueinstanceraw,
-  unitneu,
-
-  unittitel;
+  uniqueinstanceraw;
 
 
 const     //globale Konstanten
-  myversion ='2025.05';
+  myversion ='2026.02';
 
   Maxanzeige =             500;   // Maximale Anzahl der in der Trefferliste angezeigten Zettel
   MaxNodes = 500;                  // maximale Anzahl der Nodes in einem Tree
 
-  blau =                   $00CA6B30;
-  hellblau =               $00F0E6F1;
-  dunkelblau=              $00602000;
-  gruen =                  $00006A00;
-  hellgelb =               $00C1FFFF;
-  dunkelgelb=              $0000BBBB;
-  menueenter=              $002AA641;
-  menuexit=                $000000;
-  RegisterKartenFarbe=     $00F3F3F3; //$00E9E9E9 ;
-  hellgrau=                $00C1C1C1;
-  dunkelgrau=              $00CECECE ;
-
+  blau =                   $00E8AC26;//$00CA6B30;
 
   RTFKleinAE='\'+ ''''+ 'e4';
   RTFGrossAE='\'+ ''''+ 'c4';
@@ -128,79 +111,234 @@ type
   { TFenster }
 
   TFenster = class(TForm)
-    Alles: TImage;
-    AlleSchlagwoerter: TImage;
     Alles2: TImage;
     AnhangAlleAutoren: TCheckBox;
-    AnmerkungenMemo: TMemo;
     AnzeigeVersion: TPanel;
     AuswahlFeld: TComboBox;
     BaumVerweise: TTreeView;
     BaumVerweise2: TTreeView;
     BaumVerweise3: TTreeView;
-    Bevel1: TBevel;
-    Bevel10: TBevel;
     Bevel11: TBevel;
     Bevel12: TBevel;
-    Bevel2: TBevel;
-    Bevel3: TBevel;
+    Bevel13: TBevel;
+    Bevel14: TBevel;
+    Bevel15: TBevel;
+    Bevel16: TBevel;
     Bevel4: TBevel;
     Bevel5: TBevel;
-    Bevel6: TBevel;
     Bevel7: TBevel;
     Bevel8: TBevel;
     Bevel9: TBevel;
-    button40: TImage;
+    ButtonComboboxGliederung: TPanel;
     ButtonCutCopy: TButton;
     ButtonEineQuelle: TPanel;
+    ButtonErsetze: TPanel;
     ButtonExport1: TPanel;
-    ButtonFett: TPanel;
     ButtonGliederungLevel1: TPanel;
     ButtonGliederungLevel2: TPanel;
-    ButtonKursiv: TPanel;
     ButtonLevelGliederung: TPanel;
+    ButtonNeuDialogWeg: TImage;
     ButtonQuerverweisEnde5: TPanel;
     ButtonQuerverweisEnde6: TPanel;
-    ButtonComboboxGliederung: TPanel;
-    ButtonSpiegelstrich: TImage;
-    ButtonUeberschrift: TPanel;
-    ButtonUpdates: TPanel;
-    CaptionUpdates: TLabel;
-    CaptionUpdates1: TLabel;
-    CaptionUpdates2: TLabel;
-    CaptionUpdates3: TLabel;
+    Dateneingabe: TEdit;
+    DIYButtonNeueQuelleOK: TPanel;
+    EingabeTitelNeueNotiz: TEdit;
+    ErsatzText: TEdit;
     Feldinhalt: TRichMemo;
-    i34: TImage;
-    i35: TImage;
-    i36: TImage;
-    i37: TImage;
-    IconCombobox1: TImage;
-    ButtonOK: TImage;
-    ButtonStart: TImage;
+    FeldSuchText: TEdit;
+    IconButton1: TImage;
+    IconButton2: TImage;
+    IconButton3: TImage;
     IconDateiVerweisKlein: TImage;
-    IconErstelldatum: TImage;
-    IconHerausnehmen1: TImage;
-    IconLinkKlein: TImage;
-    IconLock: TImage;
+    IconEinstellungenKlein: TImage;
+    IconGliederung2: TImage;
+    IconHilfeKlein: TImage;
+    IconLoeschen: TImage;
+    IconSpeichernKlein: TImage;
+    ButtonNeueGliederung: TImage;
+    Image3: TImage;
+    Image4: TImage;
+    Image5: TImage;
+    ImageOptionDarkMode: TImage;
+    ImageOptionMenue: TImage;
+    ImageSchlagwortlisteWeg: TImage;
+    Label22: TLabel;
+    LabelOptionMitQuerverweis: TLabel;
+    Label30: TLabel;
+    Label54: TLabel;
+    Label55: TLabel;
+    Label6: TLabel;
+    LabelHomepage: TLabel;
+    ListeScrollbarTop: TImage;
+    ListeScrollbarBottom: TImage;
+    ImageSchlagwortlisteWeg1: TImage;
+    Label26: TLabel;
+    Label41: TLabel;
+    LabelGliederungLevel1: TLabel;
+    LabelGliederungLevel2: TLabel;
+    LabelGliederungLevel3: TLabel;
+    LabelGliederungLevelAll: TLabel;
+    MemoFilter: TRichMemo;
+    LabelTitelFilter: TPanel;
+    Markierungenloeschen: TMenuItem;
+    OptionAlleSeiten: TRadioButton;
+    OptionAnmerkungenDrucken: TCheckBox;
+    OptionBibTeX: TRadioButton;
+    OptionBibtexExport: TRadioButton;
+    OptionEineSeiteDrucken: TRadioButton;
+    OptionGliederungDrucken: TRadioButton;
+    OptionLiteraturDrucken: TCheckBox;
+    OptionMitVerweis: TCheckBox;
+    OptionNotizenDrucken: TCheckBox;
+    OptionObsidianExport: TRadioButton;
+    OptionReferExport: TRadioButton;
+    OptionRISExport: TRadioButton;
+    OptionRTF: TRadioButton;
+    OptionSucheLiteratur: TCheckBox;
+    OptionSucheNotizen: TCheckBox;
+    OptionWordExport: TRadioButton;
+    ScrollbarEndeGliederung1: TImage;
+    ScrollbarGliederungHintergrund: TPanel;
+    PanelNeueQuelle: TPanel;
+    Panel8: TPanel;
+    PanelF2: TPanel;
+    PanelF3: TPanel;
+    PanelUnterstrich: TPanel;
+    PanelUnterstrichSuche: TPanel;
+    RegisterEinstellungen: TPageControl;
+    Panel11: TPanel;
+    Panel6: TPanel;
+    Panel7: TPanel;
+    Panel9: TPanel;
+    PanelIconEineQuelle: TPanel;
+    PanelOptionDarkMode: TPanel;
+    PanelOptionDetails2: TPanel;
+    PanelOptionenDatenaustausch: TPanel;
+    PanelOptionenDrucken: TPanel;
+    PanelSchlagwortDazu1: TPanel;
+    PanelSchlagwortDazu2: TPanel;
+    PanelSchlagwortDazu3: TPanel;
+    PanelSchlagwortWeg4: TPanel;
+    runderbutton1: TPanel;
+    runderbutton2: TPanel;
+    runderbutton3: TPanel;
+    DIYButtonZwischenablage: TPanel;
+    DIYButtonKopieren: TPanel;
+    DIYButtonTiteldatenSpeichern: TPanel;
+    runderButtonLinks10: TImage;
+    runderButtonLinks11: TImage;
+    runderButtonLinks12: TImage;
+    runderButtonLinks13: TImage;
+    runderButtonLinks14: TImage;
+    runderButtonLinks15: TImage;
+    runderButtonLinks16: TImage;
+    runderButtonLinks17: TImage;
+    runderButtonLinks6: TImage;
+    runderButtonLinks7: TImage;
+    runderButtonLinks8: TImage;
+    runderButtonRechts10: TImage;
+    runderButtonRechts11: TImage;
+    runderButtonRechts12: TImage;
+    runderButtonRechts13: TImage;
+    runderButtonRechts14: TImage;
+    runderButtonRechts15: TImage;
+    runderButtonRechts16: TImage;
+    runderButtonRechts17: TImage;
+    runderButtonRechts6: TImage;
+    runderButtonRechts7: TImage;
+    runderButtonRechts8: TImage;
+    runderButtonSchaltflaeche10: TPanel;
+    runderButtonSchaltflaeche11: TPanel;
+    runderButtonSchaltflaeche12: TPanel;
+    runderButtonSchaltflaeche13: TPanel;
+    runderButtonSchaltflaeche14: TPanel;
+    runderButtonSchaltflaeche15: TPanel;
+    runderButtonSchaltflaeche16: TPanel;
+    runderButtonSchaltflaeche5: TPanel;
+    runderButtonSchaltflaeche6: TPanel;
+    runderButtonSchaltflaeche7: TPanel;
+    runderButtonSchaltflaeche9: TPanel;
+    ScrollbarGliederungHintergrundOben: TPanel;
+    ScrollbarGliederungSchieber: TPanel;
+    ScrollbarListeSchieber: TPanel;
+    ScrollbarListeHintergrund: TPanel;
+    ListeScrollbar: TPanel;
+    PanelEbenenAnzeigen: TPanel;
+    memoGliederungen: TRichMemo;
+    MemoSchlagwoerter: TRichMemo;
+    ScrollbarAnmerkungenSchieber: TPanel;
+    SeiteEinstellungenAnzeige: TTabSheet;
+    TabSheet2: TTabSheet;
+    TabSheet3: TTabSheet;
+    TabSheet4: TTabSheet;
+    TabSheet5: TTabSheet;
+    TabSheet6: TTabSheet;
+    TabSheet7: TTabSheet;
+    LabelTitelNeu: TPanel;
+    UnterstrichPin: TPanel;
+    UnterstrichStern: TPanel;
     IconPictureZitat: TImage;
     IconQV: TImage;
     IconRefresh: TImage;
     IconResizeVerweise: TBevel;
     IconSchlagwortKlein: TImage;
-    IconSchlagwortlisteZeigen: TImage;
-    IconTrash: TImage;
     IconUndo: TImage;
-    ImageCode: TImage;
-    ImageFont: TImage;
-    ImageOptionDetails: TImage;
-    ImageOptionSchlagwortliste: TImage;
+    IconZitatKlein: TImage;
+    Image1: TImage;
+    ImageEinstellungenWeg: TImage;
+    ImageMenuSortierung: TImage;
+    Labelsyntax: TLabel;
+    MemoZwischenablage: TMemo;
+    MenuSortTime: TMenuItem;
+    MenuNurMarkierte: TMenuItem;
+    MenuLiteraturZeigen: TMenuItem;
+    MenuNotizenZeigen: TMenuItem;
+    HintergrundEinstellungen: TPanel;
+    PanelCaptionEinstellungen: TPanel;
+    runderbutton: TPanel;
+    runderButtonLinks9: TImage;
+    runderButtonRechts9: TImage;
+    runderButtonSchaltflaeche8: TPanel;
+    Separator7: TMenuItem;
+    MenuSortAlpha: TMenuItem;
+    PanelPtyp: TPanel;
+    PanelSchlagwortWeg1: TPanel;
+    PanelSchlagwortWeg2: TPanel;
+    PanelTitelDaten: TPanel;
+    PanelSchlagwortDazu: TPanel;
+    PanelSchlagwortWeg: TPanel;
+    MenuSortierung: TPopupMenu;
+    RadioArtikel: TRadioButton;
+    RadioBuch: TRadioButton;
+    RadioKapitel: TRadioButton;
+    RadioSammelband: TRadioButton;
+    runderAnfang: TImage;
+    runderButtonLinks1: TImage;
+    runderButtonLinks2: TImage;
+    runderButtonLinks4: TImage;
+    runderButtonLinks5: TImage;
+    runderButtonRechts1: TImage;
+    runderButtonRechts2: TImage;
+    runderButtonRechts4: TImage;
+    runderButtonRechts5: TImage;
+    runderButtonSchaltflaeche1: TPanel;
+    runderButtonSchaltflaeche2: TPanel;
+    runderButtonSchaltflaeche3: TPanel;
+    runderButtonSchaltflaeche4: TPanel;
+    rundesEnde: TImage;
+    ImageSucheingabeLupe: TImage;
+    IconFormatierung: TImage;
     ImagePin: TImage;
     ImageStern: TImage;
-    Label29: TLabel;
+    ImageSucheBackspace: TImage;
+    LabelButton1: TLabel;
+    LabelButton2: TLabel;
+    LabelButton3: TLabel;
+    LabelGliederungName: TLabel;
+    LabelComboboxGliederung: TLabel;
     LabelErstelltAm: TLabel;
     LabelFussnote: TLabel;
     LabelGeaendertAm: TLabel;
-    LabelSchlagwortfilter: TLabel;
     LabelTitel: TEdit;
     LabelVerweise: TLabel;
     LabelVollzitat: TLabel;
@@ -208,22 +346,27 @@ type
     MenuItem10: TMenuItem;
     MenuItem11: TMenuItem;
     Panel1: TPanel;
+    PanelButton1: TPanel;
+    PanelButtonHerausnehmen: TPanel;
+    PanelButtonGliedern: TPanel;
+    PanelSucheingabeLinks: TPanel;
+    PanelSucheingabe: TPanel;
+    PanelGliederungKopf: TPanel;
     Panel5: TPanel;
-    PanelAnmerkungScrollbar: TPanel;
+    PanelSucheingabeRechts: TPanel;
+    PanelSucheingabeMitte: TPanel;
+    PanelAnmerkungenScrollbarButton: TPanel;
+    ScrollbarAnmerkungen: TPanel;
     PanelErstelltAm: TPanel;
     PanelFeldInhalt: TPanel;
     PanelFeldinhaltIcons: TPanel;
     PanelInhalt: TPanel;
-    PanelOptionDetails: TPanel;
     PanelTitel: TPanel;
     PanelUnterDemText: TPanel;
     PanelUnterstrichTitel: TPanel;
     PanelVergebeneKeywords: TPanel;
     PanelVerweiseAufDieseSeite: TPanel;
     PanelVollzitat2: TPanel;
-    ScrollbarAnfang: TImage;
-    ScrollbarEnde: TImage;
-    Separator4: TMenuItem;
     Separator3: TMenuItem;
     Separator2: TMenuItem;
     MenuItem5: TMenuItem;
@@ -231,157 +374,48 @@ type
     MenuItem9: TMenuItem;
     MenuSpiegelstrich: TMenuItem;
     MenuKursiv: TMenuItem;
-    PanelOptionSchlagwortliste: TPanel;
-    PanelSchlagwortlisteZeigen: TPanel;
-    IconUpdates: TImage;
-    IconEineQuelle: TImage;
-    IconImportDatei: TImage;
-    IconObsidian: TImage;
     PopupTextFormatierung: TPopupMenu;
     Separator5: TMenuItem;
+    Separator6: TMenuItem;
+    Separator8: TMenuItem;
+    SuchEingabe: TEdit;
+    Einstellungen: TTabSheet;
+    TitelDaten: TTabSheet;
+    TitelDatenmatrix: TStringGrid;
+    URLHomepage: TLabel;
+    CancelTiteldaten: TImage;
+    Vorschlagsliste: TListBox;
     Zwischenspeichern: TIdleTimer;
-    ImageDrucken: TImage;
-    ImageOptionAlphaSort: TImage;
-    ImageOptionDarkMode: TImage;
-    ImageOptionMarkDown: TImage;
-    ImageOptionMenue: TImage;
-    ImageOptionNurMarkierte: TImage;
-    ImageSchlagwortlisteWeg: TImage;
-    ImageErsetze: TImage;
-    ImageExport: TImage;
-    ImageNotizGliedernWeg: TImage;
-    button180: TImage;
-    ImageLinkAnlegen: TImage;
-    ImageQuerverweisWeg: TImage;
     ImageSWWeg: TImage;
-    ImageSchlagwortWeg: TImage;
-    ImageEinstellungenWeg: TImage;
-    Label27: TLabel;
-    Label28: TLabel;
-    LabelSuchergebnis: TLabel;
-    PanelOptionAlphaSort: TPanel;
-    PanelOptionDarkMode: TPanel;
-    PanelOptionDetails2: TPanel;
-    PanelOptionMarkDown: TPanel;
-    PanelOptionNurMarkierte: TPanel;
-    TabGliederungInaktiv: TLabel;
-    Label3: TLabel;
-    LabelVerweisAnlegen: TLabel;
-    Label4: TLabel;
-    Label41: TLabel;
-    Label56: TLabel;
-    Label57: TLabel;
-    LabelComboboxGliederung: TLabel;
-    LabelGliederungLevel1: TLabel;
-    LabelGliederungLevel2: TLabel;
-    LabelGliederungLevel3: TLabel;
-    LabelGliederungLevelAll: TLabel;
-    LabelOptionBibtex: TLabel;
-    ListeSchlagwortsuche: TStringGrid;
     ImageQVWeg: TImage;
-    OptionBibTeX: TRadioButton;
-    OptionRTF: TRadioButton;
-    OptionSucheLiteratur: TCheckBox;
-    OptionSucheNotizen: TCheckBox;
     ButtonAnlegen: TPanel;
-    PanelUebergang: TPanel;
-    PanelIconUpdates: TPanel;
-    PanelIconEineQuelle: TPanel;
-    PanelIconImportDatei: TPanel;
-    PanelIconObsidian: TPanel;
-    PanelOptionInFeld: TPanel;
-    PanelOptionInAllenNotizen: TPanel;
-    PanelGliederungScrollbar: TPanel;
+    ScrollbarGliederung: TPanel;
     PanelKombinierterSchlagwoerter: TPanel;
     PanelUnterstrichQuer: TPanel;
-    PanelUnterstrichComboboxGliederung: TPanel;
     ScrollbarAnfangGliederung: TImage;
     ScrollbarEndeGliederung: TImage;
     FontDialog: TFontDialog;
-    i32: TImage;
-    i33: TImage;
-    ImageHighDPIPinDark: TImage;
-    ImageHighDPIStarDark: TImage;
     ImageHighDPIStar: TImage;
-    ImageHighDPIPin: TImage;
     LabelTitelNotizGliedern: TLabel;
     LabelTrefferzahl: TPanel;
     ListeNotizGliedern: TListBox;
-    PanelLabelSuchen: TPanel;
     PanelLabelSuchen1: TPanel;
     PanelNotizGliedern: TPanel;
-    PanelUnterstrichSuche: TPanel;
     PanelUnterstrichSuche1: TPanel;
-    CaptionSeiteGliedern: TLabel;
-    CheckBox1: TCheckBox;
-    ErsatzText: TEdit;
-    FeldSuchText: TEdit;
     Fortschritt: TProgressBar;
-    frag: TEdit;
     Gliederung: TTreeView;
     Herausgeberformat: TComboBox;
-    i3: TImage;
-    i31: TImage;
-    iconaddkeyword: TImage;
-    iconremovekeyword: TImage;
-    ImageUnlocked: TImage;
-    switch: TImage;
     imageToggleoff: TImage;
-    i4: TImage;
-    i5: TImage;
-    i6: TImage;
-    i7: TImage;
-    i8: TImage;
-    i9: TImage;
-    i10: TImage;
-    i11: TImage;
-    i12: TImage;
-    i13: TImage;
-    i14: TImage;
-    i15: TImage;
-    i16: TImage;
-    i17: TImage;
-    i18: TImage;
-    i19: TImage;
-    i2: TImage;
-    i20: TImage;
-    i21: TImage;
-    i22: TImage;
-    i23: TImage;
-    i24: TImage;
-    i25: TImage;
-    i26: TImage;
-    i27: TImage;
-    i28: TImage;
-    i29: TImage;
-    i30: TImage;
-    IconEinstellungenKlein: TImage;
-    IconHilfeKlein: TImage;
-    IconNeuKlein: TImage;
-    IconSpeichernKlein:    timage;
-    IconLeiste: TPanel;
-    IconZitatKlein: TImage;
-    Image4: TImage;
 
     imageToggleon: TImage;
-    ImageLocked: TImage;
     Label1: TLabel;
     Label10: TLabel;
-    Label11: TLabel;
     Label2: TLabel;
     Label25: TLabel;
-    Label26: TLabel;
     Label8: TLabel;
     Label9: TLabel;
     LabelEditorNamen: TLabel;
     Label12: TLabel;
-    Label13: TLabel;
-    Label14: TLabel;
-    Label15: TLabel;
-    Label16: TLabel;
-    Label17: TLabel;
-    Label18: TLabel;
-    Label19: TLabel;
     Label7: TLabel;
     LabelFormatAnhang: TLabel;
     LabelHerausgeber1: TLabel;
@@ -391,31 +425,12 @@ type
     LabelTitelQuerverweis: TPanel;
     LabelVorschau: TLabel;
     LetztenNamenUmdrehen: TCheckBox;
-    Label20: TLabel;
-    Label21: TLabel;
-    Label22: TLabel;
-    Label23: TLabel;
-    Label24: TLabel;
-    Label30: TLabel;
-    Label54: TLabel;
-    Label55: TLabel;
-    Label6: TLabel;
-    LabelEinstellungenExport: TLabel;
-    LabelEinstellungenImport: TLabel;
-    LabelEinstellungenAnzeige: TLabel;
-    LabelEinstellungenDatenaustausch: TLabel;
-    LabelEinstellungenDrucken: TLabel;
-    LabelEinstellungenErsetze: TLabel;
-    LabelEinstellungenUpdate: TLabel;
     NamensFormat: TComboBox;
     NamensTrennzeichen: TEdit;
-    NamensTrennzeichen1: TEdit;
     LetztNamensTrennzeichen: TEdit;
     etal: TEdit;
     OptionLangesTMPZitat: TCheckBox;
-    OptionSortAlphabet: TCheckBox;
     Panel35: TPanel;
-    Panel36: TPanel;
     Panel37: TPanel;
     Panel38: TPanel;
     Panel39: TPanel;
@@ -426,9 +441,7 @@ type
     Panel43: TPanel;
     Panel44: TPanel;
     LabelTitelschlagwort: TPanel;
-    Panel45: TPanel;
     Panel47: TPanel;
-    PanelAZ: TPanel;
     PanelHintergrundLink: TPanel;
     Panelhintergrundoben: TPanel;
     PanelFormatierung: TPanel;
@@ -450,90 +463,36 @@ type
     PTypKapitel: TRadioButton;
     PTypWebseite: TRadioButton;
     QuerverweisAllesZeigen: TImage;
-    Schlagwortmatrix: TStringGrid;
-    SuchEingabe: TEdit;
     SuchEingabe2: TEdit;
     Tabelle: TStringGrid;
     SeiteSchlagwort: TTabSheet;
     SeiteQuerverweis: TTabSheet;
     NachFormCreate: TTimer;
-    URLHomepage: TLabel;
-    LabelHomepage: TLabel;
-    Label5: TLabel;
-    ListeGliederungen: TListBox;
-    LabelEinstellungenLiteraturanhaenge: TLabel;
-    OptionAlleSeiten: TRadioButton;
-    OptionAnmerkungenDrucken: TCheckBox;
-    OptionBibtexExport: TRadioButton;
-    OptionEineSeiteDrucken: TRadioButton;
-    OptionGliederungDrucken: TRadioButton;
-    OptionLiteraturDrucken: TCheckBox;
-    OptionNotizenDrucken: TCheckBox;
-    OptionReferExport: TRadioButton;
-    OptionRISExport: TRadioButton;
-    OptionWordExport: TRadioButton;
-    Panel11: TPanel;
-    Panel19: TPanel;
     HomemadeButton: TPanel;
-    ButtonErsetze: TPanel;
-    PanelOptionDetails1: TPanel;
-    PanelOptionenDatenaustausch: TPanel;
-    PanelOptionenUpdate: TPanel;
-    PanelOptionenDrucken: TPanel;
-    Panel6: TPanel;
-    PanelOptionenAnzeige: TPanel;
-    PanelEinstellungen: TPanel;
-    PanelRegisterEinstellungen: TPanel;
-    OptionObsidianExport: TRadioButton;
-    RegisterOptionen: TPageControl;
-    SeiteErsetze: TTabSheet;
-    SeiteOptionenDatenaustausch: TTabSheet;
-    SeiteOptionenDrucken: TTabSheet;
-    SeiteOptionenEinstellungen: TTabSheet;
-    SeiteUpdate: TTabSheet;
-    inavigate: TImage;
 
     icon24: TImageList;
     icon16: TImageList;
-    i0: TImage;
-    IconHerausnehmen: TImage;
-    IconGliedern: TImage;
-    IconDrucken: TImage;
     ImageNachLinks: TImage;
     ImageNavigate: TImage;
     ImageNachRechts: TImage;
     ImageNachOben: TImage;
     ImageNachUnten: TImage;
-    LabelHerausnehmen: TLabel;
-    LabelHerausnehmen1: TLabel;
     Liste: TStringGrid;
 
 
-    ImageListeStern: TImage;
-    ImageListePin: TImage;
-    TabSuchenAktiv: TPanel;
-    Panel12: TPanel;
-    Panel13: TPanel;
-    Panel14: TPanel;
-    Panel15: TPanel;
     Panel16: TPanel;
-    Panel17: TPanel;
-    Panel18: TPanel;
     HintergrundVolltext: TPanel;
     HintergrundGliederung: TPanel;
     Panel33: TPanel;
     PanelMenuVolltextsuche: TPanel;
-    Panel8: TPanel;
-    Panel9: TPanel;
     PanelGliederungIcons: TPanel;
     PanelIconHerausnehmen: TPanel;
-    PanelIconHerausnehmen1: TPanel;
+    PanelDrucken: TPanel;
     PanelIconNotizGliedern: TPanel;
     MenuFussnote: TMenuItem;
     MenuHilfe: TMenuItem;
     HauptMenu: TMainMenu;
 
-    i1: TImage;
 
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
@@ -556,10 +515,6 @@ type
 
 
 
-    ImagePinVoll:      TImage;
-    ImagePinLeer:      TImage;
-    ImageSternVoll:    TImage;
-    ImageSternLeer:    TImage;
     Panel49: TPanel;
 
 
@@ -570,7 +525,6 @@ type
     RegisterSuche: TPageControl;
     SeiteVolltextsuche: TTabSheet;
     SeiteGliederung: TTabSheet;
-    EinstellSeite: TTabSheet;
     VorschlagFensterWeg3: TImage;
     MenuPopupEinfuegen: TMenuItem;
     MenuPopupKopieren: TMenuItem;
@@ -583,7 +537,6 @@ type
     ListeIdeenKopierenLinks: TStringGrid;
     Ausgabe:   TMemo;
     MemoIdeenKopierenLinks: TMemo;
-    MemoZwischenablage:     TMemo;
 
     Panel128: TPanel;
     PanelIdeenLinks: TPanel;
@@ -629,55 +582,103 @@ type
 
 
 
-    procedure AnmerkungenMemoMouseWheelDown(Sender: TObject;
-      Shift: TShiftState; MousePos: TPoint; var Handled: Boolean);
-    procedure AnmerkungenMemoMouseWheelUp(Sender: TObject; Shift: TShiftState;
-      MousePos: TPoint; var Handled: Boolean);
     procedure BaumVerweise2Click(Sender: TObject);
     procedure BaumVerweise3Click(Sender: TObject);
-    procedure Button1Click(Sender: TObject);
+    procedure Bevel4MouseDown(Sender: TObject; Button: TMouseButton;
+      Shift: TShiftState; X, Y: Integer);
     procedure ButtonAnlegenClick(Sender: TObject);
     procedure ButtonFettClick(Sender: TObject);
+    procedure ButtonKopierenClick(Sender: TObject);
     procedure ButtonKursivClick(Sender: TObject);
     procedure ButtonListeAnfangClick(Sender: TObject);
     procedure ButtonListeVorClick(Sender: TObject);
     procedure ButtonListeZurueckClick(Sender: TObject);
+    procedure ButtonNeuDialogWegClick(Sender: TObject);
+    procedure ButtonNeueGliederungClick(Sender: TObject);
+    procedure ButtonScrolldownClick(Sender: TObject);
     procedure ButtonSpiegelstrichClick(Sender: TObject);
+    procedure ButtonTiteldatenSpeichernClick(Sender: TObject);
+    procedure ButtonTrefferHochClick(Sender: TObject);
+    procedure ButtonTrefferRunterClick(Sender: TObject);
+    procedure CancelTiteldatenClick(Sender: TObject);
+    procedure DateneingabeKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure DateneingabeKeyPress(Sender: TObject; var Key: char);
+    procedure DateneingabeKeyUp(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure EingabeTitelNeueNotizKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure EinstellungenShow(Sender: TObject);
+    procedure FeldinhaltChange(Sender: TObject);
+    procedure FeldinhaltKeyPress(Sender: TObject; var Key: char);
     procedure FontDialogClose(Sender: TObject);
-    procedure GliederungMouseWheelDown(Sender: TObject; Shift: TShiftState;
-      MousePos: TPoint; var Handled: Boolean);
     procedure GrenzeSchlagwortsucheEinClick(Sender: TObject);
     procedure HomemadeButtonMouseEnter(Sender: TObject);
     procedure HomemadeButtonMouseLeave(Sender: TObject);
-    procedure IconQVClick(Sender: TObject);
+    procedure IconFormatierungClick(Sender: TObject);
     procedure IconQVMouseUp(Sender: TObject; Button: TMouseButton;
       Shift: TShiftState; X, Y: Integer);
+    procedure IconWeiterSpulenClick(Sender: TObject);
+    procedure IconZumAnfangSpulenClick(Sender: TObject);
+    procedure IconZurueckSpulenClick(Sender: TObject);
+    procedure IdeenSeiteEnter(Sender: TObject);
+    procedure IdeenSeiteExit(Sender: TObject);
+    procedure ButtonScrollUpClick(Sender: TObject);
+    procedure IconAnsEndeSpulenClick(Sender: TObject);
+    procedure Image5Click(Sender: TObject);
+    procedure ImageMenuSortierungClick(Sender: TObject);
     procedure ImageSchlagwortlisteWegClick(Sender: TObject);
-    procedure LabelGeaendertAmClick(Sender: TObject);
-    procedure LabelTitelChange(Sender: TObject);
+    procedure Buttonscholarclick(Sender: TObject);
+    procedure KMemo1Change(Sender: TObject);
+    procedure Label27Click(Sender: TObject);
+    procedure Label5Click(Sender: TObject);
+    procedure LabelKapitelClick(Sender: TObject);
+    procedure LabelOptionMitQuerverweisClick(Sender: TObject);
+    procedure LabelSammelbandClick(Sender: TObject);
     procedure LabelTrefferzahlClick(Sender: TObject);
-    procedure Panel17Click(Sender: TObject);
-    procedure PanelVollzitat2Click(Sender: TObject);
-    procedure rbClick(Sender: TObject);
-    procedure RegisterkartenChange(Sender: TObject);
+    procedure LabelVerweiseClick(Sender: TObject);
+    procedure ListeGliederungen2Change(Sender: TObject);
+    procedure ListeGliederungen2Click(Sender: TObject);
+    procedure ListeGliederungen2DblClick(Sender: TObject);
+    procedure MarkierungenloeschenClick(Sender: TObject);
+    procedure MemoFilterChange(Sender: TObject);
+    procedure MemoFilterClick(Sender: TObject);
+    procedure MemoGliederungenChange(Sender: TObject);
+    procedure MemoGliederungenClick(Sender: TObject);
+    procedure MemoGliederungenMouseEnter(Sender: TObject);
+    procedure MemoSchlagwoerterClick(Sender: TObject);
+    procedure MenuLiteraturZeigenClick(Sender: TObject);
+    procedure MenuNotizenZeigenClick(Sender: TObject);
+    procedure MenuNurMarkierteClick(Sender: TObject);
+    procedure MenuSortAlphaClick(Sender: TObject);
+    procedure MenuSortTimeClick(Sender: TObject);
+    procedure OptionRISExportChange(Sender: TObject);
+    procedure PanelInhaltClick(Sender: TObject);
+    procedure RegisterEinstellungenChange(Sender: TObject);
+    procedure PanelhintergrundobenClick(Sender: TObject);
+    procedure runderButtonRechts11Click(Sender: TObject);
+    procedure runderButtonSchaltflaeche16Click(Sender: TObject);
+    procedure ScrollbarGliederungHintergrundClick(Sender: TObject);
+    procedure ScrollbarGliederungHintergrundObenClick(Sender: TObject);
+    procedure ScrollbarListeHintergrundClick(Sender: TObject);
+    procedure ScrollbarTextHintergrund(Sender: TObject);
+    procedure ScrollbarAnmerkungenClick(Sender: TObject);
+    procedure PanelPanikClick(Sender: TObject);
+    procedure PanikButtonClick(Sender: TObject);
+    procedure RichMemo1Change(Sender: TObject);
     procedure SchlagwortlisteZeigenClick(Sender: TObject);
+    procedure ScrollBoxEinstellungenClick(Sender: TObject);
     procedure SeiteVolltextsucheShow(Sender: TObject);
     procedure switchMouseEnter(Sender: TObject);
-    procedure ScrollbarAnfangClick(Sender: TObject);
     procedure ScrollbarAnfangGliederungClick(Sender: TObject);
-    procedure ScrollbarEndeClick(Sender: TObject);
     procedure ImageCodeClick(Sender: TObject);
     procedure ImageFontClick(Sender: TObject);
-    procedure ImageOptionMarkDownClick(Sender: TObject);
     procedure ListeGliederungenClick(Sender: TObject);
     procedure FarbSchemaClick(Sender: TObject);
     procedure fragKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure IconCombobox1Click(Sender: TObject);
-    procedure ImageOptionAlphaSortClick(Sender: TObject);
     procedure ImageOptionDarkModeClick(Sender: TObject);
     procedure ImageOptionMenueClick(Sender: TObject);
-    procedure ImageOptionDetailsClick(Sender: TObject);
-    procedure ImageOptionNurMarkierteClick(Sender: TObject);
     procedure Label13Click(Sender: TObject);
     procedure Label14Click(Sender: TObject);
     procedure Label15Click(Sender: TObject);
@@ -690,7 +691,6 @@ type
     procedure Label21Click(Sender: TObject);
     procedure Label23Click(Sender: TObject);
     procedure Label24Click(Sender: TObject);
-    procedure Label26Click(Sender: TObject);
     procedure Label2Click(Sender: TObject);
     procedure Label56Click(Sender: TObject);
     procedure Label57Click(Sender: TObject);
@@ -706,7 +706,6 @@ type
     procedure LabelHerausgeber1Click(Sender: TObject);
     procedure FeldinhaltDragDrop(Sender, Source: TObject; X, Y: Integer);
     procedure FeldinhaltEndDrag(Sender, Target: TObject; X, Y: Integer);
-    procedure FormChangeBounds(Sender: TObject);
     procedure fragKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure IconVolltextSucheKleinClick(Sender: TObject);
     procedure ListeNotizGliedernClick(Sender: TObject);
@@ -716,7 +715,6 @@ type
     procedure Panel14Click(Sender: TObject);
     procedure ButtonErsetzeClick(Sender: TObject);
     procedure ScrollbarEndeGliederungClick(Sender: TObject);
-    procedure SrollbarEndeClick(Sender: TObject);
     procedure PruefeAbsturzClick(Sender: TObject);
     procedure QSucheKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure QuerverweisAllesZeigenClick(Sender: TObject);
@@ -726,6 +724,15 @@ type
       Shift: TShiftState);
     procedure switchMouseLeave(Sender: TObject);
     procedure NotizGliedernFensterWegClick(Sender: TObject);
+    procedure TitelDatenExit(Sender: TObject);
+    procedure TitelDatenmatrixClick(Sender: TObject);
+    procedure TitelDatenmatrixDrawCell(Sender: TObject; aCol, aRow: Integer;
+      aRect: TRect; aState: TGridDrawState);
+    procedure TitelDatenmatrixKeyDown(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure TitelDatenmatrixKeyUp(Sender: TObject; var Key: Word;
+      Shift: TShiftState);
+    procedure VorschlagslisteClick(Sender: TObject);
     procedure zeigealleSchlagwoerterClick(Sender: TObject);
     procedure zeigeSchlagwoerterClick(Sender: TObject);
     procedure iconaddkeywordClick(Sender: TObject);
@@ -760,8 +767,6 @@ type
     procedure LabelSucheClick(Sender: TObject);
 
 
-    procedure Liste3MouseWheel(Sender: TObject; Shift: TShiftState;
-      WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
     procedure ListeMouseEnter(Sender: TObject);
     procedure MenueLockClick(Sender: TObject);
     procedure MenuZeilenumbruchClick(Sender: TObject);
@@ -777,10 +782,6 @@ type
     procedure ImageDatenaustauschClick(Sender: TObject);
     procedure LabelKurzzitatClick(Sender: TObject);
     procedure RegisterSucheChange(Sender: TObject);
-    procedure SizerRechtsMouseMove(Sender: TObject; Shift: TShiftState; X, Y: Integer
-      );
-    procedure SizerRechtsMouseUp(Sender: TObject; Button: TMouseButton;
-      Shift: TShiftState; X, Y: Integer);
     procedure Button24Click(Sender: TObject);
     procedure Button27Click(Sender: TObject);
     procedure ButtonCutCopyClick(Sender: TObject);
@@ -820,8 +821,6 @@ type
     procedure Image49Click(Sender: TObject);
     procedure IconRefreshClick(Sender: TObject);
     procedure Image62Click(Sender: TObject);
-    procedure Image64MouseMove(Sender: TObject; Shift: TShiftState; X,
-      Y: Integer);
     procedure Image37Click(Sender: TObject);
     procedure ImageEineQuelleExportierenClick(Sender: TObject);
     procedure Image61Click(Sender: TObject);
@@ -883,16 +882,13 @@ type
       Shift: TShiftState);
     procedure VollTextIdleTimer(Sender: TObject);
     procedure AddKeywordsWegClick(Sender: TObject);
-    procedure Image3Click(Sender: TObject);
+    procedure IconGliederungClick(Sender: TObject);
+    procedure IconGliederung2Click(Sender: TObject);
     procedure LabelBibtexKeyClick(Sender: TObject);
     procedure LabelNotizenzahl1Click(Sender: TObject);
     procedure LabelTeilDerGliederungClick(Sender: TObject);
     procedure ListeDrawCell(Sender: TObject; aCol, aRow: Integer; aRect: TRect;
       aState: TGridDrawState);
-    procedure ListeMouseWheelDown(Sender: TObject; Shift: TShiftState;
-      MousePos: TPoint; var Handled: Boolean);
-    procedure ListeMouseWheelUp(Sender: TObject; Shift: TShiftState;
-      MousePos: TPoint; var Handled: Boolean);
     procedure MenuNeueQuelleClick(Sender: TObject);
     procedure OptionLangesTMPZitatChange(Sender: TObject);
     procedure RISExportZwischenablageClick(Sender: TObject);
@@ -937,7 +933,6 @@ type
     procedure StyleSeiteShow(Sender: TObject);
     procedure TabelleClick(Sender: TObject);
     procedure TabelleKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState);
-    procedure ZeitstempelClick(Sender: TObject);
     procedure ZusatzLiteraturSucheClick(Sender: TObject);
     procedure ButtonNeuesKapitelClick(Sender: TObject);
     procedure GoogleSucheClick(Sender: TObject);
@@ -952,7 +947,6 @@ type
     procedure GliederungDragDrop(Sender, Source: TObject; x, Y: integer);
     procedure GliederungDragOver(Sender, Source: TObject; x, Y: integer;
       State: TDragState; var Accept: boolean);
-    procedure IconGliederungClick(Sender: TObject);
     procedure IconSchlagwortClick(Sender: TObject);
     procedure ButtonQuellenhinweisClick(Sender: TObject);
     procedure DateiverweisClick(Sender: TObject);
@@ -1009,20 +1003,46 @@ type
   end;
 
   //Hier werden die Funktionen deklariert, die aus anderen Units aufgerufen werden sollen
-  function DatenArrayKomplettSichern():boolean;
-  function deleteFirstWord(ein:string):String;
-  function DeleteLastWord(ein:string):String;
+
+  { Funktionen, die den Text im Anmerkungsfeld bearbeiten }
+  function HolAnmerkungen():boolean;
   function formatmd(von,laenge:integer;highlightkeyword:boolean):boolean;
-  function getLastWord(ein:string):String;
-  function getFirstWord(ein:string):String;
-  function GetMaxID(ofwhat:string):integer;
   function GetSelWordMemo(Memo: TRichMemo): string;
   function GetMemoSelstart(Memo: TRichMemo): integer;
-  function GetTopEmptyRow(ofwhat:string):integer;
+  function paste(mitte:string):boolean ;                                         { etwas umständlich, weil richmemo unter Linux an
+                                                                                   dieser Stelle buggy ist }
+  function ScrollbarAnmerkungenPositionieren(punkt:integer):boolean;             { Soll der Schieber des Scrollbars des Anmerkungsfelds
+                                                                                   oben oder unten positioniert werden ? }
+
+
+
+  { Funktionen, die die Gliederung verwalten }
+  function aufraeumen():boolean;
   function GliederungArrayEinlesen():boolean  ;
   function Gliederungspeichern(fname:string):boolean;
-  function HolArrayZeileDerLiteraturID(id: string): integer;
+  function Gliederungmd():boolean;
+
+
+
+  { Funktionen, die aus dem Array lesen }
+  function GetMaxID(ofwhat:string):integer;
   function HolErstautor(Datenzeile:integer):string;
+  function HolNotizIdAusNoteLink(st:string):string;
+  function HolLiteraturIdAusrefLink(st:string):string;
+  function HolTitelderNotizID(id: integer): string;
+  function HolArrayZeileDesTitels(titel: string): integer;
+  function HolIDdesNotizTitels(t:string):string;
+  function HolArrayZeileDerNotizID(id: string): integer;
+  function HolArrayZeileDerLiteraturID(id: string): integer;
+
+  { Funktionen, die Zeit berechnen }
+  function UpdateBearbeitungszahl():boolean;
+  function VergangeneZeitBerechnen(eingabe:string):string;
+  function KalenderDatum(eingabe:string):string;
+  function VergangeneZeit(eingabe:string):string;
+
+
+  { Funktionen, die Daten austauschen }
   function IdentifiziereImportFormat(dat:string):string ;
   function importReferDB(inputfilename:string):boolean;
   function importBibTexDB(inputfilename:string):boolean;
@@ -1030,23 +1050,82 @@ type
   function importRISDB(inputfilename:string):boolean;
   function importz3950DB(inputfilename:string):boolean;
   function IncreaseMaxID(ofwhat:string):boolean;
-  function LiteraturDatenbankKomplettAbspeichern():boolean;
+
   function LiteraturLaden(welcheDB,Dateiname:string):boolean;
-  function LiteraturVolltext(az:integer):boolean;
+
+
+  { Funktionen, die betriebssystemnah sind }
+  function Busy():boolean;
+  function deletefileplus(Datei:string):boolean;
+  function HolOS():string;
   function MachPause():boolean;
-  function paste(mitte:string):boolean;
-  function SaveChangesToArray():boolean;
-  function Schreibrecht():boolean;
+  function MeinVerzeichnis(os:string):string;
+  function NoBox(const aMsg: string): Boolean;
+  function ShowMsg(s:string):boolean;  { flexibler als showmessage. Kann man umdefinieren }
+  function slash(os:string):string ;
+  function str2int(ein:string):integer  ;
+  function YesBox(const aMsg: string): Boolean;
+
+  { Funktionen, die Zeichenketten bearbeiten }
+  function deleteFirstWord(ein:string):String;
+  function deleteLastChar(ein:string):String;
+  function DeleteLastWord(ein:string):String;
+  function extracturl(zeile: string): string;
+  function getLastWord(ein:string):String;
+  function getFirstWord(ein:string):String;
+  function LiteraturVolltext(az:integer):boolean;
+  function NotizVolltext(i: integer): string;
+  function SonderzeichenRaus(ein:string):string ;
+  function trim2(ein:string) : string;
+  function UmlautZeichenWeg(zeile:string):string;
+  function UmlautInListe(zeile:string):string;
+  function umlautRTFtoXML(zeile:string):string;
+  function umlautXMLtoRTF(zeile:string):string;
+  function Zahlenausfiltern(ein:string):string;
+
+
+
+  { Funktionen, die Benutzereinstellungen verwalten }
   function SetIni(variable,wert:string):boolean;
   function SetIntegerIni(variable:string;wert:integer):integer;
-  function ShowMsg(s:string):boolean;
-  function sortDB(dbname:string;a:integer):boolean;
-  function Speicherbedarf(was:string):boolean;
-  function str2int(ein:string):integer ;
 
-  function test(msg:string):boolean;
-  function UpdateBearbeitungszahl():boolean;
-  function Zahlenausfiltern(ein:string):string;
+  { Funktionen, die die Benutzeroberfläche formatieren }
+  function Nachricht(s:string;t:integer):boolean;  { Meldung, die aber keine Programmunterbrechung wie showmessage bringen soll }
+  function resizewindow():boolean;
+  function ZeichensatzEinstellen():boolean;
+  function FocusTo(what:string):boolean;
+
+  { Funktionen, die das Titeldatenformular verwalten }
+  function AutoComplete(feld,t:string):boolean  ;
+  function FindeVerlagsOrt(verlag:string):boolean;
+  function ZeigeTitelDaten():boolean;
+
+
+  { Funktionen, die die Querverweise verwalten }
+  function sortqlist(treffer:integer;kriterium:string):boolean ;
+
+  { Funktionen, die die Suchfunktion verwalten      }
+
+  function LeereListenZeilenAmEndeLoeschen():boolean; { falls es in der Trefferliste noch Müll am Ende der Liste gibt }
+  function SetFilterHeight():boolean;
+  function ListeSchieberHeight():boolean;
+
+
+  { Funktionen, die Schlagwörter verwalten }
+  function insertkeyword(sw:string):boolean;
+
+  { Funktionen, die abspeichern }
+  function DatenArrayKomplettSichern():boolean;
+  function SaveChangesToArray():boolean;
+  function Schreibrecht():boolean;
+  function LiteraturDatenbankKomplettAbspeichern():boolean;
+  function GetTopEmptyRow(ofwhat:string):integer;
+  function sortDB(dbname:string):boolean;
+
+
+
+
+
 var
   //Globale Variablen
 
@@ -1081,7 +1160,9 @@ var
   AngezeigterTyp                 :string;
   AnzeigeModus                   :string;
   AnzahlIdeen                    :string;
-  ArraySize                      :integer;
+  ArraySize_Daten                :integer; //Zahl der Reihen im Daten-Array
+  ArraySize_Literatur            :integer; //Zahl der Reihen im Literatur-Array
+
   AusgangsSeite                  :integer;
 
 
@@ -1099,7 +1180,7 @@ var
   DBDirectory:string; //Dort liegen die Datenbanken
   DummyString:string;
   DummyInteger:integer;
-  DBug:        boolean; //für Testfunktion;
+
 
 
 
@@ -1116,7 +1197,7 @@ var
   fsize:                 integer;
 
   //---GGGG--//
-  GoBackFromStandby:string;     //Braucht man, weil das Programm neu gestartet wird.
+  GoBackFromStandby:string;     //Braucht man, weil das Programm SeiteNeu gestartet wird.
   GliederungArray:array[1..2,1..30] of string;
   GV_BibTexKey:                   string;
   GV_FeldNummer:                  string;
@@ -1163,8 +1244,6 @@ var
 
 
   //-MMMMMMMMMM--
-  Mindestdatum:      string;    //für die *.* Anfrage
-
   MyPath:            string;
   MinusBegriff1:     string;  // für Ausschlußbegriffe beim Suchen
   MinusBegriff2:     string;
@@ -1189,8 +1268,6 @@ var
   s1,s2,s3,s4,s5:string;
   SessionTemporaryID:string;
     Skalierung:              real;  //Skalierung unter Windows
-  sortierenab_literatur:     integer; //man muss die älteren Datensätze nicht sortieren
-  sortierenab_daten:         integer;
   SpeicherVolumen:           integer;
   stylechanged:              boolean;
   StopList:                  TTabStopList; //Tabulatoren für den Anmerkungstext
@@ -1199,6 +1276,8 @@ var
   //---- TTTTTTTTTTTTTTTTTTT -----
 
   TitelVorschlag:                      string;
+  Titel_alt:                           string;
+  Titel_neu:                           string;
   TMPHinweis:                          string;
   TMPVerzeichnisIdeen:                 string;
   TMPVerzeichnisLiteratur:             string;
@@ -1233,12 +1312,9 @@ var
 
   //-VVVVVVV--
 
-  var_OptionListeDetails:         boolean;  //Toggle-Switch
+
   var_OptionDarkMode:             boolean;
-  var_OptionAlphaSort:            boolean;
-  var_OptionNurMarkierte:         boolean;
   var_OptionMenue:                boolean;
-  var_OptionMarkDown:             boolean;
   var_OptionSchlagwortliste:      boolean;
 
   VerweisAnfangTyp:        string;
@@ -1247,7 +1323,6 @@ var
   VerweisAnfangZeilenNr:   integer;
   VerweisArray:            array[1..100,1..2] of string; //Querverweise
   vorJahren, vorMonaten, vorTagen, vorStunden, vorMinuten:integer;
-  VolltextBisZeile:           integer;
   Win31Dialog:boolean;
 
   //-ZZZZZZZ --
@@ -1293,57 +1368,96 @@ end;
 
 
 {TFenster}
+Function FocusTo(what:string):boolean;
+var
+  compo:         tcomponent;
+  Standardregel: boolean;
 
-// Gliederung der Funktionen
-//--------------------------
-// Ganz grundlegende Funktionen
-// Funktionen, die Nutzereinstellungen verwalten
-// Funktionen zum Download für die Update-Funktion
-// Funktionen zum Übersetzen und Filtern von Zeichen
-// Funktionen zur ArrayDimensionierung
-// Funktionen zur Ermittlung der ID von Literatur und Notizen
-// Funktionen, die Merkmale einer Notiz holen
-// Funktionen, die Personennamen formatieren
-// Funktionen, die den Literaturanhang formatieren
-// Funktionen, die temporäre Zitate analysieren
-// Funktionen, die Daten einlesen
-// Funktionen, die Daten abspeichern
-// Funktionen, die Zitierrichtlinien bearbeiten
-// Funktionen für Einstellungen der Oberfläche
-// Funktionen, die Daten suchen
-// Funktionen, die Zeit berechnen
-// Funktionen, die sortieren
-
-//---------------------------------------------------------
-function ZeigeTitelDaten():boolean;
 begin
-     { Ein seltsamer Bug, der unter windows auftritt, wenn man showmodal
-       aufruft. Dann gibt es beim Schließen eine Fehlermeldung. Das scheint
-       mit stringgrid zusammenzuhängen, aber das ist unklar. Hier eine Quick
-       and Dirty Lösung, die mit Windows funktioniert und das Hauptfenster
-       stummschaltet, während die Titeldaten angezeigt werden.}
-       if os='linux' then
-       begin
-            FormTiteldaten.showmodal
-       end else begin
-           formtiteldaten.FormStyle:=fsstayontop;
-           fenster.Enabled:=false;
-           Formtiteldaten.show;
-       end;
-       with formtiteldaten do
-       begin
-            TitelDatenMatrix.row:=0;
-            Titeldatenmatrix.Col:=1;
-            TitelDatenMatrix.setfocus;
+     what:=ansilowercase(what); //Groß/Kleinschreibung beim Aufruf ignorieren
+     machpause();               //sicherheitshalber.
+     Standardregel:=true;
+     with fenster do
+     begin
+          if what='sucheingabe' then
+              if PanelNeueQuelle.height > 20 then standardregel:=false;
+                 { Das Unterfenster für die Eingabe eines neuen Quellentitels
+                   ist sichtbar. dann soll EingabeTitelNeueNotiz den Fokus
+                   behalten }
+
+          if StandardRegel then
+          begin
+                compo:=findcomponent(what);
+                if (compo is TEdit) then
+                    if TEdit(compo).canfocus then TEdit(compo).setfocus;
+                if (compo is TRichMemo) then
+                    if TRichMemo(compo).canfocus then TRichMemo(compo).setfocus;
+                if (compo is TTreeView) then
+                    if TTreeView(compo).canfocus then TTreeView(compo).setfocus;
+                if (compo is TStringGrid) then
+                    if TStringGrid(compo).canfocus then TStringGrid(compo).setfocus;
+                if (compo is TPanel) then
+                    if TPanel(compo).canfocus then TPanel(compo).setfocus;
+
+          end;
+     end;
+
+end;
+function ScrollbarAnmerkungenPositionieren(punkt:integer):boolean;
+var
+   kipppunkt:         integer;
+begin
+     { befindet sich der Cursor eher am Anfang der Anmerkung oder weiter unten?
+       Den Schieber des Scrollbars anpassen}
+     with fenster do
+     begin
+          kipppunkt:=Feldinhalt.Lines.count - 1;
+          if punkt < Kipppunkt  then ScrollbarAnmerkungenSchieber.Align:=altop
+                                else ScrollbarAnmerkungenSchieber.Align:=albottom;
+     end;
+end;
 
 
-       end;
+function ListeSchieberHeight():boolean  ;
+var
+     anzeigbareTreffer:  integer;
+     h:                  integer;
+begin
+     with fenster do
+     begin
+          if liste.rowcount < 120 then
+          begin
+              h:= ListeScrollbar.height  ;
+              AnzeigbareTreffer:=trunc(Liste.height/Liste.DefaultRowheight) ;
+              h:=trunc(anzeigbareTreffer/Liste.Rowcount*h);
+              if h > (ListeScrollbar.height -60) then  h:= ListeScrollbar.height -60;
+          end else begin  //sehr viele Treffer. Kleiner Schieber.
+               h:=40;
+          end;
+          ScrollbarListeSchieber.Height:=h;
+          ScrollbarListeschieber.left:=5;
+          ScrollbarListeSchieber.width:=ScrollbarlisteHintergrund.width - 10;
+     end;
+
+end;
+
+function setfilterheight():boolean; // Die Höhe des Schlagwortfilters nach
+var                                 // Länge der Schlagwortliste und Breite
+  h:       integer;                 // des Fensters einstellen
+begin
+     with fenster do
+     begin
+          h:=trunc(150*skalierung*length(memofilter.lines.text)/memofilter.width) ;
+     h:=h+70;
+     PanelKombinierterSchlagwoerter.height:=h;
+     resizewindow();
+     end;
 end;
 
 function MachPause():boolean;
 begin
 
-    Application.processmessages;     //test für linux buggy
+Application.processmessages;     //test für linux buggy
      result:=true;
 end;
 function Busy():boolean;
@@ -1382,68 +1496,89 @@ begin
   end;
   machpause();
 end;
-function focusAnmerkung():boolean;
+
+function str2int(ein:string):integer  ; //filtert nichtnumerische Zeichen aus
+var
+   c,s:string;
+   i:integer;
 begin
-     with fenster do
-     begin
-          if FeldInhalt.visible then
-          begin
-               FeldInhalt.SetFocus;
-               Feldinhalt.SelStart:=1;;
-          end;
-          if AnmerkungenMemo.visible then AnmerkungenMemo.setfocus;
-     end;
+     try
+       result:=strtoint(ein);
+     except
+        if ein='' then ein:='0';
+        s:='';
+        for i:=1 to length(ein) do
+        begin
+           c:=copy(ein,i,1);
+           if pos(c,'0123456789') > 0 then s:=s+c;
+        end;
+        if s='' then s:='0';
+        result:=StrToInt(s);
+    end;
+end;
+function HolOS():string;
+begin
+  result:='win';
+  {$IFDEF LINUX} result:='linux'; {$ENDIF}
+end;
+function slash(os:string):string ;
+begin
+    result:='\';
+    if os<>'win' then result:='/';
 end;
 
-function dumpx(msg:string):boolean;
-var                                           filename:      string  ;
-   dat:          textfile;
+function MeinVerzeichnis(os:string):string;
 begin
+    machpause();
+    result:=extractfilepath(application.exename);
+end;
 
-    filename:= extractfilepath(application.exename) + 'dump.ini';
-    Assignfile(dat,filename);
-    rewrite(dat);
-    writeln(dat,msg);
-    closefile(dat);
+function NoBox(const aMsg: string): Boolean; //Abfrage JA / NEIN mit Standard auf NEIN
+var
+  Flags  : Integer;
+begin
+      flags := QuestionDlg('Achtung', amsg + #13 + #13, mtConfirmation, [mrNo, 'Ja', mrYes, 'Nein'], 0);
+      If flags=mrYes then result:=false else result:=true;
+end;
+function YesBox(const aMsg: string): Boolean;   //Abfrage JA / NEIN mit Standard auf JA
+var
+  Flags  : Integer;
+begin
+      flags := QuestionDlg('Achtung', amsg + #13 + #13, mtConfirmation, [mrYes, 'Ja', mrNo, 'Nein'], 0) ;
+      If flags=mrYes then result:=true else result:=false;
+end;
+
+
+
+
+function aufraeumen():boolean;
+begin
 
 end;
 
-function dump(msg:string):boolean;
-
+function ZeigeTitelDaten():boolean;
 begin
-     result:=true;
+      Fenster.RegisterSuche.activepage:=Fenster.Titeldaten;
+      Fenster.Titeldatenmatrix.ColWidths[0]:=trunc(110*Skalierung);
+      Fenster.TitelDatenMatrix.row:=0;
+      Fenster.Titeldatenmatrix.Col:=1;
+      FocusTo('titeldatenmatrix');
+
 
 end;
+
+
+
+
 
 function ZeichensatzEinstellen():boolean;
 begin
   with fenster do
   begin
-       baumVerweise.font.name:=                     Zeichensatz;
-       baumVerweise2.font.name:=                    Zeichensatz;
-       baumVerweise3.font.name:=                    Zeichensatz;
-       ButtonComboboxGliederung.font.name:= Zeichensatz;
-       CaptionSeiteGliedern.Font.name:=             Zeichensatz;
        FeldInhalt.Font.name:=                       Zeichensatz;
-       Gliederung.Font.name:=                       Zeichensatz;
        HintergrundVolltext.Font.Name:=              Zeichensatz;
-       Label4.Font.name:=  Zeichensatz;
-       Label27.Font.name:= Zeichensatz;
-       Label41.Font.name:= Zeichensatz;
-       LabelErstelltam.font.name:=                  Zeichensatz;
-       LabelGeaendertAm.font.name:=                 Zeichensatz;
-       LabelGliederungLevelAll.font.name:= Zeichensatz;
-       LabelHerausnehmen.Font.name:=                Zeichensatz;
-       LabelHerausnehmen1.Font.name:=               Zeichensatz;
        Labeltitel.font.name:=                       Zeichensatz;
-       Liste.Font.name:=                            Zeichensatz;
-       ListeGliederungen.Font.name:= Zeichensatz;
        PanelInhalt.Font.Name:=                      Zeichensatz;
-       PanelVergebeneKeywords.Font.Name:=           Zeichensatz;
-       PanelVerweiseAufDieseSeite.font.name:=       Zeichensatz;
-       SuchEingabe.Font.Name:=                      Zeichensatz;
-       TabGliederungInaktiv.Font.Name:=             Zeichensatz;
-       TabSuchenAktiv.Font.Name:=                   Zeichensatz;
   end;
 end;
 
@@ -1504,7 +1639,7 @@ begin
                daten[AktuelleNotizenArrayZeile,Spalte_Anmerkung]:=fenster.FeldInhalt.Lines.text;
                Daten[AktuelleNotizenArrayZeile,Spalte_Bearbeitungsdatum]:=formatdatetime('yyyymmddhhnn', now);
                ineedssorting:=true;
-               Speicherbedarf('i');
+               ichanged:=true;
          end;
 
          if AngezeigterTyp='L' then
@@ -1512,7 +1647,7 @@ begin
                Literatur[AktuelleLiteraturArrayZeile,Spalte_Bearbeitungsdatum]:=formatdatetime('yyyymmddhhnn', now);
                Literatur[AktuelleLiteraturArrayZeile,Spalte_Anmerkung]:=
                          fenster.FeldInhalt.Lines.Text;
-               Speicherbedarf('l');
+               lchanged:=true;
                lneedssorting:=true;
          end;
            IsTextChanged:=true;
@@ -1522,14 +1657,10 @@ begin
        end else begin
          showmsg('Das Schlagwort "' + sw + '" befindet sich schon im Anmerkungstext');
      end;
-     fenster.frag.setfocus;
+
 
 end;
 
-function ebc(but:tbutton;cap:string):boolean ; //English Button Caption
-begin
-     but.caption:=cap;
-end;
 
 function LeereListenZeilenAmEndeLoeschen():boolean;
 begin
@@ -1549,6 +1680,7 @@ function resizewindow():boolean;
     ändert}
 var
    anzeigbareTreffer:           integer;
+   anteil:                      integer;
    h:                           integer;
    Spaltenzahl:                 integer;
    ti:                          string;
@@ -1559,12 +1691,11 @@ var
 begin
      with fenster do
      begin
+            //  if istextchanged then SaveChangesToArray();
 
-                 if istextchanged then SaveChangesToArray();
               //-----------------------
               // --- REGISTERKARTEN ---
               //-----------------------
-
               Registerkarten.top:=PanelHintergrundOben.height-10;
               Registerkarten.left:=-12;
               Registerkarten.width:=hintergrund.width+20;
@@ -1572,21 +1703,21 @@ begin
                                      - PanelHintergrundOben.height
                                      - PanelHintergrundUnten.height
                                      + 25;
+              //----------------------------------------------------------------
+
+              // ----- horizontale Fensteraufteilung ---
+              // ----------------------------------------
+              anteil:=3;
+              if RegisterSuche.activepage = Titeldaten then anteil:=2;
+              if RegisterSuche.activepage = Einstellungen then anteil:=2;
+              if (RegisterSuche.activepage = SeiteGliederung)
+              and  (PanelNotizGliedern.width > 10) then anteil:=2;
 
 
-              // ---- OPTIONEN--
-              //----------------
-              RegisterOptionen.top:= AnzeigeVersion.height - 5;
-              RegisterOptionen.left:= -5;
-              RegisterOptionen.width:=fenster.width;
-              RegisterOptionen.height:=fenster.height;
-
-              // Suchregister
-
-              //horizontale Fensteraufteilung
-              panelIdeenLinks.width:=trunc(fenster.width/3);
+              panelIdeenLinks.width:=trunc(fenster.width/anteil) ;
 
 
+              PanelFeldinhaltIcons.left:=PanelIdeenLinks.width + 50;
 
              with registersuche do
              begin
@@ -1597,12 +1728,11 @@ begin
                   height:=panelideenlinks.height+15;
                   width:=panelideenlinks.width+20;
              end;
+             PanelSucheingabe.width:=registersuche.width - 50;
 
-              //keine abgeschnittenen Listeneinträge.        //die Listenhöhe so anpassen,
-              //---------------------------------------      //dass halb abgeschnittene
-              if      var_OptionListeDetails                 //Einträge nicht angezeigt
-              then    h:=65                                  //werden
-              else h:=trunc(Liste.Font.size *2)  ;
+             //Höhe der Trefferliste -------------------------------------------
+             //-----------------------------------------------------------------
+              h:=trunc(Liste.Font.size *2)  ;
               if h< 25 then h:=25;
 
               h:=trunc(h*skalierung);
@@ -1610,14 +1740,22 @@ begin
               //Die Höhe sollte auflösungsunabhängig funktionieren
               VerfuegbareHoehe:= HintergrundVolltext.height
                                - PanelMenuVolltextsuche.height
-                               {- PanelVolltextsucheFuss.height
-                                ist jetzt in den Einstellungen untergebracht}
                                - PanelKombinierterSchlagwoerter.height
+                               - PanelNeueQuelle.height
                                - LabelTrefferzahl.height
-                               - Liste.Borderspacing.top;
-              AnzeigbareTreffer:=trunc(verfuegbarehoehe/h) -1 ;
+                               - Liste.Borderspacing.top
+                               - 20;
+              AnzeigbareTreffer:=trunc(verfuegbarehoehe/h) ;
+              { evtl. ist das zu optimistisch und der letzte Eintrag wird
+                abgeschnitten. Dann AnzeigbareTreffer um 1 runtersetzen }
               Liste.height:=AnzeigbareTreffer *h ;
 
+              //Die Scrollbar positionieren
+              ListeScrollbar.top:=liste.top +8;
+              ListeScrollbar.height:=liste.height -16;
+              ListeSchieberHeight();
+
+              //----------------------------------------------------------------
 
 
 
@@ -1639,6 +1777,7 @@ begin
               LabelTitel.caption:=ti;
 
 
+
              //---Spaltenbreite in der Liste
              //--------------------------------
 
@@ -1651,25 +1790,12 @@ begin
       TrefferlistenLaenge:=20;
       PanelVollzitat2.top:=  PanelErstelltam.top + Panelerstelltam.height +5 ;
 
-        // Spaltenbreite Schlagwoerter
-        if fenster.width < 1200 then spaltenzahl:=3 else spaltenzahl:=4;
-
-        ListeSchlagwortsuche.Colwidths[0]:=trunc(ListeSchlagwortsuche.width/spaltenzahl);
-        ListeSchlagwortsuche.Colwidths[1]:=ListeSchlagwortsuche.Colwidths[0] ;
-        ListeSchlagwortsuche.Colwidths[2]:=ListeSchlagwortsuche.Colwidths[0];
-        if spaltenzahl=4 then
-           ListeSchlagwortsuche.Colwidths[3]:=ListeSchlagwortsuche.Colwidths[0]
-        else
-           ListeSchlagwortsuche.Colwidths[3]:=1;
-
       //--- Infos über Erstellung und Bearbeitung unter dem Notiztitel ----
       //-------------------------------------------------------------------
       If feldinhalt.width < 500 then
       begin
           LabelErstelltam.visible:=false;
       end else begin
-          iconerstelldatum.visible:=false;  //sonst stimmt die Reihenfolge der Objekte
-          iconerstelldatum.visible:=true;   //nicht mehr. Das I soll links vom
           LabelErstelltam.visible:=true;    //Datum stehen (02/2024)
       end;
 
@@ -1688,67 +1814,32 @@ begin
 end;
 
 function paste(mitte:string):boolean ;
-var
-   altePosition: integer ;
-   absatz:       tpararange;
-   absatztext:   string;
-   links:        string;
-   rechts:       string;
-
 begin
-     if fenster.feldinhalt.visible then
-     begin
-           with fenster.feldinhalt do
-           begin
-                if os='win' then
-                begin
-                     clipboard.AsText:=mitte;
-                     pastefromclipboard;
-                end;
-                if os='linux' then
-                begin
-                     altePosition:=Selstart;
-                     GetParaRange(altePosition,absatz.start,absatz.length);
-                     links:=getUtext(absatz.start, altePosition-absatz.start);
-                     if sellength=0 then //nur einfügen
-                     begin
-                        rechts:=getUtext(altePosition, absatz.length-(altePosition-absatz.start));
-                     end else begin // seltext ersetzen
-                        rechts:=getUtext(altePosition + sellength,absatz.length-(length(links)+sellength));
-                     end;
-                     absatztext:= links + mitte + rechts;
-                     selstart:=absatz.start;
-                     sellength:=absatz.length;
-                     SelText:=absatztext;
-                     selstart:=altePosition + length(mitte);
-                     sellength:=0;
-               end;
+       {
+       clipboard.Clear;
+       machpause();
+       clipboard.AsText:=mitte;
 
-               setfocus;
+       if os='win' then fenster.Feldinhalt.pastefromclipboard;
+       if os='linux' then fenster.feldinhalt.SelText:=mitte;
+           { Linux ist umständlicher, aber hier gibt es einen Bug, weil
+             pastefromclipboard im richmemo nicht funktioniert. Tastatur-
+             kombination schon. Der Befehl selbst nicht.  10/2025}
 
-               { in den Datensatz schreiben, damit die Änderungen auf jeden Fall
-                 gespeichert werden. 03/2024 }
-               if angezeigtertyp='N' then
-                  Daten[AktuelleNotizenArrayZeile,Spalte_Anmerkung]:=utf8encode(Fenster.FeldInhalt.text);
-               if angezeigterTyp='L' then
-                  Literatur[AktuelleLiteraturArrayZeile,Spalte_Anmerkung]:=utf8encode(Fenster.FeldInhalt.text);
-           end;
+       }
+       FocusTo('Feldinhalt');
+       fenster.feldinhalt.SelText:=mitte;
+       machpause();
 
-     end else begin // Anmerkungen Memo
-           clipboard.AsText:=mitte;
-           Fenster.AnmerkungenMemo.pastefromclipboard;
-     end;
+
+       IsTextChanged:=true; //sonst wird evtl. nicht abgespeichert 02/2024
+     //  savechangestoarray();
+       formatmd(0,10000,false);
 end;
-function test(msg:string):boolean;
-    { Alternative zu den Showmesssages. Diesen Befehl kann man über dbug:=false
-      abschalten 04/2024}
-begin
-     if dbug then showmessage(msg);
-end;
+
 
 function ShowMsg(s:string):boolean;
 begin
-
      showmessage(s);
      result:=true;
 end;
@@ -1768,7 +1859,7 @@ end;
 
 // ---------------Funktionen, die sortieren ------------//
 
-function sortDB(dbname:string;a:integer):boolean  ;
+function sortDB(dbname:string):boolean  ;
 var
    i:                integer;
    j:                integer;
@@ -1779,14 +1870,15 @@ begin
      //LITERATUR DB SORTIEREN
      KopfZeile:=Fenster.caption;
      Fenster.Caption:='sortiere Datenbank...';
+
      if dbname='literatur' then
      begin
        lchanged:=true;
-       for i:= a to arraysize-1 do
+       for i:= 1 to arraysize_literatur-1 do
        begin
           if Literatur[i,Spalte_ID] <> '' then //leere Spalten überspringen
           begin
-              for j:=i+1 to arraysize do
+              for j:=i+1 to arraysize_literatur do
               begin
                 // machpause(); Das war an dieser Stelle tödlich
 
@@ -1811,11 +1903,11 @@ begin
      if dbname='notizen' then
      begin
        //showmessage('Notiz DB sortieren');
-       for i:= a to arraysize-1 do
+       for i:= 1 to arraysize_daten-1 do
        begin
           if daten[i,Spalte_ID] <> '' then //leere Spalten überspringen
           begin
-              for j:=i+1 to arraysize do
+              for j:=i+1 to arraysize_daten do
               begin
                  // machpause();  tödlich an dieser Stelle
                  if (daten[i,Spalte_Bearbeitungsdatum]
@@ -1840,110 +1932,140 @@ end;
 
 
 
-// ---------------Ganz grundlegende Funktionen ------------//
-{
 
-function str2int(ein:string):integer  ;
-function HolOS():string;                                     5x
-function slash(os:string):string ;                           18x
-function MeinVerzeichnis(os:string):string;                  25x
-function NoBox(const aMsg: string): Boolean;                 10x
-function YesBox(const aMsg: string): Boolean;
-function Nachricht(s:string;t:integer):boolean;
-function MachPause():boolean;
-function Busy():boolean;
-
-
-}
-
-
-
-function str2int(ein:string):integer  ; //filtert nichtnumerische Zeichen aus
+//-Funktionen für das Titeldatenfeld-------------------------------------
+//-----------------------------------------------------------------------
+function FindeVerlagsOrt(verlag:string):boolean;
 var
-   c,s:string;
-   i:integer;
+  i:     integer;
 begin
-     try
-       result:=strtoint(ein);
-     except
-        if ein='' then ein:='0';
-        s:='';
-        for i:=1 to length(ein) do
+          for i:=GetTopEmptyRow('Literatur')  downto 1 do
+          begin
+               if (pos(verlag,Literatur[i,Spalte_Verlag])=1)  then
+               begin
+                    Fenster.Titeldatenmatrix.cells[1,12]:= Literatur[i,Spalte_Ort] ;
+                    break;
+               end;
+          end;
+          result:=true;
+end;
+function AutoComplete(feld,t:string):boolean  ;
+var
+   a: string;
+   i: integer;
+   TL:string;
+   maxitems:integer;
+begin
+        {t ist das eingegebene Suchfragment}
+        tl:=' ';
+        t:=trim(t);   //man weiß ja nie...
+        maxitems:=7; //Zu viel Scrollen. Wird nicht mehr angezeigt.
+        with fenster.vorschlagsliste do
         begin
-           c:=copy(ein,i,1);
-           if pos(c,'0123456789') > 0 then s:=s+c;
+             Sorted:=false;
+             items.clear;
         end;
-        if s='' then s:='0';
-        result:=StrToInt(s);
-    end;
+        //=== AUTORFELD ===
+        //=================
+        if (feld='Autoren') then
+        begin
+              for i:=arraysize_literatur  downto 1 do
+              begin
+                   a:=Literatur[i,Spalte_Autor];
+                   if (pos(t,a)>0) then     // Nachnamensanfang gefunden
+                   begin
+                      a:=copy(a,pos(t,a),1000); //auch Zweitautoren
+                      while pos(';',a)> 0 do a:=copy(a,1,length(a)-1);
+                      a:=trim(A);
+                      { Name ist ein ganzer Name und noch nicht in der Liste }
+                      if (pos(a,tl)=0)  then
+                      begin
+                           tl:= tl+ a + ' ';
+                           Fenster.Vorschlagsliste.items.add(a);
+                           if  Fenster.Vorschlagsliste.items.count > maxitems then break;
+                      end;
+                   end;
+              end;
+              if Fenster.Vorschlagsliste.items.count > 0 then
+              begin
+                   Fenster.Vorschlagsliste.Top:=
+                     Fenster.Dateneingabe.top+Fenster.dateneingabe.height ;
+                   Fenster.Vorschlagsliste.visible:=true;
+
+              end else begin
+                   Fenster.Vorschlagsliste.visible:=false;
+              end;
+        end;
+        //====ZEITSCHRIFTEN=====
+        //======================
+        if (feld='Zeitschriften') then
+        begin
+            for i:=GetTopEmptyRow('Literatur')  downto 1 do
+            begin
+                 if (pos(ansilowercase(t),ansilowercase(Literatur[i,Spalte_Zeitschrift]))=1)  then
+                 begin
+                    a:=trim(Literatur[i,Spalte_Zeitschrift]);
+
+                    if (pos(ansilowercase(a),tl)=0)   then //Der Name ist ein Treffer und SeiteNeu
+                    begin
+                         tl:= tl+ ansilowercase(a) + ' ';
+                         Fenster.Vorschlagsliste.items.add(a);
+                         if  Fenster.Vorschlagsliste.items.count > maxitems then break;
+                    end;
+                 end;
+            end;
+           if Fenster.Vorschlagsliste.items.count > 0 then
+           begin
+                Fenster.Vorschlagsliste.Top:= 320;;
+                Fenster.Vorschlagsliste.visible:=true;
+
+           end else begin
+                Fenster.Vorschlagsliste.visible:=false;
+           end;
+        end;
+        //===VERLAG===
+        //============
+        if (feld='Verlage') then
+        begin
+            for i:=GetTopEmptyRow('Literatur')  downto 1 do
+            begin
+
+                 if (pos(t,Literatur[i,Spalte_Verlag])>0)  then
+                 begin
+                    a:=trim(Literatur[i,Spalte_Verlag]);
+                    if (pos(a,tl)=0)  then //Der Name ist ein Treffer und SeiteNeu
+                    begin
+                         tl:= tl+ a + ' ';
+                         Fenster.Vorschlagsliste.items.add(a);
+                         if  Fenster.Vorschlagsliste.items.count > maxitems then break;
+
+                    end;
+                 end;
+            end;
+
+            if Fenster.Vorschlagsliste.items.count > 0 then
+            begin
+                 Fenster.Vorschlagsliste.Top:= 380;;
+                 Fenster.Vorschlagsliste.visible:=true;
+
+            end else begin
+                 Fenster.Vorschlagsliste.visible:=false;
+            end;
+        end;
+
+
+        Fenster.Vorschlagsliste.scrollwidth:=100;
+        result:=true;
 end;
-function HolOS():string;
-begin
-  result:='win';
-  {$IFDEF LINUX} result:='linux'; {$ENDIF}
-end;
-function slash(os:string):string ;
-begin
-    result:='\';
-    if os<>'win' then result:='/';
-end;
-
-function MeinVerzeichnis(os:string):string;
-begin
-    machpause();
-    result:=extractfilepath(application.exename);
-end;
-
-function NoBox(const aMsg: string): Boolean; //Abfrage JA / NEIN mit Standard auf NEIN
-var
-  Flags  : Integer;
-begin
-      flags := QuestionDlg('Achtung', amsg + #13 + #13, mtConfirmation, [mrNo, 'Ja', mrYes, 'Nein'], 0);
-      If flags=mrYes then result:=false else result:=true;
-end;
-function YesBox(const aMsg: string): Boolean;   //Abfrage JA / NEIN mit Standard auf JA
-var
-  Flags  : Integer;
-begin
-      flags := QuestionDlg('Achtung', amsg + #13 + #13, mtConfirmation, [mrYes, 'Ja', mrNo, 'Nein'], 0) ;
-      If flags=mrYes then result:=true else result:=false;
-end;
 
 
 
 
 
 
-// ---------------Ende der ganz grundlegenden Funktionen ------------//
 
 
 
-
-
-//-----------------------------------------------------------------------------
-// --------------- Funktionen zum Übersetzen und Filtern von Zeichen ----------
-//-----------------------------------------------------------------------------
-{
-function GetSelWordMemo(Memo: TRichMemo): string;
-function trim2(ein:string) : string;
-
-function getFirstWord(ein:string):String;               25x
-function getLastWord(ein:string):String;                9x
-function deleteFirstWord(ein:string):String;            6x
-function deleteLastWord(ein:string):String;             3x
-function deleteLastChar(ein:string):String;
-
-function showmsg(s:string):boolean;
-function SuchanfrageFiltern(ein:string):string ;
-function SonderzeichenRaus(ein:string):string ;         25x
-function UmlautZeichenWeg(zeile:string):string;
-function UmlautInListe(zeile:string):string;
-function umlautRTFtoXML(zeile:string):string;
-function umlautXMLtoRTF(zeile:string):string;
-function Zahlenausfiltern(ein:string):string ;
-function extracturl(zeile: string): string;
-
-}
 function getFirstWord(ein:string):String;
 begin
     ein:=trim(ein);
@@ -2534,36 +2656,35 @@ end;
 
 
 // --------------- Funktionen zur ArrayDimensionierung  ----------//
-{
-function GetTopEmptyRow(ofwhat:string):integer;
-function IncreaseTopEmptyRow(ofwhat:string):integer;
-function GetNumberOfRecords(ofwhat:string):integer;
-function SetNumberOfRecords(ofwhat:string;v:integer):integer;
-function IncreaseNumberOfRecords(ofwhat:string):integer;
-}
 function GetTopEmptyRow(ofwhat:string):integer;
 var
   i:integer;
+  erg:integer;
 begin
      ofwhat:=ansilowercase(ofwhat);
      result:=-1;
      if ofwhat='literatur' then
      begin
-          for i:= 1 to arraysize do
-               if Literatur[i,1]='' then   break;
-          result:=i;
+          for i:= arraysize_literatur downto 1 do
+               if  (Literatur[i,spalte_id]<>'')
+               then   break;
+          result:=i+1;
      end;
      if ofwhat='literatur2' then
      begin
-          for i:=1 to ArraySize do
-              if Literatur2[i,1]='' then break;
-          result:=i;
+          for i:=ArraySize_literatur downto 1 do
+              if Literatur2[i,1]<>'' then break;
+          result:=i+1;
      end;
      if ofwhat='daten' then
      begin
-          for i:=1 to ArraySize do
-               if Daten[i,1]='' then break;
-          result:=i;
+          for i:= ArraySize_daten downto 1 do
+               if  str2int(Daten[i,Spalte_ID]) > 111
+                 then
+          begin
+               break;
+          end;
+          result:=i+1 ;
      end;
 end;
 
@@ -2575,14 +2696,14 @@ begin
      if ofwhat='literatur' then
      begin
              LiteraturDatensatzzahl:=0;
-             for i:=1 to ArraySize do if Literatur[i,1]<>'' then LiteraturDatensatzzahl:=LiteraturDatensatzzahl+1;
+             for i:=1 to ArraySize_literatur do if Literatur[i,1]<>'' then LiteraturDatensatzzahl:=LiteraturDatensatzzahl+1;
              result:=LiteraturDatensatzzahl;
      end;
 
      if ofwhat='daten' then
      begin
              NotizenDatensatzZahl:=0;
-             for i:=1 to ArraySize do if daten[i,1]<>'' then NotizenDatensatzZahl:=NotizenDatensatzZahl+1;
+             for i:=1 to ArraySize_daten do if daten[i,1]<>'' then NotizenDatensatzZahl:=NotizenDatensatzZahl+1;
              result:=NotizenDatensatzZahl;
      end;
 end;
@@ -2616,8 +2737,6 @@ end;
 function GetMaxID(ofwhat:string):integer;   10x
 function setMaxID(ofwhat:string; v:integer):boolean;   6x
 function IncreaseMaxID(ofwhat:string):boolean; 5x
-function HolNotizIdAusNoteLink(st:string):string;
-function HolLiteraturIdAusrefLink(st:string):string;
 }
 
 function HolLiteraturIdAusrefLink(st:string):string;
@@ -2651,7 +2770,7 @@ begin
           if literaturidmax <1  then
           begin
                max:=0;
-               for i:=1 to ArraySize do
+               for i:=1 to ArraySize_literatur do
                begin
                    if Literatur[i,1]<>'' then
                    begin
@@ -2694,11 +2813,7 @@ end;
 //
 // -------------- Funktionen die Merkmale einer Notiz holen ----------//
 {
-function HolTitelderNotizID(id: integer): string;  5x
-function HolArrayZeileDesTitels(titel: string): integer;  3x
-function HolIDdesNotizTitels(t:string):string;  1x
-function HolArrayZeileDerNotizID(id: string): integer;
-function HolArrayZeileDerLiteraturID(id: string): integer;
+
 }
 //Annahme: Die gesuchten Titel sind eher jüngeren Datums und daher
 //eher in den unteren Zeilen des Arrays. Daher wird in den Funktionen
@@ -2711,7 +2826,8 @@ var
 begin
   IDasText := IntToStr(id);
   Result := '<gelöscht ...>';
-  for i := 1 to ArraySize do
+  { bei den neueren Datensätzen anfangen. Der Treffer ist eher neuer als alt}
+  for i :=  ArraySize_Daten downto 1  do
   begin
     if daten[i, 1] = IdAsText then
     begin
@@ -2725,7 +2841,8 @@ var
   i: integer;
 begin
   Result := 0;
-  for i :=  1 to ArraySize  do
+  { bei den neueren Datensätzen anfangen. Der Treffer ist eher neuer als alt}
+  for i :=  ArraySize_daten downto 1  do
     if daten[i, Spalte_Titel] = titel then
     begin
       Result := i;
@@ -2738,7 +2855,8 @@ var
   i: integer;
 begin
   Result := 0;
-  for i :=  1 to ArraySize  do
+  { bei den neueren Datensätzen anfangen. Der Treffer ist eher neuer als alt}
+  for i :=  ArraySize_daten downto 1  do
     if daten[i, Spalte_ID] = id then
     begin
       Result := i;
@@ -2750,7 +2868,8 @@ var
   i: integer;
 begin
   Result := 0;
-  for i :=  1 to ArraySize  do
+  { bei den neueren Datensätzen anfangen. Der Treffer ist eher neuer als alt}
+  for i :=  ArraySize_Literatur downto 1  do
     if Literatur[i, Spalte_ID] = id then
     begin
       Result := i;
@@ -2762,7 +2881,8 @@ var
   i:integer;
 begin
      result:='-1';
-     for i := 1 to ArraySize do
+     { bei den neueren Datensätzen anfangen. Der Treffer ist eher neuer als alt}
+     for i :=  ArraySize_Daten downto 1 do
      begin
           if trim(daten[i, Spalte_Titel]) = t then
           begin
@@ -2772,10 +2892,7 @@ begin
      end;
 
 end;
-// -------------- Ende Funktionen Merkmale einer Notiz holen ----------//
-//
-//
-//
+
 //
 // ---------------- Funktionen, die Personennamen formatieren ------//
 {
@@ -3500,7 +3617,7 @@ end;
 
 // ------------- Funktionen, die Daten einlesen---------------------//
 {
-function xmleinlesen(neu:string):string ;                         25x
+function xmleinlesen(SeiteNeu:string):string ;                         25x
 
 function LiteraturLaden(welcheDB,Dateiname:string):boolean;       3x
 function LiteraturVolltext(az:integer):boolean;
@@ -3511,9 +3628,9 @@ function NotizarrayZeileNachOben(i:integer):boolean ;
 function GliederungArrayEinlesen():boolean  ;
 
 function IdentifiziereImportFormat(dat:string):string ;           2x
-function riseinlesen(neu:string):string ;                         25x
-function refereinlesen(neu:string):string ;                       25x
-function bibtexeinlesen(neu:string):string ;                      10x
+function riseinlesen(SeiteNeu:string):string ;                         25x
+function refereinlesen(SeiteNeu:string):string ;                       25x
+function bibtexeinlesen(SeiteNeu:string):string ;                      10x
 function importReferDB(inputfilename:string):boolean;
 function importBibTexDB(inputfilename:string):boolean;
 function importPubMedDB(inputfilename:string):boolean;
@@ -3548,50 +3665,26 @@ end;
 function SaveChangesToArray():boolean;
 var
    alteZeile:      integer;
-   Datei:          textfile;
-   DateiName:      string;
    go:             boolean;
    i:              integer;
-
+   top:            integer;
+   zuweithinten:   integer;
 begin
-    if (length(fenster.feldinhalt.Text) > 0)
-    or (length(fenster.AnmerkungenMemo.Text) > 0)  then
+    zuweithinten:=50000;
+    IsTextChanged:=false;
+    if (length(fenster.feldinhalt.Text) > 0) then
     begin
-
-          If AngezeigterTyp='L' then //Literaturdatensatz
+          //Literaturdatensatz  abspeichern
+          If  (AngezeigterTyp='L') then
           begin
-               { in der Datenbank nach vorn, weil der Datensatz sehr weit
-                 hinten liegt? }
-              if (Arraysize - AktuelleLiteraturArrayZeile) > 1000 then
-              begin
-                   alteZeile:=AktuelleLiteraturArrayZeile;
-                   for i:=Arraysize-1 downto 1 do
-                   begin
-                        if Literatur[i,Spalte_ID]='' then
-                        begin
-                             AktuelleLiteraturArrayZeile:=i; //die oberste leere Zeile
-                             break;
-                        end;
-                   end;
-                   for i:=1 to Spalte_Anzahl-1 do
-                   begin
-                       Literatur[AktuelleLiteraturArrayZeile,i]:=Literatur[AlteZeile,i];
-                       Literatur[AlteZeile,i]:='';
-                   end;
-
-              end;
-
-               if Literatur[AktuelleLiteraturArrayZeile,Spalte_Volltext]='' then
-                  Literatur[AktuelleLiteraturArrayZeile,Spalte_Volltext]:=
-                     Literatur[AktuelleLiteraturArrayZeile,Spalte_Anmerkung];
-
                //Den Anmerkungstext abspeichern
+               lneedssorting:=true;
                if Fenster.FeldInhalt.visible then
                begin
                   if Fenster.FeldInhalt.text <> Literatur[AktuelleLiteraturArrayZeile,Spalte_Anmerkung]then
                   begin
                      go:=true;
-                     if length (Fenster.FeldInhalt.text) = 0 then
+                     if length (Fenster.FeldInhalt.text) <2 then
                      go:=nobox('die Anmerkungen komplett löschen?') ;
                      if go then
                          Literatur[AktuelleLiteraturArrayZeile,Spalte_Anmerkung]:=
@@ -3599,141 +3692,38 @@ begin
                   end;
                end;
 
-             if Fenster.AnmerkungenMemo.visible then
-             begin
-                if Fenster.AnmerkungenMemo.text <> Literatur[AktuelleLiteraturArrayZeile,Spalte_Anmerkung]then
-                begin
-                   go:=true;
-                   if length (Fenster.AnmerkungenMemo.text) = 0 then
-                   go:=nobox('die Anmerkungen komplett löschen?') ;
-                   if go then
-                       Literatur[AktuelleLiteraturArrayZeile,Spalte_Anmerkung]:=
-                       utf8encode(Fenster.AnmerkungenMemo.text);
-                end;
-             end;
-
                Literatur[AktuelleLiteraturArrayZeile,Spalte_Bearbeitungsdatum]:=
-                      formatdatetime('yyyymmddhhnn', now);
-
+               formatdatetime('yyyymmddhhnn', now);
                LiteraturVolltext(AktuelleLiteraturArrayZeile);
-               if AktuelleLiteraturArrayzeile < SortierenAb_Literatur then
-                    SortierenAb_Literatur:=AktuelleLiteraturArrayzeile;
-
-              //in externer Datei speichern.
-             {
-              DateiName:=  TmpVerzeichnisLiteratur +  slash(os) +
-               stripfilename(Literatur[AktuelleLiteraturArrayZeile,Spalte_Titel])  +
-                          '.' + aktuelleLiteraturID ;
-             lneedssorting:=true;
-             Assignfile(Datei,DateiName);
-             rewrite(Datei);
-             writeln(Datei, Literatur[AktuelleLiteraturArrayZeile,Spalte_Anmerkung]);
-             { jetzt noch die rudimentären bibliographischen Angaben }
-             //writeln(Datei, Literatur[AktuelleLiteraturArrayZeile,Spalte_Vollzitat]);
-             writeln(Datei, fenster.labelvollzitat.caption);
-             try
-                  closefile(datei);
-             except
-                   busy() ;
-                   closefile(datei);
-             end;
-               }
-
           end else begin // es ist eine Notiz
-               { in der Datenbank nach vorn, weil der Datensatz sehr weit
-                 hinten liegt? }
-              if (Arraysize - aktuelleNotizenarrayzeile) > 1000 then
+          //Anmerkung abspeichern
+           ineedssorting:=true;
+           if Fenster.Feldinhalt.visible then
+           begin
+              if Fenster.Feldinhalt.text <> Daten[AktuelleNotizenArrayZeile,Spalte_Anmerkung] then
               begin
-                   alteZeile:=AktuelleNotizenArrayZeile;
-                   for i:=Arraysize-1 downto 1 do
-                   begin
-                        if Daten[i,Spalte_ID]='' then
-                        begin
-                             AktuelleNotizenArrayZeile:=i; //die oberste leere Zeile
-                             break;
-                        end;
-                   end;
-                   for i:=1 to Spalte_Position do
-                   begin
-                       Daten[AktuelleNotizenArrayzeile,i]:=Daten[AlteZeile,i];
-                       Daten[AlteZeile,i]:='';
-                   end;
-
+                 go:=true;
+                 if length (Fenster.Feldinhalt.text) <2 then
+                 go:=nobox('die Anmerkungen komplett löschen?') ;
+                 if go then
+                     Daten[AktuelleNotizenArrayZeile,Spalte_Anmerkung]:=
+                     utf8encode(Fenster.FeldInhalt.text);
               end;
+           end;
+           Daten[AktuelleNotizenArrayZeile,Spalte_Bearbeitungsdatum]:=formatdatetime('yyyymmddhhnn', now);
 
-
-
-               if Daten[AktuelleNotizenArrayZeile,Spalte_Volltext]='' then
-                  Daten[AktuelleNotizenArrayZeile,Spalte_Volltext]:=
-                     Daten[AktuelleNotizenArrayZeile,Spalte_Anmerkung];
-
-               //Anmerkung abspeichern
-               if Fenster.Feldinhalt.visible then
-               begin
-                  if Fenster.Feldinhalt.text <> Daten[AktuelleNotizenArrayZeile,Spalte_Anmerkung] then
-                  begin
-                     go:=true;
-                     if length (Fenster.Feldinhalt.text) = 0 then
-                     go:=nobox('die Anmerkungen komplett löschen?') ;
-                     if go then
-                         Daten[AktuelleNotizenArrayZeile,Spalte_Anmerkung]:=
-                         utf8encode(Fenster.FeldInhalt.text);
-                  end;
-               end;
-               if Fenster.AnmerkungenMemo.visible then
-               begin
-                  if Fenster.AnmerkungenMemo.text <> Daten[AktuelleNotizenArrayZeile,Spalte_Anmerkung] then
-                  begin
-                     go:=true;
-                     if length (Fenster.AnmerkungenMemo.text) = 0 then
-                     go:=nobox('die Anmerkungen komplett löschen?') ;
-                     if go then
-                         Daten[AktuelleNotizenArrayZeile,Spalte_Anmerkung]:=
-                         utf8encode(Fenster.AnmerkungenMemo.text);
-                  end;
-               end;
-
-               Daten[AktuelleNotizenArrayZeile,Spalte_Bearbeitungsdatum]:=formatdatetime('yyyymmddhhnn', now);
-
-               Notizvolltext(AktuelleNotizenArrayZeile);
-               if AktuelleNotizenArrayZeile < SortierenAb_Daten then
-                    SortierenAb_Daten:=AktuelleNotizenArrayZeile;
-               ineedssorting:=true;
-
-               //in externer Datei speichern.
-               {
-               if length(Daten[AktuelleNotizenArrayZeile,Spalte_Anmerkung]) > 5 then
-               begin
-                     DateiName:=  TmpVerzeichnisIdeen +  slash(os) +
-                      stripfilename(Daten[AktuelleNotizenArrayZeile,Spalte_Titel])  +
-                      '.' + aktuelleNotizID ;
-                     Assignfile(Datei,DateiName);
-                     //showmessage(aktuelleNotizID);
-                     rewrite(Datei);
-                     //in externer Datei speichern
-                     writeln(Datei, Daten[AktuelleNotizenArrayZeile,Spalte_Anmerkung]  );
-                     try
-                        closefile(datei);
-                     except
-                         busy() ;
-                         closefile(datei);
-                     end;
-               end;
-               }
           end;
-          IsTextChanged:=false;
-
     end;
 end;
 
 
 
-function riseinlesen(neu:string):string ;
+function riseinlesen(SeiteNeu:string):string ;
 // eine Zeile bis - einlesen und Leerzeichen kürzen
 var
    zeile:string;
 begin
-  zeile:=neu;
+  zeile:=SeiteNeu;
   if pos('-',zeile)> 0 then
   begin
        zeile:=copy(zeile, pos('-',zeile)+1, 10000);
@@ -3744,12 +3734,12 @@ begin
        result:='';
   end;
 end;
-function refereinlesen(neu:string):string ;
+function refereinlesen(SeiteNeu:string):string ;
 // eine Zeile bis %  einlesen und Leerzeichen kürzen
 var
    zeile:string;
 begin
-  zeile:=neu;
+  zeile:=SeiteNeu;
   if pos('%',zeile)=1 then
   begin
        zeile:=copy(zeile, 4, 10000);
@@ -3760,12 +3750,12 @@ begin
        result:='';
   end;
 end;
-function bibtexeinlesen(neu:string):string ;
+function bibtexeinlesen(SeiteNeu:string):string ;
 // eine Zeile bis {  einlesen und }
 var
    zeile:string;
 begin
-  zeile:=neu;
+  zeile:=SeiteNeu;
   result:='';
   if pos('= {',zeile)>0 then
   begin
@@ -3786,6 +3776,16 @@ begin
           zeile:=copy(zeile,1,length(zeile)-2)
        else
            zeile:=copy(zeile,1,length(zeile)-1);
+
+       //-- evtl. vorhandene LaTeX-Umlaute übersetzen 12/2025
+       zeile:=stringreplace(zeile,'{\"a}','ä',[rfreplaceall]) ;
+       zeile:=stringreplace(zeile,'{\"o}','ö',[rfreplaceall]) ;
+       zeile:=stringreplace(zeile,'{\"u}','ü',[rfreplaceall]) ;
+       zeile:=stringreplace(zeile,'{\"A}','Ä',[rfreplaceall]) ;
+       zeile:=stringreplace(zeile,'{\"O}','Ö',[rfreplaceall]) ;
+       zeile:=stringreplace(zeile,'{\"s}','ß',[rfreplaceall]) ;
+
+
        result:=zeile;
        result:=UmlautInListe(result);
   end;
@@ -3819,11 +3819,11 @@ begin
 
      result:=frm;
 end;
-function xmleinlesen(neu:string):string ;
+function xmleinlesen(SeiteNeu:string):string ;
 var
    zeile:string;
 begin
-  zeile:=neu;
+  zeile:=SeiteNeu;
   if length(zeile) > 0 then
   begin
        //Feldname am Anfang wegschneiden
@@ -3846,27 +3846,12 @@ begin
      Literatur[az,Spalte_Volltext]:= volltext(txt);
      result:=true;
 end;
-function VolltextKomplettieren(nr:integer):boolean;
+function VolltextKomplettieren():boolean;
 var
     i:integer;
 begin
-    //Fenster.VollTextIdle.Enabled:=false;
-    if VollTextBisZeile < Arraysize then //muss noch was getan werden
-    begin
-         if VolltextBiszeile+nr>Arraysize then
-         begin
-            nr:=ArraySize - VollTextBisZeile;
-
-
-         end;
-        for i:= VolltextBiszeile to VolltextBiszeile + nr do
-        begin
-             LiteraturVolltext(i);
-             Notizvolltext(i);
-        end;
-        VolltextBisZeile:=VollTextBisZeile + nr;
-        //if VolltextBisZeile < arraysize then Fenster.VollTextIdle.Enabled:=true;
-    end;
+       for i:= 1 to Arraysize_Daten do  Notizvolltext(i);
+       for i:= 1 to Arraysize_Literatur do  LiteraturVolltext(i);
     result:=true;
 end;
 function LiteraturArrayZeileNachoben(z:integer):boolean;
@@ -3901,7 +3886,7 @@ begin
   welcheDB:=ansilowercase(welchedb);
   if fileexists(Dateiname) then
   begin
-    SetLength(LiteraturImport, ArraySize+2,Spalte_Ende+1);
+    SetLength(LiteraturImport, ArraySize_Literatur+2,Spalte_Ende+1);
        { Literaturimport ist ein lokaler Array, der geladen wird und dann in
          den Zielarray kopiert wird. Das ist einfacher, als den gleichen
          Ladevorgang für die Hauptdatenbank und die Importdatenbank zweimal
@@ -3911,15 +3896,15 @@ begin
 
     if welcheDB='literatur' then
     begin
-       for i:=1 to ArraySize do
+       for i:=1 to ArraySize_Literatur do
            for j:=1 to Spalte_Ende do Literatur[i,1]:='';
     end;
 
     if welcheDB='literatur2' then   // Import aus anderer Literaturdatenbank
     begin
-         for i:=1 to ArraySize do
+         for i:=1 to ArraySize_Literatur do
               for j:=1 to Spalte_Ende do Literatur2[i,j]:='';
-         SetLength(Literatur2, ArraySize+2,Spalte_Ende+1);
+         SetLength(Literatur2, ArraySize_Literatur+2,Spalte_Ende+1);
     end;
     MachPause();
     Assignfile(Datei,Dateiname);
@@ -4035,7 +4020,7 @@ begin
                                      ich nicht gleich in literatur importiere
                                      02/2024 }
      begin
-        for i:=1 to ArraySize do
+        for i:=1 to ArraySize_Literatur do
         begin
             if Literaturimport[i,1]<>'' then
             begin
@@ -4061,7 +4046,7 @@ begin
      if welcheDB='literatur2' then  //In den Array Literatur2 umkopieren
      begin
         z:=1;
-        for i:=1 to ArraySize do
+        for i:=1 to ArraySize_Literatur do
         begin
             if Literaturimport[i,1]<>'' then
             begin
@@ -4114,8 +4099,8 @@ var
   zeile:string;
 begin
      zeilennr:=1;
-     SetLength(Literatur2, ArraySize+2,Spalte_Ende+1);
-     for i:=1 to ArraySize do for j:=1 to Spalte_Ende do Literatur2[i,j]:=''; //Array leeren, falls noch was drin ist
+     SetLength(Literatur2, ArraySize_Literatur+2,Spalte_Ende+1);
+     for i:=1 to ArraySize_Literatur do for j:=1 to Spalte_Ende do Literatur2[i,j]:=''; //Array leeren, falls noch was drin ist
      assignfile(input,inputfilename);
      reset(input);
      while not (eof(input)) do
@@ -4186,8 +4171,8 @@ var
   zeile:string;
 begin
      zeilennr:=1;
-     SetLength(Literatur2, ArraySize+2,Spalte_Ende+1);
-     for i:=1 to ArraySize do for j:=1 to Spalte_Ende do Literatur2[i,j]:=''; //Array leeren, falls noch was drin ist
+     SetLength(Literatur2, ArraySize_Literatur+2,Spalte_Ende+1);
+     for i:=1 to ArraySize_Literatur do for j:=1 to Spalte_Ende do Literatur2[i,j]:=''; //Array leeren, falls noch was drin ist
      machpause();
      assignfile(input,inputfilename);
      reset(input);
@@ -4308,8 +4293,8 @@ var
   zeile:string;
 begin
      zeilennr:=1;
-     SetLength(Literatur2, ArraySize+2,Spalte_Ende+1);
-     for i:=1 to ArraySize do for j:=1 to Spalte_Ende do Literatur2[i,j]:=''; //Array leeren, falls noch was drin ist
+     SetLength(Literatur2, ArraySize_Literatur+2,Spalte_Ende+1);
+     for i:=1 to ArraySize_Literatur do for j:=1 to Spalte_Ende do Literatur2[i,j]:=''; //Array leeren, falls noch was drin ist
      machpause();
      assignfile(input,inputfilename);
      reset(input);
@@ -4374,8 +4359,8 @@ var
   zeile:string;
 begin
      zeilennr:=1;
-     SetLength(Literatur2, ArraySize+2,Spalte_Ende+1);
-     for i:=1 to ArraySize do for j:=1 to Spalte_Ende do Literatur2[i,j]:=''; //Array leeren, falls noch was drin ist
+     SetLength(Literatur2, ArraySize_Literatur+2,Spalte_Ende+1);
+     for i:=1 to ArraySize_Literatur do for j:=1 to Spalte_Ende do Literatur2[i,j]:=''; //Array leeren, falls noch was drin ist
      machpause();
      assignfile(input,inputfilename);
      reset(input);
@@ -4452,8 +4437,8 @@ var
   //globale variablen:   zau,zti,zyr,zloc,zpub,zut,zjour, zpage, zisbn, zaufl:string;
 begin
      zeilennr:=1;
-     SetLength(Literatur2, ArraySize+2,Spalte_Ende+1);
-     for i:=1 to ArraySize do for j:=1 to Spalte_Ende do Literatur2[i,j]:=''; //Array leeren, falls noch was drin ist
+     SetLength(Literatur2, ArraySize_Literatur+2,Spalte_Ende+1);
+     for i:=1 to ArraySize_Literatur do for j:=1 to Spalte_Ende do Literatur2[i,j]:=''; //Array leeren, falls noch was drin ist
      machpause();
      assignfile(input,inputfilename);
      reset(input);
@@ -4655,19 +4640,7 @@ function ZeigeEditor(ed:string):boolean;
 function Speicherbedarf(was:string):boolean;
 }
 
-function Speicherbedarf(was:string):boolean;
-begin
-     was:=ansilowercase(was);
-     if was='i' then
-     begin
-          ichanged:=true;
 
-     end;
-     if was='lx' then
-     begin
-          lchanged:=true;
-     end;
-end;
 
 
 
@@ -4781,7 +4754,7 @@ begin
            Daten[AktuelleNotizenArrayZeile,Spalte_Anmerkung]:=utf8encode(Fenster.FeldInhalt.text) ;
            Daten[AktuelleNotizenArrayZeile,Spalte_Bearbeitungsdatum]:=formatdatetime('yyyymmddhhnn', now);
            Daten[AktuelleNotizenArrayZeile,Spalte_Position]:=inttostr(Cursorposition);
-           speicherbedarf('i');
+           ichanged:=true;
            IneedsSorting:=true;
        end;
        if AngezeigterTyp='L' then
@@ -4789,7 +4762,6 @@ begin
              Literatur[AktuelleLiteraturArrayZeile,Spalte_Anmerkung]:=utf8encode(Fenster.FeldInhalt.text);
              Literatur[AktuelleLiteraturArrayZeile,Spalte_Bearbeitungsdatum]:=formatdatetime('yyyymmddhhnn', now);
              Literatur[AktuelleLiteraturArrayZeile,Spalte_Position]:=inttostr(Cursorposition);
-             Speicherbedarf('l');
              lchanged:=true;
              LneedsSorting:=true;
        end;
@@ -4805,7 +4777,7 @@ end;
 function Gliederungspeichern(fname:string):boolean;
 var
    speichern:boolean;
-   alt,neu:integer;
+   alt,SeiteNeu:integer;
 begin
      speichern:=false;
      if fileexists(fname) then
@@ -4813,8 +4785,8 @@ begin
           fenster.memozwischenablage.lines.loadfromfile(fname);
           machpause();
           alt:=fenster.memozwischenablage.lines.count;
-          neu:=fenster.gliederung.items.count;
-          if abs(alt-neu) < 50 then speichern:=true; //bei größeren Unterschieden ist irgendetwas faul
+          SeiteNeu:=fenster.gliederung.items.count;
+          if abs(alt-SeiteNeu) < 50 then speichern:=true; //bei größeren Unterschieden ist irgendetwas faul
      end else begin
          speichern:=true;
      end;
@@ -5407,22 +5379,17 @@ begin
 end;
 function DatenArrayKomplettSichern():boolean;
 var
-//   dbold: string;
    i:integer;
    str:Tstringlist;
-//   oldyear:TStringList;
 begin
      str:=Tstringlist.Create;
-    // oldyear:=TStringlist.Create;
-   //  jahr:='2020';
-   //  dbold:=mypath + 'ideen.' + jahr;
      with fenster do
      begin
      str.Add('<?xml version="1.0"?>');
      str.Add('<version>6</version>');
      str.Add('<datensatzzahl>' + inttostr(GetNumberOfRecords('daten')) + '</datensatzzahl>');
      str.Add('<daten>');
-    for i := 1 to ArraySize  do
+    for i := 1 to ArraySize_Daten  do
     begin
       if Daten[i, Spalte_ID] <> '' then
       begin
@@ -5436,29 +5403,6 @@ begin
         if daten[i,Spalte_Bearbeitungszahl]<>'' then str.Add('<bearbeitungen>' + daten[i, Spalte_Bearbeitungszahl] + '</bearbeitungen>');
         if daten[i,Spalte_Erstelldatum]<>''then  str.Add('<erstellt>' + daten[i, Spalte_Erstelldatum] + '</erstellt>');
         str.Add('</karte>');
-
-        //Text für Ideen, die in 2024 bearbeitet worden sind  Gute idee. Aufheben für großen Umbau der DB.
-        {
-        if pos(jahr,Daten[i, Spalte_BearbeitungsDatum]) = 1 then
-        begin
-             oldyear.Add('<karte>');
-             oldyear.Add('<nummer>' + daten[i, Spalte_ID] + '</nummer>');
-             if length(daten[i,Spalte_Bearbeitungsdatum])< 10  then daten[i,Spalte_Bearbeitungsdatum]:='190001010101';
-             oldyear.Add('<datum>' + daten[i, Spalte_Bearbeitungsdatum] + '</datum>');
-             oldyear.Add('<titel>' + trim(daten[i, Spalte_Titel]) + '</titel>');
-             oldyear.Add('<inhalt>' + trim(daten[i,Spalte_Anmerkung]) + ' </inhalt>');
-
-             if daten[i,Spalte_Bearbeitungszahl]<>'' then
-                oldyear.Add('<bearbeitungen>' + daten[i, Spalte_Bearbeitungszahl] + '</bearbeitungen>');
-             if daten[i,Spalte_Erstelldatum]<>''then
-                oldyear.Add('<erstellt>' + daten[i, Spalte_Erstelldatum] + '</erstellt>');
-             oldyear.Add('</karte>');
-        end;  }
-
-
-
-
-
       end;
     end;
     str.Add('</daten>');
@@ -5468,13 +5412,12 @@ begin
     except
        str.Savetofile(IdeenDatenbank);
     end;
-//    oldyear.Savetofile(dbold);
+
 
     machpause();
     str.free;
-//    oldyear.free;
     result:=true;
-    end; //Ende Fenster
+    end;
 end;
 
 
@@ -5524,11 +5467,12 @@ end;
 //
 // -------------- Funktionen für Einstellungen der Oberfläche -----------------//
 {
+
 function SchlagwortCheckboxes(volltext:string):boolean  ;
 
 
 
-function resettopmenu():boolean;               7x
+
 function MonitorCheck():boolean;
 
 Procedure subErstelleFormularImage(Formular: TForm; out Bitmap: TBitmap);
@@ -5547,10 +5491,6 @@ function bestimmespalte():integer;
 
 
 
-function resettopmenu():boolean;
-begin
-
-end;
 
 
 
@@ -5672,7 +5612,8 @@ begin
         end;
         Fenster.Liste.Cells[ListeSpalteTitel, 0]:=titel;
     end;
-    //die Treffer durchnumerieren
+    //die Treffer durchnumerieren 12/2025 rausgeworfen
+    {
     j:=0;
     for i:=0 to Fenster.Liste.Rowcount -1  do
     begin
@@ -5682,6 +5623,7 @@ begin
             Fenster.Liste.Cells[ListeSpalteNummer,i]:=inttostr(j) + '.';
        end;
     end;
+    }
     Fenster.Liste.Invalidate;
     Fenster.Liste.Row:=0;   //die erste Zeile belegen
 end;
@@ -5691,7 +5633,7 @@ var
   i: integer;
 begin
   Result := '';
-  for i :=  1 to ArraySize do
+  for i :=  1 to ArraySize_Daten do
     if daten[i, Spalte_Titel] = titel then
     begin
       Result := daten[i, Spalte_ID];
@@ -5728,7 +5670,6 @@ begin
        txt:=stringreplace(txt,ab,' ',[rfreplaceall]);
        txt:=stringreplace(txt,'>',' ',[rfreplaceall]) ;
      end;
-
      //die globalen Variablen
      s1:=trim(txt);
      s2:='';
@@ -5807,7 +5748,6 @@ begin
               else MinusBegriff2:=copy(s4,2,100);
           s4:=s1;
      end;
-
      result:=true;
 end;
 function holzahldernotizen():integer;
@@ -5880,34 +5820,26 @@ end;
 
 
 
-//--------------------------------------------------------------
-//------------- Funktionen, die Zeit berechnen -----------------
-//--------------------------------------------------------------
-{
-function UpdateBearbeitungszahl():boolean
-function VergangeneZeitBerechnen(eingabe:string):string;
-function KalenderDatum(eingabe:string):string;
-function VergangeneZeit(eingabe:string):string;
-}
+
 
 function UpdateBearbeitungszahl():boolean ;
 var
-   AktuelleStunde:string  ;
-   LastChange:string;
+   AktuelleStunde: integer; //string  ;
+   LastChange:integer; //string;
 begin
 
-      AktuelleStunde:=formatdatetime('mmddhh', now);
+      AktuelleStunde:=str2int(formatdatetime('mmddhh', now));
       if AngezeigterTyp='N' then
       begin
-           LastChange:=copy(Daten[AktuelleNotizenArrayZeile,Spalte_Bearbeitungsdatum],5,6);
-           if LastChange<>AktuelleStunde then
+           LastChange:=str2int(copy(Daten[AktuelleNotizenArrayZeile,Spalte_Bearbeitungsdatum],5,6));
+           if AktuelleStunde-LastChange > 1 then
               Daten[AktuelleNotizenArrayZeile,Spalte_Bearbeitungszahl]:=
               inttostr(str2int(Daten[AktuelleNotizenArrayZeile,Spalte_Bearbeitungszahl])+1);
       end;
       if AngezeigterTyp='L' then
       begin
-          LastChange:=copy(Literatur[AktuelleLiteraturArrayZeile,Spalte_Bearbeitungsdatum],5,6);
-          if LastChange<>AktuelleStunde then
+          LastChange:=str2int(copy(Literatur[AktuelleLiteraturArrayZeile,Spalte_Bearbeitungsdatum],5,6));
+          if AktuelleStunde-LastChange > 1 then
              Literatur[AktuelleLiteraturArrayZeile,Spalte_Bearbeitungszahl]:=
                  inttostr(str2int(Literatur[AktuelleLiteraturArrayZeile,Spalte_Bearbeitungszahl])+1);
       end;
@@ -6009,7 +5941,7 @@ begin
      end;
      if vortagen = 1 then
      begin
-          res:='f';
+          res:='gestern Abend';
           if stundea < 18 then res:= 'gestern Nachmittag';
           if stundea < 14 then res:= 'gestern Mittag';
           if stundea < 12 then res:= 'gestern Morgen';
@@ -6119,6 +6051,7 @@ begin
 end;
 
 function HolAnmerkungen():boolean;
+
 var
    txt:   string;
 begin
@@ -6129,39 +6062,17 @@ begin
      gv_textposition:=0;
      with fenster do
      begin
-          if pos('#nowordwrap#',txt) > 0 then
-          begin
-              Feldinhalt.align:=alnone;
-              FeldInhalt.visible:=false;
-              feldinhalt.width:=10;
-              Feldinhalt.left:=-100;
-              AnmerkungenMemo.font.name:='Courier';
-              AnmerkungenMemo.font.size:=fsize+2;
-              AnmerkungenMemo.WordWrap:=false;
-              AnmerkungenMemo.visible:=true;
-              AnmerkungenMemo.Align:=alclient;
-              AnmerkungenMemo.Text := utf8decode(txt);
-          end else begin // normaler Text
-               if var_OptionMarkDown then  // mit Markdown im FeldInhalt
-               begin
-                    AnmerkungenMemo.visible:=false;
-                    FeldInhalt.Visible:=true;
-                    FeldInhalt.align:=alclient;
-                    FeldInhalt.Text := utf8decode(txt);
-                    Feldinhalt.SelStart:=1;
-               end else begin // kein Markdown
-                   Feldinhalt.align:=alnone;
-                   FeldInhalt.visible:=false;
-                   feldinhalt.width:=10;
-                   Feldinhalt.left:=-100;
-                   AnmerkungenMemo.font.name:=Zeichensatz;
-                   AnmerkungenMemo.font.size:=fsize;
-                   AnmerkungenMemo.WordWrap:=true;
-                    AnmerkungenMemo.visible:=true;
-                    AnmerkungenMemo.align:=alClient;
-                    AnmerkungenMemo.Text := utf8decode(txt);
-               end;
-          end;
+          FeldInhalt.Visible:=true;
+          FeldInhalt.align:=alclient;
+          FeldInhalt.Text := utf8decode(txt);
+          { für das Scrolling wird beim Scrolling nur auf den Anfang
+            des letzten Absatzes gescrollt. Der Rest bleibt unsichtbar
+            daher bei längeren Texten, die einen langen letzten Absatz
+            haben, wird eine Zeile mit einem Leerzeichen angefügt.}
+          if  (length(feldinhalt.Lines[Feldinhalt.Lines.Count-1]) > 60)
+          and  (Feldinhalt.Lines.Count > 3)
+          then  FeldInhalt.Lines.Add(' ');
+          Feldinhalt.SelStart:=1;
      end;
 end;
 
@@ -6190,6 +6101,7 @@ begin
          ZahlDerVerweise:=0;
       AngezeigterTyp:='N';
       myrow:=HolArrayZeileDesTitels(titel);
+                                                                                 //  showmessage('Datensatzaufrufen Arrayzeile durch');
       if myrow<0 then showmsg('Es gibt ein Problem mit ' + titel)  ;
       if myrow >= 0 then  //01/21: falls irgendwas schiefgeht, ist myrow = 0
       begin
@@ -6210,8 +6122,11 @@ begin
             //----------------------------------------
             LinkAufDieNotiz:= 'note://' +
                       Daten[AktuelleNotizenArrayZeile, Spalte_ID] ;
+            If length(linkaufdienotiz)<8 then
+               linkaufdienotiz:='Fehler://' ; {warum auch immer}
+
             //Die Datenbank durchsuchen
-            for i:=1 to arraysize do
+            for i:=1 to arraysize_Daten do
             begin
                  treffer:=false;
                  if pos(LinkaufdieNotiz + '_',Daten[i, Spalte_Anmerkung])>0
@@ -6219,21 +6134,27 @@ begin
                  if pos(LinkaufdieNotiz + '-',Daten[i, Spalte_Anmerkung])>0
                     then treffer:= true;
 
-                 if treffer then
+                 if (treffer) and (zahlderverweise < 90) then
                  begin
                         ZahlDerVerweise:=ZahlDerVerweise+1;
                         VerweisVonSeite:='note://' + Daten[i, Spalte_ID] + ' '
                                                   + Daten[i, Spalte_Titel];
                         VerweisArray[ZahlDerVerweise,1]:=VerweisVonSeite;
                end
-            end;
-
+            end;                                                                     //showmessage('Datensatzanzeigen vor Verweisen');
             //--Verweise aus Literaturquellen auf diese Notiz ---
             //---------------------------------------------------
             //Abklappern der LiteraturDB nach Verweisen auf diese Notiz
-            for i:=1 to arraysize do
+
+                                                                                   //showmessage(linkaufdienotiz);
+
+
+            for i:=1 to arraysize_Literatur do
             begin
-               if pos(LinkaufdieNotiz,Literatur[i, Spalte_Anmerkung])>0 then
+                 treffer:=false;
+                 if pos(LinkaufdieNotiz,Literatur[i, Spalte_Anmerkung])>0 then
+                 treffer:=true;
+               if treffer and (zahlderverweise < 90)  then
                begin
                    ZahlDerVerweise:=ZahlDerVerweise+1;
                    VerweisVonSeite:='ref://' + Literatur[i, Spalte_ID] + ' '
@@ -6247,6 +6168,7 @@ begin
                end;
             end;
 
+                                                                                    //showmessage('Datensatzanzeigen vor Kopfzeile');
             //Kopfzeile
             vor:= ZeitSeitErstellen(Daten[AktuelleNotizenArrayZeile, Spalte_Bearbeitungsdatum]) ;
             if panelerstelltam.width > 750*skalierung then
@@ -6261,17 +6183,24 @@ begin
             then Daten[AktuelleNotizenArrayZeile, Spalte_Bearbeitungszahl]:='1';
             Bearbeitungszahl:= Daten[AktuelleNotizenArrayZeile, Spalte_Bearbeitungszahl];
 
-            if  (Bearbeitungszahl <>'1')
-            and (Feldinhalt.width> 470*skalierung)
-            then
-            LabelErstelltAm.caption:=  Bearbeitungszahl + ' Bearbeitungen seit ' + LabelErstelltAm.caption;
+            if  (Bearbeitungszahl <>'1') and (Feldinhalt.width> 470*skalierung) then
+            begin  if pos('-',LabelErstelltAm.Caption)=0 then
+              begin
+                 LabelErstelltAm.caption:=
+                                          Bearbeitungszahl
+                                        + ' Bearbeitungen seit '
+                                        + LabelErstelltAm.caption
+              end else begin
+                  LabelErstelltAm.caption:= Bearbeitungszahl + ' Bearbeitungen';
 
+              end;
 
 
           end;
         end;
+      end;
   end;
-
+                                                                                    // showmessage('Datensatzaufrufen Ende');
   Result := True;
 
 end;
@@ -6289,10 +6218,15 @@ var
     zeilenzahl:integer;
     i,j,k:integer;
 begin
+                                                                                // showmessage('sortieren anfang');
      machpause();
      zeilenzahl:=0;
-     for i:=0 to MaxAnzeige do if Trefferarray[i,3] <> '' then Zeilenzahl:=Zeilenzahl+1;
-     for i:=0 to zeilenzahl  do if TrefferArray[i,2]='#' then  Trefferarray[i,TrefferArraySpalteBearbeitung]:=zukunft;
+     for i:=0 to MaxAnzeige do
+       if Trefferarray[i,3] <> ''
+          then Zeilenzahl:=Zeilenzahl+1;
+     for i:=0 to zeilenzahl  do
+       if TrefferArray[i,2]='#'
+       then  Trefferarray[i,TrefferArraySpalteBearbeitung]:=zukunft;
 
      //--- Kriterium ZEIT----
      //------------------------
@@ -6354,6 +6288,7 @@ begin
                end;
           end;
      end;
+                                                                                      //   showmessage('trefferlistesortieren ende');
      result:=true;
 end;
 
@@ -6364,6 +6299,7 @@ var
    AnzahlFixierte:            integer;
    ArrayFixierte:             array[1..100] of string;
    gefunden:                  integer; //Zahl der Treffer
+   heute:                     string;
    i,j,k:                     integer;
    lang,kurz:                 string;
    zeile:                     string;
@@ -6371,131 +6307,95 @@ var
 
 begin
   AnzahlFixierte:=0;
+  heute:=formatdatetime('yyyymmdd', now);
+
+
   //TrefferArray leeren
   for i:=0 to maxanzeige do for j:=1 to TrefferArraySpalteVolltext do Trefferarray[i,j]:='';
 
-  //Alle Datensätze ab dem Mindestdatum sollen angezeigt werden. Dieses Datum
-  //muss nur einmal in der Sitzung ermittelt werden und kann dann immer wieder
-  //benutzt werden, indem auf die globale Variable MINDESTDATUM zurückgegriffen
-  //werden kann.
-
-  //Bei sehr kleinen Datenbanken alles anzeigen. Unabhängig vom Datum
-  //Die Variablen für die Anzahl existieren schon
-
-  //Annahme: Die Datensätze sind bereits sortiert. Falls nicht, sollte der
-  //Fehler nicht groß sein.
-  if (literaturdatensatzzahl+notizendatensatzzahl) < maxAnzeige then
-     Mindestdatum:='0';
-
-  if Mindestdatum='' then //Variable nicht gesetzt
-  begin
-        if literaturdatensatzzahl < 100 then
-        begin
-             Mindestdatum:='0';
-        end else begin
-            Mindestdatum:=Literatur[Literaturdatensatzzahl-100,Spalte_Bearbeitungsdatum];
-        end;
-        if NotizenDatensatzzahl > 100 then
-        begin
-             if  Daten[NotizenDatensatzzahl-100,Spalte_Bearbeitungsdatum] > Mindestdatum
-             then Mindestdatum:=  Daten[NotizenDatensatzzahl-20,Spalte_Bearbeitungsdatum];
-        end;
-        Mindestdatum:=copy(mindestdatum,1,10)+'00'; //auf volle Stunde zurückgesetzt
-  end; //MINDESTDATUM ist jetzt bestimmt, falls es das noch nicht war. Es
-       //gibt mindestens MINDESTZAHL Treffer
-
-  //showmessage(Mindestdatum);
-  gefunden:=0;
+  { Vereinfacht. Statt eines irgendwie berechneten Mindestdatums die letzten
+    Mindestzhal Treffer.}
 
   with fenster do
   begin
        //Die Notizen durchsuchen
        //------------------------
-       for i := ArraySize downto 1  do
+       if MenuNotizenZeigen.checked then
        begin
-            Treffer:=false;      //06/2023: false ist schneller als true
-            if  (daten[i,Spalte_Bearbeitungsdatum]> MindestDatum) then Treffer:=true;
-            if treffer then //jetzt abklappern,wieso man den Treffer doch rausschmeisst
-            begin
-                  if Daten[i, Spalte_Titel] = '' then Treffer:=false;
-                  if gefunden > trunc(maxanzeige/2) then
+             gefunden:=0;
+             for i := ArraySize_Daten downto 1  do
+             begin
+                  treffer:=false;
+                  if  (daten[i,Spalte_ID]<>'') then treffer:=true;
+                  { Bedingungen, unter denen ein Treffer doch keiner ist}
+                  if treffer then
+                    if (pos('#hide#', Daten[i, Spalte_Anmerkung])>0)
+                    then treffer:=false;
+                  if treffer then
+                    if (pos('#tag#', Daten[i, Spalte_Anmerkung])=0)
+                    and (MenuNurMarkierte.Checked)
+                     then treffer:=false;
+                  if (gefunden > Mindestzahl) then treffer:=false;
+                  if (pos(heute,daten[i,Spalte_Bearbeitungsdatum])=1)
+                     then treffer:=true;
+                     // so finde ich auch ältere, heute bearbeiten Datensätze)
+                  if  treffer then
                   begin
-                       Treffer:=false;
-                       break;
+                       gefunden:=gefunden+1;
+                       if pos('#tag#',daten[i,Spalte_Anmerkung]) > 0
+                       then  Trefferarray[gefunden,1]:='*';
+                       Trefferarray[gefunden,3]:='N';                    //Typ
+                       Trefferarray[gefunden,4]:=daten[i,Spalte_ID];             //ID
+                       Trefferarray[gefunden,5]:=inttostr(i);            //Zeile im Array
+                       Trefferarray[gefunden,TrefferArraySpalteTitel]:=daten[i,Spalte_Titel];             //Titel
+                       Trefferarray[gefunden,7]:=trim(copy(daten[i,Spalte_Anmerkung],1,10000)) ;  //Textanfang
+                       Trefferarray[gefunden,7]:=StringReplace(Trefferarray[gefunden,7],#13, ' ',[rfreplaceall]);
+                       Trefferarray[gefunden,TrefferArraySpalteBearbeitung]:=daten[i,Spalte_Bearbeitungsdatum];             //Zeit
+
+                       //fixierte Notizen in die Liste eingragen
+                       if pos('#pin#',daten[i, Spalte_Anmerkung]) > 0
+                       then Trefferarray[gefunden,TrefferArraySpalteBearbeitung]:='999';
                   end;
-                  if (pos('#tag#', Daten[i, Spalte_Anmerkung])=0)
-                     and (var_OptionNurMarkierte)
-                     then Treffer:=false;
-                  if (pos('#hide#', Daten[i, Spalte_Anmerkung])>0) then treffer:=false;
-            end;
-            if  pos('#pin#',daten[i, Spalte_Anmerkung])>0 then Treffer:=true;
-               { die angepinnten werden auf jeden Fall angezeit 02/2024  }
-            if Treffer then //alle Ausschlußkriterien abgeklappert
-            begin
-                 if pos('#tag#',daten[i,Spalte_Anmerkung]) > 0 then
-                    Trefferarray[gefunden,1]:='*';
-                 Trefferarray[gefunden,3]:='N';                    //Typ
-                 Trefferarray[gefunden,4]:=daten[i,Spalte_ID];             //ID
-                 Trefferarray[gefunden,5]:=inttostr(i);            //Zeile im Array
-                 Trefferarray[gefunden,TrefferArraySpalteTitel]:=daten[i,Spalte_Titel];             //Titel
-                 Trefferarray[gefunden,7]:=trim(copy(daten[i,Spalte_Anmerkung],1,10000)) ;  //Textanfang
-                 Trefferarray[gefunden,7]:=StringReplace(Trefferarray[gefunden,7],#13, ' ',[rfreplaceall]);
-                 Trefferarray[gefunden,TrefferArraySpalteBearbeitung]:=daten[i,Spalte_Bearbeitungsdatum];             //Zeit
-
-                 //fixierte Notizen in die Liste eingragen
-                 if pos('#pin#',daten[i, Spalte_Anmerkung]) > 0 then
-                 begin
-                      Trefferarray[gefunden,TrefferArraySpalteBearbeitung]:='999';
-                 end;
-                 gefunden := gefunden + 1;
-            end;
-
+             end;
        end;
 
-       for  i:=ArraySize  downto 1 do          //11.2020: Die Bedingungen für einen Treffer aufgeräumt
+       if menuLiteraturzeigen.checked then
        begin
-            Treffer:=true;
-            if treffer then
-               if gefunden >=maxanzeige then
-               begin
-                    treffer:=false;
-                    break;
-               end;
-            if treffer then
-               if Literatur[i,Spalte_Jahr]='' then Treffer:=false;
-            if treffer then
-                 if (Literatur[i,Spalte_Bearbeitungsdatum] < MindestDatum) and (gefunden > 50) then treffer:=false; //auf jeden Fall 50 Einträge
+             for  i:=ArraySize_Literatur  downto 1 do
+             begin
+                  treffer:=false;
+                  if  (Literatur[i,Spalte_ID]<>'') then treffer:=true;
+                  { Bedingungen, unter denen ein Treffer doch keiner ist}
+                  if treffer then
+                    if (pos('#hide#', Literatur[i, Spalte_Anmerkung])>0)
+                    then treffer:=false;
+                  if treffer then
+                    if (pos('#tag#', Literatur[i, Spalte_Anmerkung])=0)
+                    and (MenuNurMarkierte.Checked)
+                     then treffer:=false;
+                  if (gefunden > Mindestzahl*2) then treffer:=false;
+                  if (pos(heute,Literatur[i,Spalte_Bearbeitungsdatum])=1)
+                     then treffer:=true;
+                     // so finde ich auch ältere, heute bearbeiten Datensätze)
 
-            if treffer then
-               if  (pos('#tag#',Literatur[i, Spalte_Anmerkung]) =0)  and (var_OptionNurMarkierte) then
-                   treffer:=false;
-            if treffer then
-               if (pos('#hide#', Literatur[i, Spalte_Anmerkung])>0) then treffer:=false;
+                  if treffer then
+                  begin
+                        gefunden:=gefunden+1;
+                        if pos('#tag#',Literatur[i,Spalte_Anmerkung]) > 0 then
+                        Trefferarray[gefunden,1]:='*';
+                        Trefferarray[gefunden,3]:='L';                              //Typ
+                        Trefferarray[gefunden,4]:=Literatur[i,Spalte_ID];
+                        Trefferarray[gefunden,5]:=inttostr(i);                      //Zeile im Array
+                        Trefferarray[gefunden,TrefferArraySpalteTitel]:=Literatur[i,Spalte_Erstautor] + ' ('+  Literatur[i,Spalte_Jahr] + ') '  +  Literatur[i,Spalte_Titel] ;           //Titel
+                        Trefferarray[gefunden,7]:=copy(Literatur[i,Spalte_Anmerkung],1,10000) ;  //Textanfang
+                        Trefferarray[gefunden,TrefferArraySpalteBearbeitung]:=Literatur[i,Spalte_Bearbeitungsdatum];             //Zeit
 
-
-            if  pos('#pin#',Literatur[i, Spalte_Anmerkung])>0 then Treffer:=true;
-               { die angepinnten werden auf jeden Fall angezeit 02/2024  }
-            if treffer then  //alle Ausschlußkriterien abgeklappert
-            begin
-                if pos('#tag#',Literatur[i,Spalte_Anmerkung]) > 0 then
-                    Trefferarray[gefunden,1]:='*';
-                 Trefferarray[gefunden,3]:='L';                              //Typ
-                 Trefferarray[gefunden,4]:=Literatur[i,Spalte_ID];
-                 Trefferarray[gefunden,5]:=inttostr(i);                      //Zeile im Array
-                 Trefferarray[gefunden,TrefferArraySpalteTitel]:=Literatur[i,Spalte_Erstautor] + ' ('+  Literatur[i,Spalte_Jahr] + ') '  +  Literatur[i,Spalte_Titel] ;           //Titel
-                 Trefferarray[gefunden,7]:=copy(Literatur[i,Spalte_Anmerkung],1,10000) ;  //Textanfang
-                 Trefferarray[gefunden,TrefferArraySpalteBearbeitung]:=Literatur[i,Spalte_Bearbeitungsdatum];             //Zeit
-
-                 //Fixierter
-                 if pos('#pin#',Literatur[i, Spalte_Anmerkung]) > 0  then
-                 begin
-                      Trefferarray[gefunden,TrefferArraySpalteBearbeitung]:='999';
-
-                 end;
-                 gefunden := gefunden + 1;
-            end;
-       end;
-
+                       //Fixierter
+                       if pos('#pin#',Literatur[i, Spalte_Anmerkung]) > 0
+                       then Trefferarray[gefunden,TrefferArraySpalteBearbeitung]:='999';
+                  end;
+             end;
+        end;
         //----Ausgabe und Formatierung der Fixierten
         //------------------------------------------
         //nach Länge sortieren. Die langen in die linke Spalte
@@ -6510,8 +6410,6 @@ begin
                     ArrayFixierte[k]:=kurz;
                  end;
         end;
-
-
       Trefferlistesortieren('zeit');
       Liste.rowcount :=0;
       ListeNotizGliedern.items.clear;
@@ -6519,26 +6417,20 @@ begin
                                        //Das sind nicht alle Treffer der Datenbank
 
 
+
       j:=0;
       for i:=0 to gefunden do
       begin
-
            Liste.Cells[ListeSpalteTitel, i] := Trefferarray[i,TrefferArraySpalteTitel]  ;
            ListeNotizGliedern.items.Add( Trefferarray[i,TrefferArraySpalteTitel]);
-           if (Trefferarray[i,2]<>'#') and (Trefferarray[i,4]<>'')  then
-           begin
-                j:=j+1;
-                Liste.Cells[ListeSpalteNummer,i]:=inttostr(j) + '.';
-
-           end;
       end;
 
-      Liste.Row := 0; //1/2021 sonst wird Zeile 2 angezeigt.
-      zeile := Liste.Cells[3, 0];
-      if zeile <> '' then  DatensatzAufrufen(zeile);
+      Liste.Row := 0;
 
-      LeereListenZeilenAmEndeLoeschen()
+      machpause();
 
+      LeereListenZeilenAmEndeLoeschen() ;
+      ListeSchieberHeight();
 
   end;
 
@@ -6620,7 +6512,6 @@ begin
 
            Daten[zeileUrsprung,Spalte_Bearbeitungsdatum]:= formatdatetime('yyyymmddhhnn', now);
            NotizVolltext(ZeileUrsprung);
-           Speicherbedarf('i');
            ichanged:=true;
            ineedssorting:=true;
         end;
@@ -6636,7 +6527,6 @@ begin
                Literatur[ZeileUrsprung,Spalte_Bearbeitungsdatum]:= formatdatetime('yyyymmddhhnn', now);
                lneedssorting:=true;
                LiteraturVolltext(ZeileUrsprung);
-               Speicherbedarf('l');
                lchanged:=true;
         end;
    end;
@@ -6648,7 +6538,6 @@ begin
               Daten[ZeileZiel,Spalte_Anmerkung] + #10#13 + LinktextUrsprung + ' ';
            Daten[zeileZiel,Spalte_Bearbeitungsdatum]:= formatdatetime('yyyymmddhhnn', now);
            NotizVolltext(ZeileZiel);
-           Speicherbedarf('i');
            ichanged:=true;
            ineedssorting:=true;
         end;
@@ -6662,7 +6551,6 @@ begin
            Literatur[zeileZiel,Spalte_Bearbeitungsdatum]:= formatdatetime('yyyymmddhhnn', now);
            lneedssorting:=true;
            LiteraturVolltext(ZeileZiel);
-           Speicherbedarf('l');
            lchanged:=true;
         end;
    end;
@@ -6693,7 +6581,6 @@ begin
   machpause();
 
   lchanged:=true;
-  Speicherbedarf('l');
   lneedssorting:=true;
   result:=true;
 end;
@@ -6708,9 +6595,7 @@ end;
 
 function LiteraturDatenbankKomplettAbspeichern():boolean;
 var
-         Datei:           string;
          i:               integer;
-         ListOfFiles:     Tstringlist;
          pt:              string;
          str:             Tstringlist;
 begin
@@ -6726,7 +6611,7 @@ begin
              str.Add('<version>6</version>');
              str.Add('<datensatzzahl>' + inttostr(GetNumberOfRecords('literatur')) + '</datensatzzahl>');
              str.Add('<Daten>');
-          for i:= 1 to Arraysize do
+          for i:= 1 to Arraysize_Literatur do
           begin
                if Literatur[i,1] <>'' then  //Zeile ist besetzt;
                begin
@@ -6946,6 +6831,7 @@ end;
 
 function LiteraturIdAnzeigen(id:string):boolean;
 var
+  Bearbeitungszahl                :String;
   LinkDieserSeite                 :string;
   i                               :integer;
   j:                              integer;
@@ -7009,7 +6895,7 @@ begin
              //========Notizen, die auf die Quelle Bezug nehmen==========
              //==========================================================
              LinkDieserSeite:= Literatur[AktuelleLiteraturArrayZeile,1] ;
-             for i := 1 to ArraySize  do  //Notizen DB durchsuchen
+             for i := 1 to ArraySize_Daten  do  //Notizen DB durchsuchen
              begin
                    VerweisGefunden:=False;
                    if (pos(LinkDieserSeite, Daten[i, Spalte_Anmerkung]) > 0) then
@@ -7040,7 +6926,7 @@ begin
              end;
              //========Quellen, die auf die Quelle Bezug nehmen==========
              //==========================================================
-             for i := 1 to ArraySize  do
+             for i := 1 to ArraySize_Literatur  do
              begin
                   Treffer:=false;
                   if (pos(LinkDieserSeite, Literatur[i, Spalte_Anmerkung]) > 0) then
@@ -7096,14 +6982,20 @@ begin
                (length(Literatur[AktuelleLiteraturArrayZeile, Spalte_Bearbeitungszahl])< 1)
              then
                  Literatur[AktuelleLiteraturArrayZeile, Spalte_Bearbeitungszahl]:='1';
-
-             if (Literatur[AktuelleLiteraturArrayZeile, Spalte_Bearbeitungszahl] <> '1')
-             and (Feldinhalt.width> 470)
-             then
-               LabelErstelltAm.caption:=  Literatur[AktuelleLiteraturArrayZeile, Spalte_Bearbeitungszahl] + ' Bearbeitungen seit ' + LabelErstelltAm.caption;
-
-
-
+             Bearbeitungszahl:=Literatur[AktuelleLiteraturArrayZeile, Spalte_Bearbeitungszahl];
+             if (bearbeitungszahl<> '1')
+             and (Feldinhalt.width> 470) then
+             begin
+                  if pos('-',LabelErstelltAm.Caption)=0 then
+                  begin
+                       LabelErstelltAm.caption:=
+                                          Bearbeitungszahl
+                                        + ' Bearbeitungen seit '
+                                        + LabelErstelltAm.caption
+                  end else begin
+                      LabelErstelltAm.caption:= Bearbeitungszahl + ' Bearbeitungen';
+                  end;
+              end;
         end; // ende with Fenster
     end else begin
 
@@ -7119,7 +7011,7 @@ var
   i:    integer ;
   typ:  string;
 begin
-      with formtiteldaten do
+      with Fenster do
       begin
           i:=HolArrayZeileDerLiteraturId(zahlenausfiltern(litid));
 
@@ -7128,7 +7020,6 @@ begin
           if typ='Artikel' then RadioArtikel.checked:=true;
           if typ='Kapitel' then RadioKapitel.checked:=true;
           if typ='Sammelband' then RadioSammelband.checked:=true;
-          //if typ='Webseite' then RadioWebseite.checked:=true;
 
           TitelDatenmatrix.Cells[1,0]:=Literatur[i,Spalte_autor];
           TitelDatenmatrix.Cells[1,1]:=Literatur[i,Spalte_titel];
@@ -7149,7 +7040,6 @@ begin
 
 
           tmphinweis:=                 '[=' + Literatur[i,Spalte_ID]+ '-abc=]';
-          caption:='Titeldaten #' + Literatur[i,Spalte_ID];
       end;
 
       result:=true;
@@ -7163,7 +7053,7 @@ begin
   Fenster.timer.enabled:=False;
   with fenster do
   begin
-       savechangestoarray();
+       if istextchanged then savechangestoarray();
        if Fenster.ActiveControl=Feldinhalt then typ:=0 else typ:=1 ;
           //Doppeklick in Feldinhalt beim ersten Klick abfangen
        link:=trim2(link); //sollte eigentlich nicht nötig sein, aber....
@@ -7173,6 +7063,7 @@ begin
        if pos('[=',link)=1 then typ:=4; // Literaturquelle
        if pos('note://',link)=1 then typ:=5; //Notiz
        if pos('ref://',link)=1 then typ:=6; //Quelle alternatives Format
+       if pos('[[',link)=1 then typ:=7; // Notiz
 
 
 
@@ -7245,11 +7136,64 @@ begin
            end;
 
       end;
+
+
+      if typ=7 then //Notiz [[1234
+      begin
+
+           link:= StringReplace(Link,'_' , ' ', [rfReplaceAll]);
+           //Sicherheitshalber falls Zahlen im Titel
+           link:=GetFirstWord(link);
+           link:=ZahlenAusfiltern(link);
+           AktuelleNotizID:=link;
+           titel:= HolTitelderNotizID(str2int(link));
+           if pos('<gelöscht',titel)=0 then
+           begin
+                DatensatzAufrufen(titel);
+                ZeigeTreeviewItemInListe(titel);
+           end else begin
+               showmsg('Hier stimmt etwas nicht. Diese Notiz existiert nicht (mehr)');
+           end;
+
+      end;
+
+
       machpause();
       Feldinhalt.sellength:=0;
   end;
+
   Fenster.Timer.enabled:=true;
   result:=true;
+end;
+
+function Gliederungmd():boolean;
+var
+  anfang:                 integer;
+  StandardZeichen:        TFontParams;
+  titel:                  string ;
+begin
+     titel:=GetIni('gliederungsdatei','ideen.tree');
+     titel:=copy(titel,1,length(titel)-5);
+     with Standardzeichen do //normaler Text ohne Formatierungen
+     begin
+         Size:=12;
+         Color:=Fenster.FeldInhalt.font.color;
+      //   BkColor:=Fenster.Gliederung.color;
+         hasBkClr:=false;
+         Style:=[];
+     end;
+     with fenster.memogliederungen do
+     begin
+          SetRangeparams(0,1000,[ tmm_backcolor,
+                                  tmm_Size,
+                                  tmm_Color,
+                                  tmm_styles],
+                                  Standardzeichen,
+                                  [],                //Attribute dazu
+                                  [fsbold,fsunderline]); //Attribute weg
+          anfang:= Search(titel,0,1000,[]);
+          SetRangeParams(anfang, length(titel), [tmm_styles], '',0,  0, [fsbold,fsunderline], []);
+     end;
 end;
 
 function formatmd(von,laenge:integer;highlightkeyword:boolean):boolean;
@@ -7259,28 +7203,57 @@ var
     Absatzformatieren:      boolean;
     anfang:                 integer;
     Anmerkung:              tparametric;
+    code:                   boolean;
     ende:                   integer;
     Hintergrund:            TFontParams;
     i:                      integer;
     Ueberschrift:           tparametric;
-    Spiegelstrich:          tparametric;
     nummer:                 tparametric;
     StandardAbsatz:         tparametric;
     StandardZeichen:        TFontParams;
+    tabulator:              integer;
     txt:                    string;
     windowsliste:           tparametric;
     urlcolor:               tcolor;
     wort:                   string;
 
 begin
-     Abstand:= trunc(fsize/4) ;
+     if pos('#nowordwrap#',fenster.feldinhalt.lines.Text) > 0
+     then code:=true else code:=false;
+
      if abstand <6 then Abstand:=6;
      if var_optiondarkmode
      then urlcolor:=clAqua //clgray
      else   urlcolor:=clblue;
      Fenster.Feldinhalt.font.size:=fsize;
 
-     fenster.Feldinhalt.Font.Name:=Zeichensatz;
+     // #nowordwrap# prüfen. Ggf Format und Tabulatoren anpassen
+     // --------------------------------------------------------
+     if code then
+     begin
+          fenster.Feldinhalt.Font.Name:='Courier';
+          if fenster.feldinhalt.wordwrap <> false then fenster.Feldinhalt.WordWrap:=false;
+          fenster.feldinhalt.ScrollBars:=sshorizontal;
+          InitTabStopList(StopList, [25]  );
+          Abstand:= 0 ;
+     end else begin  // Text, für den eine Tabulatorliste definiert wird
+         fenster.Feldinhalt.Font.Name:=Zeichensatz;
+         if fenster.feldinhalt.wordwrap <> true then fenster.Feldinhalt.WordWrap:=true;
+         fenster.feldinhalt.ScrollBars:=ssnone;
+
+         { unterschiedliche Auflösungen. Ein Multiplikator?
+           Mac Mini mit Linux: 10
+         }
+         tabulator:= trunc(fsize *10 * skalierung);
+         InitTabStopList(StopList, [ tabulator,
+                                     tabulator+ fsize*2*skalierung,
+                                     tabulator+ fsize*4*skalierung,
+                                     tabulator+ fsize*8*skalierung
+                                     ]);
+         Abstand:= trunc(fsize/4) ;
+     end;
+
+
      fenster.Feldinhalt.SetParaTabs(1, 9999, StopList);
 
 
@@ -7316,14 +7289,6 @@ begin
          FirstLine := 20;
      end;
 
-     with Spiegelstrich do        //der Name zickt unter Windows.
-     begin                        //nach Stochern im Nebel 02/2025
-         SpaceBefore:=0;          //rausgefunden
-         SpaceAfter:=0;
-         Headindent := 10;
-         Tailindent := 10;
-         FirstLine := 0;
-     end;
      with WindowsListe do
      begin
          SpaceBefore:=0;
@@ -7504,6 +7469,7 @@ begin
      begin
           txt:=Fenster.Feldinhalt.gettext(anfang,150);
           while pos(#10,txt) > 0 do txt:=copy(txt,1,length(txt)-1);
+          while pos(#13,txt) > 0 do txt:=copy(txt,1,length(txt)-1);
           while pos(' ',txt) > 0 do txt:=copy(txt,1,length(txt)-1);
 
           Fenster.FeldInhalt.SetRangeParams( anfang, length(txt),
@@ -7519,6 +7485,7 @@ begin
      begin
          txt:=Fenster.Feldinhalt.gettext(anfang,150);
          while pos(#10,txt) > 0 do txt:=copy(txt,1,length(txt)-1);
+         while pos(#13,txt) > 0 do txt:=copy(txt,1,length(txt)-1);
          while pos(' ',txt) > 0 do txt:=copy(txt,1,length(txt)-1);
          Fenster.FeldInhalt.SetRangeParams( anfang, length(txt),
                                             [tmm_styles, tmm_color], '',0,
@@ -7534,6 +7501,7 @@ begin
      begin
          txt:=Fenster.Feldinhalt.gettext(anfang,150);
          while pos(#10,txt) > 0 do txt:=copy(txt,1,length(txt)-1);
+         while pos(#13,txt) > 0 do txt:=copy(txt,1,length(txt)-1);
          while pos(' ',txt) > 0 do txt:=copy(txt,1,length(txt)-1);
          Fenster.FeldInhalt.SetRangeParams( anfang, length(txt),
                                             [tmm_styles, tmm_color], '',0,
@@ -7553,6 +7521,20 @@ begin
                                         urlcolor,[fsunderline], []);
 
           anfang:=Fenster.FeldInhalt.Search('[=',anfang+1 ,von+laenge-anfang,[]);
+     end;
+
+     //------------------ [[ ]] -------------
+     //---------------------------------------
+     anfang:=Fenster.FeldInhalt.Search('[[',von,laenge,[]);
+     while anfang > -1 do
+     begin
+     txt:=Fenster.Feldinhalt.gettext(anfang,150);
+     while pos(']',txt) > 0 do txt:=copy(txt,1,length(txt)-1);
+     Fenster.FeldInhalt.SetRangeParams( anfang, length(txt)+2,
+                                        [tmm_styles, tmm_color], '',0,
+                                        urlcolor,[fsunderline], []);
+
+          anfang:=Fenster.FeldInhalt.Search('[[',anfang+1 ,von+laenge-anfang,[]);
      end;
 
 
@@ -7804,7 +7786,7 @@ end;
 procedure TFenster.LabelOptionBibtexClick(Sender: TObject);
 
 begin
-    OptionBibtex.checked:=not OptionBibtex.checked;
+
 end;
 
 procedure TFenster.LabelHerausnehmenClick(Sender: TObject);
@@ -7932,7 +7914,7 @@ end;
 procedure TFenster.MenuSuchenVolltextClick(Sender: TObject);
 begin
   Registerkarten.ActivePage := IdeenSeite;
-  Sucheingabe.SetFocus;
+  FocusTo('Sucheingabe');
 end;
 
 procedure TFenster.LabelModulStylerClick(Sender: TObject);
@@ -7989,7 +7971,7 @@ end;
 procedure TFenster.ListeMouseWheel(Sender: TObject; Shift: TShiftState;
   WheelDelta: integer; MousePos: TPoint; var Handled: boolean);
 begin
-  liste.setfocus;
+  FocusTo('Liste');
   timer.Enabled := false;
   timer.Enabled := True;
 
@@ -8005,25 +7987,16 @@ procedure TFenster.NeueKarteClick(Sender: TObject);
 begin
      if schreibrecht() then
      begin
-           saveChangestoArray();
-           RegisterSuche.activepage:=SeiteVolltextsuche; //Muss sein, weil der Aufruf
-                                                         //aus der Gliederung keinen
-                                                         //Sinn ergibt 12/2023
-
+           if istextchanged then  saveChangestoArray();
+           RegisterSuche.activepage:=SeiteVolltextsuche;
            machpause();
-           with FormNeu do
-           begin
-               ImageNeueNotiz.Picture:=    ImageSchlagwortWeg.picture  ;
-                   { könnte sonst zum Absturz führen, weil das Fenster
-                     noch nicht erzeugt ist }
-               top:=fenster.top+150;
-               left:=fenster.left+150;
-               EingabeTitelneueNotiz.text:='';
-               OptionMitverweis.checked:=false;
-               show;
-               EingabeTitelNeueNotiz.setfocus;
+           EingabeTitelneueNotiz.text:='';
+           OptionMitverweis.checked:=false;
+           PanelNeueQuelle.height:= trunc(165*Skalierung);
+           resizewindow();
+           FocusTo('EingabeTitelNeueNotiz');
 
-           end;
+
            VerweisAnfangTyp:=TrefferArray[Liste.Row,3] ;
      end;
 
@@ -8034,10 +8007,7 @@ end;
 
 
 procedure TFenster.IdeenSpeichernClick(Sender: TObject);
-var
-   Datei:                string;
-   i:                    integer;
-   ListOfFiles:          TStringList;
+
 begin
   if RegisterSuche.Activepage=SeiteVolltextsuche then  ListeClick(self);
   if Schreibrecht() then
@@ -8050,17 +8020,7 @@ begin
       end;
 
   end;
-  { Die Ideen sind gespeichert. Dann kann das tmp Verzeichnis geleert werden}
-  {
-  ListOfFiles := TStringList.Create;
-  FileUtil.FindAllFiles(ListOfFiles, TMPVerzeichnisIdeen, '*', False);
-  for i:=0 to ListOfFiles.Count -1 do
-  begin
-       Datei:=ListOfFiles.Strings[i];
-       DeleteFilePlus(Datei);
-  end;
-  ListOfFiles.free;
-  }
+
   ichanged:=false;
 end;
 
@@ -8077,114 +8037,122 @@ begin
      Begriff:=Sucheingabe.text;
   if Registersuche.activepage=SeiteGliederung then
      Begriff:=Sucheingabe2.text;
+  begriff:=trim(begriff);
   if length(begriff) >1 then
   begin
-       VollTextKomplettieren(ArraySize);  //Muss der Volltext noch zu ende erstellt werden?
+       VollTextKomplettieren();  //Muss der Volltext noch zu ende erstellt werden?
        for i:=0 to 1000 do for j:=1 to TrefferArraySpalteVolltext do TrefferArray[i,j]:='';
        suchbegriffe(begriff);
        AktuelleNotizSuche:=begriff;
        Liste.Rowcount := maxanzeige+1;
 
-       VolltextBisZeile:=ArraySize;
      //--Notizen durchsuchen--
      //-----------------------
      if length(bis) + length(ab) < 2 then  { bei Einschränkung der Jahreszahl
                                              sind die Notizen sofort raus }
      begin
-           for i := ArraySize downto 1  do
+           if menunotizenzeigen.checked then
            begin
-                Treffer:=true;
-                if Treffer then if Trefferzahl >= (MaxAnzeige/2) then Treffer:=false;
-                if Treffer then if (pos(s1, daten[i, Spalte_Volltext]) = 0) then Treffer:=false;
-                if Treffer then if (pos(s2, daten[i, Spalte_Volltext]) = 0) then Treffer:=false;
-                if Treffer then if (pos(s3, daten[i, Spalte_Volltext]) = 0) then Treffer:=false;
-                if Treffer then if (pos(s4, daten[i, Spalte_Volltext]) = 0) then Treffer:=false;
-                if Treffer then if (pos(s5, daten[i, Spalte_Volltext]) = 0) then Treffer:=false;
-                if Treffer then
-                   if length(MinusBegriff1)>2 then
-                      if (pos(MinusBegriff1, daten[i, Spalte_Volltext]) > 0)
-                      then Treffer:=false;
-                if Treffer then
-                   if length(MinusBegriff2)>2 then
-                      if (pos(MinusBegriff2, daten[i, Spalte_Volltext]) > 0)
-                      then Treffer:=false;
-                if Treffer then if  (pos('#tag#',Daten[i, Spalte_Anmerkung]) =0 ) and   (Var_optionNurMarkierte)  then Treffer:=false;
-                if pos('#pin#', Daten[i, Spalte_Anmerkung])> 0 then treffer:=true;
-                //Aufruf auf der Hauptseite
-                if treffer  then
-                begin
-                     if pos('#tag#', Daten[i, Spalte_Anmerkung]) > 0 then
-                        Trefferarray[trefferzahl,1]:='*';
-                     Trefferarray[trefferzahl,3]:='N';                    //Typ
-                     Trefferarray[trefferzahl,4]:=daten[i,1];             //ID
-                     Trefferarray[trefferzahl,5]:=inttostr(i);            //Zeile im Array
-                     Trefferarray[trefferzahl,TrefferArraySpalteTitel]:= daten[i,Spalte_Titel];
-                     Trefferarray[trefferzahl,7]:= copy(daten[i,Spalte_Anmerkung],1,10000) ;  //Inhalt der Anmerkung
-                     Trefferarray[trefferzahl,TrefferArraySpalteBearbeitung]:= daten[i,Spalte_Bearbeitungsdatum];             //Zeit
+               for i := ArraySize_Daten downto 1  do
+               begin
+                    Treffer:=true;
+                    if Treffer then if Trefferzahl >= (MaxAnzeige/2) then Treffer:=false;
+                    if Treffer then if (pos(s1, daten[i, Spalte_Volltext]) = 0) then Treffer:=false;
+                    if Treffer then if (pos(s2, daten[i, Spalte_Volltext]) = 0) then Treffer:=false;
+                    if Treffer then if (pos(s3, daten[i, Spalte_Volltext]) = 0) then Treffer:=false;
+                    if Treffer then if (pos(s4, daten[i, Spalte_Volltext]) = 0) then Treffer:=false;
+                    if Treffer then if (pos(s5, daten[i, Spalte_Volltext]) = 0) then Treffer:=false;
+                    if Treffer then
+                       if length(MinusBegriff1)>2 then
+                          if (pos(MinusBegriff1, daten[i, Spalte_Volltext]) > 0)
+                          then Treffer:=false;
+                    if Treffer then
+                       if length(MinusBegriff2)>2 then
+                          if (pos(MinusBegriff2, daten[i, Spalte_Volltext]) > 0)
+                          then Treffer:=false;
+                    if Treffer then if  (pos('#tag#',Daten[i, Spalte_Anmerkung]) =0 ) and   (MenuNurMarkierte.Checked)  then Treffer:=false;
+                    if pos('#pin#', Daten[i, Spalte_Anmerkung])> 0 then treffer:=true;
+                    //Aufruf auf der Hauptseite
+                    if treffer  then
+                    begin
+                         if pos('#tag#', Daten[i, Spalte_Anmerkung]) > 0 then
+                            Trefferarray[trefferzahl,1]:='*';
+                         Trefferarray[trefferzahl,3]:='N';                    //Typ
+                         Trefferarray[trefferzahl,4]:=daten[i,1];             //ID
+                         Trefferarray[trefferzahl,5]:=inttostr(i);            //Zeile im Array
+                         Trefferarray[trefferzahl,TrefferArraySpalteTitel]:= daten[i,Spalte_Titel];
+                         Trefferarray[trefferzahl,7]:= copy(daten[i,Spalte_Anmerkung],1,10000) ;  //Inhalt der Anmerkung
+                         Trefferarray[trefferzahl,TrefferArraySpalteBearbeitung]:= daten[i,Spalte_Bearbeitungsdatum];             //Zeit
 
-                       { damit die angepinnten ganz oben angezeigt werden liegt das
-                         letzte Bearbeitungsatum in der Zukunft. Das wird in knapp
-                         8.000 Jahren Ärger geben. 03/2024    }
-                     if pos('#pin#', Daten[i, Spalte_Anmerkung])> 0 then
-                        Trefferarray[trefferzahl,TrefferArraySpalteBearbeitung]:= '999';
+                           { damit die angepinnten ganz oben angezeigt werden liegt das
+                             letzte Bearbeitungsatum in der Zukunft. Das wird in knapp
+                             8.000 Jahren Ärger geben. 03/2024    }
+                         if pos('#pin#', Daten[i, Spalte_Anmerkung])> 0 then
+                            Trefferarray[trefferzahl,TrefferArraySpalteBearbeitung]:= '999';
 
-                     trefferzahl := trefferzahl + 1;
-                end;
+                         trefferzahl := trefferzahl + 1;
+                    end;
 
+               end;
            end;
+
      end;
      //--Literatur durchsuchen--
      //-----------------------
-     for i:= arraysize downto 1 do
+     if menuLiteraturzeigen.checked then
      begin
-            Treffer:=true;
-            if Trefferzahl >= Maxanzeige then Treffer:=false;
-            if Treffer then if (pos(s1, Literatur[i, Spalte_Volltext]) = 0) then Treffer:=false;
-            if Treffer then if (pos(s2, Literatur[i, Spalte_Volltext]) = 0) then Treffer:=false;
-            if Treffer then if (pos(s3, Literatur[i, Spalte_Volltext]) = 0) then Treffer:=false;
-            if Treffer then if (pos(s4, Literatur[i, Spalte_Volltext]) = 0) then Treffer:=false;
-            if Treffer then if (pos(s5, Literatur[i, Spalte_Volltext]) = 0) then Treffer:=false;
-            if Treffer then
-               if length(MinusBegriff1)>1 then
-                  if (pos(MinusBegriff1, Literatur[i, Spalte_Volltext]) > 0)
-                  then Treffer:=false;
-            if Treffer then
-               if length(MinusBegriff2)>1 then
-                  if (pos(MinusBegriff1, Literatur[i, Spalte_Volltext]) > 0)
-                  then Treffer:=false;
-            if Treffer then if (pos('#tag#',Literatur[i, Spalte_Anmerkung]) =0 )
-                            and (Var_OptionNurMarkierte)  then Treffer:=false;
-            if pos('#pin#',Literatur[i, Spalte_Anmerkung]) > 0 then Treffer:=true;
-            if Treffer then
-            begin
-                 if length(ab)=4 then
-                 begin
-                      if Literatur[i,Spalte_Jahr] <= ab then Treffer:=false;
-                 end;
-            end;
-            if (Treffer) and  (length(bis)=4) then
-                 if Literatur[i,Spalte_Jahr] >= bis then Treffer:=false;
+           for i:= arraysize_Literatur downto 1 do
+           begin
+                  Treffer:=true;
+                  if Trefferzahl >= Maxanzeige then Treffer:=false;
+                  if Treffer then if (pos(s1, Literatur[i, Spalte_Volltext]) = 0) then Treffer:=false;
+                  if Treffer then if (pos(s2, Literatur[i, Spalte_Volltext]) = 0) then Treffer:=false;
+                  if Treffer then if (pos(s3, Literatur[i, Spalte_Volltext]) = 0) then Treffer:=false;
+                  if Treffer then if (pos(s4, Literatur[i, Spalte_Volltext]) = 0) then Treffer:=false;
+                  if Treffer then if (pos(s5, Literatur[i, Spalte_Volltext]) = 0) then Treffer:=false;
+                  if Treffer then
+                     if length(MinusBegriff1)>1 then
+                        if (pos(MinusBegriff1, Literatur[i, Spalte_Volltext]) > 0)
+                        then Treffer:=false;
+                  if Treffer then
+                     if length(MinusBegriff2)>1 then
+                        if (pos(MinusBegriff1, Literatur[i, Spalte_Volltext]) > 0)
+                        then Treffer:=false;
+                  if Treffer then if (pos('#tag#',Literatur[i, Spalte_Anmerkung]) =0 )
+                                  and (MenuNurMarkierte.Checked)  then Treffer:=false;
+                  if pos('#pin#',Literatur[i, Spalte_Anmerkung]) > 0 then Treffer:=true;
+                  if Treffer then
+                  begin
+                       if length(ab)=4 then
+                       begin
+                            if Literatur[i,Spalte_Jahr] <= ab then Treffer:=false;
+                       end;
+                  end;
+                  if (Treffer) and  (length(bis)=4) then
+                       if Literatur[i,Spalte_Jahr] >= bis then Treffer:=false;
 
 
 
-            if treffer then
-            begin
-                 if pos('#tag#',Literatur[i, Spalte_Anmerkung]) > 0 then
-                    Trefferarray[trefferzahl,1]:='*';
-                 Trefferarray[trefferzahl,3]:='L';                    //Typ
-                 Trefferarray[trefferzahl,4]:=Literatur[i,1];         //ID
-                 Trefferarray[trefferzahl,5]:=inttostr(i);            //Zeile im Array
-                 Trefferarray[trefferzahl,TrefferArraySpalteTitel]:=Literatur[i,Spalte_Erstautor] + ' ('+  Literatur[i,Spalte_Jahr] + ') '  +  Literatur[i,Spalte_Titel] ;           //Titel
-                 Trefferarray[trefferzahl,7]:=copy(Literatur[i,Spalte_Anmerkung],1,1000) ;  //Textanfang
-                 Trefferarray[trefferzahl,TrefferArraySpalteBearbeitung]:=Literatur[i,Spalte_Bearbeitungsdatum];
+                  if treffer then
+                  begin
+                       if pos('#tag#',Literatur[i, Spalte_Anmerkung]) > 0 then
+                          Trefferarray[trefferzahl,1]:='*';
+                       Trefferarray[trefferzahl,3]:='L';                    //Typ
+                       Trefferarray[trefferzahl,4]:=Literatur[i,1];         //ID
+                       Trefferarray[trefferzahl,5]:=inttostr(i);            //Zeile im Array
+                       Trefferarray[trefferzahl,TrefferArraySpalteTitel]:=Literatur[i,Spalte_Erstautor] + ' ('+  Literatur[i,Spalte_Jahr] + ') '  +  Literatur[i,Spalte_Titel] ;           //Titel
+                       Trefferarray[trefferzahl,7]:=copy(Literatur[i,Spalte_Anmerkung],1,1000) ;  //Textanfang
+                       Trefferarray[trefferzahl,TrefferArraySpalteBearbeitung]:=Literatur[i,Spalte_Bearbeitungsdatum];
 
-                 //damit die angepinnten ganz oben angezeigt werden 03/2024
-                 if pos('#pin#',Literatur[i, Spalte_Anmerkung]) > 0 then
-                  Trefferarray[trefferzahl,TrefferArraySpalteBearbeitung]:= '999';
+                       //damit die angepinnten ganz oben angezeigt werden 03/2024
+                       if pos('#pin#',Literatur[i, Spalte_Anmerkung]) > 0 then
+                        Trefferarray[trefferzahl,TrefferArraySpalteBearbeitung]:= '999';
 
-                 trefferzahl := trefferzahl + 1;
+                       trefferzahl := trefferzahl + 1;
 
-            end;
+                  end;
+           end;
+
      end;
 
 
@@ -8193,7 +8161,7 @@ begin
 
         //Liste sortieren
         if (trefferzahl  <= maxanzeige) and (trefferzahl > 1) then
-           if (not var_optionalphasort) then
+           if (not MenuSortAlpha.checked) then
               TrefferlisteSortieren('zeit')
            else
              TrefferlisteSortieren('alphabet');
@@ -8215,15 +8183,20 @@ begin
       begin
           TrefferzahlAnzeigen();
       end;
+
+
+
       if PanelKombinierterSchlagwoerter.height > 100 then GrenzeSchlagwortsucheEinClick(self);
       { In die Liste auf der Gliederungsseite übertragen. Brauch ich
         vielleicht nicht, kostet aber nix.}
       ListeNotizGliedern.Items.clear;
       for i:=0 to liste.rowcount do
-      begin
            listeNotizGliedern.Items.Add(Trefferarray[i, TrefferArraySpalteTitel]);
-      end;
+      ListeSchieberHeight();
+      Scrollbarlisteschieber.top:=10;
 
+  end else begin //die Suchanfrage ist leer
+      //  AlleAnzeigenClick(self);
   end;
 
 end;
@@ -8233,66 +8206,80 @@ procedure TFenster.SuchEingabeKeyDown(Sender: TObject; var Key: word;
 
 begin
   timer.enabled:=false;   //muss wechseln, sonst springt der timer sofort an
-  if (Registerkarten.activepage <> Ideenseite)
-  then
+
+  if   registerkarten.activepage <> ideenseite
+  then registerkarten.activepage := ideenseite  ;
+  if (Registersuche.activepage <> SeiteVolltextsuche)
+  then registersuche.activepage:=SeiteVolltextsuche;
+
+  if key = VK_DOWN    then liste.row:=liste.row+1;
+  if key = VK_UP      then liste.row:=liste.row-1;
+
+
+  if key in [vk_f1..vk_f9] then
   begin
-       Nachricht('Suchanfrage --> Wechsel zur Registerkarte "Start"',1);
+       machpause();
+       FocusTo('PanelHintergrundOben');
+       formkeydown(self,key,shift);
+       key:=0;
   end;
-  if key = VK_DOWN then liste.row:=liste.row+1;
-  if key = VK_UP then liste.row:=liste.row-1;
-  if (length(Sucheingabe.text) > 1) and  (key = vk_return)
-  then SucheingabeClick(self);
+  if key = vk_return  then SucheingabeClick(self);
 
   LetzterFokus:='Sucheingabe';
+
 end;
 
 procedure TFenster.TimerTimer(Sender: TObject);
 
 
 var
-  breite:            integer;
   DatensatzTitel:    string;
-  DreiSpaltenBreite: integer;
   focussuche:        boolean;
   h,i,j:             integer;
-  maxlaenge:         integer;
+  idltime:           integer;
   meintext:          string;
-  multi:             integer; { Variable für die Darstellung der verweise}
+  scrollbaroben:     integer;
   spaltenzahl:       integer;
+  textlaenge:        integer;
   wort:              string;
   ZahlDerVerweise:   integer;
 begin
   Timer.Enabled := False;
   Timer.Interval:=500;
-  {Falls nötig, wird der idle timer für das Zwischenspeichern eingeschaltet }
-  if ungespeicherteZeichen > 1000 then
-     if not zwischenspeichern.Enabled then zwischenspeichern.enabled:=true;
-
-  { Damit es bei der Formatierung nicht flackert.... }
-  PanelUebergang.top:= trunc(150*skalierung);
-  PanelUebergang.left:=Registersuche.width+trunc(100*skalierung);
-  PanelUebergang.height:=trunc(fenster.height);
-  PanelUebergang.width:=fenster.width;
-  PanelUebergang.visible:=true;
 
 
-  DreiSpaltenBreite:=trunc(600*Skalierung);
+
+  { idle time für Zwischenspeichern }
+  idltime:= trunc(100000/ungespeicherteZeichen); //500 Zeichen = 200 sekunden
+  if idltime < 10 then idltime := 1000; // falls Null
+  if idltime < 10 then idltime:=10; { 10 Sek. als Minimalintervall }
+  if idltime < 180 then
+  begin
+       zwischenspeichern.Enabled:=false;
+       Zwischenspeichern.interval:=idltime * 1000;
+       zwischenspeichern.enabled:=true;
+  end else begin
+       if zwischenspeichern.enabled=true then zwischenspeichern.enabled:=false;
+  end;
+
+
+
+
   //Suche sollte immer aufgerufen werden.
   //SuchAnfragefiltern(sucheingabe.text);
   if (length(sucheingabe.Text) > 2) then
   begin
-      if (ansilowercase(AktuelleNotizsuche) <>
-          ansilowercase(sucheingabe.text)) then
+      if (trim(ansilowercase(AktuelleNotizsuche))) <>
+          (trim(ansilowercase(sucheingabe.text))) then
       begin
             //suchanfrage starten, aber nur bei Änderung.
-            //Sonst wird jedesmal neu gefiltert
+            //Sonst wird jedesmal SeiteNeu gefiltert
             SucheingabeClick(self);
             UndoText:='';
        end;
   end;
 
   //Von wo aus wird aufgerufen?
-
 
 
   if (AnzeigeModus='volltextsuche') then
@@ -8315,7 +8302,10 @@ begin
            AktuelleLiteraturID:=Trefferarray[liste.row,4] ;
       end;
       machpause();
-  end; // WoBinIch = Volltextsuche
+  end;
+
+
+
 
   //---- GLIEDERUNG----
   //-------------------
@@ -8330,16 +8320,27 @@ begin
 
   end;
 
-
-
-
-
-  //Die Anzeige des Datensatzes herrichten
+  //-- VOLLTEXTSUCHE ---
+  //--------------------
   if (RegisterKarten.ActivePage = IdeenSeite)
   then
   begin
-
+        PanelFeldinhaltIcons.visible:=true;
+        UnterstrichPin.visible:=false;
+        UnterstrichStern.visible:=false;
         machpause();
+
+        //showmessage('100');
+
+
+         // Finetuning der Position des Scrollbar-Schiebers
+         ScrollbarOben:= trunc( ScrollbarlisteHintergrund.Height *
+                                Liste.row / liste.rowcount);
+         If Scrollbaroben > ScrollbarlisteHintergrund.Height -
+                            ScrollbarListeSchieber.height
+         then ScrollbarOben := ScrollbarlisteHintergrund.Height -
+                               ScrollbarListeSchieber.height;
+         ScrollbarListeSchieber.top:=ScrollbarOben ;
 
         //---- NOTIZ ----
         //---------------
@@ -8347,16 +8348,9 @@ begin
         begin
             DatensatzAufrufen(DatenSatzTitel); //mit dem Titel aufrufen
 
-            feldinhalt.borderspacing.top:=30 ;
-            feldinhalt.borderspacing.right:=30;
-            AnmerkungenMemo.borderspacing.top:=feldinhalt.borderspacing.top;
-            AnmerkungenMemo.borderspacing.right:=feldinhalt.borderspacing.right;
-            PanelAnmerkungScrollbar.borderspacing.top:=FeldInhalt.borderspacing.top;
-
+            feldinhalt.borderspacing.top:=trunc(30*Skalierung) ;
+            feldinhalt.borderspacing.right:=trunc(30*Skalierung);
             PanelVollzitat2.Visible:=false;
-
-            //für die Schlagwortanzeige
-            meintext:=Daten[AktuelleNotizenArrayZeile,Spalte_Volltext];
 
             machpause();
         end;
@@ -8367,21 +8361,21 @@ begin
               if length(AktuelleLiteraturID) > 0 then
               begin
                    LiteraturIdAnzeigen(AktuelleLiteraturID);
-                   //Anzeige des formatierten Zitats
+
+                   //Anzeige des formatierten Zitats über den Anmerkungen
                    LabelVollzitat.Font.name:=Zeichensatz;
                    LabelVollzitat.caption:=QuelleInRTFFormatieren(false);
                    LabelVollzitat.Font.size:=fsize;
                    LabelVollzitat.font.color:=Feldinhalt.font.color;
 
-                   if length(labelvollzitat.caption) < 90 then
-                   begin
-                        PanelVollzitat2.height:=trunc(110*Skalierung);
-                   end else begin
-                       PanelVollzitat2.height:=trunc(150*Skalierung);
-                   end;
-                   feldinhalt.borderspacing.top:=PanelVollzitat2.height+20;
-                   AnmerkungenMemo.borderspacing.top:=FeldInhalt.borderspacing.top;
-                   PanelAnmerkungScrollbar.borderspacing.top:=FeldInhalt.borderspacing.top;
+                   //Höhe der Vollzitatanzeige
+                   textlaenge:= trunc(length(labelvollzitat.caption)*Feldinhalt.font.size/12);
+                   h:= trunc(140*Skalierung);
+                   if textlaenge < 140 then  h:=  trunc(120*Skalierung)  ;
+                   if textlaenge < 90 then   h:=  trunc(110*Skalierung);
+
+                   PanelVollzitat2.height:= h;
+                   feldinhalt.borderspacing.top:=PanelVollzitat2.height+trunc(20*Skalierung);
 
                    PanelVollzitat2.width:=PanelInhalt.width ;
                    PanelVollzitat2.Visible:=true;
@@ -8390,53 +8384,46 @@ begin
                    LabelFussnote.Caption:='[=' + AktuelleLiteraturID + '=]';
                    if Literatur[AktuelleLiteraturArrayZeile,Spalte_Position]<>'' then
                    machpause();
-                   //für Schlagwortanzeige
-                   meintext:=Literatur[AktuelleLiteraturArrayZeile,Spalte_Volltext];
+
+
               end;
 
          end;
-        machpause();
 
-        if feldinhalt.visible then
-        begin
-             formatmd(0,10000,false);
+         //den Text nach Merkmalen durchsuchen. 12/2025 mit Titel und Vollzitat
+         meintext:=ansilowercase(Feldinhalt.Lines.text + ' ' +  labeltitel.text );
+         if LabelVollzitat.visible
+         then meintext:=meintext + ' ' + ansilowercase(LabelVollzitat.Caption);
 
-        end;
+         //für die Unterstriche
+         if pos('#tag#',meintext)>0 then UnterstrichStern.visible:=true;
+         if pos('#pin#',meintext)>0 then UnterstrichPin.visible:=true;
+
+
+         //Scrollbar der Anmerkungen positionieren. Bei Notizen und Literatur gleich
+         ScrollbarAnmerkungen.borderspacing.top:=feldinhalt.borderspacing.top+trunc(10*Skalierung);
+         ScrollbarAnmerkungenSchieber.align:=altop;
+         ScrollbarAnmerkungenSchieber.height := ScrollbarAnmerkungen.height - 125;
+
+         machpause();
+
+        if feldinhalt.visible then formatmd(0,10000,false);
 
         UndoText:=Feldinhalt.Lines.text;
         IconUndo.Visible:=False;
         IsTextChanged:=false;
 
 
-        //Die IconBar über den Anmerkungen herrichten
-        if pos('#pin#',Feldinhalt.Lines.Text) >0 then
-        begin
-             ImagePin.Picture:=ImagePinVoll.Picture;
-        end else begin
-            ImagePin.Picture:=ImagePinLeer.Picture;
-        end;
 
-        if pos('#lock#',Feldinhalt.Lines.Text) >0 then
-        begin
-             IconLock.Picture:=ImageLocked.Picture;
-        end else begin
-            IconLock.Picture:=ImageUnLocked.Picture;
-        end;
-        if pos('#tag#',Feldinhalt.Lines.Text) >0 then
-        begin
-             ImageStern.Picture:=ImageSternvoll.picture ;
-
-        end else begin
-             ImageStern.Picture:=ImageSternLeer.picture;
-
-        end;
 
         //Falls nicht viel Text im Feld steht, zum Ende springen
         if length(Feldinhalt.Lines.text) < 450 then Feldinhalt.selstart:= 450;
 
 
+
+
         //------------------------
-        //---Fusszeile formatieren
+        //---FUSSZEILE MIT VERWEISEN FORMATIEREN
         //------------------------
           { Die Formatierung der Querverweise ist relativ aufwändig. Es sollen
             einerseits möglichst drei Spalten angezeigt werden, die aber nicht
@@ -8456,11 +8443,11 @@ begin
             maximal 100 }
 
 
-        SpaltenZahl:=0;
-        if Paneltitel.width > Dreispaltenbreite then spaltenzahl:=3
-                                                else spaltenzahl:=2;
+                                 { reicht der Platz für 3 Spalten ?}
+        if Paneltitel.width > 800 then spaltenzahl:=3
+        else spaltenzahl:=2;
         if ZahlDerVerweise < 7 then Spaltenzahl:=2;
-        if ZahlDerVerweise < 3 then Spaltenzahl:=1;
+        if ZahlDerVerweise < 4 then Spaltenzahl:=1;
 
         {jetzt weiß ich, wie viele Spalten zu füllen sind}
 
@@ -8503,23 +8490,18 @@ begin
         Fenster.Baumverweise.items.clear;
         Fenster.Baumverweise2.items.clear;
         Fenster.BaumVerweise3.items.clear;
+        { Abklären, wie viele Spalten man braucht und die Spalten entsprechend
+          füllen}
 
-        { 1 oder 2 Verweise}
-        if (ZahlDerVerweise > 0)  and (ZahlDerVerweise < 3) then
+        { 1-3 Verweise}
+        if (ZahlDerVerweise > 0)  and (ZahlDerVerweise < 4) then
         begin
             BaumVerweise.Items.Add(nil, Verweisarray[1,2]);
             BaumVerweise.Items.Add(nil, Verweisarray[2,2]);
+            BaumVerweise.Items.Add(nil, Verweisarray[3,2]);
         end;
-        { 3 oder 4 Verweise}
-        if (ZahlDerVerweise > 2) and (ZahlDerVerweise < 5) then
-        begin
-            BaumVerweise.Items.Add(nil, Verweisarray[1,2]);
-            BaumVerweise.Items.Add(nil, Verweisarray[2,2]);
-            BaumVerweise2.Items.Add(nil, Verweisarray[3,2]);
-            BaumVerweise2.Items.Add(nil, Verweisarray[4,2]);
-        end;
-        { 5 oder 6 Verweise}
-        if (ZahlDerVerweise > 4) and (ZahlDerVerweise < 7) then
+        { 4-6 Verweise}
+        if (ZahlDerVerweise > 3) and (ZahlDerVerweise < 7) then
         begin
             BaumVerweise.Items.Add(nil, Verweisarray[1,2]);
             BaumVerweise.Items.Add(nil, Verweisarray[2,2]);
@@ -8528,74 +8510,98 @@ begin
             BaumVerweise2.Items.Add(nil, Verweisarray[5,2]);
             BaumVerweise2.Items.Add(nil, Verweisarray[6,2]);
         end;
-        { mehr als 6 Verweise. Klären, ob die dritte Spalte verwendet werden kann}
-        if ZahlDerVerweise > 6 then
+        { 7 bis 9 Verweise}
+        if (ZahlDerVerweise > 6) and (ZahlDerVerweise < 10) then
         begin
              if Spaltenzahl=3 then
              begin
-                  for i:=1 to trunc(ZahlDerVerweise/3)+1  do
-                       BaumVerweise.Items.Add(nil, Verweisarray[i,2]);
-                  for i:= BaumVerweise.Items.Count + 1 to (2*BaumVerweise.Items.Count) do
-                       BaumVerweise2.Items.Add(nil, Verweisarray[i,2]);
-                  for i:= 2*BaumVerweise.Items.Count +1  to ZahlDerVerweise do
-                       BaumVerweise3.Items.Add(nil, Verweisarray[i,2]);
-            end else begin  // nur zwei Spalten, weil schmales Fenster
-                  for i:=1 to trunc(ZahlDerVerweise/2)+1  do
-                       BaumVerweise.Items.Add(nil, Verweisarray[i,2]);
-                  for i:= BaumVerweise.Items.Count + 1 to zahlderVerweise do
-                       BaumVerweise2.Items.Add(nil, Verweisarray[i,2]);
+                  for i:=1 to 3 do
+                      BaumVerweise.Items.Add(nil, Verweisarray[i,2]);
+                  for i:=4 to 6  do
+                      BaumVerweise2.Items.Add(nil, Verweisarray[i,2]);
+                  for i:=7 to ZahlDerVerweise do
+                      BaumVerweise3.Items.Add(nil, Verweisarray[i,2]);
+             end else begin
+                  for i:=1 to 5 do
+                      BaumVerweise.Items.Add(nil, Verweisarray[i,2]);
+                  for i:=6 to ZahlDerVerweise  do
+                      BaumVerweise2.Items.Add(nil, Verweisarray[i,2]);
             end;
         end;
+        { 10 bis 12 Verweise}
+        if (ZahlDerVerweise > 9) and (ZahlDerVerweise < 13) then
+        begin
+         //    showmessage('10 bis elf');
+             if Spaltenzahl=3 then
+             begin
+                  for i:=1 to 4 do
+                      BaumVerweise.Items.Add(nil, Verweisarray[i,2]);
+                  for i:=5 to 8  do
+                      BaumVerweise2.Items.Add(nil, Verweisarray[i,2]);
+                  for i:=9 to ZahlDerVerweise do
+                      BaumVerweise3.Items.Add(nil, Verweisarray[i,2]);
+             end else begin
+                  for i:=1 to 6 do
+                      BaumVerweise.Items.Add(nil, Verweisarray[i,2]);
+                  for i:=7 to ZahlDerVerweise  do
+                      BaumVerweise2.Items.Add(nil, Verweisarray[i,2]);
+            end;
+        end;
+
+        { mehr als 12 Verweise. Klären, ob die dritte Spalte verwendet werden kann}
+        if ZahlDerVerweise > 12 then
+        begin
+             for i:=1 to 6 do BaumVerweise.Items.Add(nil, Verweisarray[i,2]);
+             if spaltenzahl= 3 then
+             begin
+                for i:=7 to 12 do BaumVerweise2.Items.Add(nil, Verweisarray[i,2]);
+                for i:=13 to ZahlDerVerweise do BaumVerweise3.Items.Add(nil, Verweisarray[i,2]);
+             end else begin
+                 for i:=7 to ZahlDerVerweise do BaumVerweise2.Items.Add(nil, Verweisarray[i,2]);
+             end;
+
+
+        end;
+
+        // die Verweise sind jetzt auf die Spalten verteilt.
+        // jetzt kommt die Breite
+
+
         if spaltenzahl=1 then
         begin
-             Baumverweise.Width:=paneltitel.width-20;
              BaumVerweise2.width:=1;
              BaumVerweise3.width:=1;
-
+             Baumverweise.Width:=feldinhalt.width -100;
         end;
         if spaltenzahl=2 then
         begin
-            // Baumverweise.Width:=trunc(paneltitel.width/2)-20;
-             // kann die erste Spalte  schmaler sein?
-             maxlaenge:=0;
-             for i:=0 to baumverweise.items.count - 1 do
-             begin
-                  if length(baumverweise.Items[i].Text) > maxlaenge then
-                     maxlaenge:=length(baumverweise.Items[i].text);
-             end;
-             baumverweise.width:=trunc(fsize*maxlaenge*skalierung);
-             if Baumverweise.width > trunc(200*Skalierung)
-                 then BaumVerweise.width:=trunc(200*Skalierung); { maximale Breite}
-             BaumVerweise2.width:=Paneltitel.width-baumverweise.width-20;
-             BaumVerweise3.width:=1;
 
+           Baumverweise.Width:=trunc(paneltitel.width/2)-75;
+           BaumVerweise2.width:=Baumverweise.width;
+           BaumVerweise3.width:=1;
         end;
         if spaltenzahl=3 then
         begin
-             Baumverweise.Width:=trunc(paneltitel.width/3)-30;
+             Baumverweise.Width:=trunc(paneltitel.width/3)-55;
              BaumVerweise2.width:=Baumverweise.width;
              BaumVerweise3.width:=Baumverweise.width;
-
         end;
 
         { jetzt muss die Höhe der Verweisliste an die Zahl der Verweise
           angepasst werden }
-        h:=trunc(70*Skalierung) + trunc(ZahlDerVerweise*6*Skalierung) ;
-        if ZahlDerVerweise < 5 then
-        begin
-             if os='win'   then h:=trunc(80*Skalierung);
-             if os='linux' then h:=trunc(85*Skalierung);
-        end;
+
         if ZahlDerVerweise = 0 then
         begin
              h:=1;
              IconResizeVerweise.shape:=bsSpacer;
         end else begin
-            IconResizeVerweise.shape:=bsTopLine
+            IconResizeVerweise.shape:=bsTopLine  ;
+            h:= (Baumverweise.items.count * (Baumverweise.DefaultItemHeight+2)) +1;
         end;
-
-        if h > trunc(200*skalierung) then h:=trunc(200*skalierung); //nicht zu hoch werden lassen
+        if os='win' then h:=h+10;
+        { sonst zu niedrig und ein Scrollbar wird angezeigt}
         PanelUnterDemText.height:=h;
+
         {Jetzt ist die Fußzeile fertig formatiert}
 
 
@@ -8617,64 +8623,26 @@ begin
 
   end; // Feldinhalt etc herrichten
 
-
-
-
-
   If Anzeigemodus='volltextsuche' then
          if letzterEintrag<>Liste.Row then  LetzterEintrag:=Liste.Row;
 
 
-
-
-
-       //Den Seitenübergang nach rechts darstellen. Verhindert flackern
-    for i:=1 to 4 do
-    begin
-          sleep(5);
-          panelUebergang.left:=paneluebergang.left+trunc(labeltitel.width/10);
-          application.processmessages;
-          paneluebergang.repaint;
-    end;
-
-
-
   //Wo soll der Fokus sein? Umständlich, weil Linux beim Start Ärger macht.
   focussuche:=false;
-
-  if Registerkarten.activepage=IdeenSeite then focussuche := true;
-  if Fenster.activecontrol=sucheingabe then focussuche:=true;
-  if LetzterFokus='Liste' then Focussuche:=true;
-
-
-  If Sucheingabe.visible = false then focussuche:=false;
-  if formneu.visible then focussuche:=false;
-  if Fenster.Activecontrol=liste then focussuche:=false;
+  if Registerkarten.activepage=IdeenSeite then focussuche:= true;
+  if Fenster.activecontrol=sucheingabe then    focussuche:= true;
+  if Fenster.Activecontrol=liste then          focussuche:=false;
   if RegisterSuche.activepage<>SeiteVolltextsuche then focussuche := false;
   if length(feldinhalt.Lines.Text) < 1 then focussuche:=false;
 
   if focussuche then
   begin
-       sucheingabe.setfocus;
+       FocusTo('Sucheingabe');
        sucheingabe.SelStart:=1000;
   end else begin
-      // if letzterFokus='Liste' then liste.setfocus;
 
-       if (AnzeigeModus='gliederung') and (PanelNotizGliedern.visible) then
-       begin
-          Sucheingabe2.setfocus ;
-       end  else begin
-          if LetzterFokus='FeldInhalt' then focusAnmerkung();
 
-       end;
   end;
-
-
-  VolltextKomplettieren(1000);
-  panelUebergang.visible:=false; //sollte eigentlich nicht mehr sichtbar sein.
-
-
-
 
 
 end; //Ende Timer
@@ -8689,7 +8657,8 @@ var
 
 
 begin
-      timer.enabled:=False;
+         aufraeumen();
+   timer.enabled:=False;
   if (Gliederung.Selected <> nil)  then
   begin
     t:=trim(Gliederung.selected.Text);
@@ -8770,8 +8739,14 @@ end;
 procedure TFenster.VerweisErstellenClick(Sender: TObject);
 
 begin
-     Registerkarten.Activepage:=Ideenseite;
+     machpause();
+     timer.enabled:=false;  { ich bin noch auf der Suche nach dem cannot
+                              focus error. Könnte das die Stelle sein? }
+     if   Registerkarten.Activepage <> Ideenseite
+     then Registerkarten.Activepage:=Ideenseite;
+     machpause();
      Registersuche.activepage:=SeiteQuerverweis;
+     machpause();
      QuerverweisAllesZeigenClick(self);
 end;
 
@@ -8809,17 +8784,14 @@ var
   zeile:         string;
   ZeilenZahl:    integer;
   t, m, y:       string;
-  verzeichnis:   string;
-
 
 begin
   fenster.visible:=false;
   SpeicherVolumen:=0;
-  dbug:=false;
   swliste := TStringList.Create;  // erst mal erzeugen. Geht sonst nicht
   Skalierung:=screen.pixelsperinch/100; //Für Windows
   if Skalierung < 1 then Skalierung:=1;
-  UngespeicherteZeichen:=0;
+  UngespeicherteZeichen:=1;
   machpause();
 
 
@@ -8840,7 +8812,7 @@ begin
   TitelVorschlag:='';
   NotizenDatensatzzahl:=0;
   LiteraturDatensatzzahl:=0;
-  Mindestdatum:=''; // damit es bei der ersten Suche ermittelt wird
+ // Mindestdatum:=''; // damit es bei der ersten Suche ermittelt wird
 
 
 
@@ -8853,34 +8825,17 @@ begin
 
   if instancerunning() then
   begin
-       //showmessage('Die Anwendung läuft schon...'); //kein showmsg, weil zu früh
        if yesbox('Es sieht so aus, als würde die Anwendung schon laufen. Abbrechen?') then
         Application.terminate;
   end   ;
 
-  { TMP Verzeichnisse setzen bzw. erzeugen }
-  {
-  Verzeichnis:=   extractfilepath(application.exename) + 'tmp' ;
-                  { lokale Variable. Die brauche ich nur, um die Existenz des
-                    Oberverzeichnisses zu prüfen }
-   if not(directoryexists(Verzeichnis)) then CreateDir(Verzeichnis);
-   MachPause();
-   TMPVerzeichnisIdeen:=Verzeichnis + slash(os) + 'ideen';
-   if not(directoryexists(TMPVerzeichnisIdeen)) then CreateDir(TMPVerzeichnisIdeen);
-   machpause();
-   TMPVerzeichnisLiteratur:=Verzeichnis + slash(os) + 'literatur';
-   if not(directoryexists(TMPVerzeichnisLiteratur)) then CreateDir(TMPVerzeichnisLiteratur);
-   machpause();
-               { Die tmp Verzeichnisse mit Unterverzeichnissen existieren
-                 jetzt, falls das noch nicht so war}
-    }
       ichanged:=False;
       lchanged:=false;
       IneedsSorting:=false;
       LneedsSorting:=false;
       letzteSpeicherung:= str2int(formatdatetime('nn',now));
 
-      AnzeigeVersion.Caption:='     Einstellungen   (Version: ' + myversion + ')';
+      AnzeigeVersion.Caption:='Version: ' + myversion;
 
       if os='win' then
          LetzterFokus:='SuchEingabe' //Es ist sinnvoll, dort zu starten
@@ -8890,7 +8845,6 @@ begin
 
       LiteraturDatenbank := DBDirectory + 'literatur.xml';
       IdeenDatenbank := DBDirectory+ 'ideen.xml';
-
       //--- MinimalDateien erstellen
       if (not fileexists(IdeenDatenbank)) then copyfile(mypath + 'i.xml', IdeenDatenbank);
       if (not fileexists(LiteraturDatenbank)) then copyfile(mypath + 'l.xml', LiteraturDatenbank);
@@ -8912,6 +8866,7 @@ begin
          end;
        closefile(datei);
        if Literaturdatensatzzahl=0 then showmessage('literatur.xml ist beschädigt');
+       ArraySize_Literatur:=Literaturdatensatzzahl +100;
        machpause();
        assignfile(datei, DBDirectory + 'ideen.xml');
        reset(datei);
@@ -8932,21 +8887,15 @@ begin
        machpause();
        if NotizenDatensatzZahl=0 then showmessage('ideen.xml ist beschädigt');
 
-       if LiteraturDatensatzzahl > Notizendatensatzzahl
-          then ArraySize:= LiteraturDatensatzzahl + 1000
-          else ArraySize:= NotizenDatensatzzahl + 1000 ;
 
-      SortierenAb_literatur:=arraysize;
-      SortierenAb_daten:=arraysize;
-      SetLength(Daten, ArraySize+2,Spalte_Position+1); // ist schmaler als Literatur
-      SetLength(Literatur, ArraySize+2,Spalte_Ende+1);
-  //    SetLength(LiteraturImport, ArraySize+2,Spalte_Ende+1);
+      ArraySize_Daten:= NotizenDatensatzzahl + 100 ;
+      SetLength(Daten, ArraySize_Daten+2,Spalte_Position+1); // ist schmaler als Literatur
+      SetLength(Literatur, ArraySize_Literatur+2,Spalte_Ende+1);
       SetLength(Literatur2,1,1); { wird nur beim Import aus anderen Formaten
                                    benötigt. Also wahrscheinlich gar nicht
                                    daher kurz halten 02/2024}
       //Gliederung
       Gliederungsdatei:=GetIni('gliederungsdatei','ideen.tree');
-
 
       //-- Schreibzugriff prüfen
       Randomize;
@@ -8957,7 +8906,7 @@ begin
       if Schreibrecht()  then
       begin
            machpause();
-          // showmessage('ich habe schreibrecht');
+
           //----Farbschema----
           //--------------------
           literaturfarbenormal:= $a4a4a4;// $00EAEAEA;//$00F3F3F3;
@@ -8993,12 +8942,7 @@ begin
           var_OptionSchlagwortliste:=false;
           PanelKombinierterSchlagwoerter.height:=1;
 
-          //--- welcher Editor ? --
-          //-----------------------
-          Var_OptionMarkDown:=GetBooleIni('optionmarkdown',true);
-          if var_optionMarkDown
-          then ImageOptionMarkDown.picture:=ImageToggleOn.picture
-          else ImageOptionMarkDown.picture:=ImageToggleoff.picture;
+
 
 
 
@@ -9006,9 +8950,17 @@ begin
           //---------------------------
           Registerkarten.showtabs:=false;
           FeldInhalt.align:=alclient;
-          RegisterOptionen.showtabs:=false;
 
-          RegisterOptionen.Showtabs:=false;
+          { unter Linux können Tabs nicht in multiline dargestellt werden
+            Bei den Einstellungen gibt es aber zu viele Tabs. Daher dann
+            links }
+          if os='win'
+          then RegisterEinstellungen.TabPosition:=tptop
+          else RegisterEinstellungen.TabPosition:=tpleft;
+
+
+
+
 
           if getini('optionris','false')='true' then OptionRIS:=true else OptionRIS:=false;;
 
@@ -9028,7 +8980,11 @@ begin
           if fsize > 18 then fsize:=18;
 
           FeldInhalt.font.Size:=fsize;
-          Liste.Font.Size:=fsize;
+          if fsize > 13
+          then Liste.Font.Size:=fsize-2
+          else Liste.Font.Size:=12;
+          Gliederung.Font.Size:=Liste.font.size;
+
           //Tabulatoren für Feldinhalt
           InitTabStopList(StopList, [fsize * 14 / Skalierung]  );
 
@@ -9036,23 +8992,12 @@ begin
           zeichensatzeinstellen();   { Die Benutzeroberfläche auf den Zeichen-
                                        satz einstellen }
 
-
-
-
-
-
-
-
           Fenster.Caption := 'Bibliographix ' + DBDirectory;
-
-
-
-
 
           //------- Liste -----------
           //-------------------------
             Liste.Colwidths[ListeSpaltePin]:=              0 ;
-            Liste.Colwidths[ListeSpalteNummer]:=           0 ;
+            Liste.Colwidths[ListeSpalteNummer]:=           4 ;
             Liste.Colwidths[ListeSpalteMarkierung]:=       4 ;
             Liste.Colwidths[ListeSpalteIcon]:=             0 ;
             Liste.columns[1].Layout:=tltop;
@@ -9177,9 +9122,7 @@ begin
             end;
             closefile(datei);
             machpause();
-            { Die ideen.xml sollte korrekt sein, also wird die abgespeichert }
-            //copyfile( mypath + 'ideen.xml' ,
-            //          mypath +  'tmp' + slash(os) + 'ideen.xml') ;
+
 
 
             fenster.visible:=false;
@@ -9192,7 +9135,7 @@ begin
              if vn <6 then
              begin
 
-                 for i:= 1 to ArraySize  do
+                 for i:= 1 to ArraySize_Daten  do
                  begin
                       if Daten[i,Spalte_Erstelldatum]='' then
                       begin
@@ -9209,65 +9152,27 @@ begin
                  end;
              end;
              machpause();
-             //======Literaturdatenbank================
+            //======Literaturdatenbank================
             //========================================
             LiteraturDatenbank:=DBDirectory + 'literatur.xml';
             LiteraturLaden('Literatur',Literaturdatenbank);
-
-            { Die literatur.xml sollte korrekt sein, also wird die abgespeichert }
-           // copyfile( mypath + 'literatur.xml' ,
-            //          mypath +  'tmp' + slash(os) + 'literatur.xml') ;
-
-
             machpause();
-
             Fenster.OptionLangesTMPZitat.checked :=GetBooleini('langestmpzitat',false);
-
             langestmpzitat:= Fenster.OptionLangesTMPZitat.checked;
-
              //Zitierrichtlinie
             dummystring:=mypath + 'bxstyles' + slash(os) + Getini('bxstyle','AER.bxstyle') ;
             if fileexists(dummystring) then RichtlinieLaden(dummystring) ;
-
-            //Menu Ansicht
-            var_OptionAlphaSort:=GetBooleIni('optionalphasortidee',false);
-            if var_OptionAlphaSort
-            then imageOptionAlphaSort.picture:=ImageToggleOn.picture
-            else imageOptionAlphaSort.picture:=ImageToggleOff.picture;
-            imageOptionSchlagwortliste.picture:=ImageToggleOff.picture;
-
-
             MachPause();
             GliederungArrayEinlesen();
             LabelOriginaldatei.Caption:= 'Manuskript: ' + extractfilename(Getini('Manuskriptdatei',''));
             machpause();
-            end else begin
-              //  showmessage('Du hast kein Schreibrecht');
-            end;
-       // end; //Instance Running
+        end;  //Ende Schreibrecht
+
+        machpause();
+        VollTextKomplettieren();
+
         machpause();
 
-        //PruefeAbsturzClick(self); // gibt es Reste, von vor einem Absturz?
-
-
-        // BISHER NACHDEMSTART
-         machpause();
-
-         VollTextKomplettieren(ArraySize);
-         dump('Startup Volltext komplettiert');
-         machpause();
-
-          {
-          var_OptionListeDetails:= getbooleini('optionlistedetails',true);
-          if var_OptionListeDetails
-          then ImageOptionDetails.picture:=ImageToggleOn.picture
-          else ImageOptionDetails.picture:=ImageToggleOff.picture;
-          }
-          var_OptionListeDetails:= false;
-
-
-         var_OptionNurMarkierte:=false;
-         dump('Startup Keywordliste Anfang');
         swliste.sorted:=false;
         Dateiname := DBDirectory + 'key.dat';
 
@@ -9283,52 +9188,33 @@ begin
                swliste.add('dummy');
         end;
         machpause();
+
         for i:=0 to swliste.count-1 do  //falls da noch Häufigkeiten herumschwirren
             swliste[i]:=getfirstword(swliste[i]);
         swliste.sorted:=true;
         machpause();
-        dump('Startup Keywordliste durch');
         icongliederungclick(self);
         machpause();
-        dump('Startup Gliederung');
-        VolltextBisZeile:=1;
+
         machpause();
         AlleAnzeigenClick(self);
-        dump('Startup AlleAnzeigen');
         machpause();
         var_OptionDarkMode:= getbooleini('optiondarkmode',false);
+        if var_optionDarkMode then FarbschemaClick(self);
 
-         dump('Startup Darkmode Anfang');
-         if var_optionDarkMode then FarbschemaClick(self);
-          dump('Startup Darkmode durch');
+        PanelNeueQuelle.height:=2;
 
-
-
-
-
-
-
-
-
-
-
-
-        dump('Startup Ende');
+        //Dinge, die in der Windows-Oberfläche anders aussehen als unter Linux
+        //und angepasst werden müssen
+        if os='win' then
+        begin
+             Sucheingabe.BorderSpacing.top:=16;
+             { ist sonst nicht vertikal zentriert }
+        end ;
 
 
 
         NachFormCreate.enabled:=true;
-
-
-
-        dump('ende formcreate');
-
-
-
-
-
-
-
 
 end;  //ende Formcreate
 
@@ -9359,23 +9245,22 @@ end;
 
 procedure TFenster.AlleAnzeigenClick(Sender: TObject);
 begin
+
   if istextchanged then savechangestoarray();
+  machpause();
+  if Registerkarten.ActivePage <> IdeenSeite
+  then Registerkarten.ActivePage:=IdeenSeite;
+
+  if RegisterSuche.activepage <> SeiteVolltextsuche
+  then RegisterSuche.activepage:= SeiteVolltextsuche  ;
   sucheingabe.Text := '';
   TrefferzahlAnzeigen();
   AlleZettelAnzeigen();
   machpause();
 
-
-  if (Registerkarten.ActivePage=IdeenSeite)
-  and (RegisterSuche.activepage=SeiteVolltextsuche) then
-  begin
-       Fenster.Activecontrol := Sucheingabe;
-       LetzterFokus:='SuchEingabe' ;
-       if PanelKombinierterSchlagwoerter.height > 10 then SchlagwortListeZeigenClick(self);
-
-
-
-  end;
+  if PanelKombinierterSchlagwoerter.height > 10  // falls der Schlagwortfilter
+  then ZeigeAlleSchlagwoerterClick(self);        // sichbar ist, alle
+                                                 // Schlagwörter anzeigen
   timer.enabled:=false;
   timer.enabled:=true;
 
@@ -9385,11 +9270,6 @@ procedure TFenster.DIYButtonEnter(Sender: TObject);
 
 begin
 
-  //neue Fassung: Die Farbe ändert sich   11/2021
-  if Sender is tpanel then ((sender as TPanel).parent as tpanel).color:=DunkelGrau;
-  if Sender is tlabel then ((sender as tlabel).parent as tpanel).color:=DunkelGrau;
-  if Sender is timage then ((sender as timage).parent as tpanel).color:=DunkelGrau;
-  if Sender is tCheckBox then ((sender as tcheckbox).parent as tpanel).color:=DunkelGrau;
 end;
 
 
@@ -9417,8 +9297,7 @@ end;
 
 procedure TFenster.Image31Click(Sender: TObject);
 begin
-     ImageEinstellungenClick(self);
-     RegisterOptionen.ActivePage:=SeiteOptionenDatenaustausch;
+
 end;
 
 procedure TFenster.ListeKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState
@@ -9439,15 +9318,12 @@ end;
 
 procedure TFenster.Image12Click(Sender: TObject);
 begin
-  RegisterOptionen.Activepage:=SeiteOptionenDrucken;
-  Registerkarten.Activepage:=EinstellSeite;
+
 end;
 
 procedure TFenster.ImageDatenaustauschClick(Sender: TObject);
 begin
 
-  RegisterOptionen.Activepage:=SeiteOptionenDatenaustausch;
-  Registerkarten.Activepage:=EinstellSeite;
 end;
 
 procedure TFenster.LabelKurzzitatClick(Sender: TObject);
@@ -9481,12 +9357,13 @@ end;
 procedure TFenster.RegisterSucheChange(Sender: TObject);
 begin
 
-
      if RegisterSuche.Activepage= SeiteVollTextSuche then
      begin
-        Sucheingabe.Setfocus;
-     end else begin
-
+          FocusTo('Sucheingabe');
+        PanelFeldinhaltIcons.visible:=true;
+     end;
+     if RegisterSuche.activepage=SeiteGliederung then
+     begin
          if Gliederung.selected <> nil then
          begin
               if pos(LabelTitel.caption,Gliederung.selected.text)<>1
@@ -9494,18 +9371,6 @@ begin
          end;
      end;
      ResizeWindow();
-
-end;
-
-procedure TFenster.SizerRechtsMouseMove(Sender: TObject; Shift: TShiftState; X,
-  Y: Integer);
-begin
-
-end;
-
-procedure TFenster.SizerRechtsMouseUp(Sender: TObject; Button: TMouseButton;
-  Shift: TShiftState; X, Y: Integer);
-begin
 
 end;
 
@@ -9518,12 +9383,6 @@ end;
 
 
 
-
-procedure TFenster.Liste3MouseWheel(Sender: TObject; Shift: TShiftState;
-  WheelDelta: Integer; MousePos: TPoint; var Handled: Boolean);
-begin
-
-end;
 
 procedure TFenster.ListeMouseEnter(Sender: TObject);
 begin
@@ -9562,15 +9421,12 @@ begin
     end;
 
     Feldinhalt.text:=t2;
-    if pos('#lock#',t2) > 0
-    then IconLock.picture:=ImageLocked.Picture
-    else IconLock.picture:=ImageUnlocked.Picture;
 
 
-    savechangestoarray();
 
-    Speicherbedarf('l');
-    Speicherbedarf('i');
+    if istextchanged then savechangestoarray();
+    ichanged:=true;
+    lchanged:=true;
     Liste.Invalidate;
     Timer.Enabled:=False;
     Timer.Enabled:=true;
@@ -9603,10 +9459,10 @@ begin
     //Die Anzeige aktualisieren
     if trefferarray[liste.row,2]='#' then trefferarray[liste.row,2]:='' else trefferarray[liste.row,2]:='#';
 
-    savechangestoarray();
+    if istextchanged then savechangestoarray();
 
-    Speicherbedarf('l');
-    Speicherbedarf('i');
+    ichanged:=true;
+    lchanged:=true;
     Liste.Invalidate;
 
     Timer.Enabled:=False;
@@ -9629,17 +9485,12 @@ end;
 
 procedure TFenster.ImageQuelle1Click(Sender: TObject);
 begin
-  If Registerkarten.Activepage <> Einstellseite then
-  begin
-      RegisterOptionen.Activepage:=SeiteErsetze;
-      Registerkarten.Activepage:=EinstellSeite;
-  end else begin
-      ButtonDialogAbbruchClick(self);
-  end;
+
 end;
 
 procedure TFenster.ImageQuelleClick(Sender: TObject);
 begin
+     PanelFeldInhaltIcons.Visible:=false;
      Registerkarten.activepage:=styleseite;
 
 
@@ -9752,28 +9603,6 @@ begin
 
 end;
 
-procedure TFenster.AnmerkungenMemoMouseWheelUp(Sender: TObject;
-  Shift: TShiftState; MousePos: TPoint; var Handled: Boolean);
-var
-     punkt: integer;
-  begin
-      punkt:=Anmerkungenmemo.CaretPos.y;
-      punkt:=punkt -3;
-      if punkt < 0 then Punkt:=0;
-      AnmerkungenMemo.Caretpos:=point(0,punkt);
-end;
-
-procedure TFenster.AnmerkungenMemoMouseWheelDown(Sender: TObject;
-  Shift: TShiftState; MousePos: TPoint; var Handled: Boolean);
-var
-   punkt: integer;
-begin
-    punkt:=Anmerkungenmemo.CaretPos.y;
-    punkt:=punkt+3;
-    if punkt > Anmerkungenmemo.lines.count -1 then punkt:=AnmerkungenMemo.lines.count-1 ;
-    AnmerkungenMemo.Caretpos:=point(0,punkt);
-end;
-
 procedure TFenster.BaumVerweise3Click(Sender: TObject);
 var
    link:string;
@@ -9790,14 +9619,19 @@ begin
      end;
 end;
 
-procedure TFenster.Button1Click(Sender: TObject);
+procedure TFenster.Bevel4MouseDown(Sender: TObject; Button: TMouseButton;
+  Shift: TShiftState; X, Y: Integer);
 begin
-  PopupTextFormatierung.PopUp;
+  { falls man oberhalb von Feldinhalt klickt, aber noch nicht das Vollzitat
+    wird der Fokus auf die Anmerkungen gesetzt }
+  feldinhalt.selstart:=0;
+  feldinhalt.sellength:=0;
+  FocusTo('Feldinhalt');
 end;
 
 procedure TFenster.ButtonAnlegenClick(Sender: TObject);
 var
-   cur:  integer;
+   cp:   integer;
    i:    integer;
    l:    string;
 
@@ -9805,12 +9639,8 @@ begin
      l:='';
      if qliste.ItemIndex > -1 then
      begin
-
+           cp:=FeldInhalt.selstart;
            i:=qliste.itemindex +1 ;
-           if fenster.feldinhalt.visible then
-              cur:=Fenster.Feldinhalt.selstart;
-           if fenster.AnmerkungenMemo.visible then
-              cur:=Fenster.AnmerkungenMemo.selstart;
            if Qarray[i,2]='N' then
            begin
              l:='note://' + Qarray[i,3] + ' ' + Qarray[i,1];
@@ -9822,20 +9652,26 @@ begin
            end;
 
            //Das Link in die Anmerkungen
+           l:=trim(l);
            l:=' ' + StringReplace(l,' ' , '_', [rfReplaceAll])+ ' ';
-           if fenster.feldinhalt.visible then
-              if fenster.Feldinhalt.SelStart>-1 then  paste(l);
-            if fenster.AnmerkungenMemo.visible then
-              if fenster.AnmerkungenMemo.SelStart>-1 then  paste(l);
-           IsTextChanged:=true; //sonst wird evtl. nicht abgespeichert 02/2024
-            savechangestoarray();
            machpause();
-           formatmd(0,10000,false); //das ist umständlich, aber der Absatz wird evtl.
-
-           machpause();       //nicht richtig erkannt. Also alles neuformatieren
+           clipboard.Clear;
+           machpause();
+           paste(l);
+           machpause();
+           IsTextChanged:=true; //sonst wird evtl. nicht abgespeichert 02/2024
+           if istextchanged then savechangestoarray();
+           machpause();
+           { die gesamten Anmerkungen formatieren, falls der Absatz nicht richtig
+             erkannt wird.}
+           formatmd(0,10000,false);
+           machpause();
            qliste.ItemIndex :=-1;
-           if fenster.feldinhalt.visible then
-              Fenster.Feldinhalt.selstart:=cur + length(l); //Cursor hinter den QV
+           { Fokus auf den Feldinhalt an die Stelle hinter dem neuen Querverweis }
+           focusto('Feldinhalt');
+           Feldinhalt.selstart:=cp + length(l);
+
+
      end;
 
 end;
@@ -9853,6 +9689,34 @@ begin
           FeldInhalt.GetParaRange(feldinhalt.SelStart,absatz.start,absatz.length);
           formatmd(absatz.start,absatz.length,false);
       end;
+end;
+
+procedure TFenster.ButtonKopierenClick(Sender: TObject);
+var
+   ds:      array[1..30] of string;
+   i:       integer;
+begin
+   for i:=2 to spalte_ende do
+       ds[i]:=literatur[AktuelleLiteraturArrayZeile,i];
+    TmpHinweis:='';   //keine ID vergeben
+    Kurzzitat:='';
+    GV_TmpZitat:='';
+    Titeldatenmatrix.cells[1,0]:=          ds[Spalte_Autor];
+     Titeldatenmatrix.cells[1,1]:=         ds[Spalte_Titel] + ' (Kopie)';
+     Titeldatenmatrix.cells[1,2]:=         ds[Spalte_Untertitel];
+     Titeldatenmatrix.cells[1,3]:=         ds[Spalte_Jahr];
+     Titeldatenmatrix.cells[1,4]:=         ds[Spalte_PublikationsDatum];
+     Titeldatenmatrix.cells[1,5]:=         ds[Spalte_Band];
+     Titeldatenmatrix.cells[1,6]:=         ds[Spalte_Nummer];
+     Titeldatenmatrix.cells[1,7]:=         '';
+     Titeldatenmatrix.cells[1,8]:=         ds[Spalte_Zeitschrift];
+     Titeldatenmatrix.cells[1,9]:=         ds[Spalte_Herausgeber];
+     Titeldatenmatrix.cells[1,10]:=        ds[Spalte_Sammelband];
+     Titeldatenmatrix.cells[1,11]:=        ds[Spalte_Verlag];
+     Titeldatenmatrix.cells[1,12]:=        ds[Spalte_Ort];
+     Titeldatenmatrix.cells[1,13]:=        ds[Spalte_Auflage];
+     Titeldatenmatrix.cells[1,14]:=           '';
+
 end;
 
 procedure TFenster.ButtonKursivClick(Sender: TObject);
@@ -9894,6 +9758,37 @@ begin
 
 end;
 
+procedure TFenster.ButtonNeuDialogWegClick(Sender: TObject);
+begin
+  PanelNeueQuelle.height:=1;
+  resizeWindow();
+end;
+
+procedure TFenster.ButtonNeueGliederungClick(Sender: TObject);
+var
+          p1,p2,titel:string;
+begin
+    if gliederung.items.count> 1
+    then GliederungSpeichern(DBDirectory + Gliederungsdatei);
+     p1:='neue Gliederung';
+     p2:='Name der Datei:';
+     titel := inputbox(p1, p2, '');
+     if length(titel) > 2 then
+     begin
+          Gliederungsdatei:=titel + '.tree';
+          Gliederung.Items.Clear;
+          SetIni('gliederungsdatei',gliederungsdatei);
+          GliederungSpeichern(DBDirectory + Gliederungsdatei);
+          IconGliederungClick(self);
+          //die neue Gliederung kommt in die Liste
+     end;
+end;
+
+procedure TFenster.ButtonScrolldownClick(Sender: TObject);
+begin
+
+end;
+
 procedure TFenster.ButtonSpiegelstrichClick(Sender: TObject);
 var
    absatz:       tpararange;
@@ -9917,6 +9812,254 @@ begin
     formatmd(absatz.start,absatz.length,false);
 end;
 
+procedure TFenster.ButtonTiteldatenSpeichernClick(Sender: TObject);
+const
+     //Die Spalten in der Titeldatenmatrix
+     Seiten      = 7;
+     Zeitschrift = 8;
+     Sammelband  = 10 ;
+     Verlag=       11;
+var
+   erstautor:  string;
+   gefunden:   boolean;
+   i:          integer;
+   neu:        boolean;
+   typ:        string;
+
+begin
+      MachPause();
+      Vorschlagsliste.visible:=False;
+      if istextchanged then savechangestoarray();
+      if schreibrecht() then      // Schreibrecht vorhanden. Ohne geht gar nichts
+      begin
+
+            { prüfen, ob es sich um einen neuen Datensatz handelt }
+            neu:=true;
+            if AktuelleLiteraturID<>'' then neu:=false;
+            if neu then
+            begin
+               increaseMaxID('Literatur');
+               AktuelleLiteraturArrayZeile:=
+                      getTopEmptyRow('Literatur');  //Dahin wird geschrieben werden  // ID erzeugen und schreiben
+
+              // showmessage(Literatur[AktuelleLiteraturArrayZeile,Spalte_autor])  ;
+
+               Literatur[AktuelleLiteraturArrayZeile,1]:= IntToStr(GetMaxID('Literatur'));
+               Fenster.Feldinhalt.lines.clear;
+               IsTextChanged:=false;
+           end;
+
+           // ----------------------------------
+           //falschen Publikatonstyp korrigieren
+           // ----------------------------------
+           If (RadioSammelband.checked) and
+              (Titeldatenmatrix.cells[1,0]='') and
+              (Titeldatenmatrix.cells[1,9] <> '') then
+           begin
+                 Titeldatenmatrix.cells[1,0]:=Titeldatenmatrix.cells[1,9];
+                 Titeldatenmatrix.cells[1,9]:='' ;
+                 showmsg('ganze Sammelbände werden wie Bücher eingegeben');
+           end;
+           If (RadioSammelband.checked) and
+              (Titeldatenmatrix.cells[1,1]='') and
+              (Titeldatenmatrix.cells[1,10] <> '') then
+           begin
+                 Titeldatenmatrix.cells[1,1]:=Titeldatenmatrix.cells[1,10];
+                 Titeldatenmatrix.cells[1,10]:='' ;
+           end;
+           If (RadioSammelband.checked)  and (Titeldatenmatrix.cells[1,5]<>'')
+            then RadioArtikel.checked:=true;
+
+           // ist es ein Buch?
+           if  (Titeldatenmatrix.cells[1,Verlag]<>'')
+           and (Titeldatenmatrix.cells[1,Zeitschrift]='')
+           and (Titeldatenmatrix.cells[1,Sammelband]='')
+           and (Titeldatenmatrix.cells[1,Seiten]='')
+           and (RadioSammelband.checked=false)
+           then  RadioBuch.checked:=true;
+
+           // ist es eine Zeitschrift?
+           If (Titeldatenmatrix.cells[1,Zeitschrift]<>'') then RadioArtikel.checked:=true;
+
+
+
+
+           //fehlende Angaben im Autoren- und Jahresfeld
+           if Titeldatenmatrix.cells[1,3]='' then Titeldatenmatrix.cells[1,3]:='o.J.';
+           if Titeldatenmatrix.cells[1,0]='' then Titeldatenmatrix.cells[1,0]:='o.A.';
+
+           //geänderte Daten an die alte Stelle zurückspeichern.
+           typ:='Buch';
+           if RadioArtikel.checked then typ:='Artikel';
+           if RadioKapitel.checked then typ:='Kapitel';
+           if RadioSammelband.checked then typ:='Sammelband';
+           Literatur[AktuelleLiteraturArrayZeile,Spalte_Publikationstyp]  :=typ  ;
+
+
+
+
+
+           Literatur[AktuelleLiteraturArrayZeile,Spalte_Autor]  :=            TitelDatenmatrix.Cells[1,0] ;
+           Literatur[AktuelleLiteraturArrayZeile,Spalte_Titel]  :=            TitelDatenmatrix.Cells[1,1] ;
+           Literatur[AktuelleLiteraturArrayZeile,Spalte_Untertitel]  :=       TitelDatenmatrix.Cells[1,2] ;
+           Literatur[AktuelleLiteraturArrayZeile,Spalte_Jahr]  :=             TitelDatenmatrix.Cells[1,3] ;
+           Literatur[AktuelleLiteraturArrayZeile,Spalte_Publikationsdatum] := TitelDatenmatrix.Cells[1,4] ;
+           Literatur[AktuelleLiteraturArrayZeile,Spalte_Band]  :=             TitelDatenmatrix.Cells[1,5] ;
+           Literatur[AktuelleLiteraturArrayZeile,Spalte_Nummer] :=            TitelDatenmatrix.Cells[1,6] ;
+           Literatur[AktuelleLiteraturArrayZeile,Spalte_Seiten] :=            TitelDatenmatrix.Cells[1,7] ;
+           Literatur[AktuelleLiteraturArrayZeile,Spalte_Zeitschrift]:=        TitelDatenmatrix.Cells[1,8] ;    ;
+           Literatur[AktuelleLiteraturArrayZeile,Spalte_Herausgeber]:=        TitelDatenmatrix.Cells[1,9] ;
+           Literatur[AktuelleLiteraturArrayZeile,Spalte_Sammelband] :=        TitelDatenmatrix.Cells[1,10] ;
+           Literatur[AktuelleLiteraturArrayZeile,Spalte_Verlag]  :=           TitelDatenmatrix.Cells[1,11] ;
+           Literatur[AktuelleLiteraturArrayZeile,Spalte_Ort] :=               TitelDatenmatrix.Cells[1,12] ;
+           Literatur[AktuelleLiteraturArrayZeile,Spalte_Auflage] :=           TitelDatenmatrix.Cells[1,13] ;
+           Literatur[AktuelleLiteraturArrayZeile,Spalte_ISBN]:=               TitelDatenmatrix.Cells[1,14] ;
+
+           Literatur[AktuelleLiteraturArrayZeile,Spalte_Erstautor]:=HolErstautor(AktuelleLiteraturArrayZeile);
+           Erstautor:=Literatur[AktuelleLiteraturArrayZeile,Spalte_Erstautor];
+
+           Literatur[AktuelleLiteraturArrayZeile, Spalte_Bearbeitungsdatum] :=   formatdatetime('yyyymmddhhnn', now);
+           if Literatur[AktuelleLiteraturArrayZeile, Spalte_Erstelldatum] ='' then
+              Literatur[AktuelleLiteraturArrayZeile, Spalte_Erstelldatum]:= formatdatetime('dd.mm.yyyy', now);
+
+
+           LiteraturVolltext(AktuelleLiteraturArrayZeile); // Volltext muß SeiteNeu angelegt werden.
+           MachPause();
+           UpdateBearbeitungszahl();
+           lchanged:=true;
+
+      end;
+
+      machpause();
+      //Die Sortierung hat sich evtl. geändert. Vielleicht ein neuer Datensatz
+      with fenster do
+      begin
+            fenster.AlleAnzeigenClick(self);
+            timer.enabled:=true;
+            TimerTimer(self);
+            machpause();
+            FocusTo('Liste');
+            // Den (neuen) Datensatz in der Liste aufrufen
+            gefunden:=false;
+            For i:=0 to Fenster.Liste.Rowcount-1 do
+            begin
+                 if  pos(Erstautor,Trefferarray[i,TrefferArraySpalteTitel])>0
+                 then gefunden:=true;
+                 if (Trefferarray[i,TrefferArraySpalteTyp]<>'L')
+                 then gefunden:=false;
+                 if gefunden then
+                 begin
+                      Fenster.Liste.Row:=i;
+                      timer.enabled:=true;
+                      break;
+                 end;
+            end;
+        end;
+      CancelTiteldatenclick(self);
+end;
+
+procedure TFenster.ButtonTrefferHochClick(Sender: TObject);
+var
+          i:   integer;
+begin
+       i:=liste.row - trunc(liste.height/liste.defaultrowheight);
+       if i<0 then i:=0;
+       liste.row:=i;
+end;
+
+procedure TFenster.ButtonTrefferRunterClick(Sender: TObject);
+begin
+
+end;
+
+procedure TFenster.CancelTiteldatenClick(Sender: TObject);
+begin
+  RegisterSuche.ActivePage:=SeiteVolltextsuche;
+  ResizeWindow();
+end;
+
+procedure TFenster.DateneingabeKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+
+begin
+
+      if key in [vk_return] then
+      begin
+             if Vorschlagsliste.items.count > 0 then Vorschlagsliste.ItemIndex:=0;
+             if Vorschlagsliste.visible then VorschlagslisteClick(self);
+             Vorschlagsliste.visible:=False;
+             // das nächste Feld aufrufen
+             if (titeldatenmatrix.row < 15) and (titeldatenmatrix.row > 0)  then
+              titeldatenmatrix.row :=titeldatenmatrix.row +1;
+             key:=0;
+      end;
+      if key in [vk_tab] then
+      begin
+           TiteldatenMatrix.cells[1,Titeldatenmatrix.row]:=Dateneingabe.text;
+           if (ssShift in Shift)  then { so kann ich SHIFT+TAB abfragen }
+           begin
+               if titeldatenmatrix.row >1  then
+               titeldatenmatrix.row :=titeldatenmatrix.row -1;
+           end else begin
+               if titeldatenmatrix.row < 15 then
+               titeldatenmatrix.row :=titeldatenmatrix.row +1;
+           end;
+           key:=0;
+           Dateneingabe.text:=Titeldatenmatrix.cells[1,TiteldatenMatrix.row];
+           FocusTo('Dateneingabe');
+           Dateneingabe.SelStart:=1000;
+           Vorschlagsliste.visible:=false;
+      end;
+      UngespeicherteZeichen:=UngespeicherteZeichen+1;
+end;
+
+procedure TFenster.DateneingabeKeyPress(Sender: TObject; var Key: char);
+var
+       f:string;
+begin
+     if key<>#8 then
+     begin
+         f:=Dateneingabe.text;
+         f:=f+key;
+         f:=trim(f);
+         { 01/20236 f ist das Namensfragment des letzten Namens }
+         while pos(';',f) > 0 do
+               f:=copy(f,2,1000);
+         f:=trim(f);
+         if (length(f) > 1)  then AutoComplete('Autoren',f);
+     end;
+
+end;
+
+procedure TFenster.DateneingabeKeyUp(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+     {kommt erst hier, weil bei keypress oder keydown nicht aktualisiert wird}
+     TiteldatenMatrix.cells[1,Titeldatenmatrix.row]:=trim(Dateneingabe.text);
+end;
+
+procedure TFenster.EingabeTitelNeueNotizKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if key = vk_return then runderButtonSchaltflaeche16Click(self);
+  if key = vk_escape then ButtonNeuDialogWegClick(self);
+end;
+
+procedure TFenster.EinstellungenShow(Sender: TObject);
+begin
+
+end;
+
+procedure TFenster.FeldinhaltChange(Sender: TObject);
+begin
+
+end;
+
+procedure TFenster.FeldinhaltKeyPress(Sender: TObject; var Key: char);
+begin
+
+end;
+
 procedure TFenster.FontDialogClose(Sender: TObject);
 var
    standardzeichen: tfontparams;
@@ -9927,6 +10070,7 @@ begin
   SetIni('feldinhaltfont',feldinhalt.font.name);
   SetIntegerIni('fontsize',feldinhalt.font.size);
   fsize:= feldinhalt.font.size;
+  Zeichensatz:=FeldInhalt.Font.Name;
   ZeichenSatzEinstellen();
    with Standardzeichen do //normaler Text ohne Formatierungen
    begin
@@ -9949,76 +10093,72 @@ begin
 
 end;
 
-procedure TFenster.GliederungMouseWheelDown(Sender: TObject;
-  Shift: TShiftState; MousePos: TPoint; var Handled: Boolean);
-begin
-
-
-end;
-
 procedure TFenster.GrenzeSchlagwortsucheEinClick(Sender: TObject);
 var
    anzahlkombinationen:    integer;
+   anfang:                 integer;
    h:                      integer;
-   i:      integer;
-   j:      integer;
-   spalte: integer;
-   spaltenzahl:  integer;
-   w:            string;
-   z:            integer;
-   zeile:        integer;
+   i:                      integer;
+   j:                      integer;
+   w:                      string;
+   wort:                   string;
+   wortliste:              string;
+   z:                      integer;
+
 begin
-         AnzahlKombinationen:=0;
-         if fenster.width < 1200 then spaltenzahl:=3 else spaltenzahl:=4  ;
-         ListeSchlagwortsuche.rowcount:=trunc(swliste.count/spaltenzahl)+1;
-           { bei einem backspace weiß ich nicht, wie viele Kombinationen es
-             gibt, also gehe ich von der maximalen Reihenzahl aus }
-
-          for spalte:=0 to 3 do    //Grid leeren
-              for zeile:=0 to ListeSchlagwortsuche.rowcount-1  do
-                  ListeSchlagwortsuche.Cells[spalte,zeile]:='';
-          spalte:=0;
-          zeile:=0;
-
-          //Die verbleibenden Kombinierten Schlagwoerter identifizeren
-          for i:=0 to swliste.count -1 do
-          begin
-               w:=  ansilowercase(getfirstword(swliste[i])); //das Schlagwort
-               if pos(w,ansilowercase(sucheingabe.text) )= 0 then
-               begin
-                   for j := 0 to liste.rowcount -1 do  //die bisherigen Treffer
+     AnzahlKombinationen:=0;
+      //-- Das Memo leeren und füllen --
+      //--------------------------------
+      Memofilter.lines.clear;
+      for i:=0 to swliste.count -1 do
+      begin
+         w:=  ansilowercase(getfirstword(swliste[i])); //das Schlagwort
+         for j := 0 to liste.rowcount -1 do  //die bisherigen Treffer
+         begin
+              z:=str2int(Trefferarray[j,TrefferArraySpalteArrayZeile]) ;
+              if Trefferarray[j,TrefferArraySpalteTyp]='L' then
+              begin
+                   if  (pos(w,Literatur[z,spalte_volltext]) > 0) then
                    begin
-                        z:=str2int(Trefferarray[j,TrefferArraySpalteArrayZeile]) ;
-                        if Trefferarray[j,TrefferArraySpalteTyp]='L' then
-                        begin
-                             if  (pos(w,Literatur[z,spalte_volltext]) > 0) then
-                             begin
-                                  AnzahlKombinationen:=AnzahlKombinationen +1;
-                                  ListeSchlagwortsuche.cells[spalte,zeile]:=
-                                       getfirstword(swliste[i]);                                     ;
-                                  spalte:=spalte+1;
-                                  if spalte > spaltenzahl -1 then
-                                  begin
-                                    spalte:=0;
-                                    zeile:=zeile+1;
-                                  end;
-                                  break;
-                             end;
-
-                        end else begin // Notiz
-
-
-
-                        end;
+                        AnzahlKombinationen:=AnzahlKombinationen +1;
+                        MemoFilter.Lines.text:= MemoFilter.lines.text
+                            + getfirstword(swliste[i]) + '  ' ;                                    ;
+                        break;
                    end;
-               end;
-          end;
-          if AnzahlKombinationen=0 then Anzahlkombinationen:=1;
-        h:= (trunc(Anzahlkombinationen/spaltenzahl)+2)*ListeSchlagwortsuche.DefaultRowHeight;
-        if h>trunc(fenster.height/3) then h:=trunc(fenster.height/3);
-       PanelKombinierterSchlagwoerter.height:=h+40;
-       ListeSchlagwortsuche.rowcount:=trunc(AnzahlKombinationen/spaltenzahl)+1;
-       resizewindow();
+              end else begin // die Notizen durchsuchen
+                  if  (pos(w,Daten[z,spalte_volltext]) > 0) then
+                   begin
+                        AnzahlKombinationen:=AnzahlKombinationen +1;
+                        MemoFilter.Lines.text:= MemoFilter.lines.text
+                            + getfirstword(swliste[i]) + '  ' ;                                    ;
+                        break;
+                   end;
+              end;
+         end;
+
+      end;
+
+
+
+
+      { Die Liste kombinierter Schlagwörter ist jetzt vollständig. Jetzt noch
+        die ausgewählten Schlagwörter aus der Sucheingabe im Memo fett
+        markieren }
+      Wortliste:=Sucheingabe.text;
+      while length(wortliste) > 1 do
+      begin
+           wort:=getfirstword(wortliste);
+           wortliste:=deletefirstword(wortliste);
+
+           anfang:=Fenster.MemoFilter.Search(wort,0,10000,[]);
+           if anfang > -1 then
+                     Fenster.MemoFilter.SetRangeParams( anfang, length(wort),
+                                             [tmm_styles, tmm_color], '',0,
+                                             blau,[fsbold], []);
+
+
+      end;
+   resizewindow();
 
 end;
 
@@ -10032,10 +10172,9 @@ begin
         if sender is tpanel then Tpanel(sender).font.style:=[];
 end;
 
-procedure TFenster.IconQVClick(Sender: TObject);
-
+procedure TFenster.IconFormatierungClick(Sender: TObject);
 begin
-
+    PopupTextFormatierung.PopUp;
 end;
 
 procedure TFenster.IconQVMouseUp(Sender: TObject; Button: TMouseButton;
@@ -10064,66 +10203,648 @@ begin
 
 end;
 
+procedure TFenster.IconWeiterSpulenClick(Sender: TObject);
+begin
+
+end;
+
+procedure TFenster.IconZumAnfangSpulenClick(Sender: TObject);
+begin
+
+end;
+
+procedure TFenster.IconZurueckSpulenClick(Sender: TObject);
+begin
+
+end;
+
+procedure TFenster.IdeenSeiteEnter(Sender: TObject);
+begin
+    PanelFeldInhaltIcons.visible:=true
+
+end;
+
+procedure TFenster.IdeenSeiteExit(Sender: TObject);
+begin
+
+end;
+
+procedure TFenster.ButtonScrollUpClick(Sender: TObject);
+begin
+
+end;
+
+procedure TFenster.IconAnsEndeSpulenClick(Sender: TObject);
+begin
+
+end;
+
+procedure TFenster.Image5Click(Sender: TObject);
+begin
+     if registersuche.activepage <> SeiteVolltextsuche
+     then registersuche.activepage:=SeiteVolltextsuche;
+     Sucheingabe.Text:='';;
+     SchlagwortlisteZeigenClick(self);
+end;
+
+procedure TFenster.ImageMenuSortierungClick(Sender: TObject);
+begin
+    MenuSortierung.Popup;
+end;
+
 procedure TFenster.ImageSchlagwortlisteWegClick(Sender: TObject);
 begin
          PanelKombinierterSchlagwoerter.BorderStyle:=bsnone;
          PanelKombinierterSchlagwoerter.height:=1;
+         resizewindow();
 end;
 
-procedure TFenster.LabelGeaendertAmClick(Sender: TObject);
+procedure TFenster.Buttonscholarclick(Sender: TObject);
+
+var
+ datname:string;
+ form:string;
+ nr:integer;
+begin
+     datname:=DBDirectory + 'import.tmp';
+     fenster.MemoZwischenablage.lines.clear;
+     if os='win'
+     then  fenster.MemoZwischenablage.PasteFromClipboard
+     else  fenster.MemoZwischenablage.Lines.text:=clipboard.astext;
+
+     fenster.MemoZwischenablage.Lines.SaveToFile(datname);
+
+     MachPause();
+
+     form:=IdentifiziereImportFormat(datname);
+     if form <> '' then
+     begin
+           if form='ris'then ImportRISDB(datname);
+           if form='refer'then ImportreferDB(datname);
+           if form='pubmed'then ImportpubmedDB(datname);
+           if form='bibtex'then ImportBibTeXDB(datname);
+           if form='z3950'then Importz3950DB(datname);
+           if form='bx' then LiteraturLaden('Literatur2',datname);
+           MachPause();
+           for nr:=1 to arraysize_Literatur do
+              if Literatur2[nr,Spalte_Autor]<> '' then break;
+           Titeldatenmatrix.cells[1,0]:=             trim(Literatur2[nr,Spalte_Autor]);
+           Titeldatenmatrix.cells[1,1]:=             Literatur2[nr,Spalte_Titel];
+           Titeldatenmatrix.cells[1,2]:=             Literatur2[nr,Spalte_Untertitel];
+           Titeldatenmatrix.cells[1,3]:=             Literatur2[nr,Spalte_Jahr];
+           Titeldatenmatrix.cells[1,4]:=             Literatur2[nr,Spalte_Publikationsdatum];
+           Titeldatenmatrix.cells[1,7]:=             Literatur2[nr,Spalte_Seiten];
+           Titeldatenmatrix.cells[1,8]:=             Literatur2[nr,Spalte_Zeitschrift];
+           Titeldatenmatrix.cells[1,9]:=             Literatur2[nr,Spalte_Band];
+           Titeldatenmatrix.cells[1,10]:=            Literatur2[nr,Spalte_Nummer];
+           Titeldatenmatrix.cells[1,11]:=            Literatur2[nr,Spalte_Verlag];
+           Titeldatenmatrix.cells[1,12]:=            Literatur2[nr,Spalte_Ort];
+
+           SetLength(Literatur2, 1,1);  //Die Datenbank verkleinern
+           Dateneingabe.text:= Titeldatenmatrix.cells[1,0];
+     end else begin
+           showmessage('Das Format konnte nicht erkannt werden...');
+           Dateneingabe.visible:=false;
+     end;
+
+
+end;
+
+procedure TFenster.KMemo1Change(Sender: TObject);
 begin
 
 end;
 
-procedure TFenster.LabelTitelChange(Sender: TObject);
+procedure TFenster.Label27Click(Sender: TObject);
+begin
+
+end;
+
+procedure TFenster.Label5Click(Sender: TObject);
+begin
+end;
+
+procedure TFenster.LabelKapitelClick(Sender: TObject);
+begin
+
+end;
+
+procedure TFenster.LabelOptionMitQuerverweisClick(Sender: TObject);
+begin
+  { umständlich, aber unter Windows kann die Fontfarbe einer checkbox
+    nicht verändert werden. Unter Linux geht das. Daher eine Aufteilung
+    in Checkbox ohne Caption und ein Label }
+  OptionMitverweis.checked:=not OptionMitverweis.checked;
+
+end;
+
+procedure TFenster.LabelSammelbandClick(Sender: TObject);
 begin
 
 end;
 
 procedure TFenster.LabelTrefferzahlClick(Sender: TObject);
+var
+   z:integer ;
+begin
+  z:=GetTopemptyrow('Daten');
+  showmessage(inttostr(z) + ' -- ' + Daten[z, Spalte_ID]);
+end;
+
+procedure TFenster.LabelVerweiseClick(Sender: TObject);
 begin
 
 end;
 
-procedure TFenster.Panel17Click(Sender: TObject);
+procedure TFenster.ListeGliederungen2Change(Sender: TObject);
 begin
 
 end;
 
-procedure TFenster.PanelVollzitat2Click(Sender: TObject);
+procedure TFenster.ListeGliederungen2Click(Sender: TObject);
 begin
 
 end;
 
-procedure TFenster.rbClick(Sender: TObject);
+procedure TFenster.ListeGliederungen2DblClick(Sender: TObject);
 begin
 
 end;
 
-procedure TFenster.RegisterkartenChange(Sender: TObject);
+procedure TFenster.MarkierungenloeschenClick(Sender: TObject);
+var
+   i:integer;
+begin
+     if nobox('Markierungen löschen?') then
+     begin
+           for i:=1 to arraysize_Literatur do
+           begin
+                if pos('#tag#',Literatur[i,Spalte_Anmerkung]) > 0 then
+                begin
+                     Literatur[i,Spalte_Anmerkung]:=
+                       stringreplace(Literatur[i,Spalte_Anmerkung],'#tag#','',[rfreplaceall]) ;
+                     LiteraturVolltext(i);
+                     lchanged:=true;
+                end ;
+           end;
+           for i:=1 to arraysize_Daten do
+           begin
+                if pos('#tag#',Daten[i,Spalte_Anmerkung]) > 0 then
+                begin
+                     Daten[i,Spalte_Anmerkung]:=
+                        stringreplace(Daten[i,Spalte_Anmerkung],'#tag#','',[rfreplaceall]) ;
+                     NotizVolltext(i);
+                     ichanged:=true;
+                end;
+           end;
+           AlleAnzeigenClick(self);
+     end;
+end;
+
+procedure TFenster.MemoFilterChange(Sender: TObject);
+begin
+
+end;
+
+procedure TFenster.MemoFilterClick(Sender: TObject);
+      var
+        i: integer;
+        txt, s, res:WideString;
+        titel:  string;
+begin
+       //--das angeklickte Wort ermitteln --
+        //-----------------------------------
+        // aus: https://www.lazarusforum.de/viewtopic.php?t=5631
+        txt:=UTF8Decode(MemoFilter.Text);
+        i := MemoFilter.SelStart;
+        s := '';
+        Res := '';
+        repeat
+          Res := s + Res;
+          s := Copy(txt, i, 1);
+          Dec(i);
+        until (s <= ' ') or (i < 0);
+        i := MemoFilter.SelStart + 1;
+        s := '';
+        repeat
+          Res := Res + s;
+          s := Copy(txt, i, 1);
+          Inc(i);
+        until (s <= ' ') or (s = '');
+        titel:= UTF8Encode(Res);
+        if pos(ansilowercase(titel),ansilowercase(Sucheingabe.text)) = 0
+        then sucheingabe.text:= sucheingabe.text + ' ' + titel
+        else sucheingabe.text:= StringReplace(sucheingabe.text,titel , '', [rfReplaceAll]);
+        sucheingabeclick(self);
+        machpause();
+
+        GrenzeSchlagwortsucheEinClick(self);
+        SetFilterHeight();
+        FocusTo('Sucheingabe'); { damit der Fokus vom Memo weg ist und der
+                                  Cursor kein Beam ist.  }
+
+
+
+end;
+
+procedure TFenster.MemoGliederungenChange(Sender: TObject);
+begin
+
+end;
+
+procedure TFenster.MemoGliederungenClick(Sender: TObject);
+var
+        i: integer;
+        txt, s, res:WideString;
+        titel:  string;
+begin
+        //--das angeklickte Wort ermitteln --
+        //-----------------------------------
+        // aus: https://www.lazarusforum.de/viewtopic.php?t=5631
+        txt:=UTF8Decode(MemoGliederungen.Text);
+        i := MemoGliederungen.SelStart;
+        s := '';
+        Res := '';
+        repeat
+          Res := s + Res;
+          s := Copy(txt, i, 1);
+          Dec(i);
+        until (s <= ' ') or (i < 0);
+        i := MemoGliederungen.SelStart + 1;
+        s := '';
+        repeat
+          Res := Res + s;
+          s := Copy(txt, i, 1);
+          Inc(i);
+        until (s <= ' ') or (s = '');
+        titel:= UTF8Encode(Res);
+
+        //--angeklickte Gliederung aufrufen --
+        //------------------------------------
+        if length(titel) > 1 then
+        begin
+              Gliederung.items.clear; // Gliederungsanzeige löschen;
+              Gliederungsdatei:=titel + '.tree' ;
+              SetIni('gliederungsdatei',Gliederungsdatei);
+              if fileexists(DBDirectory + Gliederungsdatei) then
+              Gliederung.LoadFromFile(DBDirectory + Gliederungsdatei);
+              //Gliederungsinhalt laden
+              if Gliederung.Items.Count > 20
+                 then ButtonGliederunglevel1click(self)
+                 else Gliederung.fullexpand;
+              LabelComboboxGliederung.caption:=titel;
+
+              //Icons setzen
+              for i:=0 to Gliederung.Items.Count -1 do
+                  Gliederung.Items[i].ImageIndex:=0;
+              //angeklickte Gliederung fett
+              GliederungMd();
+
+          end;
+
+          FocusTo('Gliederung');
+
+
+
+end;
+
+procedure TFenster.MemoGliederungenMouseEnter(Sender: TObject);
+begin
+  Screen.Cursor:=crhandpoint;
+end;
+
+procedure TFenster.MemoSchlagwoerterClick(Sender: TObject);
+var
+   i:             integer;
+   r:             widestring;
+   res:           widestring;
+   s:             widestring;
+   sw:            string;
+   txt:           widestring;
+begin
+        //--das angeklickte Wort ermitteln --
+        //-----------------------------------
+        // aus: https://www.lazarusforum.de/viewtopic.php?t=5631
+        with MemoSchlagwoerter do
+        begin
+            txt:=UTF8Decode(Text);
+            i := SelStart;
+            s := '';
+            Res := '';
+            repeat
+              Res := s + Res;
+              s := Copy(txt, i, 1);
+              Dec(i);
+            until (s <= ' ') or (i < 0);
+            i := SelStart + 1;
+            s := '';
+            repeat
+              Res := Res + s;
+              s := Copy(txt, i, 1);
+              Inc(i);
+            until (s <= ' ') or (s = '');
+            sw:= UTF8Encode(Res);
+        end;
+        insertkeyword(sw);
+        FocusTo('Feldinhalt');
+        IconSchlagwortClick(self);
+end;
+
+procedure TFenster.MenuLiteraturZeigenClick(Sender: TObject);
+begin
+  MenuLiteraturZeigen.checked:=not MenuLiteraturzeigen.checked;
+  if not MenuNotizenzeigen.checked then  MenuNotizenzeigen.checked:=true;
+  { Mindestens eine Kategorie muss angezeigt werden.}
+end;
+
+procedure TFenster.MenuNotizenZeigenClick(Sender: TObject);
+begin
+   MenuNotizenZeigen.checked:=not MenuNotizenzeigen.checked;
+  if not MenuLiteraturZeigen.checked then  MenuLiteraturZeigen.checked:=true;
+  { Mindestens eine Kategorie muss angezeigt werden.}
+end;
+
+procedure TFenster.MenuNurMarkierteClick(Sender: TObject);
+begin
+  MenuNurMarkierte.checked:=not MenuNurMarkierte.checked;
+end;
+
+procedure TFenster.MenuSortAlphaClick(Sender: TObject);
+begin
+  MenuSortAlpha.Checked:=true;;
+end;
+
+procedure TFenster.MenuSortTimeClick(Sender: TObject);
+begin
+  MenuSortTime.checked:=true;
+end;
+
+procedure TFenster.OptionRISExportChange(Sender: TObject);
+begin
+
+end;
+
+procedure TFenster.PanelInhaltClick(Sender: TObject);
+begin
+
+end;
+
+procedure TFenster.RegisterEinstellungenChange(Sender: TObject);
+begin
+
+end;
+
+procedure TFenster.PanelhintergrundobenClick(Sender: TObject);
+begin
+
+end;
+
+procedure TFenster.runderButtonRechts11Click(Sender: TObject);
+begin
+
+end;
+
+procedure TFenster.runderButtonSchaltflaeche16Click(Sender: TObject);
+var
+   alteZeile:        integer;
+   AlterTyp:         string;
+   Anlegen:          boolean;
+   i:                integer;
+   linkalt:          string;
+   linkneu:          string;
+   NeueID:           string;
+   NeuerTitel:       string;
+   NeuerTitel2:      string;
+   NeueZeile:        integer;
+begin
+
+     AlterTyp:=  AngezeigterTyp ;
+     //Die Links werden standardmäßig erzeugt, aber vielleicht nicht verwendet.
+      if AlterTyp='N' then
+      begin
+           alteZeile:= AktuelleNotizenArrayZeile;
+           linkalt:='note://' + AktuelleNotizID + ' ' + Daten[AktuelleNotizenArrayZeile,Spalte_Titel];
+      end;
+      if Altertyp='L' then
+      begin
+           alteZeile:= AktuelleLiteraturArrayZeile;
+           linkalt:='ref://' + AktuelleLiteraturID + ' '
+                             + Literatur[AktuelleLiteraturArrayZeile,Spalte_Erstautor] + ' ('
+                             + Literatur[AktuelleLiteraturArrayZeile,Spalte_Jahr] + ') '
+                             + Literatur[AktuelleLiteraturArrayZeile,Spalte_Titel]
+                             ;
+      end;
+
+
+
+
+     neuertitel := trim(EingabeTitelNeueNotiz.text)   ;
+     anlegen:=true;
+     if length(neuertitel) = 0  then  anlegen:=false;
+
+     // prüfen, ob es den Titel schon gibt
+     if anlegen then
+     begin
+          for i := Arraysize_Daten downto 1 do
+          begin
+               if ansilowercase(Daten[i, Spalte_Titel]) = ansilowercase(neuerTitel)    then
+               begin
+                    showmsg('Eine Notiz mit diesem Titel gibt es schon') ;
+                    anlegen:=false;
+               end;
+          end;
+     end;
+     // Der Titel ist ok und existiert noch nicht
+     if anlegen  then
+     begin
+           IncreaseMaxID('Daten');
+           NeueZeile:=getTopEmptyRow('daten');
+           Daten[NeueZeile, Spalte_ID]:= inttostr(IdeenIDMax);
+           Daten[NeueZeile, Spalte_Bearbeitungsdatum] := formatdatetime('yyyymmddhhnn', now);
+           Daten[NeueZeile, Spalte_Erstelldatum] :=      formatdatetime('yyyymmddhhnn', now);
+           Daten[NeueZeile, Spalte_Titel] := Neuertitel;
+           LabelTitel.caption:=NeuerTitel;
+     //      Feldinhalt.Lines.Clear;
+
+
+           // Verweis einfügen -----
+           linkalt:= StringReplace(linkalt,' ' , '_', [rfReplaceAll])+ ' ';
+           if Optionmitverweis.checked
+           then Daten[NeueZeile, Spalte_Anmerkung]:=
+                 Daten[NeueZeile, Spalte_Anmerkung] + ' ' + linkalt;
+           linkneu:='note://' + neueID+ ' ' + neuertitel;
+           linkneu:= ' ' + StringReplace(linkneu,' ' , '_', [rfReplaceAll])+ ' ';
+
+          if Optionmitverweis.checked then
+          begin
+               paste(linkneu);
+               if Altertyp='N' then
+               begin
+                  Daten[AlteZeile,Spalte_Anmerkung]:=Daten[AlteZeile,Spalte_Anmerkung] + linkneu;
+                  Daten[AlteZeile, Spalte_Bearbeitungsdatum] :=      formatdatetime('yyyymmddhhnn', now);
+               end;
+               if Altertyp='L' then
+               begin
+                  Literatur[AlteZeile,Spalte_Anmerkung]:=Literatur[AlteZeile,Spalte_Anmerkung] + linkneu;
+                  Literatur[AlteZeile, Spalte_Bearbeitungsdatum] :=      formatdatetime('yyyymmddhhnn', now);
+                  lchanged:=true;
+               end;
+          end;
+
+          ichanged:=true;  //sowieso
+          ButtonNeuDialogWegClick(self);
+
+          //ist der Array noch groß genug?
+          if Arraysize_daten - GetTopEmptyRow('daten') < 100 then
+          begin
+             SetLength(Daten, ArraySize_Daten+102,Spalte_Position+1);
+             Arraysize_daten:=Arraysize_daten+100;
+          end;
+
+
+
+          AlleAnzeigenClick(self);
+          // auf den neuen Datensatz fokussieren
+          for i:=0 to  Liste.Rowcount-1    do
+          begin
+              if TrefferArray[i,TrefferArraySpalteTitel]=NeuerTitel then
+              begin
+                   Liste.Row:=i;
+                   break;
+              end;
+          end;
+          FocusTo('Feldinhalt');
+          Feldinhalt.SelStart:=1000;
+          formatmd(0,100,false);
+
+
+
+
+    end;
+
+
+end;
+
+procedure TFenster.ScrollbarGliederungHintergrundClick(Sender: TObject);
+
+
+begin
+       Gliederung.items[Gliederung.Items.Count-1].selected:=true  ;
+       GliederungClick(self);
+       ScrollbarGliederungHintergrundOben.height:=ScrollbarGliederung.height-100;
+
+end;
+
+procedure TFenster.ScrollbarGliederungHintergrundObenClick(Sender: TObject);
+begin
+     Gliederung.items[0].selected:=true;
+     GliederungClick(self);
+      ScrollbarGliederungHintergrundOben.height:=12;
+end;
+
+procedure TFenster.ScrollbarListeHintergrundClick(Sender: TObject);
+var
+   m:    integer;
+begin
+   m:= (Sender as TPanel).ScreenToControl(Mouse.CursorPos).y;
+   if m < scrollbarlisteschieber.top then // nach oben scrollen
+   begin
+      Liste.Row:=liste.row - trunc(liste.height/liste.defaultrowheight)-1;
+      if scrollbarlisteschieber.top >  scrollbarlisteschieber.height  then
+      begin
+          scrollbarlisteschieber.top:=  scrollbarlisteschieber.top  -
+                                        scrollbarlisteschieber.height  ;
+      end else begin
+         scrollbarlisteschieber.top:= ScrollbarListeHintergrund.top;
+         Liste.Row:=0;
+      end;
+   end else begin; //nach unten scrollen
+      Liste.Row:=liste.row + trunc(liste.height/liste.defaultrowheight)+1;
+      if scrollbarlisteschieber.top +  50 +
+         scrollbarlisteschieber.height +
+         scrollbarlisteschieber.height <  ScrollbarListeHintergrund.height then
+      begin
+
+             scrollbarlisteschieber.top:=  scrollbarlisteschieber.top  +
+                                           scrollbarlisteschieber.height
+      end else begin // Schieber am Ende
+           scrollbarlisteschieber.top:=  ScrollbarListeHintergrund.height -
+                                         (scrollbarlisteschieber.height +20) ;
+           liste.row:=liste.rowcount-1;
+      end;
+
+
+   end;
+
+
+end;
+
+procedure TFenster.ScrollbarTextHintergrund(Sender: TObject);
+var
+   m:    integer;
+   wo:   real;
+begin
+   m:=  Mouse.CursorPos.y;
+   m:=m-fenster.top;
+   m:=m-feldinhalt.top -trunc(140*skalierung);
+   wo:=m/PanelAnmerkungenScrollbarButton.height;
+   FocusTo('Feldinhalt');
+   if wo<0.3 then
+   begin
+        Feldinhalt.SelStart:=0;
+        ScrollbarAnmerkungenSchieber.align:=altop;
+   end;
+   if wo>0.5 then
+   begin
+        Feldinhalt.SelStart:=10000;
+        ScrollbarAnmerkungenSchieber.align:=albottom;
+   end;
+
+
+end;
+
+procedure TFenster.ScrollbarAnmerkungenClick(Sender: TObject);
+begin
+
+end;
+
+procedure TFenster.PanelPanikClick(Sender: TObject);
+begin
+
+end;
+
+procedure TFenster.PanikButtonClick(Sender: TObject);
+begin
+
+end;
+
+procedure TFenster.RichMemo1Change(Sender: TObject);
 begin
 
 end;
 
 procedure TFenster.SchlagwortlisteZeigenClick(Sender: TObject);
 begin
-
-           if var_OptionListeDetails then ImageOptionDetailsclick(self);
-            { Details ausschalten, weil sonst zu wenige Einträge }
-
-
+         if PanelKombinierterSchlagwoerter.height < 50 then
+         begin
             if sucheingabe.text = ''
             then ZeigeAlleSchlagwoerterClick(self)
             else GrenzeSchlagwortsucheEinClick(self);
-            PanelKombinierterSchlagwoerter.BorderStyle:=bssingle;
-
+        end else begin
+            ImageSchlagwortlisteWegClick(self);
+        end;
 
      resizewindow();
 end;
 
+procedure TFenster.ScrollBoxEinstellungenClick(Sender: TObject);
+begin
+
+end;
+
 procedure TFenster.SeiteVolltextsucheShow(Sender: TObject);
 begin
-  AnzeigeModus:='volltextsuche';
+     AnzeigeModus:='volltextsuche';
 end;
 
 procedure TFenster.switchMouseEnter(Sender: TObject);
@@ -10136,22 +10857,10 @@ begin
 
 end;
 
-procedure TFenster.ScrollbarAnfangClick(Sender: TObject);
-begin
-     if feldinhalt.visible then feldinhalt.selstart:=0;
-     if AnmerkungenMemo.visible then AnmerkungenMemo.selstart:=0;
-end;
-
 procedure TFenster.ScrollbarAnfangGliederungClick(Sender: TObject);
 begin
      Gliederung.items[0].selected:=true;
      GliederungClick(self);
-end;
-
-procedure TFenster.ScrollbarEndeClick(Sender: TObject);
-begin
-     if feldinhalt.visible then feldinhalt.selstart:=10000;
-     if AnmerkungenMemo.visible then AnmerkungenMemo.selstart:=10000;
 end;
 
 procedure TFenster.ImageCodeClick(Sender: TObject);
@@ -10187,7 +10896,7 @@ begin
 
     Feldinhalt.text:=t2;
 
-    savechangestoarray();
+    if istextchanged then savechangestoarray();
 
     Timer.Enabled:=False;
     Timer.Enabled:=true;
@@ -10201,55 +10910,10 @@ begin
      FontDialog.Execute;
 end;
 
-procedure TFenster.ImageOptionMarkDownClick(Sender: TObject);
-begin
-     var_OptionMarkDown:=not var_OptionMarkDown ;
-
-     if var_optionMarkDown
-     then ImageOptionMarkDown.picture:=imagetoggleon.picture
-     else ImageOptionMarkDown.picture:=imagetoggleoff.picture  ;
-
-
-end;
-
 procedure TFenster.ListeGliederungenClick(Sender: TObject);
-var
-          p1,p2,titel:string;
-begin
-     if ListeGliederungen.itemindex > -1 then
-     begin
-          titel:= ListeGliederungen.items[ListeGliederungen.ItemIndex];
-          if titel = '<neue Gliederung>' then
-          begin
-               if gliederung.items.count> 1
-                   then GliederungSpeichern(DBDirectory + Gliederungsdatei);
-               p1:='neue Gliederung';
-               p2:='Name der Datei:';
-               titel := inputbox(p1, p2, '');
-               if length(titel) > 2 then
-               begin
-                    Gliederungsdatei:=titel + '.tree';
-                    Gliederung.Items.Clear;
-                    SetIni('gliederungsdatei',gliederungsdatei);
-                    GliederungSpeichern(DBDirectory + Gliederungsdatei);
-                    IconGliederungClick(self);
-                          //die neue Gliederung kommt in die Dropdownliste
-               end;
-          end else begin //eine bestende Gliederung wird aufgerufen
-              Gliederung.items.clear; // Gliederungsanzeige löschen;
-              Gliederungsdatei:=titel + '.tree' ;
-              SetIni('gliederungsdatei',Gliederungsdatei);
-              if fileexists(DBDirectory + Gliederungsdatei) then
-              Gliederung.LoadFromFile(DBDirectory + Gliederungsdatei);
-                         //Gliederungsinhalt laden
-              if Gliederung.Items.Count > 20
-                 then ButtonGliederunglevel1click(self)
-                 else Gliederung.fullexpand;
 
-          end;
-          LabelComboboxGliederung.caption:=titel;
-          ListeGliederungen.visible:=false;
-     end;
+begin
+
 
 end;
 
@@ -10261,31 +10925,25 @@ var
      ufc:  tcolor;   //Unterfenster;
      uufc: tcolor; //UnterUnterfenster
      buf:  tcolor; //Button in einem Unterfenster
-     buuf: tcolor; //button in einem unterunternfenster
-     uuufc: tcolor; //UnterUnterUnterfenster
      urlcolor: tcolor;
 begin
-   dump('Farbschema Anfang');
-   //  iconallesspeichernclick(self);
+
      if var_optiondarkmode then
      begin  //dark mode
           bc:=$121212;//clblack;    282828
           LiteraturFarbeNormal:=$004C4C4C;   //$003b1c32 zu dunkel, man erkennt nichts
           ufc:=$3f3f3f3f  ;
           uufc:=$00717171 ;
-          buf:=$00515151; //$004C4C4C; //$00666666;
-          buuf:=$00999999;
-          uuufc:=$008B8B8B;
+          buf:=$00515151;
           fc:=clwhite;
           urlcolor:=claqua;// clsilver;
      end else begin  //light mode
          bc:=clwhite;
-         buf:=$00EAF2F9;
-         buuf:= $00EAF2F9 ;
+         buf:= $00EAF2F9;
+
          literaturfarbenormal:= $00EAEAEA;
-         ufc:=$F7F8F9;
-         uufc:= $00ECEDE3;
-         uuufc:=$a4a4a4;
+         ufc:=  $F7F8F9;              //      $00F7F8F9
+         uufc:=  $00ECEDE3;
          fc:=clblack;
          urlcolor:=clblue;
      end;
@@ -10300,226 +10958,14 @@ begin
      fenstereditor.font.Color:=fc;
      Gliederung.font.color:=fc;
 
-
-
-
-
-     // ICONS ------
-     //-------------
-
-     i0.Picture:=IconSpeichernKlein.picture;
-     IconSpeichernKlein.picture:= i1.picture  ;
-     i1.picture:=i0.picture ;
-
-     i0.Picture:=iconneuklein.picture;
-     iconneuklein.picture:= i2.picture  ;
-     i2.picture:=i0.picture ;
-
-     i0.Picture:=iconschlagwortklein.picture;
-     iconschlagwortklein.picture:= i3.picture  ;
-     i3.picture:=i0.picture ;
-
-     i0.Picture:=iconlinkklein.picture;
-     iconlinkklein.picture:= i4.picture  ;
-     i4.picture:=i0.picture ;
-
-     i0.Picture:=iconDateiVerweisklein.picture;
-     iconDateiVerweisklein.picture:= i5.picture  ;
-     i5.picture:=i0.picture ;
-
-     i0.Picture:=iconZitatklein.picture;
-     iconZitatklein.picture:= i6.picture  ;
-     i6.picture:=i0.picture ;
-
-     i0.Picture:=iconHilfeklein.picture;
-     iconHilfeklein.picture:= i7.picture  ;
-     i7.picture:=i0.picture ;
-
-     i0.Picture:=iconEinstellungenklein.picture;
-     iconEinstellungenklein.picture:= i8.picture  ;
-     i8.picture:=i0.picture ;
-
-     //Iconleiste durch
-
-
-
-     i0.Picture:=alles.picture;
-     alles.picture:= i10.picture  ;
-     i10.picture:=i0.picture ;
-
-     i0.Picture:=imageSternLeer.picture;
-     imageSternLeer.picture:= i11.picture  ;
-     i11.picture:=i0.picture ;
-
-     i0.Picture:=imageSternVoll.picture;
-     imageSternVoll.picture:= i12.picture  ;
-     i12.picture:=i0.picture ;
-
-     i0.Picture:=ImagePinLeer.picture;
-     ImagePinLeer.picture:= i13.picture  ;
-     i13.picture:=i0.picture ;
-
-     i0.Picture:=ImagePinVoll.picture;
-     ImagePinVoll.picture:= i14.picture  ;
-     i14.picture:=i0.picture ;
-
-     i0.Picture:=iconrefresh.picture;
-     iconrefresh.picture:= i15.picture  ;
-     i15.picture:=i0.picture ;
-
-     i0.Picture:=iconundo.picture;
-     iconundo.picture:= i16.picture  ;
-     i16.picture:=i0.picture ;
-
-     i0.Picture:=buttonspiegelstrich.picture;
-     buttonspiegelstrich.picture:= i17.picture  ;
-     i17.picture:=i0.picture ;
-
-     i0.Picture:=icontrash.picture;
-     icontrash.picture:= i18.picture  ;
-     i18.picture:=i0.picture ;
-
-     //OK Buttons
-     i0.Picture:=ImageSchlagwortWeg.picture;
-     ImageSchlagwortWeg.picture:= ButtonOK.picture  ;
-     ImageNotizGliedernWeg.Picture:=     ImageSchlagwortWeg.picture  ;
-     ImageQuerverweisWeg.Picture:=       ImageSchlagwortWeg.picture  ;
-     ButtonOK.picture:=i0.picture ;
-     // START Buttons
-     i0.picture:=imagedrucken.picture;
-     ImageDrucken.Picture:=  ButtonStart.picture  ;
-     ImageErsetze.Picture:=  ImageDrucken.picture  ;
-     ImageExport.Picture:=  ImageDrucken.picture  ;
-
-     ButtonStart.Picture:=i0.picture;
-
-
-     //Markierung für die Liste
-     if Skalierung < 1.5 then
-     begin
-         i0.Picture:=ImageListeStern.picture;
-         ImageListeStern.picture:= i19.picture  ;
-         i19.picture:=i0.picture ;
-     end else begin
-         if var_optiondarkmode
-         then ImageListeStern.picture:=ImageHighDPIStarDark.Picture
-         else ImageListeStern.picture:=ImageHighDPIStar.Picture
-     end;
-     if Skalierung < 1.5 then
-     begin
-         i0.Picture:=ImageListePin.picture;
-         ImageListePin.picture:= i20.picture  ;
-         i20.picture:=i0.picture ;
-     end else begin
-         if var_optiondarkmode
-         then ImageListePin.picture:=ImageHighDPIPinDark.Picture
-         else ImageListePin.picture:=ImageHighDPIPin.Picture
-     end;
-
-     i0.Picture:=IconAddKeyword.picture;
-     IconAddKeyword.picture:= i21.picture  ;
-     i21.picture:=i0.picture ;
-
-     i0.Picture:=IconRemoveKeyword.picture;
-     IconRemoveKeyword.picture:= i22.picture  ;
-     i22.picture:=i0.picture ;
-
-     i0.Picture:=iconpicturezitat.picture;
-     iconpicturezitat.picture:= i23.picture  ;
-     i23.picture:=i0.picture ;
-
-     i0.Picture:=IconGliedern.picture;
-     IconGliedern.picture:= i24.picture  ;
-     i24.picture:=i0.picture ;
-
-     i0.Picture:=IconHerausnehmen.picture;
-     IconHerausnehmen.picture:= i25.picture  ;
-     i25.picture:=i0.picture ;
-
-     i0.Picture:=IconDrucken.picture;
-     IconDrucken.picture:= i26.picture  ;
-     i26.picture:=i0.picture ;
-
-     i0.Picture:=IconCombobox1.picture;
-     IconCombobox1.picture:= i27.picture  ;
-     i27.picture:=i0.picture ;
-
-     i0.Picture:=ImageLocked.picture;
-     ImageLocked.picture:= i28.picture  ;
-     i28.picture:=i0.picture ;
-
-     i0.Picture:=ImageToggleOff.picture;
-     ImageToggleOff.picture:= i29.picture  ;
-     i29.picture:=i0.picture ;
-
-     i0.Picture:=ImageToggleOn.picture;
-     ImageToggleOn.picture:= i30.picture  ;
-     i30.picture:=i0.picture ;
-
-     i0.Picture:=ImageUnlocked.picture;
-     ImageUnLocked.picture:= i31.picture  ;
-     i31.picture:=i0.picture ;
-
-     i0.Picture:=ImageFont.picture;
-     ImageFont.picture:= i32.picture  ;
-     i32.picture:=i0.picture ;
-
-     i0.Picture:=ImageCode.picture;
-     ImageCode.picture:= i33.picture  ;
-     i33.picture:=i0.picture ;
-
-     i0.Picture:=ImageLinkanlegen.picture;
-     ImageLinkanlegen.picture:= i34.picture  ;
-     IconQV.picture:=           i34.picture  ;
-     i34.picture:=i0.picture ;
-
-     i0.Picture:=NotizGliedernFensterWeg.picture;
-     NotizGliedernFensterWeg.picture:= i35.picture  ;
-     ImageQVWeg.picture:= i35.picture  ;
-     ImageSWWeg.picture:= i35.picture  ;
-     ImageEinstellungenWeg.picture:= i35.picture  ;
-     ImageSchlagwortlisteWeg.picture:=i35.picture;
-     i35.picture:=i0.picture ;
-
-     i0.Picture:=IconUpdates.picture;
-     IconUpdates.picture:= i36.picture  ;
-     IconEineQuelle.picture :=i36.picture  ;
-     IconImportDatei.picture :=i36.picture  ;
-     IconObsidian.picture :=i36.picture  ;
-     i36.picture:=i0.picture ;
-
-
-     i0.Picture:=IconSchlagwortlisteZeigen.picture;
-     IconSchlagwortlisteZeigen.picture:= i37.picture  ;
-     i37.picture:=i0.picture ;
-
-     i0.Picture:=ImageNavigate.picture;
-     ImageNavigate.picture:= inavigate.picture  ;
-     inavigate.picture:=i0.picture ;
-
-     //doppelt verwendete Icons
-     alles2.Picture :=alles.picture;
-
-        dump('Icons durch');
      //--- alphabetische Reihenfolge --
 
-     AnmerkungenMemo.font.color:=fc;
-     AnzeigeVersion.font.color:=fc;
-
-     ButtonAnlegen.color:=buuf;
-     ButtonComboboxGliederung.color:=buf;
+     ButtonAnlegen.color:=buf;
      BaumVerweise.font.color:=urlcolor;
      BaumVerweise2.font.color:=urlcolor;
      BaumVerweise3.font.color:=urlcolor;
 
-     CaptionSeiteGliedern.font.color:=fc;
-
-     ListeGliederungen.color:=uufc;
-
-     buttonueberschrift.font.color:=fc;
-
-     buttonkursiv.font.color:=fc;
-     buttonfett.font.color:=fc;
+     EingabeTitelNeueNotiz.font.color:=fc;
 
      feldinhalt.font.color:=fc;
 
@@ -10532,109 +10978,79 @@ begin
      hintergrundGliederung.color:=ufc;
      hintergrundGliederung.font.color:=fc;
 
-
-
-     dump('Unterfenster Anfang');
-
-
-     Label4.font.color:=fc;
-     Label27.font.color:=fc;
      Label41.font.color:=fc;
 
      LabelComboboxGliederung.Font.color:=fc;
      LabelEditorNamen.Font.color:=fc;
-     LabelEinstellungenAnzeige.font.color:=fc;
 
-     LabelEinstellungenExport.Font.Color:=fc;
-     LabelEinstellungenLiteraturanhaenge.font.color:=fc;
-     LabelEinstellungenImport.font.color:=fc  ;
+
+
      LabelErstelltam.Font.color:=fc;
      LabelFormatAnhang.Font.Color:=fc;
      LabelFussnote.font.Color:=fc;;
      LabelGeaendertam.Font.color:=fc;
+     LabelGliederungName.Font.color:=fc;
      LabelGliederungLevel1.font.color:=fc;
      LabelGliederungLevel2.font.color:=fc;
      LabelGliederungLevel3.font.color:=fc;
      LabelGliederungLevelAll.font.color:=fc;
-     LabelHerausnehmen.font.color:=fc;
-     LabelHerausnehmen1.font.color:=fc;
-     LabelHomepage.font.color:=fc;
      LabelNameRichtlinie.font.color:=fc;
      LabelOriginalDatei.Font.color:=fc;
      LabelQuellenhinweise.Font.color:=fc;
 
-     LabelSuchergebnis.font.color:=fc;
 
+     LabelSyntax.font.color:=fc;
      LabelTitelNotizGliedern.font.color:=fc;
      LabelTitelSchlagwort.font.Color:=fc;
      LabelTitelQuerverweis.font.Color:=fc;
+     LabelTitelFilter.font.Color:=fc;
+     LabelTitelNeu.font.Color:=fc;
+
      LabelVerweise.color:=bc;
      LabelVerweise.font.color:=fc;
-     LabelVerweisAnlegen.font.color:=fc;
+
      labelvollzitat.font.color:=fc;
      labelVollzitat.color:=bc;
 
 
      liste.font.color:=fc;
 
-     Liste.SelectedColor:=uuufc;
-     listeGliederungen.font.color:=fc;
+     MemoGliederungen.font.color:=fc;
+     MemoGliederungen.Font.Style:=[fsunderline];
 
+     OptionMitVerweis.font.color:=fc;
 
-     TabSuchenAktiv.font.color:=fc;
-     panel13.font.color:=fc;
-     panel14.font.color:=fc;
-     panel15.color:=fc;
-     panel17.font.color:=fc;
-     panel12.color:=fc;
-
-     PanelAnmerkungScrollbar.color:=uufc;
-     PanelAZ.Color:=buuf;;
-     PanelEinstellungen.color:=ufc;
-     PanelEinstellungen.font.color:=fc;
+     PanelF2.font.color:=fc;
+     PanelF3.font.color:=fc;
      PanelFeldinhalt.color:=bc;
      PanelFeldinhalt.font.color:=fc;
      PanelFormatierung.color:=ufc;
      PanelFormatierung.font.color:=fc;
-     PanelGliederungScrollbar.color:=uufc;
-     PanelHintergrundSchlagwort.color:=uuufc;
+     ScrollbarGliederung.color:=uufc;
+     PanelHintergrundSchlagwort.color:=ufc;
      PanelHintergrundSchlagwort.Font.color:=fc;
-     PanelHintergrundLink.color:=uuufc;
+     PanelHintergrundLink.color:=ufc;
      PanelHintergrundLink.Font.color:=fc;
      PanelIdeenlinks.Color:=ufc;
      PanelIconNotizGliedern.color:=buf;
      PanelIconHerausnehmen.color:=buf;
-     PanelIconHerausnehmen1.color:=buf;
+     PanelDrucken.color:=buf;
      PanelIconEineQuelle.color:=buf;
-     PanelIconUpdates.color:=buf;
-     PanelIconImportDatei.color:=buf;
-     PanelIconObsidian.color:=buf;
      PanelKombinierterSchlagwoerter.font.color:=fc;
      PanelManuskript.color:=ufc;
-     PanelNotizGliedern.Color:=uufc;
+     PanelMenuVolltextsuche.font.Color:=fc;
+     PanelMenuVolltextSuche.color:=bc;
+     PanelNeueQuelle.font.color:=fc;
+     PanelNotizGliedern.Color:=ufc;
      PanelNotizGliedern.font.color:=fc;
-     PanelOptionenAnzeige.Color:=ufc;
-     PanelOptionAlphaSort.Font.color:=fc;
-     PanelOptionenAnzeige.font.color:=fc;
-     PanelOptionenDatenaustausch.color:=ufc;
-     PanelOptionenDatenaustausch.font.color:=fc;
-     PanelOptionDetails.Font.color:=fc;
-     PanelOptionenDrucken.color:=ufc;
-     PanelOptionenDrucken.Font.color:=fc;
-     PanelOptionNurMarkierte.Font.color:=fc;
-     PanelOptionSchlagwortliste.Font.color:=fc;
-     ButtonErsetze.color:=ufc;
-     ButtonErsetze.Font.color:=fc;
-     PanelOptionenUpdate.color:=ufc;
-     PanelOptionenUpdate.font.color:=fc;
-
-     PanelRegisterEinstellungen.font.color:=fc;
-     PanelSchlagwortlisteZeigen.color:=buf;
-     PanelUnterstrichComboboxGliederung.color:=fc;
+     PanelPTyp.font.color:=fc;
+     PanelTiteldaten.color:=ufc;
+     PanelTiteldaten.font.color:=fc;
      PanelUnterstrichQuer.color:=fc;
-     PanelUnterstrichSuche.color:=fc;
+     PanelUnterstrich.color:=fc;
      PanelUnterstrichSuche1.color:=fc;
      PanelUnterstrichTitel.color:=fc;
+
      PanelVergebeneKeywords.font.color:=urlcolor;
 
 
@@ -10645,91 +11061,50 @@ begin
      QListe.Font.Color:=fc;
      QSuche.Font.Color:=fc;
 
-     QuerverweisAllesZeigen.picture:=alles.picture;
-
-     SuchEingabe.font.color:=fc;
      SuchEingabe2.font.color:=fc;
-
-     //TabSuchenAktiv.Color:=uufc;
-     TabGliederungInaktiv.font.color:=fc;
-
-     UrlHomepage.font.color:=urlcolor;
-
 
      labeltitel.font.color:=fc;
 
-     AlleSchlagwoerter.picture:=alles.picture ;
+
 
 
      //Toggle-Switches einstellen
-     if var_optionListeDetails
-     then imageOptionDetails.picture:=ImageToggleOn.picture
-     else imageOptionDetails.picture:=ImageToggleOff.picture;
+
 
      if var_optionDarkMode
      then imageOptionDarkMode.picture:=ImageToggleOn.picture
      else imageOptionDarkMode.picture:=ImageToggleOff.picture;
 
-     if var_optionAlphaSort
-     then imageOptionAlphaSort.picture:=ImageToggleOn.picture
-     else imageOptionAlphaSort.picture:=ImageToggleOff.picture;
 
-     if var_OptionNurMarkierte
-     then imageOptionNurMarkierte.picture:=ImageToggleOn.picture
-     else imageOptionNurMarkierte.picture:=ImageToggleOff.picture;
 
      if var_OptionMenue
      then imageOptionMenue.picture:=ImageToggleOn.picture
      else imageOptionMenue.picture:=ImageToggleOff.picture;
 
-     if var_OptionMarkDown
-     then imageOptionMarkDown.picture:=ImageToggleOn.picture
-     else imageOptionMarkDown.picture:=ImageToggleOff.picture;
 
-     if var_OptionSchlagwortliste
-     then imageOptionSchlagwortliste.picture:=ImageToggleOn.picture
-     else imageOptionSchlagwortliste.picture:=ImageToggleOff.picture;
+
+
 
 end;
 
 procedure TFenster.fragKeyDown(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
-  Frag.text:='';
+
 end;
 
 procedure TFenster.IconCombobox1Click(Sender: TObject);
-var
-          h:integer;
 begin
-     with ListeGliederungen do
-     begin
-          h:= (items.count +1)*itemheight+25;
-          if h < 200 then h:=200;
-          height:=h;
-          left:=20;
-          visible:=not visible;
 
-
-     end;
-end;
-
-procedure TFenster.ImageOptionAlphaSortClick(Sender: TObject);
-begin
-     var_optionAlphaSort:=not var_optionAlphaSort;
-     if var_optionAlphaSort
-     then ImageOptionAlphaSort.picture:=imagetoggleon.picture
-     else ImageOptionAlphaSort.picture:=imagetoggleoff.picture ;
-     sucheingabeclick(self);
 end;
 
 procedure TFenster.ImageOptionDarkModeClick(Sender: TObject);
 
 begin
      var_OptionDarkMode:=not var_OptionDarkMode ;
-     setbooleini('optionlistedetails',var_optionlistedetails);
+     setbooleini('optiondarkmode',var_optiondarkmode);
      FarbSchemaClick(self);
-
+     IconRefreshClick(self);
 end;
 
 procedure TFenster.ImageOptionMenueClick(Sender: TObject);
@@ -10748,60 +11123,39 @@ begin
      formresize(self);
 end;
 
-procedure TFenster.ImageOptionDetailsClick(Sender: TObject);
-begin
-     var_OptionListeDetails:=not var_OptionListeDetails ;
-
-     if var_optionlistedetails
-     then ImageOptionDetails.picture:=imagetoggleon.picture
-     else ImageOptionDetails.picture:=imagetoggleoff.picture ;
-     resizeWindow();
-   //  timer.enabled:=true;
-    // Sucheingabe.setfocus;
-end;
-
-procedure TFenster.ImageOptionNurMarkierteClick(Sender: TObject);
-begin
-       var_optionnurMarkierte:=not var_optionnurMarkierte;
-     if var_optionnurMarkierte
-     then ImageOptionNurMarkierte.picture:=imagetoggleon.picture
-     else ImageOptionNurMarkierte.picture:=imagetoggleoff.picture ;
-     sucheingabeclick(self);
-end;
-
 procedure TFenster.Label13Click(Sender: TObject);
 begin
-     OptionRTF.checked:=not OptionRTF.checked;
+
 end;
 
 procedure TFenster.Label14Click(Sender: TObject);
 begin
-     OptionAlleSeiten.checked:=not OptionAlleSeiten.checked;
+
 end;
 
 procedure TFenster.Label15Click(Sender: TObject);
 begin
-      OptionGliederungDrucken.checked:=not OptionGliederungDrucken.checked;
+
 end;
 
 procedure TFenster.Label16Click(Sender: TObject);
 begin
-  OptionNotizenDrucken.checked:=not OptionNotizenDrucken.checked;
+
 end;
 
 procedure TFenster.Label17Click(Sender: TObject);
 begin
-    OptionLiteraturDrucken.checked:=not OptionLiteraturDrucken.checked;
+
 end;
 
 procedure TFenster.Label18Click(Sender: TObject);
 begin
-     OptionRisexport.checked:=not OptionRisexport.checked;
+
 end;
 
 procedure TFenster.Label19Click(Sender: TObject);
 begin
-   OptionAlleSeiten.checked:=not OptionAlleSeiten.checked;
+
 end;
 
 procedure TFenster.Label1Click(Sender: TObject);
@@ -10811,27 +11165,22 @@ end;
 
 procedure TFenster.Label20Click(Sender: TObject);
 begin
-    OptionReferExport.checked:=not OptionReferExport.checked;
+
 end;
 
 procedure TFenster.Label21Click(Sender: TObject);
 begin
-     OptionBibTexExport.checked:=not OptionBibTexExport.checked;
+
 end;
 
 procedure TFenster.Label23Click(Sender: TObject);
 begin
-       OptionWordExport.checked:=not OptionWordExport.checked;
+
 end;
 
 procedure TFenster.Label24Click(Sender: TObject);
 begin
-    OptionObsidianExport.checked:=not OptionObsidianExport.checked;
-end;
 
-procedure TFenster.Label26Click(Sender: TObject);
-begin
-    OptionsortAlphabet.checked:=not OptionsortAlphabet.checked;
 end;
 
 procedure TFenster.Label2Click(Sender: TObject);
@@ -10841,17 +11190,17 @@ end;
 
 procedure TFenster.Label56Click(Sender: TObject);
 begin
-    OptionSucheNotizen.checked:=not OptionSucheNotizen.checked;
+
 end;
 
 procedure TFenster.Label57Click(Sender: TObject);
 begin
-    OptionSucheLiteratur.checked:=not OptionSucheLiteratur.checked;
+
 end;
 
 procedure TFenster.Label6Click(Sender: TObject);
 begin
-    OptionEineSeiteDrucken.checked:=not OptionEineSeiteDrucken.checked;
+
 end;
 
 procedure TFenster.Label7Click(Sender: TObject);
@@ -10872,43 +11221,28 @@ end;
 
 procedure TFenster.LabelEinstellungenAnzeigeClick(Sender: TObject);
 begin
-  RegisterOptionen.activepage:=SeiteOptionenEinstellungen;
-  RegisterOptionenChange(self);
-  LabelEinstellungenAnzeige.Font.style:=
-          LabelEinstellungenAnzeige.Font.style + [fsBold, fsunderline];
+
 end;
 
 procedure TFenster.LabelEinstellungenDatenaustauschClick(Sender: TObject);
 begin
-    RegisterOptionen.activepage:=SeiteOptionenDatenaustausch;
-  RegisterOptionenChange(self);
-  LabelEinstellungenDatenaustausch.Font.style:=
-          LabelEinstellungenDatenaustausch.Font.style + [fsBold, fsunderline];
+
 end;
 
 procedure TFenster.LabelEinstellungenDruckenClick(Sender: TObject);
 begin
-  RegisterOptionen.activepage:=SeiteOptionenDrucken;
-  RegisterOptionenChange(self);
-  LabelEinstellungenDrucken.Font.style:=
-          LabelEinstellungenDrucken.Font.style + [fsBold, fsunderline];
+
 
 end;
 
 procedure TFenster.LabelEinstellungenErsetzeClick(Sender: TObject);
 begin
-      RegisterOptionen.activepage:=SeiteErsetze ;
-  RegisterOptionenChange(self);
-  LabelEinstellungenErsetze.Font.style:=
-          LabelEinstellungenErsetze.Font.style + [fsBold, fsunderline];
+
 end;
 
 procedure TFenster.LabelEinstellungenUpdateClick(Sender: TObject);
 begin
-        RegisterOptionen.activepage:=SeiteUpdate ;
-  RegisterOptionenChange(self);
-  LabelEinstellungenUpdate.Font.style:=
-          LabelEinstellungenUpdate.Font.style + [fsBold, fsunderline];
+
 end;
 
 procedure TFenster.LabelHerausgeber1Click(Sender: TObject);
@@ -10926,79 +11260,11 @@ begin
   showmessage('Enddrag');
 end;
 
-procedure TFenster.FormChangeBounds(Sender: TObject);
-begin
-  { Es geht um das Mitverschieben von Unterfenstern.Unter Windows kann das
-    Hauptfenster gar nicht verschoben werden, wenn Modalfenster sichtbar sind.
-    Unter Linux geht das seltsamerweise. Bei Windows wird die Bedingung also
-    nie erfüllt sein. Daher kein if os=linux
-   }
-
-    if  FormTitelDaten.visible then // zentrieren
-    begin
-         formtiteldaten.top:=
-             fenster.top + trunc((fenster.height-formtiteldaten.height)/2);
-         formtiteldaten.left:=
-             fenster.left + trunc((fenster.width-formtiteldaten.width)/2);
-    end;
-
-
-end;
-
 procedure TFenster.fragKeyUp(Sender: TObject; var Key: Word; Shift: TShiftState
   );
-var
-         c:           integer; //column der Schlagwortmatrix
-         i:           integer;
-         r:           integer; //row der schlagwortmatrix
-         sw:          string;
-         anzeigen:    boolean;
-         wort:        string;
+
 begin
-         Schlagwortmatrix.RowCount:=trunc(swliste.Count/3)+2;
-         wort:=ansilowercase(frag.text);
-         if length(wort) > 0 then
-         begin
-             for r:=0 to Schlagwortmatrix.RowCount -1 do
-             begin
-                  for c:= 0 to Schlagwortmatrix.ColCount-1 do
-                  begin
-                      schlagwortmatrix.Cells[c,r]:='';
-                  end;
-             end;
-         end;
-         c:=-1;
-         r:=0;
-         wort:=copy(wort,1,1) ;
-         if length(wort) > 0 then
-         begin
-             for i := 0 to swliste.Count - 1 do
-             begin
 
-                  sw:= ansilowercase(getfirstword(swliste[i]))  ;
-                  Anzeigen:=false;
-                  if pos(wort,sw)=1 then Anzeigen:=true;
-
-                  if anzeigen then
-                  begin
-                       c:=c+1;
-                       if c=3 then
-                       begin
-                            c:=0;
-                            r:=r+1;
-                       end;
-                       if pos(sw,ansilowercase(fenster.feldinhalt.text))=0
-                        then schlagwortmatrix.Cells[c,r]:=getfirstword(swliste[i])
-                        else schlagwortmatrix.Cells[c,r]:=
-                             ansiuppercase(getfirstword(swliste[i]));
-                  end;
-
-             end;
-             Schlagwortmatrix.RowCount:=r+1;
-             frag.text:='';
-             frag.setfocus;
-
-         end;
 end;
 
 procedure TFenster.IconVolltextSucheKleinClick(Sender: TObject);
@@ -11009,10 +11275,12 @@ end;
 
 procedure TFenster.ListeNotizGliedernClick(Sender: TObject);
 var
-         aus:          string;
-         n:            ttreenode;
-         zeilennr:     integer;
+         aus:           string;
+         LetzterKnoten: TTreeNode;
+         n:             ttreenode;
+         zeilennr:      integer;
 begin
+     aufraeumen();
      Zeilennr:=ListeNotizGliedern.ItemIndex;
      if trefferarray[zeilennr,TrefferArraySpalteTyp]='N' then
      begin
@@ -11027,29 +11295,23 @@ begin
          aus:=deletelastword(aus);
          aus:=aus + '=]';
      end;
-     n := Gliederung.Items.AddChild(nil, aus);
+     { bei einem versehntlichen Doppelklick wird der letzte Gliederungspunkt
+       nicht ein weiteres Mal eingefügt. Achtung: Bei einer noch leeren
+       Gliederung gibt es keinen lastnde}
+     if gliederung.Items.Count > 0 then
+     begin
+           n:= Gliederung.Items.GetLastNode;
+           if aus <> n.text  then  n := Gliederung.Items.AddChild(nil, aus);
+     end else  begin
+          n := Gliederung.Items.AddChild(nil, aus);
+     end;
      GliederungSpeichern(DBDirectory + Gliederungsdatei);
-     PanelNotizGliedern.visible:=false;
 end;
 
 procedure TFenster.ListeSchlagwortsucheClick(Sender: TObject);
-var
-   s:      string;
+
 begin
-       s:=ListeSchlagwortSuche.cells[ ListeSchlagwortSuche.Col,
-                                      ListeSchlagwortSuche.Row];
 
-       if pos(ansilowercase(s),ansilowercase(Sucheingabe.text)) = 0  then
-       begin
-          sucheingabe.text:= sucheingabe.text + ' ' + s;
-          sucheingabeclick(self);
-          machpause();
-
-          GrenzeSchlagwortsucheEinClick(self);
-
-
-
-       end;
 
 end;
 
@@ -11057,11 +11319,12 @@ procedure TFenster.NachFormCreateTimer(Sender: TObject);
 var
          val: integer;
 begin
+       //   showmessage('11196');
   NachFormCreate.enabled:=false;
+    machpause();
     { Kommt nicht in Formresize, weil die Fensterskalierung da noch nicht
       abgeschlossen ist}
     val:=GetIntegerIni('prozentlinks' , 10);
-  //  showmessage(inttostr(val));
     val:=trunc(screen.width*val/100);
     if val > screen.width then val:=10;
     Fenster.left:=val;
@@ -11084,6 +11347,8 @@ begin
     if val<600 then val:=600 ;
     Fenster.height:=val;
 
+
+  //  showmessage('11232');
 end;
 
 procedure TFenster.Panel13Click(Sender: TObject);
@@ -11099,7 +11364,7 @@ procedure TFenster.Panel14Click(Sender: TObject);
 begin
    registersuche.activepage:=SeiteVolltextsuche;
    if (liste.row > -1 )  then   listeclick(self);
-   Sucheingabe.setfocus;
+   FocusTo('Sucheingabe');
 end;
 
 procedure TFenster.ButtonErsetzeClick(Sender: TObject);
@@ -11121,7 +11386,7 @@ begin
           screen.cursor:=crhourglass;
           if OptionSucheLiteratur.checked then
           begin
-             for i:=1 to arraysize do //GetTopEmptyRow('Literatur') do
+             for i:=1 to arraysize_Literatur do
              begin
                   if AuswahlFeld.Text='alle' then
                      for j:=1 to 24 do
@@ -11144,11 +11409,11 @@ begin
                   //Datensätze auch im Volltext gefunden werden  12/2021
                   LiteraturVolltext(i);
              end;
-             Speicherbedarf('l');
+             lchanged:=true;
           end;
           if OptionSucheNotizen.checked then
           begin
-               for i := 1 to arraysize do //NotizArrayLaenge  do
+               for i := 1 to arraysize_Daten do //NotizArrayLaenge  do
                begin
                     for j:=1 to 6 do daten[i,j]:=stringreplace(daten[i,j],a,n,[rfreplaceall]) ;
                end;
@@ -11168,13 +11433,6 @@ begin
 end;
 
 procedure TFenster.ScrollbarEndeGliederungClick(Sender: TObject);
-begin
-     Gliederung.items[Gliederung.Items.Count-1].selected:=true  ;
-          GliederungClick(self);
-end;
-
-procedure TFenster.SrollbarEndeClick(Sender: TObject);
-
 begin
 
 end;
@@ -11214,7 +11472,7 @@ begin
 
                  if ArrayZeile=0 then  //die Notiz gibt es in der alten DB noch nicht
                  begin
-                      for j:= arraysize downto 1 do
+                      for j:= arraysize_Daten downto 1 do
                       begin
                            //finde die erste leere Zeile
                            if  Daten[j, Spalte_ID]='' then
@@ -11268,7 +11526,7 @@ begin
 
                  if ArrayZeile=0 then  //die Notiz gibt es in der alten DB noch nicht
                  begin
-                      for j:= arraysize downto 1 do
+                      for j:= arraysize_Literatur downto 1 do
                       begin
                            //finde die erste leere Zeile
                            if  Literatur[j, Spalte_ID]='' then
@@ -11332,7 +11590,7 @@ begin
    if registersuche.activepage= SeiteQuerverweis
    then  begriff1:=ansilowercase(QSuche.Text) ;
 
-   max:=1000;
+   max:=500;
    if pos(' ',begriff1) > 0 then
    begin
        begriff2:=getlastword(begriff1);
@@ -11351,7 +11609,7 @@ begin
          //beide Datenbanken werden separat durchsucht, damit die erste Datenbank
          //nicht alle Treffer abdeckt von von den max. Treffern für die zweite
          //keine übrigbleiben.
-         for i:=arraysize downto 1 do
+         for i:=arraysize_daten downto 1 do
          begin
              //Zuerst die Notizen durchsuchen
              if  (pos(begriff1,daten[i,Spalte_Volltext])> 0)
@@ -11362,8 +11620,12 @@ begin
                  qarray[treffer,2]:= 'N';
                  qarray[treffer,3]:= daten[i,Spalte_ID]  ;
                  qarray[treffer,4]:= daten[i,Spalte_Bearbeitungsdatum]  ;
+                 if treffer > max then break;
              end;
+         end ;
              //Jetzt die Literatur
+         for i:=arraysize_literatur downto 1 do
+         begin
              if  (pos(begriff1,literatur[i,Spalte_Volltext])> 0)
              and (pos(begriff2,literatur[i,Spalte_Volltext])> 0)
              then  begin
@@ -11377,16 +11639,16 @@ begin
                  qarray[treffer,2]:= 'L';
                  qarray[treffer,3]:= Literatur[i,Spalte_ID]  ;
                  qarray[treffer,4]:= Literatur[i,Spalte_Bearbeitungsdatum]  ;
-
+                 if treffer > max*2 then break;
              end;
-             if treffer > max then break;
 
-         end;
+
+          end;
 
          //Liste mit bubblesort sortieren und ausgeben
 
          qliste.ItemHeight:=16;
-         if optionsortalphabet.checked then  sortqlist(treffer+1,'az')
+         if MenuSortAlpha.checked then  sortqlist(treffer+1,'az')
                                        else  sortqlist(treffer+1,'zeit');
                                        {02/2024}
 
@@ -11396,6 +11658,8 @@ begin
 end;
 
 procedure TFenster.QuerverweisAllesZeigenClick(Sender: TObject);
+const
+     max=50;
 var
    i:          integer;
    treffer:    integer ;
@@ -11406,13 +11670,10 @@ begin
      treffer:=1 ;
      qliste.items.clear;
      machpause() ;
-                 { hier greife ich auf die globale Variable MINDESTDATUM zurück.
-                   die ich im Hauptfenster in ALLEZETTELANZEIGEN erzeugt habe.
-                   Die gibt eine vernünftiges Mindestdatum an, das hinreichend
-                   viele Treffer zeigt }
-     for i:=arraysize downto 1 do
+     { 02/2026: Vereinfacht. Statt eines Mindestdatums jetzt die 50 letzten }
+     for i:=GetTopEmptyRow('daten') downto 1 do
      begin
-         if  (daten[i,Spalte_Bearbeitungsdatum]> MindestDatum) then
+         if  (daten[i,Spalte_id]<>'') then
          begin
                 qarray[treffer,1]:= daten[i,Spalte_Titel];
                 qarray[treffer,2]:= 'N';
@@ -11420,31 +11681,29 @@ begin
                 qarray[treffer,4]:= daten[i,Spalte_Bearbeitungsdatum]  ;
                 treffer:=treffer+1;
           end;
-
-          if  (Literatur[i,Spalte_Bearbeitungsdatum]> MindestDatum) then
-          begin
-               zit:=  literatur[i,Spalte_Erstautor] + ' (' +
-                      literatur[i,Spalte_Jahr] + ') ' +
-                      literatur[i,Spalte_Titel];
-               zit:=copy(zit,1,60);
-               if length(zit) > 59 then zit:=deletelastword(zit);
-               qarray[treffer,1]:= zit;
-               qarray[treffer,2]:= 'L';
-               qarray[treffer,3]:= Literatur[i,Spalte_ID]  ;
-               qarray[treffer,4]:= Literatur[i,Spalte_Bearbeitungsdatum]  ;
-               treffer:=treffer+1;
-          end;
-
-
-
-
+          if treffer > max then break;
      end;
-
+     for i:=GetTopEmptyRow('literatur') downto 1 do
+     begin
+         if  (Literatur[i,Spalte_id]<>'') then
+         begin
+            zit:=  literatur[i,Spalte_Erstautor] + ' (' +
+                   literatur[i,Spalte_Jahr] + ') ' +
+                   literatur[i,Spalte_Titel];
+                   zit:=copy(zit,1,60);
+            if length(zit) > 59 then zit:=deletelastword(zit);
+             qarray[treffer,1]:= zit;
+             qarray[treffer,2]:= 'L';
+             qarray[treffer,3]:= Literatur[i,Spalte_ID]  ;
+             qarray[treffer,4]:= Literatur[i,Spalte_Bearbeitungsdatum]  ;
+             treffer:=treffer+1;
+          end;
+          if treffer > max*2 then break;
+     end;
      machpause();
      sortqlist(treffer,'zeit');
      machpause();
-     qsuche.Setfocus;
-
+     FocusTo('QSuche');
 end;
 
 procedure TFenster.RegisterOptionenChange(Sender: TObject);
@@ -11463,37 +11722,17 @@ begin
           OptionLiteraturDrucken.checked:=true;
           OptionAnmerkungenDrucken.Checked:=true;
      end;
-     LabelEinstellungenAnzeige.Font.style:=
-          LabelEinstellungenAnzeige.Font.style - [fsBold, fsunderline];
 
-     LabelEinstellungenDrucken.Font.style:= LabelEinstellungenAnzeige.Font.style;
-     LabelEinstellungenDatenaustausch.font.style:= LabelEinstellungenAnzeige.Font.style;
-     LabelEinstellungenErsetze.font.style :=       LabelEinstellungenAnzeige.Font.style;
-     LabelEinstellungenUpdate.font.style :=        LabelEinstellungenAnzeige.Font.style;
+
+
+
 
 end;
 
 procedure TFenster.SchlagwortmatrixClick(Sender: TObject);
-var
-    s: string ;
+
 begin
 
-     s:=schlagwortmatrix.cells[ Schlagwortmatrix.Col,
-                                Schlagwortmatrix.Row];
-     if length(s) > 1 then
-     begin
-          insertkeyword(s);
-
-
-       schlagwortmatrix.cells[ Schlagwortmatrix.Col,
-                                Schlagwortmatrix.Row]:=ansiuppercase(s);
-       { Das ist einfacher als Iconschlagwortmatrixclick aufzurufen,
-        zumal das absturzträchtig war 01/2025 }
-
-     end;
-   //  frag.text:='';
-     IconSchlagwortClick(self);
-  //   frag.setfocus;
 
 end;
 
@@ -11515,44 +11754,142 @@ end;
 
 procedure TFenster.NotizGliedernFensterWegClick(Sender: TObject);
 begin
-   PanelNotizGliedern.visible:=false;
+
+end;
+
+procedure TFenster.TitelDatenExit(Sender: TObject);
+begin
+         resizewindow();
+end;
+
+procedure TFenster.TitelDatenmatrixClick(Sender: TObject);
+begin
+     // evtl. vorhandenen Text in das Dateneingabefeld kopieren
+     Dateneingabe.text:=Titeldatenmatrix.cells[1,TiteldatenMatrix.row];
+
+     if (titeldatenmatrix.row > 0)
+     then
+     begin
+          Dateneingabe.visible:=false; // das ist der Standard
+           Titeldatenmatrix.Options:=
+              Titeldatenmatrix.Options + [goAlwaysShowEditor, goEditing];
+           FocusTo('Titeldatenmatrix');
+     end;
+           if (titeldatenmatrix.row in [0])  then
+           begin
+                Titeldatenmatrix.Options:=
+                    Titeldatenmatrix.Options - [goAlwaysShowEditor,goEditing];
+                Dateneingabe.visible:=true;
+                FocusTo('Dateneingabe');
+                Dateneingabe.SelStart:=1000;
+           end;
+
+
+
+end;
+
+procedure TFenster.TitelDatenmatrixDrawCell(Sender: TObject; aCol,
+  aRow: Integer; aRect: TRect; aState: TGridDrawState);
+begin
+
+end;
+
+procedure TFenster.TitelDatenmatrixKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+     if  (Vorschlagsliste.visible)
+     and (Vorschlagsliste.items.count >0)
+     and (key=vk_return)
+     and (Titeldatenmatrix.row > 0)  then
+     begin
+          Titeldatenmatrix.Cells[1,Titeldatenmatrix.row]
+            :=Vorschlagsliste.Items[0];
+          if Titeldatenmatrix.row < Titeldatenmatrix.rowcount then
+             Titeldatenmatrix.row :=Titeldatenmatrix.row+1;
+          Vorschlagsliste.visible:=false;
+     end;
+     if key=vk_tab then Vorschlagsliste.visible:=false;
+end;
+
+procedure TFenster.TitelDatenmatrixKeyUp(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+     if Titeldatenmatrix.Row = 8 then
+        autocomplete('Zeitschriften', Titeldatenmatrix.Cells[1,8]);
+     if Titeldatenmatrix.Row =11 then
+     begin
+        autocomplete('Verlage', Titeldatenmatrix.Cells[1,11]);
+        findeVerlagsOrt(Titeldatenmatrix.Cells[1,11]);
+     end;
+end;
+
+procedure TFenster.VorschlagslisteClick(Sender: TObject);
+var
+       a, f:      string;
+begin
+     with fenster do
+     begin
+         If Titeldatenmatrix.row= 0 then
+         begin
+              f:=Vorschlagsliste.Items[Vorschlagsliste.ItemIndex];
+              a:=trim(a);
+              a:=Dateneingabe.text;
+              a:=deletelastword(a);
+              if pos(' ',a) = 0 then a:=''; //den Anfang des ersten Autors weg
+              f:=a + ' ' + f   ;
+              f:=trim(f);
+              Titeldatenmatrix.cells[1,0]:=f;
+              Dateneingabe.text:=f;
+              FocusTo('Dateneingabe');
+              Dateneingabe.selstart:=1000;
+
+         end;
+
+
+         If Titeldatenmatrix.row=  8 then
+         begin
+              f:=Vorschlagsliste.Items[Vorschlagsliste.ItemIndex];
+              Dateneingabe.text:=f;
+              Titeldatenmatrix.cells[1,8]:=f;
+              Titeldatenmatrix.row :=Titeldatenmatrix.row +1;
+         end;
+         If Titeldatenmatrix.row= 11 then
+         begin
+              f:=Vorschlagsliste.Items[Vorschlagsliste.ItemIndex];
+              Titeldatenmatrix.cells[1,11]:=f;
+              Dateneingabe.Text:=f;;
+
+              findeVerlagsOrt(f);
+              Titeldatenmatrix.row :=Titeldatenmatrix.row +1;
+
+         end;
+         Vorschlagsliste.visible:=False;
+
+     end;
+
 end;
 
 procedure TFenster.zeigealleSchlagwoerterClick(Sender: TObject);
 var
    h:         integer;
    i :        integer;
-   spalte:    integer;
-   spaltenzahl:integer;
    w        : string;
-   zeile:     integer;
+
 begin
-     ListeSchlagwortsuche.rowcount:=200; //mehr sollten es wirklich nicht sein.
-     if fenster.width < 1200 then spaltenzahl:=3 else spaltenzahl:=4;
-           for zeile:=0 to Listeschlagwortsuche.ColCount-1  do
-               for spalte:=0 to Listeschlagwortsuche.rowcount-1
-                   do ListeSchlagwortsuche.cells[zeile,spalte]:='';
-           //Alle Schlagwörter anzeigen
-           if Sucheingabe.text = '' then
-           begin
-                spalte:=0;
-                zeile:=0;
-                for i:=0 to swliste.count -1 do
-                begin
-                      if spalte=spaltenzahl then
-                      begin
-                         spalte:=0; // nächste Saplte
-                         zeile:=zeile+1; //nächste Zeile
-                      end;
-                      w:= getfirstword(swliste[i]);
-                      ListeSchlagwortsuche.cells[spalte,zeile]:=w;
-                      spalte:=spalte+1;
-                end;
-           end;
-           h:= (trunc(swliste.count/spaltenzahl)+1)*ListeSchlagwortsuche.DefaultRowHeight+5;
-           if h>trunc(fenster.height/3) then h:=trunc(fenster.height/3);
-           PanelKombinierterSchlagwoerter.height:=h+40;
-           ListeSchlagwortsuche.rowcount:=trunc(swliste.count/Spaltenzahl)+1;
+     MemoFilter.lines.clear;
+     //Alle Schlagwörter anzeigen
+     if Sucheingabe.text = '' then
+     begin
+          for i:=0 to swliste.count -1 do
+          begin
+                w:= getfirstword(swliste[i]);
+                MemoFilter.lines.text:=Memofilter.lines.text + w + ' ';
+          end;
+     end;
+     //Höhe des Schlagwortfilterfensters
+     SetFilterHeight() ;
+
+
 
 end;
 
@@ -11563,17 +11900,17 @@ begin
 
      if var_OptionSchlagwortliste then
      begin
-          ImageOptionSchlagwortliste.picture:=imagetoggleon.picture;
-          if var_OptionListeDetails then ImageOptionDetailsclick(self);
-            { Details ausschalten, weil sonst zu wenige Einträge }
+
+
 
 
             if sucheingabe.text = ''
             then ZeigeAlleSchlagwoerterClick(self)
             else GrenzeSchlagwortsucheEinClick(self);
-            PanelKombinierterSchlagwoerter.BorderStyle:=bssingle;
+         //   PanelKombinierterSchlagwoerter.BorderStyle:=bssingle;
+            PanelKombinierterSchlagwoerter.height:=199;
      end else begin
-         ImageOptionSchlagwortliste.picture:=imagetoggleoff.picture ;
+
          PanelKombinierterSchlagwoerter.BorderStyle:=bsnone;
          PanelKombinierterSchlagwoerter.height:=1;
      end;
@@ -11586,7 +11923,7 @@ procedure TFenster.iconaddkeywordClick(Sender: TObject);
 var
     datei:       string;
     i:           integer;
-    neu:         boolean;
+    Neu:         boolean;
     w:           string;
 
 begin
@@ -11594,11 +11931,11 @@ begin
   w := inputbox('Schlagwort', 'neues Schlagwort:', '');
   if length(w) > 1 then
   begin
-    neu:=true;
+    Neu:=true;
     for i:=0 to swliste.count -1 do
-         if ansilowercase(w)=ansilowercase(swliste[i]) then neu:=false ;
+         if ansilowercase(w)=ansilowercase(swliste[i]) then Neu:=false ;
            {doppelte Schlagwörter vermeiden}
-    if neu then
+    if Neu then
     begin
          swliste.Add(w);
          Datei := DBDirectory + 'key.dat';
@@ -11644,9 +11981,51 @@ begin
 end;
 
 procedure TFenster.LabelTitelExit(Sender: TObject);
+var
+   su, er:     string;
+   i:          integer;
+   oldcaption: string;
 begin
     if AngezeigterTyp='N' then // nur bei Ideen soll der Datensatz geändert werden
+    begin
        FeldTitelDBLClick(self);
+       { falls der Titel geändert worden ist, werden alle Datensätze durchsucht
+         und dort, wo es Querverweise gibt, der Titel geändert }
+       if Titel_alt <>labeltitel.text then
+       begin
+            oldcaption:=Fenster.caption;
+            Fenster.Caption:='Der neue Titel wird in der Datenbank aktualisiert';
+            su:='note://' + aktuelleNotizid + ' ' + titel_alt;
+            su:=StringReplace(su,' ' , '_', [rfReplaceAll]);
+            su:=trim(su);
+            er:= 'note://' + aktuelleNotizid + ' ' + titel_neu;
+            er:=trim(er);
+            er:=StringReplace(er,' ' , '_', [rfReplaceAll]);
+
+            for i := 1 to arraysize_daten do
+            begin
+                 if pos(su, daten[i,Spalte_Anmerkung]) > 0 then
+                 begin
+                      daten[i,Spalte_Anmerkung]:=
+                         stringreplace(daten[i,Spalte_Anmerkung],su,er,[rfreplaceall]) ;
+                      NotizVolltext(i);
+                      ichanged:=true;
+                 end;
+            end;
+            for i := 1 to arraysize_literatur do
+            begin
+                 if pos(su, Literatur[i,Spalte_Anmerkung]) > 0 then
+                 begin
+
+                      Literatur[i,Spalte_Anmerkung]:=
+                         stringreplace(Literatur[i,Spalte_Anmerkung],su,er,[rfreplaceall]) ;
+                      LiteraturVolltext(i);
+                      lchanged:=true;
+                 end;
+            end;
+            Fenster.Caption:=OldCaption;
+       end;
+    end;
 end;
 
 procedure TFenster.LabelTitelKeyUp(Sender: TObject; var Key: Word;
@@ -11655,6 +12034,7 @@ begin
        // nur bei Ideen soll der Datensatz geändert werden
     if (AngezeigterTyp='N') and (key=vk_return) then
        FeldTitelDBLClick(self);
+      Titel_neu:=labeltitel.text;
 end;
 
 procedure TFenster.ListePrepareCanvas(sender: TObject; aCol, aRow: Integer;
@@ -11662,11 +12042,8 @@ procedure TFenster.ListePrepareCanvas(sender: TObject; aCol, aRow: Integer;
 begin
   { Farbe und Hintergrund des ausgewählten Eintrags in der Trefferliste }
   if not (gdFixed in aState) and  (gdSelected in aState)  then begin
-      TStringGrid(Sender).Canvas.Brush.Color:= Liste.SelectedColor;//FormNeu.color; // Hintergrund
-      TStringGrid(Sender).Canvas.Font.Color:= PanelLabelSuchen.font.color;
-     { TStringGrid(Sender).Canvas.Font.Style:=  [fsUnderline];
-       funktioniert leider nicht
-     }
+      TStringGrid(Sender).Canvas.Brush.Color:= Liste.SelectedColor;
+
 
   end;
 end;
@@ -11773,11 +12150,10 @@ begin
              NotizenDatensatzZahl:=NotizenDatensatzZahl +1;
              machpause();
         end;
-        if Arraysize - Notizendatensatzzahl < 100 then
+        if Arraysize_daten - Notizendatensatzzahl < 100 then
         begin
-             Arraysize:=Arraysize+1000;
-             SetLength(Literatur, ArraySize+2,Spalte_Ende+1);
-             SetLength(Daten, ArraySize+2,Spalte_Position+1);
+             SetLength(Daten, ArraySize_Daten+102,Spalte_Position+1);
+             Arraysize_daten:=Arraysize_daten+100;
         end;
     end;
     showmsg('Dateiverweise verarbeiten');
@@ -11793,10 +12169,10 @@ begin
 
 
     showmsg('Datenbank sortieren..');
-    sortdb('notizen',sortierenab_daten);
+    sortdb('notizen');
     machpause();
     showmsg('Volltext erstellen...');
-    VolltextKomplettieren(arraysize);
+    VolltextKomplettieren();
     showmsg('Fertig. Bitte neu starten...');
                        machpause();
     ApplicationSessionEnded(self);
@@ -11821,7 +12197,7 @@ begin
 
    //---- Die Notizen exportieren--
    //------------------------------
-   for i:=1 to 10 do    //arraysize
+   for i:=1 to arraysize_daten do    //arraysize
    begin
         if daten[i,spalte_titel]<> '' then
         begin
@@ -11856,7 +12232,7 @@ begin
 
    //--------------- JETZT DIE LITERATUR IN BIBTEX
    //---------------------------------------------
-   for i:=1 to 10 do
+   for i:=1 to arraysize_literatur do   //arraysize
    begin
          if literatur[i,1]<> '' then
          begin
@@ -11938,6 +12314,7 @@ begin
     Dateiliste.mask:='*.*';
     Dateiliste.directory:=dbdirectory + slash(os) + 'files' + slash(os) ;
     j:=  (Dateiliste.items.Count) ;
+    j:=2 ;
     for i:=0 to j-1 do
      copyfile( dbdirectory + slash(os) + 'files' + slash(os) + Dateiliste.Items[i],
                dbdirectory + slash(os) + 'obsidian' + slash(os) + Dateiliste.Items[i]);
@@ -11948,8 +12325,24 @@ end;
 procedure TFenster.CaptionSeiteGliedernClick(Sender: TObject);
 
 begin
-     PanelNotizGliedern.visible:=true;
-
+     with fenster do
+     begin
+         if PanelNotizGliedern.width < 11 then
+         begin
+              // Panel zeigen
+              PanelIdeenLinks.width:=  trunc(fenster.width/2) ;
+              PanelNotizGliedern.width:=trunc(fenster.width/5);
+              PanelNotizGliedern.borderstyle:=bssingle;
+              PanelNotizGliedern.borderspacing.Around:=5;
+              PanelNotizGliedern.borderspacing.right:=20;
+         end else begin
+              PanelNotizGliedern.width:=10;
+              PanelNotizGliedern.borderstyle:=bssingle;
+              PanelNotizGliedern.borderspacing.Around:=0;
+              PanelNotizGliedern.borderspacing.right:=0;
+         end;
+     end;
+     resizewindow();
 
 end;
 
@@ -12371,7 +12764,8 @@ procedure TFenster.ButtonDialogAbbruchClick(Sender: TObject);
 
 begin
      registerkarten.activepage:=ideenseite;
-     Sucheingabe.Text:=LetzteSucheHauptfenster;
+     RegisterSuche.Activepage:=SeiteVolltextsuche;
+     PanelFeldInhaltIcons.visible:=true;
      timer.enabled:=false;
      timer.enabled:=true;
 end;
@@ -12586,17 +12980,19 @@ end;
 
 procedure TFenster.FeldinhaltDblClick(Sender: TObject);
 var
-
    zeile:string;
-  // start_original:integer;
 begin
-     zeile:= GetSelWordMemo(Feldinhalt);
+     zeile:= GetSelWordMemo(Feldinhalt); { Problem: Setzt voraus, dass das Link
+                                           aus einem Wort besteht. }
+
+
      //Abklären, ob es sich um ein Link handelt....
      if (pos('http://',zeile)=1) or
         (pos('https://',zeile)=1) or
         (pos('file://',zeile)=1) or
         (pos('note://',zeile)=1) or
         (pos('ref://',zeile)=1) or
+        (pos('[[',zeile)=1) or
         (pos('[=',zeile)=1)  then
      begin
           machpause();
@@ -12604,11 +13000,9 @@ begin
           VerweisAufrufen(zeile );
           machpause();
           formatmd(0,10000,false);
+
           machpause();
      end;
-     machpause();
-  //   Feldinhalt.sellength:=length(zeile);
-
      machpause();
 end;
 
@@ -12617,6 +13011,17 @@ procedure TFenster.FeldinhaltKeyDown(Sender: TObject; var Key: Word;
 var
     ab:                     tpararange;
 begin
+     // -- Funktionstasten abfragen. Scheint nicht anders zu gehen
+     if key in [vk_f1..vk_f9] then
+     begin
+          MachPause();
+          FocusTo('PanelHintergrundOben');
+          formkeydown(self,key,shift);
+          key:=0;
+     end;
+
+
+
      if os='linux' then //Zwischenablage funktioniert sonst nicht
      begin
        if (GetKeyState(VK_LControl) < 0) then
@@ -12641,6 +13046,7 @@ begin
      end;
      IconUndo.Visible:=true;
 
+
      if IsTextChanged=false then UpdateBearbeitungszahl()   ;
 
 end;
@@ -12648,25 +13054,28 @@ end;
 procedure TFenster.FeldinhaltMouseWheelDown(Sender: TObject;
   Shift: TShiftState; MousePos: TPoint; var Handled: Boolean);
 var
-         punkt:  integer;
+    absatz:  integer;
 begin
-  punkt:=Feldinhalt.CaretPos.y;
-  punkt:=punkt+3;
-  if punkt > feldinhalt.Lines.Count-1
-  then  ScrollbarendeClick(self)
-  else  Feldinhalt.Caretpos:=point(0,feldinhalt.Lines.Count-1);
+     absatz:=Feldinhalt.CaretPos.y;
+     absatz:=absatz+1;
+
+     Feldinhalt.Caretpos:=point(0,absatz);
+     if absatz > Feldinhalt.Lines.Count
+     then Feldinhalt.Caretpos:=point(80,absatz);
+     ScrollbarAnmerkungenPositionieren(absatz);
+
 end;
 
 procedure TFenster.FeldinhaltMouseWheelUp(Sender: TObject; Shift: TShiftState;
   MousePos: TPoint; var Handled: Boolean);
 var
-         punkt:  integer;
+    absatz:  integer;
 begin
-     punkt:=Feldinhalt.CaretPos.y;
-     punkt:=punkt-3;
-     if punkt < 0 then punkt:=0;
-     Feldinhalt.Caretpos:=point(0,punkt);
-
+     absatz:=Feldinhalt.CaretPos.y;
+     absatz:=absatz-1;
+     if absatz < 0 then absatz:=0;
+     Feldinhalt.Caretpos:=point(0,absatz);
+     ScrollbarAnmerkungenPositionieren(absatz);
 end;
 
 procedure TFenster.GliederungCustomDrawItem(Sender: TCustomTreeView;
@@ -12702,14 +13111,12 @@ begin
       begin
            for i:=1 to Spalte_Ende do
                Literatur[AktuelleLiteraturArrayZeile,i]:='';
-           Speicherbedarf('l');
            lchanged:=true;
       end;
       if AngezeigterTyp='N' then
       begin
            for i:=1 to Spalte_Position do
                Daten[AktuelleNotizenArrayZeile,i]:= '';
-               Speicherbedarf('i');
                ichanged:=true;
       end;
       AlleAnzeigenClick(self);
@@ -12740,17 +13147,11 @@ end;
 
 procedure TFenster.ImageEinstellungenClick(Sender: TObject);
 begin
-
-  If Registerkarten.Activepage <> Einstellseite then
-  begin
-
-      //RegisterOptionen.Activepage:=SeiteOptionenEinstellungen;
-      LabelEinstellungenanzeigeClick(self);;
-      Registerkarten.Activepage:=EinstellSeite;
-
-  end else begin
-      ButtonDialogAbbruchClick(self);
-  end;
+  if    RegisterSuche.Activepage<>Einstellungen
+  then  RegisterSuche.Activepage:=Einstellungen
+  else  RegisterSuche.Activepage:=SeiteVolltextSuche;
+  RegisterEinstellungen.activepage:=SeiteEinstellungenAnzeige;
+  resizeWindow();
 end;
 
 procedure TFenster.IconGliederungKleinClick(Sender: TObject);
@@ -12778,27 +13179,28 @@ procedure TFenster.IconRefreshClick(Sender: TObject);
 var
    cur:   integer;
 begin
-    saveChangestoArray();
-    ungespeicherteZeichen:=ungespeicherteZeichen+50;
+    if istextchanged then saveChangestoArray();
     If AngezeigterTyp='L' then
       begin
            Literatur[AktuelleLiteraturArrayZeile,Spalte_Bearbeitungsdatum]:=formatdatetime('yyyymmddhhnn', now);
-           Speicherbedarf('l');
            lchanged:=true;
-           ImageStern.Picture:=ImageSternVoll.picture;
       end;
       If AngezeigterTyp='N' then
       begin
            Daten[AktuelleNotizenArrayZeile,Spalte_Bearbeitungsdatum]:=formatdatetime('yyyymmddhhnn', now);
-           Speicherbedarf('i');
            ichanged:=true;
       end;
       cur:=Feldinhalt.selstart;
-      Timer.Enabled:=true;
+      FocusTo('Feldinhalt');
+
       machpause();
       formatmd(0,10000,false);
       machpause();
+
+
       Feldinhalt.Selstart:=cur;
+      Timer.Enabled:=true;
+
 end;
 
 procedure TFenster.Image62Click(Sender: TObject);
@@ -12815,12 +13217,6 @@ begin
             application.terminate;
     end;
   end;
-end;
-
-procedure TFenster.Image64MouseMove(Sender: TObject; Shift: TShiftState; X,
-  Y: Integer);
-begin
- //if (GetKeyState(VK_LBUTTON) < 0) then  PanelIdeenLinks.width:=PanelIdeenLinks.width + x;
 end;
 
 procedure TFenster.Image37Click(Sender: TObject);
@@ -12957,7 +13353,6 @@ begin
        if pos('#lock#',FeldInhalt.Text)= 0 then
        begin
           paste(clipboard.AsText) ;
-          savechangestoarray();
           iconRefreshClick(self);
 
        end else begin
@@ -12980,7 +13375,7 @@ begin
      zeile:=Feldinhalt.Lines[Feldinhalt.CaretPos.Y];
      if pos('://',zeile)=0 then
      begin
-          resetTopMenu();
+
 
 
 
@@ -13058,7 +13453,7 @@ begin
   //aber nur ein Problem, wenn man von einem anderen Programm zu Bx. wechselt.
   //01/2022
 
-
+  aufraeumen();
   if FeldInhalt.Readonly then
   begin
        if GV_textposition <0 then GV_textposition:=0;
@@ -13074,8 +13469,10 @@ begin
           Literatur[AktuelleLiteraturArrayZeile,Spalte_Position]:=inttostr(GV_textposition);
   end;
   feldinhalt.Cursor:=crIBeam;
-  FeldInhalt.Setfocus; //nur um sicherzugehen
-
+  FocusTo('Feldinhalt');
+  ScrollbarAnmerkungenPositionieren(Feldinhalt.CaretPos.y); { wo soll der Schieber
+                                                              des Scrollbars
+                                                              positioniert werden? }
 
 end;
 
@@ -13088,7 +13485,9 @@ end;
 
 procedure TFenster.feldinhaltExit(Sender: TObject);
 begin
+  //   showmessage('exit');
    if istextchanged then SaveChangesToArray();
+
 end;
 
 procedure TFenster.FeldJahrClick(Sender: TObject);
@@ -13192,15 +13591,24 @@ begin
 
   if AngezeigterTyp='L' then    //Titeldaten einer Quelle ändern
   begin
+       aufraeumen();
        SaveChangesToArray();
        KurzZitat:=LabelTitel.Caption;
        LiteraturTiteldatenFormular(AktuelleLiteraturID);
+       Titeldatenmatrix.selectedcolor:=clblue;
        ZeigeTiteldaten();
 
-       FormTiteldaten.TitelDatenMatrix.row:=0;
-       FormTiteldaten.Titeldatenmatrix.Col:=1;
-       FormTiteldaten.TitelDatenMatrix.setfocus;
+       TitelDatenMatrix.row:=0;
+       Titeldatenmatrix.Col:=1;
+       FocusTo('Titeldatenmatrix');
+       Titel_alt:='';
 
+       //SeiteNeu: Registerkarte links
+       RegisterSuche.Activepage:=Titeldaten;
+       resizewindow();
+
+  end else begin
+      Titel_alt:=LabelTitel.Caption;
   end;
 end;
 
@@ -13251,17 +13659,17 @@ begin
         Feldinhalt.Lines.text:=t2;
         istextchanged:=true;
         machpause();
-        savechangestoarray();
-        If AngezeigterTyp='L' then Speicherbedarf('l');
-        If AngezeigterTyp='N' then Speicherbedarf('i');
+        if istextchanged then savechangestoarray();
+        If AngezeigterTyp='L' then lchanged:=true;
+        If AngezeigterTyp='N' then ichanged:=true;
         Timer.Enabled:=true;
-       // AlleAnzeigenClick(self);
+
     end;
 
 
     if RegisterSuche.Activepage=SeiteVolltextsuche then
     begin
-          savechangestoarray();
+          if istextchanged then savechangestoarray();
           If AngezeigterTyp='L' then
           begin
                t1:=  Literatur[AktuelleLiteraturArrayZeile,Spalte_Anmerkung];
@@ -13272,10 +13680,12 @@ begin
                    t2:= copy(t1,1,pos('#pin',t1)-1) +
                         copy(t1,pos('#pin',t1)+5,100000) ;
                end;
+
                Literatur[AktuelleLiteraturArrayZeile,Spalte_Anmerkung]:=t2;
                Literatur[AktuelleLiteraturArrayZeile,Spalte_Bearbeitungsdatum]:=
                    formatdatetime('yyyymmddhhnn', now);
-               Speicherbedarf('l');
+               LiteraturVolltext(AktuelleLiteraturArrayZeile);
+               lchanged:=true;
           end;
           If AngezeigterTyp='N' then
           begin
@@ -13289,7 +13699,8 @@ begin
                Daten[AktuelleNotizenArrayZeile,Spalte_Anmerkung]:=t2;
                Daten[AktuelleNotizenArrayZeile,Spalte_Bearbeitungsdatum]:=
                    formatdatetime('yyyymmddhhnn', now);
-               Speicherbedarf('i');
+               NotizVolltext(AktuelleNotizenArrayZeile);
+               ichanged:=true;
           end;
 
           //Die Anzeige aktualisieren
@@ -13305,8 +13716,8 @@ begin
           machpause();
           Liste.Invalidate;
           liste.repaint;
-          Timer.Enabled:=False;
-          Timer.Enabled:=true;
+          timer.enabled:=false;
+          timer.enabled:=true;
     end;
 
 
@@ -13336,9 +13747,10 @@ begin
                t2:=copy(t1,1,pos('#tag',t1)-1) + copy(t1,pos('#tag',t1)+5,100000) ;
            end;
            Literatur[AktuelleLiteraturArrayZeile,Spalte_Anmerkung]:=t2;
+           LiteraturVolltext(AktuelleLiteraturArrayZeile);
 
-           Speicherbedarf('l');
-           ImageStern.Picture:=ImageSternVoll.picture;
+           lchanged:=true;
+
       end;
       If AngezeigterTyp='N' then
       begin
@@ -13351,9 +13763,8 @@ begin
                t2:=copy(t1,1,pos('#tag',t1)-1) + copy(t1,pos('#tag',t1)+5,100000) ;
            end;
            Daten[AktuelleNotizenArrayZeile,Spalte_Anmerkung]:=t2;
-
-           Speicherbedarf('i');
-           ImageStern.Picture:=ImageSternVoll.picture;
+           Notizvolltext(AktuelleNotizenArrayZeile);
+           ichanged:=true;
       end;
 
       //für die gerade angezeigte Liste, damit die Anzeige korrekt ist.
@@ -13362,10 +13773,10 @@ begin
          then Trefferarray[Liste.row,1]:=''
          else Trefferarray[Liste.row,1]:='*';
 
-      //savechangestoarray();
+     if istextchanged then savechangestoarray();
       liste.Invalidate;
       liste.Repaint;
-      timer.enabled:=true;
+    timer.enabled:=true;
 
 end;
 
@@ -13411,10 +13822,10 @@ begin
     end;
 
 
-     savechangestoarray();
+    if istextchanged then savechangestoarray();
 
-    Speicherbedarf('l');
-    Speicherbedarf('i');
+    ichanged:=true;
+    lchanged:=true;
     Liste.Invalidate;
 
     Timer.Enabled:=False;
@@ -13424,9 +13835,7 @@ end;
 
 procedure TFenster.PanelHinterDenPunktenClick(Sender: TObject);
 begin
-  //Falls man hinter den Titel klickt, weil man nicht den Titel
-  //sondern den Feldinhalt bearbeiten will.
-  focusAnmerkung();
+
 end;
 
 procedure TFenster.PopupListePopup(Sender: TObject);
@@ -13447,13 +13856,14 @@ end;
 procedure TFenster.SuchEingabeKeyUp(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
-         timer.enabled:=true;
+   if length(Sucheingabe.text) > 1 then SucheingabeClick(self);
+   timer.enabled:=true;
 end;
 
 
 procedure TFenster.VollTextIdleTimer(Sender: TObject);
 begin
-       VolltextKomplettieren(1000);
+
 
 end;
 
@@ -13463,15 +13873,26 @@ begin
   begin
        RegisterSuche.ActivePage:=SeiteVolltextsuche;
        IconRefreshClick(self);
-       Sucheingabe.Setfocus;
+       FocusTo('Sucheingabe');
   end else begin
        RegisterSuche.ActivePage:=Seitegliederung;
   end;
+  PanelFeldinhaltIcons.visible:=true;
 end;
 
-procedure TFenster.Image3Click(Sender: TObject);
+procedure TFenster.IconGliederung2Click(Sender: TObject);
 begin
-     Gliederung.fullexpand;
+  aufraeumen();
+  if registersuche.activepage=seiteGliederung then
+  begin
+    registersuche.activepage:=SeiteVolltextsuche;
+  end else begin
+      PanelNotizGliedern.width:= 5;
+      registersuche.activepage:=SeiteGliederung;
+      if (Gliederung.Selected <> nil)  then   gliederungclick(self);
+      Gliederungmd()
+  end;
+  ResizeWindow();
 end;
 
 procedure TFenster.LabelBibtexKeyClick(Sender: TObject);
@@ -13483,7 +13904,7 @@ end;
 
 procedure TFenster.LabelNotizenzahl1Click(Sender: TObject);
 begin
-     focusAnmerkung();
+
 
 
 end;
@@ -13502,10 +13923,9 @@ end;
 
 procedure TFenster.ZwischenspeichernTimer(Sender: TObject);
 begin
-     //showmessage('Ich speichere zwischen');
      ZwischenSpeichern.Enabled:=false;
      IconAllesSpeichernClick(self);
-     ungespeicherteZeichen:=0;
+     ungespeicherteZeichen:=1;
 end;
 
 
@@ -13513,45 +13933,32 @@ end;
 procedure TFenster.ListeDrawCell(Sender: TObject; aCol, aRow: Integer;
   aRect: TRect; aState: TGridDrawState);
 var
-   aTextStyle:        TTextStyle;
-
-   erstezeile:        string;
-   h1:                integer;
-   suchbegriff:       string;
    titel:             string;
 
 
 begin
-     // alte Markierung. Nimmt Platz weg.
-     {
-     if pos('999',TrefferArray[arow,TrefferarraySpalteBearbeitung])=1  then
-     begin
-           if Skalierung > 1.1
-           then SetCellPicture(aRect,ImagePin.Picture.Bitmap,liste,0,0)
-           else SetCellPicture(aRect,ImageListePin.Picture.Bitmap,liste,4,2)
-     end else begin
-         if acol=LIsteSpalteMarkierung then  //Markiert? Dann Sternchen
-          if TrefferArray[arow,1]<>'' then
-          begin
-              if skalierung > 1.1
-              then SetCellPicture(aRect,ImageSternVoll.Picture.Bitmap,liste,0,0)
-              else SetCellPicture(aRect,ImageListeStern.Picture.Bitmap,liste,4,2)
-          end;
-     end;
-     }
-       if acol=ListeSpalteMarkierung then
+       { die erste Spalte bei #pin# rot markieren }
+       if acol=ListeSpalteNummer then
+       begin
+           if pos('999',TrefferArray[arow,TrefferarraySpalteBearbeitung])=1  then
+           begin
+                Liste.Canvas.brush.color:= blau; //clred ;
+                liste.Canvas.FillRect(ClientRect);
+           end;
+       end;
+       { die zweite Spalte bei #tag# gelb markieren }
+       if acol= ListeSpalteMarkierung then
        begin
             if TrefferArray[arow,1]<>'' then
             begin
-                        Liste.Canvas.brush.color:=$0000FFCC ;
-                        liste.Canvas.FillRect(ClientRect);
-            end;
-            if pos('999',TrefferArray[arow,TrefferarraySpalteBearbeitung])=1  then
-            begin
-                        Liste.Canvas.brush.color:=clred ;
-                        liste.Canvas.FillRect(ClientRect);
+                 Liste.Canvas.brush.color:=$0000FFCC ;   //gelb
+                 liste.Canvas.FillRect(ClientRect);
             end;
        end;
+
+
+
+
 
        if acol=ListeSpalteTitel then
        begin
@@ -13568,71 +13975,10 @@ begin
             end;
             liste.Canvas.TextRect(aRect, aRect.Left+5, aRect.Top+2, titel);
 
-            {
-            if liste.Cells[Acol, ARow] <> '' then
-            begin
-                  // Die Details (falls eingestellt) anzeigen
-                  if var_OptionListeDetails then
-                  begin
-                          //Die Anmerkung des Treffers
-                          Suchbegriff:=getfirstword(Sucheingabe.text);
-                          suchbegriff:=ansilowercase(suchbegriff);
-                          ErsteZeile:= trim(Trefferarray[arow,7]) ; //Anmerkungstext
-                          if ErsteZeile='' then
-                               if titel <> '' then ersteZeile:='...' ; //Der Datensatz ist nicht komplett leer
-
-                          //Die Anmerkung nach einem Begriff filtern und darstellen
-                          if (length(Suchbegriff) > 1) and (pos(suchbegriff,ansilowercase(erstezeile))>0) then
-                          begin
-                              ersteZeile:=copy(erstezeile,pos(suchbegriff,ansilowercase(erstezeile))-40,120);
-                              if pos(suchbegriff,getfirstword(ansilowercase(erstezeile)))=0 then
-                              begin
-                                 ersteZeile:=deletefirstword(erstezeile);
-                              end;
-                              if pos(suchbegriff,getlastword(ansilowercase(erstezeile)))=0 then
-                                 ersteZeile:=deletelastword(erstezeile) + '...';
-                          end else begin //kein Filter. Den Anfang darstellen
-                              erstezeile:=copy(erstezeile,1,200);  //Kein Suchbegriff. Anfang
-                              if length(erstezeile) > 198 then
-                                 ersteZeile:=deletelastword(erstezeile) + '...' ;
-                          end;
-                          Liste.Canvas.Font.size := 10;
-                          aTextStyle := TStringGrid(Sender).Canvas.TextStyle;
-                          Liste.Canvas.Font.Style := [];
-                          aTextStyle.SingleLine := false;
-                          aTextStyle.Wordbreak := true;
-                          TStringGrid(Sender).Canvas.TextStyle := aTextStyle;
-                          ersteZeile:= trim(erstezeilefiltern(ersteZeile));
-                          //die erste Zeile der Anmerkung
-
-                          h1:=trunc(24 * Skalierung);
-                          if os='win' then h1:=h1+2;
-                          liste.Canvas.TextRect(aRect, aRect.Left +15, aRect.Top +h1, erstezeile);
-                          //nach der zweiten Zeile nicht mehr anzeigen.
-                          liste.Canvas.fillrect( aRect.Left +15,
-                                                 aRect.Top +h1+trunc(32*Skalierung),
-                                                 arect.left+500,
-                                                 arect.top+trunc(100*Skalierung));
-                 end; // Ende Details
-
-            end;
-                }
      end;
 
 
 
-
-end;
-
-procedure TFenster.ListeMouseWheelDown(Sender: TObject; Shift: TShiftState;
-  MousePos: TPoint; var Handled: Boolean);
-begin
-
-end;
-
-procedure TFenster.ListeMouseWheelUp(Sender: TObject; Shift: TShiftState;
-  MousePos: TPoint; var Handled: Boolean);
-begin
 
 end;
 
@@ -13799,8 +14145,8 @@ begin
 
        then  Fenster.caption:='... sortiere Datenbank ...';
 
-       if ineedssorting then sortdb('notizen',sortierenab_daten);
-       if lneedssorting then sortdb('literatur',sortierenab_literatur);
+       if ineedssorting then sortdb('notizen');
+       if lneedssorting then sortdb('literatur');
        screen.cursor:=crhourglass;
 
        IconAllesSpeichernClick(self);
@@ -13814,11 +14160,10 @@ begin
        if optionrtf.checked        then  setini('optionanhang','rtf') ;
 
        SetBooleIni('optiondarkmode',var_OptionDarkMode);
-       setbooleini('optionlistedetails',var_optionlistedetails);
-       setbooleini('optionmarkdown',var_OptionMarkDown);
+
        screen.cursor:=crhourglass;
 
-       SetBooleIni('optionalphasortidee',var_optionalphasort);
+
 
 
        SetBooleIni('langestmpzitat=', Fenster.OptionLangesTMPZitat.checked) ;
@@ -13845,7 +14190,7 @@ begin
 
        screen.cursor:=crhourglass;
        Registerkarten.ActivePage:=ideenseite;
-       FeldInhalt.Enabled:=false;
+      // FeldInhalt.Enabled:=false;
        MachPause();
   end;
   screen.cursor:=crdefault;
@@ -13854,7 +14199,7 @@ end;
 procedure TFenster.BevelLiteraturAnmerkungMouseDown(Sender: TObject;
   Button: TMouseButton; Shift: TShiftState; x, Y: Integer);
 begin
-     focusAnmerkung();
+     FocusTo('Feldinhalt');
 end;
 
 procedure TFenster.eingabeIdeenKopierenKeyDown(Sender: TObject; var Key: Word;
@@ -13924,22 +14269,45 @@ i:        integer;
 begin
   if schreibrecht() then
   begin
-        SaveChangesToArray();
-       with FormTiteldaten do
+
+       if istextchanged then SaveChangesToArray();
+
+       //Ist der Array groß genug?
+       if Arraysize_Literatur - GetTopEmptyRow('Literatur') < 100 then
        begin
-            caption:='Titeldaten';
-            TmpHinweis:='';   //keine ID vergeben
-            Kurzzitat:='';
-            GV_TmpZitat:='';
-            for i:=0 to 14 do Titeldatenmatrix.cells[1,i]:='';
-            ZeigeTiteldaten();
-
-
-
-
-
+            SetLength(Literatur, ArraySize_Literatur+102,Spalte_Ende+1);
+            ArraySize_Literatur:=ArraySize_Literatur+100;
        end;
-       Speicherbedarf('l');
+
+
+       LabelFussnote.caption:='';
+
+                { 11/2025: Soll verhindern, dass Datensätze versehendlich
+                  überschrieben werden }
+       TmpHinweis:='';
+       AktuelleLiteraturID:= '';// inttostr(GetMaxId('Literatur') + 1);
+       ZeigeTiteldaten();
+
+       // die Anzeige aufräumen
+       resizewindow();
+       timer.enabled:=false;  //brauche ich, damit die Felder leer bleiben
+       Feldinhalt.Lines.Clear;
+       LabelVollzitat.Caption:='';
+       LabelTitel.caption:='';
+       LabelGeaendertam.caption:='';
+       LabelErstelltam.caption:='';
+       PanelVergebeneKeywords.caption:='';
+       BaumVerweise.items.clear;
+       BaumVerweise2.items.clear;
+       BaumVerweise3.items.clear;
+
+       for i:=0 to 14 do Titeldatenmatrix.cells[1,i]:='';
+       Dateneingabe.Text:='';
+       TitelDatenMatrix.Row:=0;
+       TitelDatenmatrixclick(self);
+       Vorschlagsliste.visible:=false;
+
+       lchanged:=true;
   end;
 
 
@@ -13960,8 +14328,8 @@ begin
   formcreate(self);  //noch mal die ganze Startprozedur durchlaufen
 
   ListeClick(self); //Die Anzeige aktualisieren. Für die vergangene Zeit wichtig.
-
-  Sucheingabe.Setfocus ;
+  if Sucheingabe.visible then
+  FocusTo('Sucheingabe');
   FeldInhalt.Enabled:=true;
   screen.cursor:=crdefault;
 
@@ -13998,33 +14366,60 @@ begin
               end;
     end;
 
-    Speicherbedarf('l');
+    lchanged:=true;
     LiteraturArrayZeileNachoben(aktuelleLiteraturArrayZeile);
 
 end;
 
 procedure TFenster.IconAllesSpeichernClick(Sender: TObject);
-
+var
+   i:                      integer;
+   maxbackups:             integer;
+   Sicherungsname:         string;
 begin
+   screen.cursor:=crhourglass;
+   maxbackups:=10;
    if istextchanged then savechangestoarray();
-
    machpause();
+
    if ichanged then
    begin
+        { zuerst die alte .xml sichern, bevor die neue geschrieben wird }
+        sicherungsname:= mypath + 'ideen_backup_' + formatdatetime('yyyymmdd', now) + '.xml';
+        copyfile(mypath + 'ideen.xml', sicherungsname);
+        MachPause();
         IdeenSpeichernClick(self);
+        machpause();
+        { bei zu vielen alten Sicherungen die ältesten davon löschen }
+        Dateiliste.mask:='*.*';
+        Dateiliste.mask:='ideen_backup_*.xml';
+        DateiListe.Directory:=mypath;
+        if dateiliste.items.count > maxbackups then
+            for i:= 0 to 2 do
+                deletefile(mypath + Dateiliste.Items.strings[i]);
    end;
    machpause() ;
    if lchanged then
    begin
-        LiteraturDatenbankkomplettabspeichern();
+       { zuerst die alte .xml sichern, bevor die neue geschrieben wird }
+       sicherungsname:= mypath + 'literatur_backup_' + formatdatetime('yyyymmdd', now) + '.xml';
+       copyfile(mypath + 'literatur.xml', sicherungsname);
+       MachPause();
+       LiteraturDatenbankkomplettabspeichern();
+       machpause();
+       { bei zu vielen alten Sicherungen die ältesten davon löschen }
+       Dateiliste.mask:='*.*';
+       Dateiliste.mask:='literatur_backup_*.xml';
+       DateiListe.Directory:=mypath;
+       if dateiliste.items.count > maxbackups then
+           for i:= 0 to 2 do
+               deletefilePlus(mypath + Dateiliste.Items.strings[i]);
    end;
-
-
-  ungespeicherteZeichen:=0;
-  if  (Registerkarten.activepage=Ideenseite)
-  and (RegisterSuche.activepage=SeiteVolltextSuche)
-  then focusAnmerkung();
-
+   ungespeicherteZeichen:=1; { sonst /div 0  Gefahr }
+   if  (Registerkarten.activepage=Ideenseite)
+   and (RegisterSuche.activepage=SeiteVolltextSuche)
+   then FocusTo('Feldinhalt');
+   screen.cursor:=crdefault;
 end;
 
 procedure TFenster.IconLiteraturZitierenClick(Sender: TObject);
@@ -14052,6 +14447,7 @@ end;
 procedure TFenster.LabelVollzitatClick(Sender: TObject);
 
 begin
+    aufraeumen();
     nachricht('Zitat in die Zwischenablage kopiert',1);
     clipboard.asText:=LabelVollzitat.caption;
 end;
@@ -14231,22 +14627,6 @@ begin
   RichtlinieInternSpeichernClick(self);
 end;
 
-procedure TFenster.ZeitstempelClick(Sender: TObject);
-
-begin
-  If AngezeigterTyp='L' then
-  begin
-      dummystring:=inputbox(Literatur[AktuelleLiteraturArrayZeile,Spalte_Bearbeitungszahl] + ' Bearbeitungen','erstellt am:',Literatur[AktuelleLiteraturArrayZeile,Spalte_Erstelldatum]);
-      Literatur[AktuelleLiteraturArrayZeile,Spalte_Erstelldatum]:=dummystring ;
-      Literatur[AktuelleLiteraturArrayZeile,Spalte_Bearbeitungsdatum]:=formatdatetime('yyyymmddhhnn', now);
-  end else begin
-      dummystring:=inputbox(Daten[AktuelleNotizenArrayZeile,Spalte_Bearbeitungszahl] + ' Bearbeitungen','erstellt am:',Daten[AktuelleNotizenArrayZeile,Spalte_Erstelldatum]);
-      Daten[AktuelleNotizenArrayZeile,Spalte_Erstelldatum]:=dummystring ;
-      Daten[AktuelleNotizenArrayZeile, Spalte_Bearbeitungsdatum] := formatdatetime('yyyymmddhhnn', now);
-  end;
-  timer.enabled:=true;
-end;
-
 procedure TFenster.ZusatzLiteraturSucheClick(Sender: TObject);
 begin
   Suchbegriffe(sonderzeichenraus(Sucheingabe.text))  ;
@@ -14284,7 +14664,7 @@ var
 
 begin
      //Erst einmal alles formatieren
-     for i:=1 to arraysize do // ALLE Quellen durchformatieren...
+     for i:=1 to arraysize_literatur do // ALLE Quellen durchformatieren...
      begin
          for j:=1 to Spalte_Ende do LiteraturZeile[j]:=Literatur[i,j]; // in eine zweite Variable kopiert, die als globale Variable an eine Funktion übergeben werden kann
          Literatur[i,Spalte_Ende]:= QuelleInRTFFormatieren(true);
@@ -14429,8 +14809,7 @@ end;
 procedure TFenster.PanelGliederungKopfClick(Sender: TObject);
 
 begin
-     ImageEinstellungenClick(self);
-     RegisterOptionen.activepage:=SeiteOptionenDrucken;
+
 end;
 
 procedure TFenster.VerweismatrixDrawCell(Sender: TObject; aCol, aRow: Integer;
@@ -14455,7 +14834,7 @@ begin
 
      if Registerkarten.Activepage<> IdeenSeite then Registerkarten.Activepage:=IdeenSeite;
      CreateFileLink(Filenames[0]);
-     focusAnmerkung();
+     FocusTo('Feldinhalt');
      //Der Fokus wechselt auf Bibliographix
      machpause();
      SetForegroundWindow(Application.MainForm.Handle);
@@ -14485,22 +14864,15 @@ begin
        { Falls noch eines der Unterfenster sichbar ist, das Hauptfenster aber
          trotzdem schon den Fokus hat }
        machzu:=true;
-       if (formneu.visible) and machzu then
-       begin
-          formneu.close;
-          machzu:=false;
-       end;
 
-       if (RegisterSuche.activepage=SeiteQuerverweis) then
+       if registersuche.activepage<> SeiteVolltextsuche then
        begin
            RegisterSuche.activepage:=SeiteVolltextSuche  ;
            machzu:=false;
+           timer.enabled:=true;
        end;
-       if (RegisterSuche.activepage=Seiteschlagwort) and machzu then
-       begin
-            RegisterSuche.activepage:=SeiteVolltextSuche;
-            machzu:=false;
-       end;
+
+
 
        { Die Seite mit den Anmerkungen ist aufgerufen. Volltextsuche oder
          Gliederung }
@@ -14508,9 +14880,17 @@ begin
        begin
             if RegisterSuche.Activepage=SeiteVollTextSuche then
             begin
+                  // ist das NEUE QUELLE Formular offen?
+                  if PanelNeueQuelle.height > 10
+                  then ButtonNeuDialogWegClick(self);
+
+
                   LetzterFokus:='SuchEingabe'; //Dahin soll gesprungen werden
-                  Sucheingabe.SetFocus;
-                  alleanzeigenclick(self);
+                  FocusTo('Sucheingabe');
+                  if sucheingabe.visible then
+                  begin
+                     alleanzeigenclick(self);
+                  end;
             end;
             if RegisterSuche.Activepage=SeiteGliederung then
             begin
@@ -14518,14 +14898,12 @@ begin
                  begin
                       RegisterSuche.Activepage:=SeiteVollTextSuche ;
                       LetzterFokus:='SuchEingabe'; //Dahin soll gesprungen werden
-                      Sucheingabe.SetFocus;
-                      alleanzeigenclick(self);
+                      if sucheingabe.visible then
+                      begin
+                           FocusTo('Sucheingabe');
+                           alleanzeigenclick(self);
+                      end;
                  end;
-                 if (activecontrol=feldinhalt) or
-                    (activecontrol=AnmerkungenMemo) then
-                    Gliederung.SetFocus;
-
-
             end;
        end;
 
@@ -14575,21 +14953,22 @@ begin
          IconGliederungKleinClick(self) else IconVolltextsucheKleinClick(self);
     if key=vk_f5 then
     begin
+         if Registersuche.activepage=Titeldaten  then
+         begin
+             ButtonTiteldatenSpeichernClick(self);
+             machpause() ;
+         end;
          IconAllesSpeichernClick(self);
     end;
-     if key=vk_f6 then
+    if key=vk_f6 then IconSchlagwortClick(self);
+    if key=vk_f7 then OptionMarkierenClick(self);
+    if key=vk_f8 then IconPapierkorbLoeschenClick(self);
+    if key=vk_f9 then
     begin
-         IconSchlagwortClick(self);
+         machpause();
+         VerweisErstellenClick(self);
+
     end;
-    if key=vk_f7 then
-    begin
-         OptionMarkierenClick(self);
-    end;
-    if key=vk_f8 then
-    begin
-        IconPapierkorbLoeschenClick(self);
-    end;
-    if key=vk_f9 then VerweisErstellenClick(self);
 
 
 
@@ -14605,7 +14984,7 @@ begin
           begin
                Registerkarten.activepage:=Ideenseite;
                RegisterSuche.Activepage:=SeiteVollTextSuche;
-               Sucheingabe.SetFocus;
+               FocusTo('Sucheingabe');
           end;
      end;
   end;
@@ -14658,8 +15037,7 @@ end;
 
 procedure TFenster.IconGliederungClick(Sender: TObject);
 var
-   i,j:integer;
-
+   i,j:     integer;
 begin
 
      if fileexists(DBDirectory + Gliederungsdatei) then
@@ -14678,22 +15056,23 @@ begin
       Dateiliste.directory:=DBDirectory;
 
 
-      ListeGliederungen.items.clear;
-      ListeGliederungen.items.add ('<neue Gliederung>');
-
+      MemoGliederungen.lines.clear;
 
       j:=  (Dateiliste.items.Count-1) ;
+
       for i:=0 to j do
       begin
            dummystring:=Dateiliste.Items.strings[i];
-           dummystring:=copy(dummystring,1,(length(dummystring)-5));
-           //in die selbstgemachte Dropdownbox
-           if length(dummystring) > 1 then ListeGliederungen.Items.Add(dummystring);
+           dummystring:=copy(dummystring,1,(length(dummystring)-5)); //.tree weg
+           //in die Liste
+           if length(dummystring) > 1 then MemoGliederungen.lines.text:=
+              MemoGliederungen.lines.text + '   ' +dummystring;
       end;
       dummystring:=copy(gliederungsdatei,1,length(gliederungsdatei)-5);
+   //   MemoGliederungen.lines.text:=MemoGliederungen.lines.text + #10 + '|neue Gliederung anlegen|';
+      MemoGliederungen.lines.text:=trim(MemoGliederungen.lines.text);
       LabelComboboxGliederung.caption:=dummystring;
-
-
+      Gliederungmd();
 
 
 
@@ -14703,44 +15082,86 @@ end;
 procedure TFenster.IconSchlagwortClick(Sender: TObject);
 
 var
+   anfang:      integer;
    c:           integer; //column der Schlagwortmatrix
    i:           integer;
+   meintext:    string;
+   mindesthoehe:integer;
    r:           integer; //row der Schlagwortmatrix
-   w:           string;
+   StandardAbsatz:  tParametric;
+   StandardZeichen: TFontParams;
+   w:               string;
 begin
-        saveChangestoArray();
-        Schlagwortmatrix.RowCount:=trunc(swliste.count/3) + 10 ;
-        swliste.Sorted:=true;
-        swliste.sorted:=false;
-        frag.text:='';
-        c:=-1;
-        r:=0;
+        if istextchanged then saveChangestoArray();
 
-        Schlagwortmatrix.Colwidths[0]:=trunc(schlagwortmatrix.width/3)-5;
-        Schlagwortmatrix.Colwidths[1]:=Schlagwortmatrix.Colwidths[0] ;
-        Schlagwortmatrix.Colwidths[2]:=Schlagwortmatrix.Colwidths[0];
+        Mindesthoehe:=700; // Bei kleineren Fenstern muss die Darstellung
+                           // kompakter sein
+        //-- Das Memo füllen --
+        //---------------------
+        MemoSchlagwoerter.Lines.Clear;
+        MemoSchlagwoerter.Color:=LabelTitelschlagwort.color;
+        meintext:=ansilowercase(Feldinhalt.Lines.text + ' ' +  labeltitel.text );
+        with Standardzeichen do //normaler Text ohne Formatierungen
+        begin
+             if fenster.height > Mindesthoehe then Size:=12 else size:=11;
+             Color:=Fenster.FeldInhalt.font.color;
+          //   BkColor:=Fenster.Panel3.color;
+             hasBkClr:=false;
+             Style:=[];
+        end;
 
-
-         for i:=0 to swliste.count -1 do
-         begin
-              w:= getfirstword(swliste[i]);
-              if c=2 then
-              begin
-                   c:=0;
-                   r:=r+1;
-              end else begin
-                  c:=c+1;
-              end;
-              if pos(ansilowercase(w), ansilowercase(feldinhalt.Text)) > 0 then
-                 w:=ansiuppercase(w);
-              schlagwortmatrix.Cells[c,r]:=w;
-
+        with Standardabsatz do // für die Formatierung
+        begin
+             SpaceBefore:=0;
+             { bei geringer Fensterhöhe muss die Darstellung kompakter sein }
+             if fenster.height > Mindesthoehe then SpaceAfter:=4
+                                              else spaceafter:=1;
+             Headindent := 0;
+             Tailindent := 0;
+             FirstLine := 0;
          end;
-         Schlagwortmatrix.RowCount:=r+1;
 
-         //frag.text:='';
+
+
+        for i:=0 to swliste.count -1 do
+        begin
+            w:= getfirstword(swliste[i]);
+            if i>1 then
+            begin
+                 if ansilowercase(copy(w,1,1)) <>
+                    ansilowercase(copy(swliste[i-1],1,1))
+                 then MemoSchlagwoerter.lines.text:=
+                      MemoSchlagwoerter.lines.Text + #13
+            end;
+            MemoSchlagwoerter.lines.text:=MemoSchlagwoerter.lines.Text + w + '  ';
+        end;
+
+
+
+        with fenster.MemoSchlagwoerter do
+        begin
+              SetRangeparams(0,1000,[ tmm_backcolor,
+                                  tmm_Size,
+                                  tmm_Color,
+                                  tmm_styles],
+                                  Standardzeichen,
+                                  [],                //Attribute dazu
+                                  [fsbold,fsunderline]); //Attribute weg
+              for i:=0 to swliste.count -1 do
+              begin
+                   w:= getfirstword(swliste[i]);
+                   if pos(ansilowercase(w),meintext) > 0 then
+                   begin
+                       anfang:= Search(w,0,1000,[]);
+                       SetRangeParams(anfang, length(w), [tmm_styles,tmm_color], '',0,  blau, [fsbold], []);
+                   end
+              end;
+              SetParametric(1,10000,Standardabsatz);
+          end;
+
+
          RegisterSuche.Activepage:=SeiteSchlagwort;
-         frag.SetFocus;
+         FocusTo('Suchanfrage');
 
 end;
 
@@ -14749,8 +15170,8 @@ var
    clp:string;
 begin
      IconLiteraturZitierenClick(self);
-     Speicherbedarf('l');
-     Speicherbedarf('i');
+     ichanged:=true;
+     lchanged:=true;
      clp:=Clipboard.AsText;
      neueKarteClick(self);
      timertimer(self);
@@ -14798,6 +15219,7 @@ var
    FeldText:               string;
 
 begin
+
         DetailsAktualisieren:=false;  { sollen die Details in der angezeigten
                                         Liste  aktualisiert werden? 03/2024}
 
@@ -14805,7 +15227,6 @@ begin
         if (Registersuche.activepage=Seiteschlagwort)
         or (Registersuche.activepage=SeiteQuerverweis)
         then RegisterSuche.Activepage:=SeiteVolltextsuche;
-
         IsTextChanged:=true;
         if Angezeigtertyp='L' then lchanged:=true else ichanged:=true;
 
@@ -14819,14 +15240,10 @@ begin
              FeldInhalt.GetParaRange(feldinhalt.SelStart,ab.start,ab.length);
              formatmd(ab.start,ab.length,false);
              DetailsAktualisieren:=true;
-             saveChangestoArray();
+             if istextchanged then saveChangestoArray();
 
         end;
 
-        { den aktuellen Absatz reformatieren. welcher Auslöser ist der
-          intelligenteste?
-          Linux kann leicht flackern.  07/2024
-        }
         if     (key=vk_multiply)
             or (key=VK_oem_plus)
 
@@ -14840,9 +15257,7 @@ begin
            DetailsAktualisieren:=true;
         end;
 
-          { Die Anzeige in der Liste wird aktualisiert, was nur sinnvoll ist,
-            wenn die Option DETAILS eingeschaltet ist }
-        If not (var_OptionListeDetails) then Detailsaktualisieren:=false;
+
         If (Feldinhalt.SelStart > 80) and (feldinhalt.visible) then Detailsaktualisieren:=false;
         if DetailsAktualisieren then
         begin
@@ -14853,7 +15268,7 @@ begin
                 and  (Trefferarray[Liste.row,4] <> AktuelleNotizID)
                 then Detailsaktualisieren:=false;
         end;
-        if (DetailsAktualisieren)then            //Test für Linux buggy        and (os='win')
+        if (DetailsAktualisieren)then
         begin
               FeldText:= Copy(Feldinhalt.text,1,80);
               if pos(Feldtext,Trefferarray[Liste.row,7])<>1 then
@@ -14866,14 +15281,10 @@ begin
         if feldinhalt.visible then
            GV_textposition:=FeldInhalt.Selstart; //globale Variable
 
-
-
-
-        //if key=vk_space then saveChangestoArray();
-        if key = vk_escape then
+        if (key = vk_escape) and istextchanged then
         begin
              saveChangestoArray();
-             Sucheingabe.setfocus;
+             FocusTo('Sucheingabe');
 
         end;
 
@@ -14912,7 +15323,7 @@ begin
           SonderzeichenRaus(ansilowercase(neuerTitel)); //02/2022 Gab Fehler, wenn Umlaut im Titel
         Daten[AktuelleNotizenarrayzeile, Spalte_Bearbeitungsdatum]:= formatdatetime('yyyymmddhhnn', now);
          savechangestoarray();
-        Speicherbedarf('i');
+        ichanged:=true;
         GV_Titel  := neuerTitel;
         LabelTitel.Caption := neuerTitel;
         If RegisterSuche.Activepage=SeiteVolltextsuche then AlleAnzeigenClick(self);
@@ -14956,7 +15367,7 @@ procedure TFenster.FormClose(Sender: TObject; var CloseAction: TCloseAction);
 
 begin
      timer.enabled:=false;
-     savechangestoarray();
+     if istextchanged then savechangestoarray();
      FHTTPClient.Free;;
      machpause();
      RegisterKarten.ActivePage:=IdeenSeite;

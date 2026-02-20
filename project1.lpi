@@ -14,7 +14,7 @@
       <ResourceType Value="res"/>
       <UseXPManifest Value="True"/>
       <XPManifest>
-        <DpiAware Value="True"/>
+        <DpiAware Value="True/PM_V2"/>
       </XPManifest>
       <Icon Value="0"/>
     </General>
@@ -23,6 +23,9 @@
     </i18n>
     <BuildModes Count="1">
       <Item1 Name="Default" Default="True"/>
+      <SharedMatrixOptions Count="1">
+        <Item1 ID="007036283273" Type="IDEMacro" MacroName="LCLWidgetType" Value="win32"/>
+      </SharedMatrixOptions>
     </BuildModes>
     <PublishOptions>
       <Version Value="2"/>
@@ -33,36 +36,30 @@
         <Mode0 Name="default"/>
       </Modes>
     </RunParams>
-    <RequiredPackages Count="9">
+    <RequiredPackages Count="7">
       <Item1>
-        <PackageName Value="SynEditDsgn"/>
+        <PackageName Value="LazControlDsgn"/>
       </Item1>
       <Item2>
-        <PackageName Value="SynEdit"/>
+        <PackageName Value="LazControls"/>
       </Item2>
       <Item3>
-        <PackageName Value="LazControlDsgn"/>
+        <PackageName Value="richmemo_design"/>
       </Item3>
       <Item4>
-        <PackageName Value="LazControls"/>
+        <PackageName Value="uniqueinstance_package"/>
       </Item4>
       <Item5>
-        <PackageName Value="richmemo_design"/>
+        <PackageName Value="richmemopackage"/>
       </Item5>
       <Item6>
-        <PackageName Value="uniqueinstance_package"/>
+        <PackageName Value="RunTimeTypeInfoControls"/>
       </Item6>
       <Item7>
-        <PackageName Value="richmemopackage"/>
-      </Item7>
-      <Item8>
-        <PackageName Value="RunTimeTypeInfoControls"/>
-      </Item8>
-      <Item9>
         <PackageName Value="LCL"/>
-      </Item9>
+      </Item7>
     </RequiredPackages>
-    <Units Count="6">
+    <Units Count="3">
       <Unit0>
         <Filename Value="project1.lpr"/>
         <IsPartOfProject Value="True"/>
@@ -82,24 +79,6 @@
         <HasResources Value="True"/>
         <ResourceBaseClass Value="Form"/>
       </Unit2>
-      <Unit3>
-        <Filename Value="uShellDragDrop.pp"/>
-        <IsPartOfProject Value="True"/>
-      </Unit3>
-      <Unit4>
-        <Filename Value="unitneu.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="FormNeu"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
-      </Unit4>
-      <Unit5>
-        <Filename Value="unittitel.pas"/>
-        <IsPartOfProject Value="True"/>
-        <ComponentName Value="FormTiteldaten"/>
-        <HasResources Value="True"/>
-        <ResourceBaseClass Value="Form"/>
-      </Unit5>
     </Units>
   </ProjectOptions>
   <CompilerOptions>
